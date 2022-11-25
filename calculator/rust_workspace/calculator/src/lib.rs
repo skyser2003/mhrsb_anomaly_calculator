@@ -189,6 +189,8 @@ pub fn calculate_skillset(
         dm.skills_to_ids(&no_deco_skills)
     );
 
+    info!("Sex type: {:?}", sex_type);
+
     let mut multi_skills = SkillsContainer::new();
 
     for (uid, level) in yes_deco_skills.iter() {
