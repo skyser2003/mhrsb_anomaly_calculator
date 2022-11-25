@@ -258,8 +258,10 @@ impl CalcDataManager {
 
         all_calc_equips.push(talis_vec);
 
-        for part_equips in all_calc_equips.iter_mut() {
-            if include_lte_equips == false {
+        for (part, part_equips) in all_calc_equips.iter_mut().enumerate() {
+            if part == ArmorPart::Talisman.as_usize() {
+                *part_equips = Self::remove_le_equipments(part_equips.clone(), None);
+            } else if include_lte_equips == false {
                 *part_equips = Self::remove_le_equipments(part_equips.clone(), None);
             }
 
