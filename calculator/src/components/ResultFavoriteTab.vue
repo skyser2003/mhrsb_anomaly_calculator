@@ -4,13 +4,17 @@ import { ref } from "vue";
 import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
 
 import { SkillsData } from "../models/skills";
+import { DecosData } from "../models/decos";
 
-import { ResultFavorite, Skills } from "../definition/calculate_result";
+import { ResultFavorite, ResultFullEquipments, Skills } from "../definition/calculate_result";
 
 import uiData from "../ui_data/ui_data.json";
 import { getDecoCombTexts } from "../model/ui";
 import { Language } from "../definition/language";
 import { CacheManager } from "../model/data_manager";
+
+import ResultFavoriteRow from "./ResultFavoriteRow.vue";
+
 
 const UIData = uiData as { [key: string]: { [key: string]: string } };
 
@@ -59,7 +63,7 @@ const columns = ref([
 		key: "skills",
 	},
 	{
-		title: "deco_combs",
+		title: UIData["decorations_name"][props.langData],
 		dataIndex: "deco_combs",
 		key: "deco_combs",
 	},
@@ -98,6 +102,34 @@ function generateTableData(favs: ResultFavorite[]) {
 			}
 		}
 
+		for (const skillId in fav.talisman.skills) {
+			const level = fav.talisman.skills[skillId];
+
+			if (skills[skillId] === undefined) {
+				skills[skillId] = level;
+			} else {
+				skills[skillId] += level;
+			}
+		}
+
+		for (const skillId in fav.decoComb.skill_decos) {
+			const decos = fav.decoComb.skill_decos[skillId];
+			let level = 0;
+
+			for(let i = 0; i < decos.length; ++i) {
+				const count = decos[i];
+				const decoInfo = DecosData.getInfo(skillId, i);
+
+				level += count * decoInfo.skillLevel;
+			}
+
+			if (skills[skillId] === undefined) {
+				skills[skillId] = level;
+			} else {
+				skills[skillId] += level;
+			}
+		}
+
 		for (const skillId in skills) {
 			const name = SkillsData.getName(skillId, props.langData);
 			const level = skills[skillId];
@@ -113,6 +145,7 @@ function generateTableData(favs: ResultFavorite[]) {
 		const leftoverSlotsText = JSON.stringify(fav.decoComb.leftover_slots_sum);
 
 		return {
+			key: index,
 			id,
 			name: fav.name,
 			sex_type: UIData[fav.sexType][props.langData],
@@ -140,10 +173,22 @@ function saveName(index: number) {
 	isEditing.value[index] = false;
 }
 
+function generateResultFullEquipments(fav: ResultFavorite) {
+	const ret: ResultFullEquipments = {
+		sex_type: fav.sexType,
+		weapon_slots: fav.weaponSlots,
+		armors: fav.armors,
+		talisman: fav.talisman,
+		deco_combs: [fav.decoComb],
+	};
+	
+	return ret;
+}
+
 </script>
 
 <template>
-	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ hideOnSinglePage: true }">
+	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }">
 		<template #bodyCell="{ text, index, column }">
 			<template v-if="column.key === 'name'">
 				<template v-if="isEditing[index] === true">
@@ -167,6 +212,10 @@ function saveName(index: number) {
 					<a-button>X</a-button>
 				</a-popconfirm>
 			</template>
+		</template>
+
+		<template #expandedRowRender="{ index }">
+			<ResultFavoriteRow :langData="langData" :data="generateResultFullEquipments(favorites[index])" />
 		</template>
 	</a-table>
 </template>

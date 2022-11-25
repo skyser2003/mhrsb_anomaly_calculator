@@ -2,7 +2,7 @@
 
 import { ref } from "vue";
 
-import { ResultFullEquipments, ResultArmor, ResultFavorite, EquipSlots } from "../definition/calculate_result";
+import { ResultFullEquipments, ResultArmor, ResultFavorite, EquipSlots, ResultTalisman } from "../definition/calculate_result";
 import { SkillsData } from "../models/skills";
 import { DecosData } from "../models/decos";
 import { SlotsDataManager } from "../models/slots";
@@ -18,15 +18,12 @@ interface RowData {
 	arm: string;
 	waist: string;
 	feet: string;
+	talisman: string;
 }
 
 const props = defineProps<{
 	langData: Language,
 	data: ResultFullEquipments,
-}>();
-
-const emits = defineEmits<{
-	(event: "add_result_favorite", fav: ResultFavorite): void
 }>();
 
 const equipColumns = ref([
@@ -65,6 +62,12 @@ const equipColumns = ref([
 		dataIndex: "feet",
 		key: "feet",
 		width: 50,
+	},
+	{
+		title: UIData["talisman_name"][props.langData],
+		dataIndex: "talisman",
+		key: "talisman",
+		width: 50,
 	}
 ]);
 
@@ -86,16 +89,8 @@ const decoColumns = [
 		dataIndex: "leftover_skills",
 		key: "leftover_skills",
 		width: 200,
-	},
-	{
-		title: UIData["save"][props.langData],
-		dataIndex: "add_result_favorite",
-		key: "add_result_favorite",
-		width: 100,
 	}
 ];
-
-const savedCheck = ref<{ [key: number]: boolean }>({});
 
 function getArmorData(data: ResultArmor) {
 	const skillTexts = [];
@@ -154,6 +149,26 @@ function getArmorDiffData(data: ResultArmor) {
 	return `${skillTexts.join(", ")} / ${UIData['slots_name'][props.langData]} [${slot_diff_texts.join(", ")}]`;
 }
 
+function getTalismanText(talisman: ResultTalisman) {
+	const taliSkills = talisman.skills;
+	const taliSlots = talisman.slots;
+
+	const skillTexts = [];
+
+	for (const skillId in taliSkills) {
+		const name = SkillsData.getName(skillId, props.langData);
+
+		const text = `${name} Lv${taliSkills[skillId]}`;
+		skillTexts.push(text);
+	}
+
+	const taliBaseSlots = SlotsDataManager.convertToBase(taliSlots);
+
+	const slotsName = UIData["slots_name"][props.langData];
+
+	return skillTexts.join(", ") + " / " + `${slotsName} ${JSON.stringify(taliBaseSlots)}`;
+}
+
 function getRowData(data: ResultFullEquipments) {
 	const originalData = {
 		row_info: UIData["base_armor_info"][props.langData],
@@ -162,6 +177,7 @@ function getRowData(data: ResultFullEquipments) {
 		arm: getArmorData(data.armors["arm"]),
 		waist: getArmorData(data.armors["waist"]),
 		feet: getArmorData(data.armors["feet"]),
+		talisman: getTalismanText(data.talisman),
 	} as RowData;
 
 	const diffData = {
@@ -171,6 +187,7 @@ function getRowData(data: ResultFullEquipments) {
 		arm: getArmorDiffData(data.armors["arm"]),
 		waist: getArmorDiffData(data.armors["waist"]),
 		feet: getArmorDiffData(data.armors["feet"]),
+		talisman: "",
 	} as RowData;
 
 	return [originalData, diffData];
@@ -198,38 +215,11 @@ function getDecoCombData(data: ResultFullEquipments) {
 	return decoCombs;
 }
 
-function addResultFavorite(index: number) {
-	const armors = props.data.armors;
-	const talisman = props.data.talisman;
-	const decoComb = props.data.deco_combs[index];
-
-	const fav: ResultFavorite = {
-		name: "",
-		sexType: props.data.sex_type,
-		weaponSlots: props.data.weapon_slots,
-		armors,
-		talisman,
-		decoComb
-	};
-	
-	emits("add_result_favorite", fav);
-
-	savedCheck.value[index] = true;
-}
-
 </script>
 
 <template>
 	<a-table :columns="equipColumns" :data-source="getRowData(props.data)" :pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">
 	</a-table>
 	<a-table :columns="decoColumns" :data-source="getDecoCombData(props.data)" :pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">
-		<template #bodyCell="{ index, column }">
-			<template v-if="column.key === 'add_result_favorite'">
-				<a-button :type="savedCheck[index] === true ? 'dashed' : 'primary'" :disabled="savedCheck[index] === true" @click="addResultFavorite(index)">Save</a-button>
-				<template v-if="savedCheck[index] === true">
-					Saved!
-				</template>
-			</template>
-		</template>
 	</a-table>
 </template>

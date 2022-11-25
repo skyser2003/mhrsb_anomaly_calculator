@@ -2,7 +2,7 @@
 import { ref, Ref } from "vue";
 import { SmileOutlined } from '@ant-design/icons-vue';
 
-import { CalculateResult, EquipSlots, ResultFavorite, Slots } from "../definition/calculate_result";
+import { CalculateResult, EquipSlots, ResultFavorite, Slots, ResultTalisman } from "../definition/calculate_result";
 
 import { ArmorsData } from "../models/armors";
 import { SkillsData } from "../models/skills";
@@ -70,6 +70,25 @@ const columns = ref([
 	}
 ]);
 
+function getTalismanText(talisman: ResultTalisman) {
+	const taliSkills = talisman.skills;
+	const taliSlots = talisman.slots;
+
+	const skillTexts = [];
+
+	for (const skillId in taliSkills) {
+		const name = SkillsData.getName(skillId, props.langData);
+
+		const text = `${name} Lv${taliSkills[skillId]}`;
+		skillTexts.push(text);
+	}
+
+	const taliBaseSlots = SlotsDataManager.convertToBase(taliSlots);
+
+	const slotsName = UIData["slots_name"][props.langData];
+
+	return skillTexts.join(", ") + " / " + `${slotsName} ${JSON.stringify(taliBaseSlots)}`;
+}
 
 function generateTableData(calcResult: CalculateResult) {
 	if (calcResult.full_equipments === undefined) {
@@ -77,22 +96,6 @@ function generateTableData(calcResult: CalculateResult) {
 	}
 
 	return calcResult.full_equipments.map((equips, index) => {
-		const taliSkills = equips.talisman.skills;
-		const taliSlots = equips.talisman.slots;
-
-		const skillTexts = [];
-
-		for (const skillId in taliSkills) {
-			const name = SkillsData.getName(skillId, props.langData);
-
-			const text = `${name} Lv${taliSkills[skillId]}`;
-			skillTexts.push(text);
-		}
-
-		const taliBaseSlots = SlotsDataManager.convertToBase(taliSlots);
-
-		const slotsName = UIData["slots_name"][props.langData];
-
 		const allLeftoverSlots = {} as { [key: string]: boolean };
 
 		for (const comb of equips.deco_combs) {
@@ -119,9 +122,9 @@ function generateTableData(calcResult: CalculateResult) {
 			arm: ArmorsData.getName(equips.armors["arm"].base_id, props.langData),
 			waist: ArmorsData.getName(equips.armors["waist"].base_id, props.langData),
 			feet: ArmorsData.getName(equips.armors["feet"].base_id, props.langData),
-			talisman: skillTexts.join(", ") + " / " + `${slotsName} ${JSON.stringify(taliBaseSlots)}`,
+			talisman: getTalismanText(equips.talisman),
 			leftover_slots: allLeftoverSlotsTexts.join(", "),
-	} as TableData;
+		} as TableData;
 	});
 }
 
@@ -141,13 +144,9 @@ function addResultFavorite(fav: ResultFavorite) {
 				v-if="ArmorsData.isArmorPart(column.key) && calcResult.full_equipments[index].armors[column.key].is_anomaly === true">
 				{{ text }} <img src="../assets/anomaly_item.png" width="20" />
 			</template>
-		
-			<template v-else>
-				{{ text }}
-			</template>
 		</template>
 
-		<template #expandedRowRender="{index}">
+		<template #expandedRowRender="{ index }">
 			<SimulateResultRow :langData="langData" :data="calcResult.full_equipments[index]" v-on:add_result_favorite="addResultFavorite" />
 		</template>
 	</a-table>
