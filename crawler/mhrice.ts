@@ -622,6 +622,14 @@ function parseArmor(
                 break;
         }
 
+        if (rarity === 9) {
+            if (armorId.startsWith("chaotic")) {
+                sexType = "male";
+            } else if (armorId.startsWith("nephilim")) {
+                sexType = "female";
+            }
+        }
+
         let savePart = part;
 
         switch (part) {

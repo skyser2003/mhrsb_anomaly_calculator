@@ -58681,7 +58681,7 @@
     {
         "id": "chaotic_helm",
         "part": "helm",
-        "sexType": "all",
+        "sexType": "male",
         "names": {
             "ja": "ケイオスヘルム",
             "en": "Chaotic Helm",
@@ -58726,7 +58726,7 @@
     {
         "id": "chaotic_mail",
         "part": "torso",
-        "sexType": "all",
+        "sexType": "male",
         "names": {
             "ja": "ケイオスメイル",
             "en": "Chaotic Mail",
@@ -58771,7 +58771,7 @@
     {
         "id": "chaotic_vambraces",
         "part": "arm",
-        "sexType": "all",
+        "sexType": "male",
         "names": {
             "ja": "ケイオスアーム",
             "en": "Chaotic Vambraces",
@@ -58816,7 +58816,7 @@
     {
         "id": "chaotic_faulds",
         "part": "waist",
-        "sexType": "all",
+        "sexType": "male",
         "names": {
             "ja": "ケイオスフォールド",
             "en": "Chaotic Faulds",
@@ -58861,7 +58861,7 @@
     {
         "id": "chaotic_greaves",
         "part": "feet",
-        "sexType": "all",
+        "sexType": "male",
         "names": {
             "ja": "ケイオスグリーヴ",
             "en": "Chaotic Greaves",
@@ -58906,7 +58906,7 @@
     {
         "id": "nephilim_helm",
         "part": "helm",
-        "sexType": "all",
+        "sexType": "female",
         "names": {
             "ja": "ネフィリムヘルム",
             "en": "Nephilim Helm",
@@ -58951,7 +58951,7 @@
     {
         "id": "nephilim_mail",
         "part": "torso",
-        "sexType": "all",
+        "sexType": "female",
         "names": {
             "ja": "ネフィリムメイル",
             "en": "Nephilim Mail",
@@ -58996,7 +58996,7 @@
     {
         "id": "nephilim_vambraces",
         "part": "arm",
-        "sexType": "all",
+        "sexType": "female",
         "names": {
             "ja": "ネフィリムアーム",
             "en": "Nephilim Vambraces",
@@ -59041,7 +59041,7 @@
     {
         "id": "nephilim_tassets",
         "part": "waist",
-        "sexType": "all",
+        "sexType": "female",
         "names": {
             "ja": "ネフィリムフォールド",
             "en": "Nephilim Tassets",
@@ -59086,7 +59086,7 @@
     {
         "id": "nephilim_greaves",
         "part": "feet",
-        "sexType": "all",
+        "sexType": "female",
         "names": {
             "ja": "ネフィリムグリーヴ",
             "en": "Nephilim Greaves",
