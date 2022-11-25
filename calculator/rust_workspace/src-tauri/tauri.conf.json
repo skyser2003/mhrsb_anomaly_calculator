@@ -53,7 +53,7 @@
         "updater": {
             "active": true,
             "endpoints": [
-                "https://gist.githubusercontent.com/skyser2003/5f38a3f997c86eb98e6da6a7fe5ef6d1/raw/58f4f7ab220f8d201512a1995e6864e0c481a229/gistfile1.txt"
+                "https://gist.githubusercontent.com/skyser2003/562c7876d76432a85f51d6e3b002af67/raw"
             ],
             "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZCOENEN0YyNThCQ0JCQkEKUldTNnU3eFk4dGVNK3lyWmN0NVJJVkREcWRJK29oWFcwUmZYUTFzekZrRTF0VFRMTVFUakR6c0kK"
         },
