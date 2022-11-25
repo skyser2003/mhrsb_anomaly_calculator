@@ -74,6 +74,7 @@ fn bench(c: &mut Criterion) {
                 selected_skills.clone(),
                 free_slots.clone(),
                 SexType::Female,
+                false,
                 &dm,
                 &cm,
             );

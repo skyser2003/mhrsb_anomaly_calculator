@@ -54,6 +54,7 @@ async fn it_works() {
         selected_skills,
         free_slots,
         crate::data::armor::SexType::Female,
+        false,
         &dm,
         &cm,
     );
