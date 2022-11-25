@@ -15,7 +15,6 @@
             "paralysis_attack",
             "sleep_attack",
             "blast_attack",
-            "element_exploit",
             "critical_element",
             "slugger",
             "status_trigger",
@@ -213,7 +212,7 @@
     {
         "id": "set_bonus",
         "names": {
-            "en": "Set bonus",
+            "en": "Set skills",
             "ko": "세트 효과"
         },
         "skills": [
@@ -226,12 +225,17 @@
             "furious",
             "thunder_alignment",
             "mail_of_hellfire",
+            "element_exploit",
             "dereliction",
             "teostra_blessing",
             "blood_rite",
             "buildup_boost",
             "embolden",
-            "intrepid_heart"
+            "intrepid_heart",
+            "berserk",
+            "powder_mantle",
+            "strife",
+            "wind_mantle"
         ]
     }
 ]
