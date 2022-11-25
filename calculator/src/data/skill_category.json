@@ -1,0 +1,237 @@
+[
+    {
+        "id": "element_and_status_effect",
+        "names": {
+            "en": "Element & Status effect",
+            "ko": "속성 & 상태이상"
+        },
+        "skills": [
+            "fire_attack",
+            "water_attack",
+            "thunder_attack",
+            "ice_attack",
+            "dragon_attack",
+            "poison_attack",
+            "paralysis_attack",
+            "sleep_attack",
+            "blast_attack",
+            "element_exploit",
+            "critical_element",
+            "slugger",
+            "status_trigger",
+            "stamina_thief"
+        ]
+    },
+    {
+        "id": "blademaster",
+        "names": {
+            "en": "Blademaster",
+            "ko": "검사"
+        },
+        "skills": [
+            "razor_sharp",
+            "masters_touch",
+            "speed_sharpening",
+            "handicraft",
+            "grinder_s",
+            "protective_polish",
+            "minds_eye",
+            "load_shells",
+            "horn_maestro",
+            "rapid_morph"
+        ]
+    },
+    {
+        "id": "gunner",
+        "names": {
+            "en": "Gunner",
+            "ko": "거너"
+        },
+        "skills": [
+            "pierce_up",
+            "spread_up",
+            "normalrapid_up",
+            "special_ammo_boost",
+            "ballistics",
+            "spare_shot",
+            "reload_speed",
+            "bow_charge_plus",
+            "steadiness",
+            "recoil_down",
+            "tune_up",
+            "rapid_fire_up",
+            "ammo_up"
+        ]
+    },
+    {
+        "id": "offense",
+        "names": {
+            "en": "Offense",
+            "ko": "공격"
+        },
+        "skills": [
+            "affinity_sliding",
+            "latent_power",
+            "maximum_might",
+            "critical_eye",
+            "attack_boost",
+            "offensive_guard",
+            "foray",
+            "weakness_exploit",
+            "critical_draw",
+            "punishing_draw",
+            "adrenaline_rush",
+            "sneak_attack",
+            "hellfire_cloak",
+            "agitator",
+            "resuscitate",
+            "bludgeoner",
+            "counterstrike",
+            "burst",
+            "critical_boost",
+            "charge_master",
+            "bladescale_hone",
+            "fortify",
+            "focus",
+            "resentment",
+            "peak_performance",
+            "heroics",
+            "coalescence",
+            "artillery"
+        ]
+    },
+    {
+        "id": "defense",
+        "names": {
+            "en": "Defense",
+            "ko": "방어"
+        },
+        "skills": [
+            "recovery_speed",
+            "defiance",
+            "guard_up",
+            "guard",
+            "stun_resistance",
+            "poison_resistance",
+            "paralysis_resistance",
+            "water_resistance",
+            "hunger_resistance",
+            "thunder_resistance",
+            "fire_resistance",
+            "blight_resistance",
+            "sleep_resistance",
+            "ice_resistance",
+            "dragon_resistance",
+            "earplugs",
+            "guts",
+            "tremor_resistance",
+            "defense_boost",
+            "blast_resistance",
+            "recovery_up",
+            "jump_master",
+            "divine_blessing",
+            "muck_resistance",
+            "quick_breath",
+            "flinch_free",
+            "windproof"
+        ]
+    },
+    {
+        "id": "stamina",
+        "names": {
+            "en": "Stamina",
+            "ko": "스테미나"
+        },
+        "skills": [
+            "marathon_runner",
+            "wirebug_whisperer",
+            "wall_runner",
+            "wall_runner_boost",
+            "constitution",
+            "stamina_surge"
+        ]
+    },
+    {
+        "id": "utility",
+        "names": {
+            "en": "Utility",
+            "ko": "유틸리티"
+        },
+        "skills": [
+            "power_prolonger",
+            "quick_sheathe",
+            "leap_of_faith",
+            "diversion",
+            "master_mounter",
+            "partbreaker",
+            "spiribirds_call"
+        ]
+    },
+    {
+        "id": "evasion",
+        "names": {
+            "en": "Evasion",
+            "ko": "회피"
+        },
+        "skills": [
+            "evade_extender",
+            "evade_window",
+            "bubbly_dance",
+            "redirection"
+        ]
+    },
+    {
+        "id": "acquire",
+        "names": {
+            "en": "Acquire",
+            "ko": "습득"
+        },
+        "skills": [
+            "carving_master",
+            "carving_pro",
+            "good_luck",
+            "geologist",
+            "botanist",
+            "capture_master"
+        ]
+    },
+    {
+        "id": "item_use",
+        "names": {
+            "en": "Item use",
+            "ko": "아이템 사용"
+        },
+        "skills": [
+            "wide_range",
+            "item_prolonger",
+            "free_meal",
+            "mushroomancer",
+            "speed_eating",
+            "bombardier"
+        ]
+    },
+    {
+        "id": "set_bonus",
+        "names": {
+            "en": "Set bonus",
+            "ko": "세트 효과"
+        },
+        "skills": [
+            "chameleos_blessing",
+            "stormsoul",
+            "wind_alignment",
+            "dragonheart",
+            "bloodlust",
+            "kushala_blessing",
+            "furious",
+            "thunder_alignment",
+            "mail_of_hellfire",
+            "dereliction",
+            "teostra_blessing",
+            "blood_rite",
+            "buildup_boost",
+            "embolden",
+            "intrepid_heart"
+        ]
+    }
+]

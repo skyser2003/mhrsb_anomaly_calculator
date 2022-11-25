@@ -1,0 +1,1 @@
+// Download http://mhrise.mhrice.info/mhrice.json and put in this folder

@@ -1,0 +1,18 @@
+{
+    "attack_boost": 4,
+    "critical_eye": 3,
+    "critical_boost": 3,
+    "weakness_exploit": 3,
+    "critical_element": 1,
+    "water_attack": 5,
+    "bow_charge_plus": 1,
+    "constitution": 5,
+    "stamina_surge": 3,
+    "spread_up": 3,
+    "reload_speed": 2,
+    "bloodlust": 1,
+    "spiribirds_call": 1,
+    "charge_master": 1,
+    "element_exploit": 1,
+    "burst": 2
+}

@@ -1,0 +1,5 @@
+[workspace]
+members = [	"calculator", "src-tauri" ]
+
+[profile.bench]
+debug = true

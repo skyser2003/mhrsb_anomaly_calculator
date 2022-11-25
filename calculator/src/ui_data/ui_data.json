@@ -1,0 +1,174 @@
+{
+    "language": {
+        "ko": "언어",
+        "en": "Language"
+    },
+    "weapon_slots": {
+        "ko": "무기 슬롯",
+        "en": "Weapon slots"
+    },
+    "deco_unit": {
+        "ko": "개",
+        "en": "ea"
+    },
+    "no_diff_skill": {
+        "ko": "괴이 스킬 없음",
+        "en": "No anomaly skill"
+    },
+    "helm_name": {
+        "ko": "머리",
+        "en": "Helm"
+    },
+    "torso_name": {
+        "ko": "몸통",
+        "en": "Torso"
+    },
+    "arm_name": {
+        "ko": "팔",
+        "en": "Arm"
+    },
+    "waist_name": {
+        "ko": "허리",
+        "en": "Waist"
+    },
+    "feet_name": {
+        "ko": "다리",
+        "en": "Feet"
+    },
+    "talisman_name": {
+        "ko": "탈리스만",
+        "en": "Talisman"
+    },
+    "slots_name": {
+        "ko": "슬롯",
+        "en": "Slots"
+    },
+    "decorations_name": {
+        "ko": "장식주",
+        "en": "Decorations"
+    },
+    "leftover_slots": {
+        "ko": "남은 슬롯",
+        "en": "Leftover slots"
+    },
+    "leftover_skills": {
+        "ko": "추가 스킬",
+        "en": "Leftover skills"
+    },
+    "base_armor_info": {
+        "ko": "기본 정보",
+        "en": "Base info"
+    },
+    "anomaly_craft_info": {
+        "ko": "괴이 강화 정보",
+        "en": "Anomaly craft info"
+    },
+    "simulation_tab": {
+        "ko": "계산",
+        "en": "Simulate"
+    },
+    "anomaly_tab": {
+        "ko": "괴이강화 목록",
+        "en": "Anomaly craft list"
+    },
+    "talisman_tab": {
+        "ko": "탈리스만 목록",
+        "en": "Talisman list"
+    },
+    "search_favorite_tab": {
+        "ko": "검색 즐겨찾기",
+        "en": "Search favorite"
+    },
+    "result_favorite_tab": {
+        "ko": "결과 즐겨찾기",
+        "en": "Result favorite"
+    },
+    "free_slots": {
+        "ko": "범용 슬롯",
+        "en": "Free slots"
+    },
+    "include_lte_equips": {
+        "ko": "하위호환 장비 포함하기",
+        "en": "Include LTE equipments"
+    },
+    "save": {
+        "ko": "저장하기",
+        "en": "Save"
+    },
+    "delete": {
+        "ko": "삭제",
+        "en": "Delete"
+    },
+    "set_search": {
+        "ko": "검색하러 가기",
+        "en": "Set search condition"
+    },
+    "confirm_delete": {
+        "ko": "정말 삭제하시겠습니까?",
+        "en": "Are you sure to delete this?"
+    },
+    "empty_favorite_name": {
+        "ko": "이름 없음",
+        "en": "No name"
+    },
+    "defense": {
+        "ko": "방어력",
+        "en": "Defense"
+    },
+    "fire_res": {
+        "ko": "불 저항",
+        "en": "Fire res"
+    },
+    "water_res": {
+        "ko": "물 저항",
+        "en": "Water res"
+    },
+    "ice_res": {
+        "ko": "얼음 저항",
+        "en": "Ice res"
+    },
+    "elec_res": {
+        "ko": "번개 저항",
+        "en": "Electric res"
+    },
+    "dragon_res": {
+        "ko": "용 저항",
+        "en": "Dragon res"
+    },
+    "armor_name": {
+        "ko": "장비 이름",
+        "en": "Armor name"
+    },
+    "slot_diffs": {
+        "ko": "슬롯 차이",
+        "en": "Slot diffs"
+    },
+    "mod_managed_anomaly_explanation": {
+        "ko": "괴이강화 장비 모드 파일",
+        "en": "Mod managed anomaly equipments"
+    },
+    "manually_managed_anomaly_explanation": {
+        "ko": "괴이강화 장비 수동 관리",
+        "en": "Manually managed anomaly equipments"
+    },
+    "mod_managed_talisman_explanation": {
+        "ko": "탈리스만 모드 파일",
+        "en": "Mod managed anomaly equipments"
+    },
+    "manually_managed_talisman_explanation": {
+        "ko": "탈리스만 수동 관리",
+        "en": "Manually managed anomaly equipments"
+    },
+    "sex_type": {
+        "ko": "성별",
+        "en": "Gender"
+    },
+    "male": {
+        "ko": "남자",
+        "en": "Male"
+    },
+    "female": {
+        "ko": "여자",
+        "en": "Female"
+    }
+}

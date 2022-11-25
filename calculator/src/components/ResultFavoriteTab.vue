@@ -1,0 +1,180 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
+
+import { SkillsData } from "../models/skills";
+
+import { ResultFavorite, Skills } from "../definition/calculate_result";
+
+import uiData from "../ui_data/ui_data.json";
+import { getDecoCombTexts } from "../model/ui";
+import { Language } from "../definition/language";
+import { CacheManager } from "../model/data_manager";
+
+const UIData = uiData as { [key: string]: { [key: string]: string } };
+
+interface Row {
+	id: string;
+	name: string;
+	sex_type: string;
+	weapon_slots: string;
+	skills: string;
+	deco_combs: string;
+	leftover_slots: string;
+}
+
+
+const props = defineProps<{
+	langData: Language,
+	favorites: ResultFavorite[]
+}>();
+
+const columns = ref([
+	{
+		title: "id",
+		dataIndex: "id",
+		key: "id",
+		width: 50
+	},
+	{
+		title: "name",
+		dataIndex: "name",
+		key: "name",
+		width: 200
+	}, {
+		title: UIData["sex_type"][props.langData],
+		dataIndex: "sex_type",
+		key: "sex_type",
+		width: 100,
+	},
+	{
+		title: UIData["weapon_slots"][props.langData],
+		dataIndex: "weapon_slots",
+		key: "weapon_slots",
+	},
+	{
+		title: "skills",
+		dataIndex: "skills",
+		key: "skills",
+	},
+	{
+		title: "deco_combs",
+		dataIndex: "deco_combs",
+		key: "deco_combs",
+	},
+	{
+		title: UIData["leftover_slots"][props.langData],
+		dataIndex: "leftover_slots",
+		key: "leftover_slots",
+	},
+	{
+		title: UIData["delete"][props.langData],
+		dataIndex: "delete",
+		key: "delete",
+	}
+]);
+
+const isEditing = ref<{ [key: number]: boolean }>({});
+
+function generateTableData(favs: ResultFavorite[]) {
+	return favs.map((fav, index) => {
+		const id = `${index}`;
+
+		const skills = {} as Skills;
+		const skillTexts = [];
+
+		for (const equipId in fav.armors) {
+			const equip = fav.armors[equipId];
+			
+			for (const skillId in equip.skills) {
+				const level = equip.skills[skillId];
+
+				if (skills[skillId] === undefined) {
+					skills[skillId] = level;
+				} else {
+					skills[skillId] += level;
+				}
+			}
+		}
+
+		for (const skillId in skills) {
+			const name = SkillsData.getName(skillId, props.langData);
+			const level = skills[skillId];
+
+			const text = `${name} Lv${level}`;
+			skillTexts.push(text);
+		}
+
+		const allDecoTexts = getDecoCombTexts(fav.decoComb, props.langData);
+
+		const skillsText = skillTexts.join(", ");
+		const weaponSlotsText = JSON.stringify(fav.weaponSlots);
+		const leftoverSlotsText = JSON.stringify(fav.decoComb.leftover_slots_sum);
+
+		return {
+			id,
+			name: fav.name,
+			sex_type: UIData[fav.sexType][props.langData],
+			weapon_slots: weaponSlotsText,
+			skills: skillsText,
+			deco_combs: allDecoTexts.join(" - "),
+			leftover_slots: leftoverSlotsText
+		} as Row;
+	});
+}
+
+function deleteFavorite(index: number) {
+	props.favorites.splice(index, 1);
+	CacheManager.setResultFavorites(props.favorites);
+}
+
+function beginEditName(index: number) {
+	isEditing.value[index] = true;
+}
+
+function saveName(index: number) {
+	props.favorites[index].name = props.favorites[index].name.trim();
+	CacheManager.setResultFavorites(props.favorites);
+
+	isEditing.value[index] = false;
+}
+
+</script>
+
+<template>
+	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ hideOnSinglePage: true }">
+		<template #bodyCell="{ text, index, column }">
+			<template v-if="column.key === 'name'">
+				<template v-if="isEditing[index] === true">
+					<a-input style="width: 150px" v-model:value="props.favorites[index].name" @pressEnter="saveName(index)" />
+					<CheckOutlined @click="saveName(index)" />
+				</template>
+
+				<template v-else>
+					<template v-if="text === undefined || text === null || text.length === 0">
+						<span class="empty_name">{{ UIData["empty_favorite_name"][props.langData] }}</span>
+					</template>
+					<template v-else>
+						{{ text }}
+					</template>
+					<EditOutlined @click="beginEditName(index)" />
+				</template>
+			</template>
+
+			<template v-else-if="column.key === 'delete'">
+				<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="">
+					<a-button>X</a-button>
+				</a-popconfirm>
+			</template>
+		</template>
+	</a-table>
+</template>
+
+<style scoped>
+
+.empty_name {
+	text-decoration-line: line-through;
+}
+
+</style>

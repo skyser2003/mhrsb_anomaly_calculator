@@ -1,0 +1,70 @@
+{
+    "build": {
+        "beforeDevCommand": "npm run dev",
+        "beforeBuildCommand": "npm run build",
+        "devPath": "http://localhost:1420",
+        "distDir": "../../dist",
+        "withGlobalTauri": false
+    },
+    "package": {
+        "productName": "mhr-sunbreak-anomaly-calculator",
+        "version": "0.0.1"
+    },
+    "tauri": {
+        "allowlist": {
+            "all": true
+        },
+        "bundle": {
+            "active": true,
+            "category": "DeveloperTool",
+            "copyright": "",
+            "deb": {
+                "depends": []
+            },
+            "externalBin": [],
+            "icon": [
+                "icons/32x32.png",
+                "icons/128x128.png",
+                "icons/128x128@2x.png",
+                "icons/icon.icns",
+                "icons/icon.ico"
+            ],
+            "identifier": "com.skyser.mhrsim",
+            "longDescription": "",
+            "macOS": {
+                "entitlements": null,
+                "exceptionDomain": "",
+                "frameworks": [],
+                "providerShortName": null,
+                "signingIdentity": null
+            },
+            "resources": ["data/*"],
+            "shortDescription": "",
+            "targets": "all",
+            "windows": {
+                "certificateThumbprint": null,
+                "digestAlgorithm": "sha256",
+                "timestampUrl": ""
+            }
+        },
+        "security": {
+            "csp": null
+        },
+        "updater": {
+            "active": true,
+            "endpoints": [
+                "https://gist.githubusercontent.com/skyser2003/5f38a3f997c86eb98e6da6a7fe5ef6d1/raw/58f4f7ab220f8d201512a1995e6864e0c481a229/gistfile1.txt"
+            ],
+            "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZCOENEN0YyNThCQ0JCQkEKUldTNnU3eFk4dGVNK3lyWmN0NVJJVkREcWRJK29oWFcwUmZYUTFzekZrRTF0VFRMTVFUakR6c0kK"
+        },
+        "windows": [
+            {
+                "fullscreen": false,
+                "height": 900,
+                "resizable": true,
+                "title": "mhr-sunbreak-anomaly-calculator",
+                "width": 1600
+            }
+        ]
+    }
+}

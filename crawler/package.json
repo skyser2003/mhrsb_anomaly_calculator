@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "start": "tsc && node out/main.js"
+    },
+    "devDependencies": {
+        "@types/crawler": "^1.2.2",
+        "@types/fs-extra": "^9.0.13",
+        "prettier": "^2.7.1"
+    },
+    "dependencies": {
+        "crawler": "^1.3.0",
+        "fs-extra": "^10.1.0"
+    },
+    "type": "module"
+}
