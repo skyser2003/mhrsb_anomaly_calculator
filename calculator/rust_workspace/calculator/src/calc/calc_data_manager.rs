@@ -444,6 +444,14 @@ impl CalcDataManager {
                     continue;
                 }
 
+                // TODO: remove one of the equipments if they are all same (data bug)
+                if equip1.skills() == equip2.skills()
+                    && equip1.slots() == equip2.slots()
+                    && equip1.stats() == equip2.stats()
+                {
+                    continue;
+                }
+
                 if equip1.is_le(equip2, false, req_skills) {
                     is_le = true;
                     break;
