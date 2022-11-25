@@ -76,7 +76,6 @@ export interface CalcChoices {
     weaponSlots: EquipSlots;
     selectedSkills: Skills;
     freeSlots: Slots;
-    includeLteEquips: boolean;
 }
 
 export interface TalismanInfo {

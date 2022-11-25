@@ -177,7 +177,6 @@ async function calculate() {
 		weaponSlots: weaponSlots.value,
 		selectedSkills: localSelectedSkills,
 		freeSlots: freeSlots.value,
-		includeLteEquips: includeLteEquips.value,
 	};
 
 	CacheManager.setCalcChoices(calcInput);
@@ -196,7 +195,7 @@ async function calculate() {
 			"weaponSlots": calcInput.weaponSlots,
 			"selectedSkills": calcInput.selectedSkills,
 			"freeSlots": calcInput.freeSlots,
-			"includeLteEquips": calcInput.includeLteEquips,
+			"includeLteEquips": includeLteEquips.value,
 		}) as { [key: string]: any };
 
 		calcResult.value = result["result"] as CalculateResult;

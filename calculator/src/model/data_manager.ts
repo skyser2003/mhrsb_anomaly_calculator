@@ -29,7 +29,6 @@ export class CacheManager {
 		weaponSlots: [0, 0, 0],
 		selectedSkills: {},
 		freeSlots: [0, 0, 0, 0],
-		includeLteEquips: false,
 	};
 
 	static setLanguage(lang: Language) {
