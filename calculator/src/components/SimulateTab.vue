@@ -253,6 +253,15 @@ function setSearchCondition(fav: SearchFavorite) {
 	selectedSkills.value = JSON.parse(JSON.stringify(fav.reqSkills));
 	freeSlots.value = JSON.parse(JSON.stringify(fav.reqSlots));
 
+	const calcInput: CalcChoices = {
+		sexType: sexType.value,
+		weaponSlots: weaponSlots.value,
+		selectedSkills: selectedSkills.value,
+		freeSlots: freeSlots.value,
+	};
+
+	CacheManager.setCalcChoices(calcInput);
+
 	for (const skill of skillsVec.value) {
 		if (selectedSkills.value[skill.id] === undefined) {
 			selectedSkills.value[skill.id] = 0;
