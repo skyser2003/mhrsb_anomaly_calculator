@@ -265,6 +265,8 @@ impl CalcDataManager {
                 *part_equips = Self::remove_le_equipments(part_equips.clone(), None);
             }
 
+            Self::remove_duplicate_equipments(part_equips);
+
             CalcEquipment::sort_by_points(part_equips);
         }
 
@@ -464,21 +466,26 @@ impl CalcDataManager {
             }
         }
 
+        left_equipments
+    }
+
+    pub fn remove_duplicate_equipments(equipments: &mut Vec<&Arc<CalcEquipment>>) {
         let mut dup_ids = Vec::new();
 
-        for (index1, equip1) in left_equipments.iter().enumerate().rev() {
-            for (index2, equip2) in left_equipments.iter().enumerate() {
+        for (index1, equip1) in equipments.iter().enumerate().rev() {
+            for (index2, equip2) in equipments.iter().enumerate() {
                 if index1 == index2 {
                     break;
                 }
 
-                if equip1.skills() == equip2.skills()
+                if equip1.part() == equip2.part()
+                    && equip1.skills() == equip2.skills()
                     && equip1.slots() == equip2.slots()
                     && equip1.stats() == equip2.stats()
                 {
                     let mut remove_index = index1;
 
-                    if equip1.part() == equip2.part() && equip1.is_armor() && equip2.is_armor() {
+                    if equip1.is_armor() && equip2.is_armor() {
                         if !equip1.as_armor().is_anomaly() && equip2.as_armor().is_anomaly() {
                             remove_index = index2;
                         }
@@ -491,10 +498,8 @@ impl CalcDataManager {
         }
 
         for dup_id in dup_ids {
-            left_equipments.swap_remove(dup_id);
+            equipments.swap_remove(dup_id);
         }
-
-        left_equipments
     }
 
     pub fn get_ge_equipments<'a>(
