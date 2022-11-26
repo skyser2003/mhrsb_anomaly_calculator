@@ -112,17 +112,6 @@ try {
 	console.error(e);
 }
 
-const anomalyFilename = CacheManager.getAnomalyFilename();
-const talismanFilename = CacheManager.getTalismanFilename();
-
-if (anomalyFilename !== null) {
-	await invoke("cmd_parse_anomaly", { filename: anomalyFilename });
-}
-
-if (talismanFilename !== null) {
-	await invoke("cmd_parse_talisman", { filename: talismanFilename });
-}
-
 const yesCategorySkills = {} as { [key: string]: boolean };
 const noCategorySkills = [];
 

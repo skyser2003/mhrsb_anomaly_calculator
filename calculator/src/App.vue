@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { Ref, ref } from "vue";
+import { invoke } from "@tauri-apps/api/tauri";
 
 import SimulateTab from "./components/SimulateTab.vue";
 import AnomaliesTab from "./components/AnomaliesTab.vue";
@@ -25,6 +26,7 @@ const searchFavorites = ref([]) as Ref<SearchFavorite[]>;
 const resultFavorites = ref([]) as Ref<ResultFavorite[]>;
 
 loadLanguage();
+loadFiles();
 loadSearchFavorites();
 loadResultFavorites();
 loadLatestTab();
@@ -32,6 +34,23 @@ loadLatestTab();
 function loadLanguage() {
   langData.value = CacheManager.getLanguage();
   console.log(langData.value);
+}
+
+async function loadFiles() {
+  const anomalyFilename = CacheManager.getAnomalyFilename();
+  const talismanFilename = CacheManager.getTalismanFilename();
+
+  const promises = [];
+
+  if (anomalyFilename !== null) {
+    promises.push(invoke("cmd_parse_anomaly", { filename: anomalyFilename }));
+  }
+
+  if (talismanFilename !== null) {
+    promises.push(invoke("cmd_parse_talisman", { filename: talismanFilename }));
+  }
+
+  await Promise.all(promises);
 }
 
 function loadSearchFavorites() {
