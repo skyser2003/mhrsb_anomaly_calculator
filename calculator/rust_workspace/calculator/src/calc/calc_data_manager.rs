@@ -446,7 +446,6 @@ impl CalcDataManager {
                     continue;
                 }
 
-                // TODO: remove one of the equipments if they are all same (data bug)
                 if equip1.skills() == equip2.skills()
                     && equip1.slots() == equip2.slots()
                     && equip1.stats() == equip2.stats()
@@ -463,6 +462,36 @@ impl CalcDataManager {
             if !is_le {
                 left_equipments.push(equip1);
             }
+        }
+
+        let mut dup_ids = Vec::new();
+
+        for (index1, equip1) in left_equipments.iter().enumerate().rev() {
+            for (index2, equip2) in left_equipments.iter().enumerate() {
+                if index1 == index2 {
+                    break;
+                }
+
+                if equip1.skills() == equip2.skills()
+                    && equip1.slots() == equip2.slots()
+                    && equip1.stats() == equip2.stats()
+                {
+                    let mut remove_index = index1;
+
+                    if equip1.part() == equip2.part() && equip1.is_armor() && equip2.is_armor() {
+                        if !equip1.as_armor().is_anomaly() && equip2.as_armor().is_anomaly() {
+                            remove_index = index2;
+                        }
+                    }
+
+                    dup_ids.push(remove_index);
+                    break;
+                }
+            }
+        }
+
+        for dup_id in dup_ids {
+            left_equipments.swap_remove(dup_id);
         }
 
         left_equipments
