@@ -54,15 +54,19 @@ fn cmd_parse_anomaly(
     dm: tauri::State<RwLock<DataManager>>,
     cm: tauri::State<RwLock<CalcDataManager>>,
 ) -> Vec<AnomalyArmor> {
+    let anomalies = {
+        let dm = dm.read().unwrap();
+
+        parse_anomaly(
+            filename.as_ref(),
+            dm.get_armors(),
+            dm.get_armor_name_dict(),
+            dm.get_skill_name_dict(),
+        )
+    };
+
     let mut dm = dm.write().unwrap();
     let mut cm = cm.write().unwrap();
-
-    let anomalies = parse_anomaly(
-        filename.as_ref(),
-        dm.get_armors(),
-        dm.get_armor_name_dict(),
-        dm.get_skill_name_dict(),
-    );
 
     dm.set_file_anomalies(anomalies.clone());
     cm.load_anomalies(&dm);
@@ -157,10 +161,13 @@ fn cmd_parse_talisman(
     dm: tauri::State<RwLock<DataManager>>,
     cm: tauri::State<RwLock<CalcDataManager>>,
 ) -> Vec<Talisman> {
+    let talismans = {
+        let dm = dm.read().unwrap();
+        parse_talisman(filename.as_ref(), dm.get_skill_name_dict())
+    };
+
     let mut dm = dm.write().unwrap();
     let mut cm = cm.write().unwrap();
-
-    let talismans = parse_talisman(filename.as_ref(), dm.get_skill_name_dict());
 
     dm.set_file_talismans(talismans.clone());
     cm.load_talismans(&dm);
