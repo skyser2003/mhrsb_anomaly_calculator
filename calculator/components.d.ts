@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     AButton: typeof import('ant-design-vue/es')['Button']
     ACheckbox: typeof import('ant-design-vue/es')['Checkbox']
     ADivider: typeof import('ant-design-vue/es')['Divider']
+    AImage: typeof import('ant-design-vue/es')['Image']
     AInput: typeof import('ant-design-vue/es')['Input']
     AnomaliesTab: typeof import('./src/components/AnomaliesTab.vue')['default']
     APopconfirm: typeof import('ant-design-vue/es')['Popconfirm']
@@ -29,6 +30,7 @@ declare module '@vue/runtime-core' {
     SimulateResultRow: typeof import('./src/components/SimulateResultRow.vue')['default']
     SimulateResultTable: typeof import('./src/components/SimulateResultTable.vue')['default']
     SimulateTab: typeof import('./src/components/SimulateTab.vue')['default']
+    StatTable: typeof import('./src/components/StatTable.vue')['default']
     TalismansTab: typeof import('./src/components/TalismansTab.vue')['default']
   }
 }

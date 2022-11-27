@@ -1,4 +1,4 @@
-import { ArmorFinalSkillInfo, ArmorStatInfo, FinalArmorInfo } from "./armor_define";
+import { ArmorFinalSkillInfo, ArmorStatInfo, FinalArmorInfo, getDefaultStat } from "./armor_define";
 
 export const MAX_EQUIP_SLOTS = 3;
 export const MAX_SLOT_LEVEL = 4;
@@ -84,4 +84,28 @@ export interface TalismanInfo {
     id: string;
     skills: { id: string, level: number }[],
     slotSizes: number[]
+}
+
+export function getTotalStat(armors: { [key: string]: ResultArmor }) {
+    const stat = getDefaultStat();
+
+    if (armors !== undefined) {
+        for (const equipId in armors) {
+            const equip = armors[equipId];
+            const equipStat = equip.stat;
+
+            if (equipStat === undefined) {
+                continue;
+            }
+
+            stat.defense += equipStat.defense;
+            stat.fireRes += equipStat.fireRes;
+            stat.waterRes += equipStat.waterRes;
+            stat.iceRes += equipStat.iceRes;
+            stat.elecRes += equipStat.elecRes;
+            stat.dragonRes += equipStat.dragonRes;
+        }
+    }
+
+    return stat;
 }

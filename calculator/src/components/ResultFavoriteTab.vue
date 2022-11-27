@@ -6,7 +6,7 @@ import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
 import { SkillsData } from "../models/skills";
 import { DecosData } from "../models/decos";
 
-import { ResultFavorite, ResultFullEquipments, Skills } from "../definition/calculate_result";
+import { ResultFavorite, ResultFullEquipments, Skills, getTotalStat } from "../definition/calculate_result";
 
 import uiData from "../ui_data/ui_data.json";
 import { getDecoCombTexts } from "../model/ui";
@@ -14,7 +14,7 @@ import { Language } from "../definition/language";
 import { CacheManager } from "../model/data_manager";
 
 import ResultFavoriteRow from "./ResultFavoriteRow.vue";
-
+import StatTable from "./StatTable.vue";
 
 const UIData = uiData as { [key: string]: { [key: string]: string } };
 
@@ -26,6 +26,7 @@ interface Row {
 	skills: string;
 	deco_combs: string;
 	leftover_slots: string;
+	stat: string;
 }
 
 
@@ -71,6 +72,11 @@ const columns = ref([
 		title: UIData["leftover_slots"][props.langData],
 		dataIndex: "leftover_slots",
 		key: "leftover_slots",
+	},
+	{
+		title: UIData["stat_name"][props.langData],
+		dataIndex: "stat",
+		key: "stat",
 	},
 	{
 		title: UIData["delete"][props.langData],
@@ -152,7 +158,8 @@ function generateTableData(favs: ResultFavorite[]) {
 			weapon_slots: weaponSlotsText,
 			skills: skillsText,
 			deco_combs: allDecoTexts.join(" - "),
-			leftover_slots: leftoverSlotsText
+			leftover_slots: leftoverSlotsText,
+			stat: "",
 		} as Row;
 	});
 }
@@ -205,6 +212,10 @@ function generateResultFullEquipments(fav: ResultFavorite) {
 					</template>
 					<EditOutlined @click="beginEditName(index)" />
 				</template>
+			</template>
+			
+			<template v-else-if="column.key === 'stat'">
+				<StatTable :langData="langData" :stat="getTotalStat(favorites[index].armors)" />
 			</template>
 
 			<template v-else-if="column.key === 'delete'">

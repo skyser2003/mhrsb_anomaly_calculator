@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ref, Ref } from "vue";
-import { SmileOutlined } from '@ant-design/icons-vue';
 
-import { CalculateResult, EquipSlots, ResultFavorite, Slots, ResultTalisman } from "../definition/calculate_result";
+import { CalculateResult, ResultFavorite, ResultTalisman, getTotalStat } from "../definition/calculate_result";
 
 import { ArmorsData } from "../models/armors";
 import { SkillsData } from "../models/skills";
 import { SlotsDataManager } from "../models/slots";
 
 import SimulateResultRow from "./SimulateResultRow.vue";
+import StatTable from "./StatTable.vue";
 
 import UIData from "../ui_data/ui_data.json";
 import { Language } from "../definition/language";
+import { getDefaultStat } from "../definition/armor_define";
 
 interface TableData {
 	helm: string;
@@ -20,6 +21,7 @@ interface TableData {
 	waist: string;
 	feet: string;
 	talisman: string;
+	stat: string;
 	leftover_slots: string;
 }
 
@@ -67,6 +69,11 @@ const columns = ref([
 		title: UIData["leftover_slots"][props.langData],
 		dataIndex: "leftover_slots",
 		key: "leftover_slots"
+	},
+	{
+		title: UIData["stat_name"][props.langData],
+		dataIndex: "stat",
+		key: "stat"
 	}
 ]);
 
@@ -123,6 +130,7 @@ function generateTableData(calcResult: CalculateResult) {
 			waist: ArmorsData.getName(equips.armors["waist"].base_id, props.langData),
 			feet: ArmorsData.getName(equips.armors["feet"].base_id, props.langData),
 			talisman: getTalismanText(equips.talisman),
+			stat: "",
 			leftover_slots: allLeftoverSlotsTexts.join(", "),
 		} as TableData;
 	});
@@ -130,6 +138,10 @@ function generateTableData(calcResult: CalculateResult) {
 
 function addResultFavorite(fav: ResultFavorite) {
 	emits("add_result_favorite", fav);
+}
+
+function getAnomalyImageName() {
+	return new URL('../assets/anomaly_item.png', import.meta.url).href;
 }
 
 </script>
@@ -142,7 +154,10 @@ function addResultFavorite(fav: ResultFavorite) {
 		<template #bodyCell="{ text, index, column }">
 			<template
 				v-if="ArmorsData.isArmorPart(column.key) && calcResult.full_equipments[index].armors[column.key].is_anomaly === true">
-				{{ text }} <img src="../assets/anomaly_item.png" width="20" />
+				{{ text }} <a-image :src="`${getAnomalyImageName()}`" :width="20" :preview="false" />
+			</template>
+			<template v-else-if="column.key === 'stat'">
+				<StatTable :langData="langData" :stat="getTotalStat(calcResult.full_equipments[index].armors)" />
 			</template>
 		</template>
 

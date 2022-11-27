@@ -43,6 +43,10 @@
         "ko": "슬롯",
         "en": "Slots"
     },
+    "stat_name": {
+        "ko": "스텟",
+        "en": "Stat"
+    },
     "decorations_name": {
         "ko": "장식주",
         "en": "Decorations"

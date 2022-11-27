@@ -46,5 +46,5 @@ export function getDefaultStat(): ArmorStatInfo {
         iceRes: 0,
         elecRes: 0,
         dragonRes: 0,
-    }
+    };
 }
