@@ -14,6 +14,22 @@ import { ResultFavorite, SearchFavorite } from "./definition/calculate_result";
 import { Language } from "./definition/language";
 import { CacheManager } from "./model/data_manager";
 
+const gaScript1 = document.createElement("script");
+gaScript1.setAttribute("async", "");
+gaScript1.setAttribute("src", "https://www.googletagmanager.com/gtag/js?id=G-DNNYHLWD3N");
+
+const gaScript2 = document.createElement("script");
+gaScript2.innerHTML = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DNNYHLWD3N');
+`;
+
+document.head.insertBefore(gaScript2, document.head.firstChild);
+document.head.insertBefore(gaScript1, document.head.firstChild);
+
 
 const langData = ref<Language>("ko");
 const activeKey = ref("0");
