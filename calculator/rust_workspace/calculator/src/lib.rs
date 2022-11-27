@@ -19,7 +19,7 @@ use std::collections::HashMap;
 use std::sync::{Arc, RwLock};
 use std::time::{Duration, Instant};
 
-use data::armor::{ArmorPart, SexType};
+use data::armor::{ArmorPart, ArmorStat, SexType};
 use data::data_manager::DataManager;
 use itertools::iproduct;
 
@@ -69,6 +69,8 @@ pub struct ResultArmor {
     pub slots: Vec<SkillSlotCount>,
     pub base_slots: Vec<SkillSlotCount>,
     pub diff_slots: Vec<SkillSlotCount>,
+
+    pub stat: ArmorStat,
 }
 
 #[derive(Serialize)]
@@ -618,6 +620,7 @@ pub fn generate_result(
                         slots: equip.slots().data.0[0].to_vec(),
                         base_slots,
                         diff_slots,
+                        stat: equip.stats(),
                     };
 
                     Some((

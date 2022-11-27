@@ -32,6 +32,8 @@ export interface ResultArmor {
     slots: Slots;
     base_slots: Slots;
     diff_slots: Slots;
+
+    stat: ArmorStatInfo;
 }
 
 export interface ResultTalisman {
