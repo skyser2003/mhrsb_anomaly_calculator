@@ -1,4 +1,4 @@
-# mhrsb_anomay_calculator
+# mhrsb_anomaly_calculator
 Monster Hunter RISE: Sunbreak - Anomaly crafting calculator
 
 This is a skill calculator for MHR:SB.
