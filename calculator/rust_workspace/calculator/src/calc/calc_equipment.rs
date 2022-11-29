@@ -150,7 +150,7 @@ impl CalcEquipment {
 
     pub fn stats(&self) -> ArmorStat {
         if self.is_armor() {
-            self.as_armor().base.stat.clone()
+            self.as_armor().current.stat.clone()
         } else {
             ArmorStat::new_empty()
         }
