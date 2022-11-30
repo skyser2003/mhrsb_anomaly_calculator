@@ -34,6 +34,8 @@ document.head.insertBefore(gaScript1, document.head.firstChild);
 const langData = ref<Language>("ko");
 const activeKey = ref("0");
 
+const designTheme = ref("");
+
 const simulateTab = ref<InstanceType<typeof SimulateTab>>();
 const anomalyTab = ref<InstanceType<typeof AnomaliesTab>>();
 const talismanTab = ref<InstanceType<typeof TalismansTab>>();
@@ -41,11 +43,16 @@ const talismanTab = ref<InstanceType<typeof TalismansTab>>();
 const searchFavorites = ref([]) as Ref<SearchFavorite[]>;
 const resultFavorites = ref([]) as Ref<ResultFavorite[]>;
 
+loadTheme();
 loadLanguage();
 loadFiles();
 loadSearchFavorites();
 loadResultFavorites();
 loadLatestTab();
+
+function loadTheme() {
+  designTheme.value = CacheManager.getDesignTheme();
+}
 
 function loadLanguage() {
   langData.value = CacheManager.getLanguage();
@@ -120,22 +127,31 @@ function setTab(key: string) {
 }
 
 function onChangeLanguage() {
-  const lang = langData.value;
-
-  console.log("boo");
-  CacheManager.setLanguage(lang);
-  console.log("boo");
+  CacheManager.setLanguage(langData.value);
   location.reload();
-  console.log("boo");
+}
+
+function onChangeDesignTheme() {
+  CacheManager.setDesignTheme(designTheme.value);
+  location.reload();
 }
 
 </script>
 
 <template>
-  <div><h2>{{ UIData["language"][langData] }}</h2></div>
+  <div>
+    <h2>{{ UIData["language"][langData] }}</h2>
+  </div>
   <a-radio-group v-model:value="langData" @change="onChangeLanguage">
     <a-radio-button value="ko">한국어</a-radio-button>
     <a-radio-button value="en">English</a-radio-button>
+  </a-radio-group>
+  <div>
+    <h2>{{ UIData["design_theme"][langData] }}</h2>
+  </div>
+  <a-radio-group v-model:value="designTheme" @change="onChangeDesignTheme">
+    <a-radio-button value="light">{{ UIData["light_theme"][langData] }}</a-radio-button>
+    <a-radio-button value="dark">{{ UIData["dark_theme"][langData] }} </a-radio-button>
   </a-radio-group>
 
   <a-divider style="border-color: #7cb305" dashed />
@@ -171,132 +187,3 @@ function onChangeLanguage() {
   </a-divider>
     <a-divider>Questions and feedbacks to - mhrsb.calculator@gmail.com</a-divider>
 </template>
-
-<style scoped>
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #249b73);
-}
-
-#loading {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(230, 230, 230, 60%);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#loading.disabled {
-  visibility: hidden;
-  width: 0px;
-  height: 0px;
-}
-
-.lds-default {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.lds-default div {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #fff;
-  border-radius: 50%;
-  animation: lds-default 1.2s linear infinite;
-}
-
-.lds-default div:nth-child(1) {
-  animation-delay: 0s;
-  top: 37px;
-  left: 66px;
-}
-
-.lds-default div:nth-child(2) {
-  animation-delay: -0.1s;
-  top: 22px;
-  left: 62px;
-}
-
-.lds-default div:nth-child(3) {
-  animation-delay: -0.2s;
-  top: 11px;
-  left: 52px;
-}
-
-.lds-default div:nth-child(4) {
-  animation-delay: -0.3s;
-  top: 7px;
-  left: 37px;
-}
-
-.lds-default div:nth-child(5) {
-  animation-delay: -0.4s;
-  top: 11px;
-  left: 22px;
-}
-
-.lds-default div:nth-child(6) {
-  animation-delay: -0.5s;
-  top: 22px;
-  left: 11px;
-}
-
-.lds-default div:nth-child(7) {
-  animation-delay: -0.6s;
-  top: 37px;
-  left: 7px;
-}
-
-.lds-default div:nth-child(8) {
-  animation-delay: -0.7s;
-  top: 52px;
-  left: 11px;
-}
-
-.lds-default div:nth-child(9) {
-  animation-delay: -0.8s;
-  top: 62px;
-  left: 22px;
-}
-
-.lds-default div:nth-child(10) {
-  animation-delay: -0.9s;
-  top: 66px;
-  left: 37px;
-}
-
-.lds-default div:nth-child(11) {
-  animation-delay: -1s;
-  top: 62px;
-  left: 52px;
-}
-
-.lds-default div:nth-child(12) {
-  animation-delay: -1.1s;
-  top: 52px;
-  left: 62px;
-}
-
-@keyframes lds-default {
-
-  0%,
-  20%,
-  80%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.5);
-  }
-}
-</style>

@@ -10,6 +10,7 @@ export class DataManager {
 }
 
 export class CacheManager {
+	static designThemeName = "design_theme";
 	static languageName = "ui_language";
 	static activeTabName = "active_tab";
 
@@ -30,6 +31,14 @@ export class CacheManager {
 		selectedSkills: {},
 		freeSlots: [0, 0, 0, 0],
 	};
+
+	static setDesignTheme(theme: string) {
+		setItem(this.designThemeName, theme);
+	}
+
+	static getDesignTheme() {
+		return getItem(this.designThemeName) ?? "light";
+	}
 
 	static setLanguage(lang: Language) {
 		setItem(this.languageName, lang);

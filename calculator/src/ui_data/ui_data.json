@@ -1,4 +1,16 @@
 {
+    "design_theme": {
+        "ko": "색깔 모드",
+        "en": "Color theme"
+    },
+    "dark_theme": {
+        "ko": "다크",
+        "en": "Dark"
+    },
+    "light_theme": {
+        "ko": "밝음",
+        "en": "Light"
+    },
     "language": {
         "ko": "언어",
         "en": "Language"
