@@ -43,12 +43,14 @@ use crate::data::Language;
 use crate::full_equipments::FullEquipments;
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct CalculateResult {
     full_equipments: Vec<ResultFullEquipments>,
     calc_time: f32,
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ResultFullEquipments {
     pub sex_type: SexType,
     pub weapon_slots: Vec<SkillSlotCount>,
@@ -58,6 +60,7 @@ pub struct ResultFullEquipments {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ResultArmor {
     pub base_id: String,
     pub is_anomaly: bool,
@@ -74,12 +77,14 @@ pub struct ResultArmor {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ResultTalisman {
     pub skills: HashMap<String, SkillSlotCount>,
     pub slots: Vec<SkillSlotCount>,
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ResultDecorationCombination {
     pub skill_decos: HashMap<String, Vec<SkillSlotCount>>,
     pub slots_sum: Vec<SkillSlotCount>,

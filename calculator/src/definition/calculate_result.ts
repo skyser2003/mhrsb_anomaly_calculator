@@ -9,29 +9,29 @@ export type EquipSlots = [number, number, number];
 export type SexType = "" | "male" | "female";
 
 export interface CalculateResult {
-    full_equipments: ResultFullEquipments[];
-    calc_time: number;
+    fullEquipments: ResultFullEquipments[];
+    calcTime: number;
 }
 
 export interface ResultFullEquipments {
-    sex_type: SexType;
-    weapon_slots: EquipSlots;
+    sexType: SexType;
+    weaponSlots: EquipSlots;
     armors: { [key: string]: ResultArmor };
     talisman: ResultTalisman;
-    deco_combs: ResultDecorationCombination[];
+    decoCombs: ResultDecorationCombination[];
 }
 
 export interface ResultArmor {
-    base_id: string;
-    is_anomaly: boolean;
+    baseId: string;
+    isAnomaly: boolean;
 
     skills: Skills;
-    base_skills: Skills;
-    diff_skills: Skills;
+    baseSkills: Skills;
+    diffSkills: Skills;
 
     slots: Slots;
-    base_slots: Slots;
-    diff_slots: Slots;
+    baseSlots: Slots;
+    diffSlots: Slots;
 
     stat: ArmorStatInfo;
 }
@@ -42,10 +42,10 @@ export interface ResultTalisman {
 }
 
 export interface ResultDecorationCombination {
-    skill_decos: { [key: string]: number[] };
-    slots_sum: Slots;
-    leftover_slots_sum: Slots;
-    leftover_skills: { [key: string]: number };
+    skillDecos: { [key: string]: number[] };
+    slotsSum: Slots;
+    leftoverSlotsSum: Slots;
+    leftoverSkills: { [key: string]: number };
 }
 
 export interface SearchFavorite {

@@ -118,8 +118,8 @@ function generateTableData(favs: ResultFavorite[]) {
 			}
 		}
 
-		for (const skillId in fav.decoComb.skill_decos) {
-			const decos = fav.decoComb.skill_decos[skillId];
+		for (const skillId in fav.decoComb.skillDecos) {
+			const decos = fav.decoComb.skillDecos[skillId];
 			let level = 0;
 
 			for(let i = 0; i < decos.length; ++i) {
@@ -148,7 +148,7 @@ function generateTableData(favs: ResultFavorite[]) {
 
 		const skillsText = skillTexts.join(", ");
 		const weaponSlotsText = JSON.stringify(fav.weaponSlots);
-		const leftoverSlotsText = JSON.stringify(fav.decoComb.leftover_slots_sum);
+		const leftoverSlotsText = JSON.stringify(fav.decoComb.leftoverSlotsSum);
 
 		return {
 			key: index,
@@ -182,11 +182,11 @@ function saveName(index: number) {
 
 function generateResultFullEquipments(fav: ResultFavorite) {
 	const ret: ResultFullEquipments = {
-		sex_type: fav.sexType,
-		weapon_slots: fav.weaponSlots,
+		sexType: fav.sexType,
+		weaponSlots: fav.weaponSlots,
 		armors: fav.armors,
 		talisman: fav.talisman,
-		deco_combs: [fav.decoComb],
+		decoCombs: [fav.decoComb],
 	};
 	
 	return ret;

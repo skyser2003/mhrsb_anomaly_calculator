@@ -88,7 +88,7 @@ const includeLteEquips = ref(false);
 
 const is_calculating = ref(false);
 
-const calcResult = ref({ full_equipments: [], calc_time: 0 } as CalculateResult) as Ref<CalculateResult>;
+const calcResult = ref({ fullEquipments: [], calcTime: 0 } as CalculateResult) as Ref<CalculateResult>;
 
 for (const skill of skillsVec.value) {
 	skills.value[skill.id] = skill;
@@ -173,8 +173,8 @@ async function calculate() {
 	console.log(calcInput);
 
 	is_calculating.value = true;
-	calcResult.value.calc_time = 0;
-	calcResult.value.full_equipments = [];
+	calcResult.value.calcTime = 0;
+	calcResult.value.fullEquipments = [];
 
 	try {
 		const result = await invoke("cmd_calculate_skillset", {
@@ -209,8 +209,8 @@ function clear() {
 
 	CacheManager.setEmptyCalcChoices();
 
-	calcResult.value.calc_time = 0;
-	calcResult.value.full_equipments = [];
+	calcResult.value.calcTime = 0;
+	calcResult.value.fullEquipments = [];
 }
 
 function addFavorite() {
@@ -391,8 +391,8 @@ function canSubmit() {
 
 	<a-divider style="border-color: #7cb305" dashed />
 
-	<div>Answer count : {{ calcResult.full_equipments ? calcResult.full_equipments.length : 0 }}</div>
-	<div>Time : {{ calcResult.calc_time }} sec</div>
+	<div>Answer count : {{ calcResult.fullEquipments ? calcResult.fullEquipments.length : 0 }}</div>
+	<div>Time : {{ calcResult.calcTime }} sec</div>
 	<br />
 	<div><a-button @click="addFavorite">Save Favorite</a-button> </div>
 

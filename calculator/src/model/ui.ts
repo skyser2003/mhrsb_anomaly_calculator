@@ -10,9 +10,9 @@ import { Language } from "../definition/language";
 export function getDecoCombTexts(comb: ResultDecorationCombination, langData: Language) {
 	const skillData = {} as { [key: string]: { [key: string]: number } };
 
-	for (const id in comb.skill_decos) {
+	for (const id in comb.skillDecos) {
 		const skillName = SkillsData.getName(id, langData);
-		const decos = comb.skill_decos[id];
+		const decos = comb.skillDecos[id];
 
 		skillData[skillName] = {};
 
