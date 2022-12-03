@@ -12,7 +12,7 @@ import StatTable from "./StatTable.vue";
 
 import UIData from "../ui_data/ui_data.json";
 import { Language } from "../definition/language";
-import { getDefaultStat } from "../definition/armor_define";
+import { ArmorStatInfo, getDefaultStat } from "../definition/armor_define";
 
 interface TableData {
 	helm: string;
@@ -21,7 +21,7 @@ interface TableData {
 	waist: string;
 	feet: string;
 	talisman: string;
-	stat: string;
+	stat: ArmorStatInfo;
 	leftover_slots: string;
 }
 
@@ -130,7 +130,7 @@ function generateTableData(calcResult: CalculateResult) {
 			waist: ArmorsData.getName(equips.armors["waist"].baseId, props.langData),
 			feet: ArmorsData.getName(equips.armors["feet"].baseId, props.langData),
 			talisman: getTalismanText(equips.talisman),
-			stat: "",
+			stat: getTotalStat(equips.armors),
 			leftover_slots: allLeftoverSlotsTexts.join(", "),
 		} as TableData;
 	});
@@ -151,13 +151,13 @@ function getAnomalyImageName() {
 		<template #expandIcon="{}">
 		</template>
 
-		<template #bodyCell="{ text, index, column }">
+		<template #bodyCell="{ text, index, column, record }">
 			<template
 				v-if="ArmorsData.isArmorPart(column.key) && calcResult.fullEquipments[index].armors[column.key].isAnomaly === true">
 				{{ text }} <a-image :src="`${getAnomalyImageName()}`" :width="20" :preview="false" />
 			</template>
 			<template v-else-if="column.key === 'stat'">
-				<StatTable :langData="langData" :stat="getTotalStat(calcResult.fullEquipments[index].armors)" />
+				<StatTable :langData="langData" :stat="record.stat" />
 			</template>
 		</template>
 

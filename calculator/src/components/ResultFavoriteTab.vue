@@ -15,6 +15,7 @@ import { CacheManager } from "../model/data_manager";
 
 import ResultFavoriteRow from "./ResultFavoriteRow.vue";
 import StatTable from "./StatTable.vue";
+import { ArmorStatInfo } from "../definition/armor_define";
 
 const UIData = uiData as { [key: string]: { [key: string]: string } };
 
@@ -26,7 +27,7 @@ interface Row {
 	skills: string;
 	deco_combs: string;
 	leftover_slots: string;
-	stat: string;
+	stat: ArmorStatInfo;
 }
 
 
@@ -159,7 +160,7 @@ function generateTableData(favs: ResultFavorite[]) {
 			skills: skillsText,
 			deco_combs: allDecoTexts.join(" - "),
 			leftover_slots: leftoverSlotsText,
-			stat: "",
+			stat: getTotalStat(fav.armors),
 		} as Row;
 	});
 }
@@ -196,7 +197,7 @@ function generateResultFullEquipments(fav: ResultFavorite) {
 
 <template>
 	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }">
-		<template #bodyCell="{ text, index, column }">
+		<template #bodyCell="{ text, index, column, record }">
 			<template v-if="column.key === 'name'">
 				<template v-if="isEditing[index] === true">
 					<a-input style="width: 150px" v-model:value="props.favorites[index].name" @pressEnter="saveName(index)" />
@@ -215,7 +216,7 @@ function generateResultFullEquipments(fav: ResultFavorite) {
 			</template>
 			
 			<template v-else-if="column.key === 'stat'">
-				<StatTable :langData="langData" :stat="getTotalStat(favorites[index].armors)" />
+				<StatTable :langData="langData" :stat="record.stat" />
 			</template>
 
 			<template v-else-if="column.key === 'delete'">
