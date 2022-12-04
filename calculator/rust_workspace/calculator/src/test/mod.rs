@@ -93,26 +93,26 @@ fn armor_stat_compare() {
     stat4.defense = 5;
     stat4.fire_res = -1;
 
+    assert!(!(stat1 == stat2));
     assert!(stat1 != stat2);
-    assert!(stat1 != stat2);
-    assert!(stat1 > stat2);
-    assert!(stat2 > stat1);
-    assert!(stat1 >= stat2);
-    assert!(stat2 >= stat1);
+    assert!(!(stat1 <= stat2));
+    assert!(!(stat2 <= stat1));
+    assert!(!(stat1 < stat2));
+    assert!(!(stat2 < stat1));
 
-    assert!(stat1 != stat3);
+    assert!(!(stat1 == stat3));
     assert!(stat1 != stat3);
     assert!(stat3 <= stat1);
-    assert!(stat1 > stat3);
-    assert!(stat3 >= stat1);
-    assert!(stat1 >= stat3);
+    assert!(!(stat1 <= stat3));
+    assert!(!(stat3 < stat1));
+    assert!(!(stat1 < stat3));
 
     assert!(stat1 == stat4);
-    assert!(stat1 == stat4);
+    assert!(!(stat1 != stat4));
     assert!(stat4 <= stat1);
     assert!(stat1 <= stat4);
-    assert!(stat4 >= stat1);
-    assert!(stat1 >= stat4);
+    assert!(!(stat4 < stat1));
+    assert!(!(stat1 < stat4));
 }
 
 #[cfg(test)]
@@ -155,11 +155,21 @@ async fn le_equips_compare1() {
 }
 
 #[cfg(test)]
-#[test]
-fn skill_count_test() {
+#[tokio::test]
+async fn skill_count_test() {
     use crate::calc::constant::SKILLS_COUNT;
+    use crate::data::data_manager::DataManager;
 
-    assert_eq!(SKILLS_COUNT, 136); // TODO parse from json file
+    let manifest_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).to_path_buf();
+
+    let dm = DataManager::from_sources(
+        &manifest_dir.join("../src-tauri/data/armor.json"),
+        &manifest_dir.join("../src-tauri/data/skill.json"),
+        &manifest_dir.join("../src-tauri/data/deco.json"),
+    )
+    .await;
+
+    assert_eq!(SKILLS_COUNT, dm.get_skills().len());
 }
 
 #[cfg(test)]
