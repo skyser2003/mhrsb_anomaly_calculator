@@ -215,6 +215,10 @@ function addResultFavorite(index: number) {
 	emits("add_result_favorite", fav);
 
 	savedCheck.value[index] = true;
+
+	setTimeout(() => {
+		savedCheck.value[index] = false;
+	}, 5000);
 }
 
 </script>
