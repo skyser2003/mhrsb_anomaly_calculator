@@ -24,6 +24,8 @@ use super::{
     types::{EquipmentsArray, PointsVec},
 };
 
+type AllRealEquipments<'a> = Vec<HashMap<String, &'a Arc<CalcEquipment>>>;
+
 pub struct CalcDataManager {
     uid_gen: CalcEquipmentUid,
 
@@ -194,10 +196,7 @@ impl CalcDataManager {
         &self,
         sex_type: &SexType,
         include_lte_equips: bool,
-    ) -> (
-        Vec<HashMap<String, &Arc<CalcEquipment>>>,
-        Vec<Vec<&Arc<CalcEquipment>>>,
-    ) {
+    ) -> (AllRealEquipments, Vec<Vec<&Arc<CalcEquipment>>>) {
         let equip_parts_len = ArmorPart::get_all_equip().len();
 
         let mut all_real_equips = Vec::with_capacity(equip_parts_len);
@@ -259,9 +258,7 @@ impl CalcDataManager {
         all_calc_equips.push(talis_vec);
 
         for (part, part_equips) in all_calc_equips.iter_mut().enumerate() {
-            if part == ArmorPart::Talisman.as_usize() {
-                *part_equips = Self::remove_le_equipments(part_equips.clone(), None);
-            } else if include_lte_equips == false {
+            if part == ArmorPart::Talisman.as_usize() || !include_lte_equips {
                 *part_equips = Self::remove_le_equipments(part_equips.clone(), None);
             }
 
@@ -307,9 +304,7 @@ impl CalcDataManager {
     ) -> [CalcEquipment; EQUIP_PART_COUNT] {
         uids.map(|uid| {
             let equip = self.get_by_uid(uid).clone();
-            let cloned = (*equip).clone();
-
-            cloned
+            (*equip).clone()
         })
     }
 
@@ -411,9 +406,9 @@ impl CalcDataManager {
             sub_req_skills.sub(equip.skills());
         }
 
-        let new_req_points = dm.calc_req_skill_point_slots_lp_by_uids(&sub_req_skills, &req_uids);
+        let new_req_points = dm.calc_req_skill_point_slots_lp_by_uids(&sub_req_skills, req_uids);
 
-        if CalcPoint::is_possible_static(sub_slots_points, &new_req_points) == false {
+        if !CalcPoint::is_possible_static(sub_slots_points, &new_req_points) {
             return None;
         }
 
@@ -485,10 +480,12 @@ impl CalcDataManager {
                 {
                     let mut remove_index = index1;
 
-                    if equip1.is_armor() && equip2.is_armor() {
-                        if !equip1.as_armor().is_anomaly() && equip2.as_armor().is_anomaly() {
-                            remove_index = index2;
-                        }
+                    if equip1.is_armor()
+                        && equip2.is_armor()
+                        && !equip1.as_armor().is_anomaly()
+                        && equip2.as_armor().is_anomaly()
+                    {
+                        remove_index = index2;
                     }
 
                     dup_ids.push(remove_index);
@@ -570,9 +567,7 @@ impl CalcDataManager {
 
         let mut ret = all_equipments.clone();
 
-        ret.retain(|equips| {
-            le_equip_ids.contains(&FullEquipments::get_full_equip_id(equips)) == false
-        });
+        ret.retain(|equips| !le_equip_ids.contains(&FullEquipments::get_full_equip_id(equips)));
 
         ret
     }
@@ -665,7 +660,7 @@ impl CalcDataManager {
         let mut ret = all_deco_slot_equips
             .iter()
             .flatten()
-            .map(|&equip| equip)
+            .copied()
             .collect::<Vec<_>>();
 
         ret.append(&mut unique_equips.to_owned());

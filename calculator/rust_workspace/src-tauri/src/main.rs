@@ -27,7 +27,7 @@ fn cmd_get_file_anomalies(dm: tauri::State<RwLock<DataManager>>) -> Vec<AnomalyA
 
     let mut ret = Vec::with_capacity(anomalies.len());
 
-    for (_, armor) in anomalies {
+    for armor in anomalies.values() {
         let clone = armor.as_ref().clone();
 
         ret.push(clone);
@@ -91,7 +91,7 @@ fn cmd_add_manual_anomaly(
         original_id, skill_diffs, slot_diffs, stat_diff
     );
 
-    if original_id == "" {
+    if original_id.is_empty() {
         return None;
     }
 
@@ -306,8 +306,8 @@ async fn cmd_calculate_skillset(
 
         let talismans = parse_talisman(talisman_filename.as_ref(), dm.get_skill_name_dict());
 
-        dm.set_file_anomalies(anomalies.clone());
-        dm.set_file_talismans(talismans.clone());
+        dm.set_file_anomalies(anomalies);
+        dm.set_file_talismans(talismans);
 
         cm.load_anomalies(&dm);
         cm.load_talismans(&dm);

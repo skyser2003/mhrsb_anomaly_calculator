@@ -108,8 +108,7 @@ pub fn check_static_conditions(
 ) -> Option<(SkillsContainer, SlotsVec)> {
     let mut avail_slots_lp = FullEquipments::calculate_slots_lp(weapon_slots_lp, equipments);
 
-    if DecorationCombination::is_possible_static_lp_equip_mut(&mut avail_slots_lp, &[req_slots_lp])
-        == false
+    if !DecorationCombination::is_possible_static_lp_equip_mut(&mut avail_slots_lp, &[req_slots_lp])
     {
         return None;
     }
@@ -117,7 +116,7 @@ pub fn check_static_conditions(
     let avail_slots_points = dm.calc_slot_point_slots_lp(&avail_slots_lp);
 
     let sub_point_result =
-        cm.check_equipment_point(dm, equipments, &req_skills, &req_uids, &avail_slots_points);
+        cm.check_equipment_point(dm, equipments, req_skills, req_uids, &avail_slots_points);
 
     if sub_point_result == None {
         return None;
@@ -138,14 +137,14 @@ pub fn check_static_conditions(
 
     CalcVector::promote_subtracted_lp_slots(&mut avail_slots_lp);
 
-    if avail_slots_lp.iter().all(|&count| count >= 0) == false {
+    if !avail_slots_lp.iter().all(|&count| count >= 0) {
         return None;
     }
 
     let avail_slots_points = dm.calc_slot_point_slots_lp(&avail_slots_lp);
     let multi_req_points = dm.calc_req_skill_point_slots_lp(&multi_req_skills);
 
-    if CalcPoint::is_possible_static(&avail_slots_points, &multi_req_points) == false {
+    if !CalcPoint::is_possible_static(&avail_slots_points, &multi_req_points) {
         return None;
     }
 
@@ -222,7 +221,7 @@ pub fn calculate_skillset(
     let mut all_deco_slot_equips_flat = all_deco_slot_equips
         .iter()
         .flatten()
-        .map(|&equip| equip)
+        .copied()
         .collect::<Vec<_>>();
 
     all_deco_slot_equips_flat.sort_by_cached_key(|equip| Reverse(equip.point()));
@@ -262,7 +261,7 @@ pub fn calculate_skillset(
     let mut possible_candidate_flat = possible_candidate_vecs
         .iter()
         .flatten()
-        .map(|&equip| equip)
+        .copied()
         .collect::<Vec<_>>();
 
     possible_candidate_flat.sort_by_cached_key(|equip| Reverse(equip.point()));
@@ -333,7 +332,7 @@ pub fn calculate_skillset(
             true,
         );
 
-        parts.retain(|equip| key_parts[equip.part()] == false);
+        parts.retain(|equip| !key_parts[equip.part()]);
 
         if !has_unique_skill {
             debug!("General count: {}", parts.len());
@@ -547,7 +546,7 @@ pub fn calculate_skillset(
 pub fn generate_result(
     dm: &DataManager,
     sex_type: &SexType,
-    ori_weapon_slots: &Vec<SkillSlotCount>,
+    ori_weapon_slots: &[SkillSlotCount],
     weapon_slots_lp: &SlotsVec,
     req_slots_lp: &SlotsVec,
     answers: &[(
@@ -719,7 +718,7 @@ pub fn generate_result(
 
             ResultFullEquipments {
                 sex_type: sex_type.clone(),
-                weapon_slots: ori_weapon_slots.clone(),
+                weapon_slots: ori_weapon_slots.to_owned(),
                 armors: result_armors,
                 deco_combs: result_deco_combs,
                 talisman: result_tali,
@@ -729,7 +728,7 @@ pub fn generate_result(
 
     for index in 0..MAX_SLOT_LEVEL {
         full_equipments.sort_by_cached_key(|equips| {
-            let count = if equips.deco_combs.len() == 0 {
+            let count = if equips.deco_combs.is_empty() {
                 0
             } else {
                 equips.deco_combs[0].leftover_slots_sum[index]
@@ -740,7 +739,7 @@ pub fn generate_result(
     }
 
     full_equipments.sort_by_cached_key(|equips| {
-        let leftover_slots_sum = if equips.deco_combs.len() == 0 {
+        let leftover_slots_sum = if equips.deco_combs.is_empty() {
             0
         } else {
             equips.deco_combs[0]

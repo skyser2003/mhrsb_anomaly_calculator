@@ -75,7 +75,7 @@ impl<'a> FullEquipments<'a> {
     }
 
     pub fn calculate_slots(weapon_slots: &SlotsVec, equipments: &EquipmentsArray) -> SlotsVec {
-        let mut slots = weapon_slots.clone();
+        let mut slots = *weapon_slots;
 
         for equip in equipments {
             slots += equip.slots();
@@ -140,7 +140,7 @@ impl<'a> FullEquipments<'a> {
         req_skills: &SkillsContainer,
     ) -> (SkillsContainer, SlotsVec) {
         let mut skills = FullEquipments::calculate_skills(equipments);
-        let slots = FullEquipments::calculate_slots(&weapon_slots, equipments);
+        let slots = FullEquipments::calculate_slots(weapon_slots, equipments);
 
         for (uid, level) in req_skills.iter() {
             skills.set(uid, skills.get(uid).min(level));

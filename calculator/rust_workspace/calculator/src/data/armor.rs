@@ -313,7 +313,7 @@ impl AnomalyArmor {
                 continue;
             }
 
-            if skill_info.level < 0 && original.skills.contains_key(id) == false {
+            if skill_info.level < 0 && !original.skills.contains_key(id) {
                 continue;
             }
 

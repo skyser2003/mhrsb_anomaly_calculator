@@ -201,7 +201,7 @@ impl DecorationCombinations {
                     let mut left_level_combs = Vec::new();
 
                     for (index1, comb1) in level_combs.iter().enumerate() {
-                        let comb_lp1 = CalcVector::convert_to_lp_slots(&comb1);
+                        let comb_lp1 = CalcVector::convert_to_lp_slots(comb1);
 
                         let mut is_inferior = false;
 
@@ -210,7 +210,7 @@ impl DecorationCombinations {
                                 continue;
                             }
 
-                            let comb_lp2 = CalcVector::convert_to_lp_slots(&comb2);
+                            let comb_lp2 = CalcVector::convert_to_lp_slots(comb2);
 
                             if DecorationCombination::is_possible_static_lp(&comb_lp1, &comb_lp2) {
                                 is_inferior = true;
@@ -268,7 +268,7 @@ impl DecorationCombinations {
                     .map(|combs| {
                         combs
                             .iter()
-                            .map(|comb_lp| CalcVector::convert_from_lp_slots(comb_lp))
+                            .map(CalcVector::convert_from_lp_slots)
                             .collect()
                     })
                     .collect()
@@ -332,7 +332,7 @@ impl DecorationCombinations {
         for (uid, level) in req_skills.iter() {
             let combs = &self.combinations_lp[uid][(level - 1) as usize];
 
-            'combs_loop: for combs1_index in 0..combs1_len {
+            'combs_loop: for comb1 in all_combs1.iter().take(combs1_len) {
                 let mut prev_index = MAX_SLOT_LEVEL;
                 let mut prev_val = SkillSlotCount::MAX;
 
@@ -343,7 +343,7 @@ impl DecorationCombinations {
 
                     let new_comb = all_combs2.get_mut(combs2_len).unwrap();
 
-                    *new_comb = all_combs1[combs1_index];
+                    *new_comb = *comb1;
                     *new_comb += comb;
 
                     if avail_slots_lp[0] < new_comb[0] {
@@ -430,7 +430,7 @@ impl DecorationCombinations {
 
             all_possible_combs.push(deco_comb);
 
-            if self.proceed_next_iter(&all_combs_lp, &mut level_indices) == false {
+            if !self.proceed_next_iter(&all_combs_lp, &mut level_indices) {
                 break;
             }
         }
@@ -479,7 +479,7 @@ impl DecorationCombinations {
                 return true;
             }
 
-            if self.proceed_next_iter(&all_combs_lp, &mut level_indices) == false {
+            if !self.proceed_next_iter(&all_combs_lp, &mut level_indices) {
                 break;
             }
         }
@@ -487,7 +487,7 @@ impl DecorationCombinations {
         false
     }
 
-    fn get_iter_init_data<'a>(&self, req_skills: &'a SkillsContainer) -> (SkillsTuple, Vec<usize>) {
+    fn get_iter_init_data(&self, req_skills: &SkillsContainer) -> (SkillsTuple, Vec<usize>) {
         let req_list = req_skills.get_list();
         let level_indices = vec![0; req_list.len()];
 
@@ -536,11 +536,7 @@ impl DecorationCombinations {
         }
     }
 
-    fn proceed_next_iter(
-        &self,
-        all_combs: &Vec<&Vec<SlotsVec>>,
-        level_indices: &mut Vec<usize>,
-    ) -> bool {
+    fn proceed_next_iter(&self, all_combs: &[&Vec<SlotsVec>], level_indices: &mut [usize]) -> bool {
         let mut promote = 0;
 
         for (index, &combs) in all_combs.iter().enumerate() {

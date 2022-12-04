@@ -459,7 +459,7 @@ impl DataManager {
         let mut real_skills = Vec::new();
 
         for info in talisman.skills.iter() {
-            if info.id == "" || info.level == 0 {
+            if info.id.is_empty() || info.level == 0 {
                 continue;
             }
 
@@ -521,7 +521,7 @@ impl DataManager {
         &self,
         original_id: &str,
         skill_diffs_vec: &Vec<SkillIdLevel>,
-        slot_diffs: &Vec<SkillSlotCount>,
+        slot_diffs: &[SkillSlotCount],
         stat_diff: &ArmorStat,
     ) -> AnomalyArmor {
         let original = self.get_armor(&original_id.to_string());
@@ -529,17 +529,19 @@ impl DataManager {
         let mut skill_diffs = HashMap::with_capacity(skill_diffs_vec.len());
 
         for info in skill_diffs_vec.iter() {
-            if info.id.len() == 0 || info.level == 0 {
+            if info.id.is_empty() || info.level == 0 {
                 continue;
             }
 
             skill_diffs.insert(info.id.clone(), ArmorSkill { level: info.level });
         }
 
-        let anomaly =
-            AnomalyArmor::new(original, stat_diff.clone(), slot_diffs.clone(), skill_diffs);
-
-        anomaly
+        AnomalyArmor::new(
+            original,
+            stat_diff.clone(),
+            slot_diffs.to_owned(),
+            skill_diffs,
+        )
     }
 
     pub fn get_empty_skill_levels(&self) -> Vec<SkillSlotCount> {
@@ -796,13 +798,13 @@ impl DataManager {
 
         let min_slots_sum = self.get_possible_deco_combs_sum(req_skills);
 
-        if DecorationCombination::is_possible_static_lp(avail_slots_lp, &min_slots_sum) == false {
+        if !DecorationCombination::is_possible_static_lp(avail_slots_lp, &min_slots_sum) {
             return false;
         }
 
-        let comb_lps = self.get_possible_deco_combs_lp(req_skills, &avail_slots_lp);
+        let comb_lps = self.get_possible_deco_combs_lp(req_skills, avail_slots_lp);
 
-        comb_lps.len() != 0
+        !comb_lps.is_empty()
     }
 
     pub fn has_deco_possible_combs_lp(
@@ -868,7 +870,7 @@ impl DataManager {
                 continue;
             }
 
-            if self.skills_point[uid].len() == 0 {
+            if self.skills_point[uid].is_empty() {
                 continue;
             }
 
@@ -884,7 +886,7 @@ impl DataManager {
         let mut points = 0;
 
         for (uid, level) in skills.iter() {
-            if self.skills_point[uid].len() == 0 {
+            if self.skills_point[uid].is_empty() {
                 continue;
             }
 
@@ -910,7 +912,7 @@ impl DataManager {
                 continue;
             }
 
-            if self.skills_point[uid].len() == 0 {
+            if self.skills_point[uid].is_empty() {
                 continue;
             }
 
@@ -933,7 +935,7 @@ impl DataManager {
         for (uid, req_level) in req_skills.iter() {
             let skills_point = &self.skills_point[uid];
 
-            if skills_point.len() == 0 {
+            if skills_point.is_empty() {
                 continue;
             }
 
@@ -966,7 +968,7 @@ impl DataManager {
 
             let skills_point = &self.skills_point[uid];
 
-            if skills_point.len() == 0 {
+            if skills_point.is_empty() {
                 continue;
             }
 

@@ -1,9 +1,7 @@
-use super::types::{CalcInternalVec, PointsVec, SlotsVec};
+use super::types::{PointsVec, SlotsVec};
 
 #[derive(Clone)]
-pub struct CalcVector {
-    vec: CalcInternalVec,
-}
+pub struct CalcVector {}
 
 impl CalcVector {
     pub fn convert_to_lp_slots(slots: &SlotsVec) -> SlotsVec {

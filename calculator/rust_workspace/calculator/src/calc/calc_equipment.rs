@@ -326,7 +326,7 @@ impl CalcEquipment {
         ret
     }
 
-    pub fn sort_by_points(equipments: &mut Vec<&Arc<CalcEquipment>>) {
+    pub fn sort_by_points(equipments: &mut [&Arc<CalcEquipment>]) {
         for slot_index in (0..MAX_SLOT_LEVEL).rev() {
             equipments.sort_by_cached_key(|equip| Reverse(equip.points()[slot_index]));
         }

@@ -42,7 +42,7 @@ pub struct CalcEquipmentsIterator<'a> {
 impl<'a> CalcEquipmentsIterator<'a> {
     pub fn new(
         all_equips: Vec<&'a Arc<CalcEquipment>>,
-        key_equips: &Vec<&'a Arc<CalcEquipment>>,
+        key_equips: &[&'a Arc<CalcEquipment>],
         req_points: &'a PointsVec,
         weapon_points: &'a PointsVec,
         empty_equips: &'a EquipmentsArray,
@@ -64,7 +64,7 @@ impl<'a> CalcEquipmentsIterator<'a> {
             all_parts.insert(equip.part());
         }
 
-        let mut all_parts = all_parts.iter().map(|&part| part).collect_vec();
+        let mut all_parts = all_parts.iter().copied().collect_vec();
         all_parts.sort();
 
         let mut part_to_part_id = [EQUIP_PART_COUNT; EQUIP_PART_COUNT];
@@ -184,7 +184,7 @@ impl<'a> CalcEquipmentsIterator<'a> {
                         let equip = self.all_equips[next_equip_id];
                         let part = equip.part();
 
-                        if existing_parts[part] == true {
+                        if existing_parts[part] {
                             continue;
                         }
 
@@ -197,7 +197,7 @@ impl<'a> CalcEquipmentsIterator<'a> {
                         break;
                     }
 
-                    if assigned == false {
+                    if !assigned {
                         continue 'probe_loop;
                     }
                 }
@@ -299,7 +299,7 @@ impl<'a> CalcEquipmentsIterator<'a> {
         for equip_id in 0..self.all_equips.len() {
             let part = self.all_equips[equip_id].part();
 
-            if unexisting_parts.contains(&part) == false {
+            if !unexisting_parts.contains(&part) {
                 continue;
             }
 
