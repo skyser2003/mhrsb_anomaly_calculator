@@ -191,6 +191,6 @@ Cargo.lock
 crawler/temp_data/
 crawler/original_data/mhrice.json
 
-simulator/rust_workspace/calculator/*.svg
-simulator/rust_workspace/calculator/cargo-flamegraph.stacks
-simulator/key/mhrsb_calculator.key
+calculator/rust_workspace/calculator/*.svg
+calculator/rust_workspace/calculator/cargo-flamegraph.stacks
+calculator/key/mhrsb_calculator.key
