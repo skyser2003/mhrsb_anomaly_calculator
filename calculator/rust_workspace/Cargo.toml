@@ -3,3 +3,6 @@ members = [	"calculator", "src-tauri" ]
 
 [profile.bench]
 debug = true
+
+[profile.dev.package.mhr-calculator]
+opt-level = 3
