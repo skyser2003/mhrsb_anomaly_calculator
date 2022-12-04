@@ -39,6 +39,8 @@ const designTheme = ref("");
 const simulateTab = ref<InstanceType<typeof SimulateTab>>();
 const anomalyTab = ref<InstanceType<typeof AnomaliesTab>>();
 const talismanTab = ref<InstanceType<typeof TalismansTab>>();
+const searchFavoriteTab = ref<InstanceType<typeof SearchFavoriteTab>>();
+const resultFavoriteTab = ref<InstanceType<typeof ResultFavoriteTab>>();
 
 const searchFavorites = ref([]) as Ref<SearchFavorite[]>;
 const resultFavorites = ref([]) as Ref<ResultFavorite[]>;
@@ -114,7 +116,11 @@ function addResultFavorite(fav: ResultFavorite) {
 function changeTab() {
   CacheManager.setTab(activeKey.value);
 
-  if (activeKey.value === "3") { // Anomaly armors tab
+  if (activeKey.value === "1") { // Search favorites tab
+    searchFavoriteTab.value?.onTabActivate();
+  } else if (activeKey.value === "2") { // Result favorites tab
+    resultFavoriteTab.value?.onTabActivate();
+  } else if (activeKey.value === "3") { // Anomaly armors tab
     anomalyTab.value?.getFileAnomalies();
   } else if (activeKey.value === "4") { // Talisman tab
     talismanTab.value?.getFileTalismans();
@@ -163,10 +169,10 @@ function onChangeDesignTheme() {
       </Suspense>
     </a-tab-pane>
     <a-tab-pane key="1" :tab="UIData['search_favorite_tab'][langData]">
-      <SearchFavoriteTab :langData="langData" :favorites="searchFavorites" v-on:set_search_condition="setSearchCondition" />
+      <SearchFavoriteTab ref="searchFavoriteTab" :langData="langData" :favorites="searchFavorites" v-on:set_search_condition="setSearchCondition" />
     </a-tab-pane>
     <a-tab-pane key="2" :tab="UIData['result_favorite_tab'][langData]">
-      <ResultFavoriteTab :langData="langData" :favorites="resultFavorites" />
+      <ResultFavoriteTab ref="resultFavoriteTab" :langData="langData" :favorites="resultFavorites" />
     </a-tab-pane>
     <a-tab-pane key="3" :tab="UIData['anomaly_tab'][langData]">
       <Suspense>

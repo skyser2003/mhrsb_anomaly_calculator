@@ -36,6 +36,8 @@ const props = defineProps<{
 	favorites: ResultFavorite[]
 }>();
 
+defineExpose({ onTabActivate });
+
 const columns = ref([
 	{
 		title: "id",
@@ -87,6 +89,12 @@ const columns = ref([
 ]);
 
 const isEditing = ref<{ [key: number]: boolean }>({});
+
+function onTabActivate() {
+	isEditing.value = {};
+	props.favorites.length = 0;
+	props.favorites.push(...CacheManager.getResultFavorites());
+}
 
 function generateTableData(favs: ResultFavorite[]) {
 	return favs.map((fav, index) => {
@@ -166,6 +174,7 @@ function generateTableData(favs: ResultFavorite[]) {
 }
 
 function deleteFavorite(index: number) {
+	isEditing.value = {};
 	props.favorites.splice(index, 1);
 	CacheManager.setResultFavorites(props.favorites);
 }

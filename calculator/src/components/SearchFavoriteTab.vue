@@ -29,6 +29,8 @@ const emits = defineEmits<{
 	(event: "set_search_condition", fav: SearchFavorite): void
 }>();
 
+defineExpose({ onTabActivate });
+
 
 const columns = ref([
 	{
@@ -79,6 +81,12 @@ const columns = ref([
 ]);
 
 const isEditing = ref<{ [key: number]: boolean }>({});
+
+function onTabActivate() {
+	isEditing.value = {};
+	props.favorites.length = 0;
+	props.favorites.push(...CacheManager.getSearchFavorites());
+}
 
 function generateTableData(favs: SearchFavorite[]) {
 	return favs.map((fav, index) => {
