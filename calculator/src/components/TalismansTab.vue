@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import { ref, Ref } from "vue";
+import { ref } from "vue";
 import { open } from '@tauri-apps/api/dialog';
 import { invoke } from "@tauri-apps/api/tauri";
 
@@ -86,7 +86,7 @@ const addAnomalyColumns = ref([
 ]);
 
 const maxTalismanSkills = ref(2);
-const skills = ref({}) as Ref<{ [key: string]: FinalSkillInfo }>;
+const skills = ref<{ [key: string]: FinalSkillInfo }>({});
 
 const skillsVec = ref<FinalSkillInfo[]>(SkillsVec);
 skillsVec.value.sort((elem1, elem2) => elem1.names[props.langData] > elem2.names[props.langData] ? 1 : -1);

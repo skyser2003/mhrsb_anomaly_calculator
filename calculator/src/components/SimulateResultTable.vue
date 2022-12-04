@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Ref } from "vue";
+import { ref } from "vue";
 
 import { CalculateResult, ResultFavorite, ResultTalisman, getTotalStat } from "../definition/calculate_result";
 

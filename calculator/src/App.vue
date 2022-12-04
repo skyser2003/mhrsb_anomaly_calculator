@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { Ref, ref } from "vue";
+import { ref } from "vue";
 import { invoke } from "@tauri-apps/api/tauri";
 
 import SimulateTab from "./components/SimulateTab.vue";
@@ -42,8 +42,8 @@ const talismanTab = ref<InstanceType<typeof TalismansTab>>();
 const searchFavoriteTab = ref<InstanceType<typeof SearchFavoriteTab>>();
 const resultFavoriteTab = ref<InstanceType<typeof ResultFavoriteTab>>();
 
-const searchFavorites = ref([]) as Ref<SearchFavorite[]>;
-const resultFavorites = ref([]) as Ref<ResultFavorite[]>;
+const searchFavorites = ref<SearchFavorite[]>([]);
+const resultFavorites = ref<ResultFavorite[]>([]);
 
 loadTheme();
 loadLanguage();

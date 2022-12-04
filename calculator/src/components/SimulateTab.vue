@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Ref } from "vue";
+import { ref } from "vue";
 import { invoke } from "@tauri-apps/api/tauri";
 
 import { SmileOutlined } from '@ant-design/icons-vue';
@@ -75,20 +75,20 @@ const emits = defineEmits<{
 
 defineExpose({setSearchCondition});
 
-const skillCats = ref(SkillCategories) as Ref<SkillCategory[]>;
-const skillsVec = ref(SkillsVec) as Ref<FinalSkillInfo[]>;
+const skillCats = ref<SkillCategory[]>(SkillCategories);
+const skillsVec = ref<FinalSkillInfo[]>(SkillsVec);
 
-const skills = ref({}) as Ref<{ [key: string]: FinalSkillInfo }>;
+const skills = ref<{ [key: string]: FinalSkillInfo }>({});
 
 const sexType = ref<SexType>("");
-const weaponSlots = ref([0, 0, 0]) as Ref<EquipSlots>;
-const selectedSkills = ref({}) as Ref<Skills>;
-const freeSlots = ref([0, 0, 0, 0]) as Ref<Slots>;
+const weaponSlots = ref<EquipSlots>([0, 0, 0]);
+const selectedSkills = ref<Skills>({});
+const freeSlots = ref<Slots>([0, 0, 0, 0]);
 const includeLteEquips = ref(false);
 
 const is_calculating = ref(false);
 
-const calcResult = ref({ fullEquipments: [], calcTime: 0 } as CalculateResult) as Ref<CalculateResult>;
+const calcResult = ref<CalculateResult>({ fullEquipments: [], calcTime: 0 });
 
 for (const skill of skillsVec.value) {
 	skills.value[skill.id] = skill;
