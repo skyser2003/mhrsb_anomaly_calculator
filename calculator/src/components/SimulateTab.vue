@@ -263,7 +263,7 @@ function addResultFavorite(fav: ResultFavorite) {
 }
 
 function canSubmit() {
-	return sexType.value !== "";
+	return sexType.value !== "" && is_calculating.value === false;
 }
 
 </script>
