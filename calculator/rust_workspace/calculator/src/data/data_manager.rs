@@ -4,7 +4,7 @@ use std::path::Path;
 use std::sync::Arc;
 
 use ::num::integer::lcm;
-use log::{debug};
+use log::debug;
 use nohash_hasher::IntMap;
 
 use crate::calc::calc_vector::CalcVector;
@@ -26,7 +26,6 @@ type ArmorsBySlot = Vec<HashMap<String, Vec<Arc<BaseArmor>>>>;
 pub struct DataManager {
     armors: HashMap<String, Arc<BaseArmor>>,
     skills: Vec<Skill>,
-    decos: HashMap<String, Decoration>,
 
     skill_id_map: HashMap<String, usize>,
     empty_skill_levels: Vec<SkillSlotCount>,
@@ -246,7 +245,6 @@ impl DataManager {
         DataManager {
             armors,
             skills,
-            decos,
             skill_id_map,
             empty_skill_levels,
             decos_by_skill,

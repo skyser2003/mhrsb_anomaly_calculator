@@ -7,10 +7,6 @@ use std::{collections::HashMap, path::Path};
 
 use crate::data::armor::{AnomalyArmor, ArmorSkill, ArmorStat, BaseArmor, SkillIdLevel, Talisman};
 
-fn to_i32(record: &StringRecord, index: usize) -> i32 {
-    record[index].parse().unwrap()
-}
-
 fn to_i16(record: &StringRecord, index: usize) -> i16 {
     record[index].parse().unwrap()
 }
