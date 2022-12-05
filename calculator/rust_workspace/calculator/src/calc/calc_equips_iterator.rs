@@ -4,13 +4,14 @@ use itertools::Itertools;
 use log::debug;
 use nohash_hasher::{IntMap, IntSet};
 
-use crate::{data::data_manager::DataManager, full_equipments::FullEquipments};
+use crate::data::data_manager::DataManager;
 
 use super::{
     calc_data_manager::CalcDataManager,
     calc_equipment::CalcEquipment,
     calc_point::CalcPoint,
     constant::{EQUIP_PART_COUNT, MAX_SLOT_LEVEL},
+    full_equipments::FullEquipments,
     skills::SkillsContainer,
     types::{EquipmentsArray, PointsVec},
 };

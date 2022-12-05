@@ -1,4 +1,3 @@
-pub mod full_equipments;
 mod utils;
 
 pub static MAX_ANSWER_LENGTH: usize = 200;
@@ -37,10 +36,10 @@ use crate::calc::calc_vector::CalcVector;
 use crate::calc::constant::EQUIP_PART_COUNT;
 use crate::calc::deco_combination::DecorationCombination;
 
+use crate::calc::full_equipments::FullEquipments;
 use crate::calc::types::SlotsVec;
 use crate::data::armor::{BaseArmor, EMPTY_ARMOR_PREFIX};
 use crate::data::Language;
-use crate::full_equipments::FullEquipments;
 
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]

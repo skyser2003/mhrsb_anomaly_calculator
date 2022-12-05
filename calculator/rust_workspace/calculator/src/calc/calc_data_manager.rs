@@ -7,12 +7,9 @@ use std::{
 use log::{debug, info};
 use nohash_hasher::IntMap;
 
-use crate::{
-    data::{
-        armor::{ArmorPart, SexType, EMPTY_ARMOR_PREFIX, SLOT_ARMOR_PREFIX},
-        data_manager::DataManager,
-    },
-    full_equipments::FullEquipments,
+use crate::data::{
+    armor::{ArmorPart, SexType, EMPTY_ARMOR_PREFIX, SLOT_ARMOR_PREFIX},
+    data_manager::DataManager,
 };
 
 use super::{
@@ -20,6 +17,7 @@ use super::{
     calc_point::CalcPoint,
     calc_ui_generator::CalcEquipmentUid,
     constant::{EQUIP_PART_COUNT, MAX_SLOT_LEVEL},
+    full_equipments::FullEquipments,
     skills::SkillsContainer,
     types::{EquipmentsArray, PointsVec},
 };
