@@ -1,7 +1,7 @@
 use std::sync::Arc;
 
 use itertools::Itertools;
-use log::debug;
+
 use nohash_hasher::{IntMap, IntSet};
 
 use crate::data::data_manager::DataManager;

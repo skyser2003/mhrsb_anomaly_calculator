@@ -4,7 +4,7 @@ use std::{
     sync::Arc,
 };
 
-use log::{debug, info};
+use log::{info};
 use nohash_hasher::IntMap;
 
 use crate::data::{

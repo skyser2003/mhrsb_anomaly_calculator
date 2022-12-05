@@ -4,7 +4,7 @@ use std::path::Path;
 use std::sync::Arc;
 
 use ::num::integer::lcm;
-use log::{debug, info};
+use log::{debug};
 use nohash_hasher::IntMap;
 
 use crate::calc::calc_vector::CalcVector;
