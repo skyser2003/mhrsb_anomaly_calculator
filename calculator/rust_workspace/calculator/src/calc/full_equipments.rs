@@ -3,8 +3,9 @@ use std::{collections::HashMap, sync::Arc};
 use crate::{
     calc::{constant::EQUIP_PART_COUNT, types::EquipmentsArray},
     calc::{skills::SkillsContainer, types::SlotsVec},
-    CalcEquipment,
 };
+
+use super::calc_equipment::CalcEquipment;
 
 #[derive(Clone)]
 pub struct FullEquipments<'a> {

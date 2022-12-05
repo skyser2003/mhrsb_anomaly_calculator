@@ -5,8 +5,9 @@ async fn it_works() {
     use nohash_hasher::IntMap;
 
     use crate::{
-        calc::{calc_data_manager::CalcDataManager, constant::MAX_SLOT_LEVEL},
-        calculate_skillset,
+        calc::{
+            calc_data_manager::CalcDataManager, calculator::Calculator, constant::MAX_SLOT_LEVEL,
+        },
         data::data_manager::DataManager,
     };
 
@@ -49,7 +50,7 @@ async fn it_works() {
 
     selected_skills.insert(dm.get_skill_uid("spiribirds_call"), 5);
 
-    let (_log, _results) = calculate_skillset(
+    let (_log, _results) = Calculator::calculate(
         weapon_slots,
         selected_skills,
         free_slots,

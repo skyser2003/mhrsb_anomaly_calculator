@@ -6,7 +6,10 @@
 use data::armor::SexType;
 use log::{debug, info};
 use mhr_calculator::{
-    calc::{calc_data_manager::CalcDataManager, types::SkillSlotCount},
+    calc::{
+        calc_data_manager::CalcDataManager, calc_result::CalculateResult, calculator::Calculator,
+        types::SkillSlotCount,
+    },
     data::{
         armor::{AnomalyArmor, ArmorPart, ArmorStat, BaseArmor, SkillIdLevel, Talisman},
         data_manager::DataManager,
@@ -320,11 +323,11 @@ async fn cmd_calculate_skillset(
         let dm = dm.read().unwrap();
         let mut cm = cm.write().unwrap();
 
-        let req_skills = convert_to_skills_container(&selected_skills_uid);
+        let req_skills = Calculator::convert_to_skills_container(&selected_skills_uid);
 
         cm.refresh_infos(&dm, &req_skills);
 
-        (log, result) = calculate_skillset(
+        (log, result) = Calculator::calculate(
             weapon_slots,
             selected_skills_uid,
             free_slots,

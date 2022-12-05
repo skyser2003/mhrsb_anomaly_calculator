@@ -2,8 +2,7 @@ use std::{collections::HashMap, fs::File, io::BufReader};
 
 use criterion::{criterion_group, criterion_main, Criterion};
 use mhr_calculator::{
-    calc::{calc_data_manager::CalcDataManager, types::SkillSlotCount},
-    calculate_skillset, convert_to_skills_container,
+    calc::{calc_data_manager::CalcDataManager, calculator::Calculator, types::SkillSlotCount},
     data::{
         armor::SexType,
         data_manager::DataManager,
@@ -66,10 +65,13 @@ fn bench(c: &mut Criterion) {
         cm.load_base_armors(&dm);
         cm.load_anomalies(&dm);
         cm.load_talismans(&dm);
-        cm.refresh_infos(&dm, &convert_to_skills_container(&selected_skills));
+        cm.refresh_infos(
+            &dm,
+            &Calculator::convert_to_skills_container(&selected_skills),
+        );
 
         b.iter(move || {
-            let (_log, _result) = calculate_skillset(
+            let (_log, _result) = Calculator::calculate(
                 weapon_slots.clone(),
                 selected_skills.clone(),
                 free_slots.clone(),
