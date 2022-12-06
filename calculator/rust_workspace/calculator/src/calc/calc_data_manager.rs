@@ -4,11 +4,11 @@ use std::{
     sync::Arc,
 };
 
-use log::{info};
+use log::info;
 use nohash_hasher::IntMap;
 
 use crate::data::{
-    armor::{ArmorPart, SexType, EMPTY_ARMOR_PREFIX, SLOT_ARMOR_PREFIX},
+    armor::{ArmorPart, BaseArmor, SexType, SLOT_ARMOR_PREFIX},
     data_manager::DataManager,
 };
 
@@ -588,7 +588,7 @@ impl CalcDataManager {
 
                 let source_equip = source_cand[part];
 
-                if source_equip.id().starts_with(EMPTY_ARMOR_PREFIX) {
+                if BaseArmor::is_empty_armor(source_equip.id()) {
                     continue;
                 }
 

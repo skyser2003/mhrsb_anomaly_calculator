@@ -276,6 +276,10 @@ impl BaseArmor {
         armor_id.starts_with(ANOMALY_ARMOR_PREFIX)
     }
 
+    pub fn is_empty_armor(armor_id: &str) -> bool {
+        armor_id.starts_with(EMPTY_ARMOR_PREFIX)
+    }
+
     pub fn get_slot_armor(part: ArmorPart, slot_armor_id: String) -> BaseArmor {
         Self {
             id: slot_armor_id.clone(),

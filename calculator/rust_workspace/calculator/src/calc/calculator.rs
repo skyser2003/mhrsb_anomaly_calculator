@@ -17,7 +17,7 @@ use crate::{
         constant::{EQUIP_PART_COUNT, MAX_ANSWER_LENGTH},
     },
     data::{
-        armor::{ArmorPart, BaseArmor, SexType, EMPTY_ARMOR_PREFIX},
+        armor::{ArmorPart, BaseArmor, SexType},
         data_manager::DataManager,
         Language,
     },
@@ -271,7 +271,7 @@ impl Calculator {
             let mut key_parts = [false; EQUIP_PART_COUNT];
 
             for &equipment in possible_candidate_vec.iter() {
-                if !equipment.id().starts_with(EMPTY_ARMOR_PREFIX) {
+                if !BaseArmor::is_empty_armor(equipment.id()) {
                     key_equips.push(equipment);
                     key_parts[equipment.part()] = true;
                 };
@@ -596,7 +596,7 @@ impl Calculator {
             let part = equipment.part();
 
             let is_slot_equip = BaseArmor::is_slot_armor(equip_id);
-            let is_empty_equip = equip_id.starts_with(EMPTY_ARMOR_PREFIX);
+            let is_empty_equip = BaseArmor::is_empty_armor(equip_id);
 
             if is_slot_equip {
                 let mut part_real_equips = Vec::new();
