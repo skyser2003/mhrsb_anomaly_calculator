@@ -246,6 +246,20 @@ fn cmd_set_manual_talismans(
 }
 
 #[tauri::command]
+fn cmd_clear_manual_talismans(
+    dm: tauri::State<RwLock<DataManager>>,
+    cm: tauri::State<RwLock<CalcDataManager>>,
+) -> bool {
+    let mut dm = dm.write().unwrap();
+    let mut cm = cm.write().unwrap();
+
+    dm.clear_manual_talismans();
+    cm.load_talismans(&dm);
+
+    true
+}
+
+#[tauri::command]
 fn cmd_get_skill_names(dm: tauri::State<RwLock<DataManager>>) -> HashMap<String, Skill> {
     let dm = &dm.read().unwrap();
 
@@ -382,6 +396,7 @@ async fn main() {
             cmd_clear_file_talismans,
             cmd_delete_manual_talisman,
             cmd_set_manual_talismans,
+            cmd_clear_manual_talismans,
             cmd_get_skill_names,
             cmd_get_armor_names,
             cmd_calculate_skillset

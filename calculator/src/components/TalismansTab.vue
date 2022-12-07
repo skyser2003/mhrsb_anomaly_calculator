@@ -248,6 +248,15 @@ async function deleteManualTalisman(index: number) {
 	}
 }
 
+async function deleteAllManualTalismans() {
+	const result = await invoke("cmd_clear_manual_talismans");
+
+	if (result === true) {
+		manualTalismans.value.length = 0;
+		CacheManager.setManualTalismans(manualTalismans.value);
+	}
+}
+
 </script>
 
 <template>
@@ -310,7 +319,21 @@ async function deleteManualTalisman(index: number) {
 			</template>
 		</a-table>
 
+		<br />
+
+		<div>
+
 		<a-button @click="addManualTalisman()" :disabled="talismanAddInfo.skills.every(skillInfo => skillInfo.id !== '')">Add</a-button>
+		
+		<a-divider style="border-color: #7cb305" dashed />
+		
+		<a-popconfirm :title="UIData['confirm_delete_all'][langData]" ok-text="O" cancel-text="X" @confirm="deleteAllManualTalismans()" @cancel="">
+			<a-button>Delete all</a-button>
+		</a-popconfirm>
+		
+		</div>
+		
+		<br />
 
 		<a-table :columns="manualColumns" :data-source="generateTalismanData(manualTalismans)"
 			:pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">

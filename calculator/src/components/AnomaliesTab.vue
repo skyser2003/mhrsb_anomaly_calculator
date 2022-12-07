@@ -510,6 +510,18 @@ function onAddAnomalySkillChange(index: number) {
 	anomalyAddInfo.value.skills[index].level = 0;
 }
 
+async function deleteAllManualAnomalies() {
+	const result = await invoke("cmd_clear_manual_anomalies");
+
+	if (result === true) {
+		for(const part of parts.value) {
+			manualAnomaliesByPart.value[part].length = 0;
+		}
+
+		CacheManager.setManualAnomalies(manualAnomaliesByPart.value);
+	}
+}
+
 </script>
 
 <template>
@@ -598,7 +610,20 @@ function onAddAnomalySkillChange(index: number) {
 			</template>
 		</a-table>
 
+		<div>
+
+		<br />
+
 		<a-button @click="addManualAnomalyArmor()" :disabled="anomalyAddInfo.armorId.length === 0">Add</a-button>
+
+		<a-divider style="border-color: #7cb305" dashed />
+		
+		<a-popconfirm :title="UIData['confirm_delete_all'][langData]" ok-text="O" cancel-text="X"
+			@confirm="deleteAllManualAnomalies()" @cancel="">
+			<a-button>Delete all</a-button>
+		</a-popconfirm>
+
+		</div>
 
 		<a-divider style="border-color: #7cb305" dashed />
 

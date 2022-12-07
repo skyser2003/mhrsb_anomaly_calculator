@@ -123,6 +123,10 @@
         "ko": "정말 삭제하시겠습니까?",
         "en": "Are you sure to delete this?"
     },
+    "confirm_delete_all": {
+        "ko": "정말 전부 지우시겠습니까?",
+        "en": "Are you really going to delete all items?"
+    },
     "empty_favorite_name": {
         "ko": "이름 없음",
         "en": "No name"
