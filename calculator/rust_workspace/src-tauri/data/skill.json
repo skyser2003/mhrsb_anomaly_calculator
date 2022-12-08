@@ -2177,7 +2177,7 @@
     },
     {
         "id": "steadiness",
-        "maxLevel": 2,
+        "maxLevel": 3,
         "names": {
             "ja": "ブレ抑制",
             "en": "Steadiness",

@@ -1,5 +1,5 @@
 import path from "path";
-import fs from "fs";
+import fs from "fs-extra";
 
 import { FinalSkillInfo } from "./definition/skill_define.js";
 import { FinalDecoInfo } from "./definition/deco_define.js";
@@ -224,6 +224,9 @@ export function parseMhrIce() {
         path.join("data", "deco.json"),
         JSON.stringify(decoInfos, null, 4)
     );
+
+    fs.copySync("data", path.join("..", "calculator", "rust_workspace", "src-tauri", "data"));
+    fs.copySync("data", path.join("..", "calculator", "src", "data"));
 }
 
 function isInvalidContent(info: PlayerSkillDetailMsg) {
