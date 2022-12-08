@@ -390,12 +390,12 @@ function parseSkills(
     skillExpMrTexts: PlayerSkillDetailMsg[]
 ) {
     const hr_names = {} as { [key: string]: string[] };
-    const hr_levels = {} as { [key: string]: number };
     const hr_texts = {} as { [key: string]: string[] };
 
     const mr_names = {} as typeof hr_names;
-    const mr_levels = {} as typeof hr_levels;
     const mr_texts = {} as typeof hr_texts;
+
+    const max_levels = {} as { [key: string]: number };
 
     const getNames = (
         realNames: typeof hr_names,
@@ -418,7 +418,7 @@ function parseSkills(
     };
 
     const getLevels = (
-        realLevels: typeof hr_levels,
+        realLevels: typeof max_levels,
         rawLevels: typeof skillLvTexts
     ) => {
         for (const info of rawLevels) {
@@ -465,8 +465,8 @@ function parseSkills(
     getNames(hr_names, skillNames);
     getNames(mr_names, skillMrNames);
 
-    getLevels(hr_levels, skillLvTexts);
-    getLevels(mr_levels, skillLvMrTexts);
+    getLevels(max_levels, skillLvTexts);
+    getLevels(max_levels, skillLvMrTexts);
 
     getTexts(hr_texts, skillExpTexts);
     getTexts(mr_texts, skillExpMrTexts);
@@ -477,7 +477,7 @@ function parseSkills(
 
     const getFinalResult = (
         realNames: typeof hr_names,
-        realLevels: typeof hr_levels,
+        realLevels: typeof max_levels,
         realtexts: typeof hr_texts,
         realIds: typeof hr_ids
     ) => {
@@ -522,8 +522,8 @@ function parseSkills(
         }
     };
 
-    getFinalResult(hr_names, hr_levels, hr_texts, hr_ids);
-    getFinalResult(mr_names, mr_levels, mr_texts, mr_ids);
+    getFinalResult(hr_names, max_levels, hr_texts, hr_ids);
+    getFinalResult(mr_names, max_levels, mr_texts, mr_ids);
 
     return [ret1, hr_ids, mr_ids] as [
         FinalSkillInfo[],
