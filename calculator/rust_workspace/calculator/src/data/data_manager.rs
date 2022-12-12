@@ -152,7 +152,29 @@ impl DataManager {
 
             let decos_vec = &mut decos_by_skill[uid];
 
-            decos_vec.push(deco.clone());
+            // TODO: steadiness case - resolve case with same slot size and different level decoration case
+            let mut is_inferior = false;
+
+            decos_vec.retain(|prev_deco: &Decoration| {
+                if prev_deco.slot_size == deco.slot_size {
+                    debug!(
+                        "Same slot size case: {} - Slot size {}, Lv{} Lv{}",
+                        skill_id, deco.slot_size, deco.skill_level, prev_deco.skill_level
+                    );
+
+                    if prev_deco.skill_level < deco.skill_level {
+                        return false;
+                    } else {
+                        is_inferior = true;
+                    }
+                }
+
+                true
+            });
+
+            if !is_inferior {
+                decos_vec.push(deco.clone());
+            }
         }
 
         for decos in decos_by_skill.iter_mut() {
