@@ -4,7 +4,6 @@ import { ref } from "vue";
 
 import { ResultFullEquipments, ResultArmor, ResultFavorite, EquipSlots } from "../definition/calculate_result";
 import { SkillsData } from "../models/skills";
-import { DecosData } from "../models/decos";
 import { SlotsDataManager } from "../models/slots";
 
 import UIData from "../ui_data/ui_data.json";
