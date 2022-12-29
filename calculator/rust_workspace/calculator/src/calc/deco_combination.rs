@@ -89,33 +89,35 @@ impl DecorationCombinations {
                     let mut skill_temp_combs = Vec::new();
                     let mut skill_done_combs = Vec::new();
 
-                    for (slot_size_index, max_deco_count) in max_deco_counts.iter().enumerate() {
-                        let deco = &decos[slot_size_index];
+                    for (deco_index, max_deco_count) in max_deco_counts.iter().enumerate() {
+                        let deco = &decos[deco_index];
 
                         skill_temp_combs.push(init_case.clone());
                         let deco_temp_combs = skill_temp_combs.clone();
 
                         for temp_comb in &deco_temp_combs {
                             for count in (1..max_deco_count + 1).rev() {
-                                let mut cur_level_sum: SkillSlotCount = temp_comb
+                                let prev_level_sum = temp_comb
                                     .iter()
                                     .enumerate()
-                                    .map(|(prev_level_index, count)| {
-                                        (prev_level_index + 1) as SkillSlotCount * count
-                                    })
-                                    .sum();
+                                    .map(|(level_index, count)| {
+                                        let level = level_index as SkillSlotCount + 1;
 
-                                cur_level_sum += count * deco.skill_level;
+                                        level * count
+                                    })
+                                    .sum::<SkillSlotCount>();
+
+                                let cur_level_sum = prev_level_sum + count * deco.skill_level;
 
                                 let mut next_temp_comb = temp_comb.clone();
-                                next_temp_comb[slot_size_index] = count;
+                                next_temp_comb[deco_index] = count;
 
                                 if req_level <= cur_level_sum {
                                     let mut has_better_slot_answer = false;
 
-                                    for lower_deco in decos.iter().take(slot_size_index) {
-                                        let mut lower_level_sum = temp_comb.iter().sum();
-                                        lower_level_sum += count * lower_deco.skill_level;
+                                    for lower_deco in decos.iter().take(deco_index) {
+                                        let lower_level_sum =
+                                            prev_level_sum + count * lower_deco.skill_level;
 
                                         if req_level <= lower_level_sum {
                                             has_better_slot_answer = true;
@@ -186,7 +188,7 @@ impl DecorationCombinations {
                             let deco = &decos[deco_index];
                             let slot_size = deco.slot_size;
 
-                            converted[(slot_size - 1) as usize] = *slot_count;
+                            converted[(slot_size - 1) as usize] += *slot_count;
                         }
 
                         converted_level_combs.push(converted);
