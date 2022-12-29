@@ -406,7 +406,6 @@ impl DecorationCombinations {
         }
 
         let all_combs_count = self.get_total_combs_count(req_skills);
-        let mut all_possible_combs = Vec::with_capacity(all_combs_count);
 
         let (req_list, mut level_indices) = self.get_iter_init_data(req_skills);
         let all_skill_combs = Rc::new(RefCell::new(HashMap::with_capacity_and_hasher(
@@ -414,28 +413,25 @@ impl DecorationCombinations {
             BuildNoHashHasher::default(),
         )));
 
-        let mut all_combs_lp = Vec::new();
+        let all_combs_lp = req_skills
+            .iter()
+            .map(|(uid, level)| &self.combinations_lp[uid][(level - 1) as usize])
+            .collect::<Vec<_>>();
 
-        for (uid, level) in req_skills.iter() {
-            let combs = &self.combinations_lp[uid][(level - 1) as usize];
+        let all_possible_combs = (0..all_combs_count)
+            .map(|_| {
+                let deco_comb = self.get_next_deco_comb(
+                    &req_list,
+                    &all_combs_lp,
+                    &level_indices,
+                    all_skill_combs.clone(),
+                );
 
-            all_combs_lp.push(combs);
-        }
+                self.proceed_next_iter(&all_combs_lp, &mut level_indices);
 
-        loop {
-            let deco_comb = self.get_next_deco_comb(
-                &req_list,
-                &all_combs_lp,
-                &level_indices,
-                all_skill_combs.clone(),
-            );
-
-            all_possible_combs.push(deco_comb);
-
-            if !self.proceed_next_iter(&all_combs_lp, &mut level_indices) {
-                break;
-            }
-        }
+                deco_comb
+            })
+            .collect::<Vec<_>>();
 
         {
             let mut caches = self.full_caches.write().unwrap();
