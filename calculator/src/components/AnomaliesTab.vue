@@ -386,7 +386,7 @@ async function setFileAnomalyData(anomalies: AnomalyArmorInfo[]) {
 
 	for (const armor of anomalyArmors.value) {
 		maxAnomalySkills.value = Math.max(maxAnomalySkills.value, Object.keys(armor.skillDiffs).length);
-	}
+	} 
 
 	for (let i = anomalyAddInfo.value.skills.length; i < maxAnomalySkills.value; ++i) {
 		anomalyAddInfo.value.skills.push({ id: "", level: 0 });
@@ -558,7 +558,7 @@ async function deleteAllManualAnomalies() {
 		<a-table :columns="addAnomalyColumns" :data-source="dummyAddAnomalySkillSlots()" :pagination="{ hideOnSinglePage: true }">
 			<template #bodyCell="{ text, column }">
 				<template v-if="column.key === 'name'">
-					<a-select :name="`armor_select`" v-model="anomalyAddInfo.armorId" style="min-width: 200px">
+					<a-select :name="`armor_select`" v-model:value="anomalyAddInfo.armorId" style="min-width: 200px">
 						<a-select-option value="">---</a-select-option>
 						<a-select-option v-for="armorInfo in armorsVec" :value="armorInfo.id">
 							{{ armorInfo.names[props.langData] }}
@@ -567,7 +567,7 @@ async function deleteAllManualAnomalies() {
 				</template>
 
 				<template v-else-if="column.skillId !== undefined">
-					<a-select v-model="anomalyAddInfo.skills[column.skillId].id" @change="onAddAnomalySkillChange(column.skillId)" style="min-width: 200px">
+					<a-select v-model:value="anomalyAddInfo.skills[column.skillId].id" @change="onAddAnomalySkillChange(column.skillId)" style="min-width: 200px">
 						<a-select-option value="">---</a-select-option>
 						<a-select-option v-for="skillInfo in skillsVec" :value="skillInfo.id">
 							{{ skillInfo.names[langData] }}

@@ -287,7 +287,7 @@ async function deleteAllManualTalismans() {
 			:pagination="{ hideOnSinglePage: true }">
 			<template #bodyCell="{ text, column }">
 				<template v-if="column.skillId !== undefined">
-					<a-select v-model="talismanAddInfo.skills[column.skillId].id"
+					<a-select v-model:value="talismanAddInfo.skills[column.skillId].id"
 						@change="onAddTalismanSkillChange(column.skillId)" style="min-width: 200px">
 						<a-select-option value="">---</a-select-option>
 						<a-select-option v-for="skillInfo in skillsVec" :value="skillInfo.id">
