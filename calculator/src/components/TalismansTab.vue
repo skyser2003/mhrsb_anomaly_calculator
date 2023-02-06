@@ -288,7 +288,7 @@ async function deleteAllManualTalismans() {
 			<template #bodyCell="{ text, column }">
 				<template v-if="column.skillId !== undefined">
 					<a-select v-model:value="talismanAddInfo.skills[column.skillId].id"
-						@change="onAddTalismanSkillChange(column.skillId)" style="min-width: 200px">
+						@change="onAddTalismanSkillChange(column.skillId)" style="min-width: 200px" show-search>
 						<a-select-option value="">---</a-select-option>
 						<a-select-option v-for="skillInfo in skillsVec" :value="skillInfo.id">
 							{{ skillInfo.names[langData] }}
