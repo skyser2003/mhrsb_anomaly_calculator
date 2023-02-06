@@ -272,9 +272,22 @@ for(let i = 0; i < armorsVec.value.length; ++i) {
 	const armor = armorsVec.value[i];
 
 	armorsOptions.value.push({
-		key: i,
 		value: armor.id,
 		label: armor.names[props.langData],
+	});
+}
+
+const skillsOptions = ref<Exclude<SelectProps["options"], undefined>>([{
+	value: "",
+	label: "---"
+}]);
+
+for (let i = 0; i < skillsVec.value.length; ++i) {
+	const skill = skillsVec.value[i];
+
+	skillsOptions.value.push({
+		value: skill.id,
+		label: skill.names[props.langData],
 	});
 }
 
@@ -558,20 +571,12 @@ async function deleteAllManualAnomalies() {
 		<a-table :columns="addAnomalyColumns" :data-source="dummyAddAnomalySkillSlots()" :pagination="{ hideOnSinglePage: true }">
 			<template #bodyCell="{ text, column }">
 				<template v-if="column.key === 'name'">
-					<a-select :name="`armor_select`" v-model:value="anomalyAddInfo.armorId" style="min-width: 200px" show-search>
-						<a-select-option value="">---</a-select-option>
-						<a-select-option v-for="armorInfo in armorsVec" :value="armorInfo.id">
-							{{ armorInfo.names[props.langData] }}
-						</a-select-option>
+					<a-select :name="`armor_select`" v-model:value="anomalyAddInfo.armorId" :options="armorsOptions" show-search filter-option option-filter-prop="label" style="min-width: 200px">
 					</a-select>
 				</template>
 
 				<template v-else-if="column.skillId !== undefined">
-					<a-select v-model:value="anomalyAddInfo.skills[column.skillId].id" @change="onAddAnomalySkillChange(column.skillId)" style="min-width: 200px" show-search>
-						<a-select-option value="">---</a-select-option>
-						<a-select-option v-for="skillInfo in skillsVec" :value="skillInfo.id">
-							{{ skillInfo.names[langData] }}
-						</a-select-option>
+					<a-select v-model:value="anomalyAddInfo.skills[column.skillId].id" @change="onAddAnomalySkillChange(column.skillId)" :options="skillsOptions" show-search filter-option option-filter-prop="label" style="min-width: 200px">
 					</a-select>
 					<a-select v-model:value="anomalyAddInfo.skills[column.skillId].level" :disabled="anomalyAddInfo.skills[column.skillId].id === ''">
 						<a-select-option v-for="level in getMaxLevel(anomalyAddInfo.skills[column.skillId].id)" :value="-(getMaxLevel(anomalyAddInfo.skills[column.skillId].id) - level + 1)">

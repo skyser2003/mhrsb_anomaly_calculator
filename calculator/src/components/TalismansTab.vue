@@ -95,6 +95,20 @@ for (const skill of skillsVec.value) {
 	skills.value[skill.id] = skill;
 }
 
+const skillsOptions = ref<Exclude<SelectProps["options"], undefined>>([{
+	value: "",
+	label: "---"
+}]);
+
+for (let i = 0; i < skillsVec.value.length; ++i) {
+	const skill = skillsVec.value[i];
+
+	skillsOptions.value.push({
+		value: skill.id,
+		label: skill.names[props.langData],
+	});
+}
+
 const fileTalismans = ref<TalismanInfo[]>([]);
 const manualTalismans = ref<TalismanInfo[]>([]);
 
@@ -287,12 +301,7 @@ async function deleteAllManualTalismans() {
 			:pagination="{ hideOnSinglePage: true }">
 			<template #bodyCell="{ text, column }">
 				<template v-if="column.skillId !== undefined">
-					<a-select v-model:value="talismanAddInfo.skills[column.skillId].id"
-						@change="onAddTalismanSkillChange(column.skillId)" style="min-width: 200px" show-search>
-						<a-select-option value="">---</a-select-option>
-						<a-select-option v-for="skillInfo in skillsVec" :value="skillInfo.id">
-							{{ skillInfo.names[langData] }}
-						</a-select-option>
+					<a-select v-model:value="talismanAddInfo.skills[column.skillId].id" @change="onAddTalismanSkillChange(column.skillId)" :options="skillsOptions" show-search filter-option option-filter-prop="label" style="min-width: 200px" >
 					</a-select>
 					<a-select v-model:value="talismanAddInfo.skills[column.skillId].level"
 						:disabled="talismanAddInfo.skills[column.skillId].id === ''">
