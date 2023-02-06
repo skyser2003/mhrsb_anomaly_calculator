@@ -4,6 +4,7 @@
 import { ref } from "vue";
 import { open } from '@tauri-apps/api/dialog';
 import { invoke } from "@tauri-apps/api/tauri";
+import type { SelectProps } from "ant-design-vue";
 
 import SkillsVec from "../data/skill.json";
 
