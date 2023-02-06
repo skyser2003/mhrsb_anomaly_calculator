@@ -8,7 +8,7 @@
     },
     "package": {
         "productName": "mhr-sunbreak-anomaly-calculator",
-        "version": "0.2.4"
+        "version": "0.2.5"
     },
     "tauri": {
         "allowlist": {
@@ -53,7 +53,7 @@
         "updater": {
             "active": true,
             "endpoints": [
-                "https://gist.githubusercontent.com/skyser2003/562c7876d76432a85f51d6e3b002af67/raw"
+                "https://raw.githubusercontent.com/skyser2003/mhrsb_anomaly_calculator/release/calculator/updater/update.json"
             ],
             "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDU3ODIwRTYyMUYzNDM4NEEKUldSS09EUWZZZzZDVi9FME44UTdmU2xpVW1vbjBLc3JGRzE0WkUzcFR4Z3QrVE1SaFI3L0xXamcK"
         },
