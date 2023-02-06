@@ -386,8 +386,8 @@ function canSubmit() {
 	<br />
 	<br />
 
-	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >Calculate</a-button>
-	<a-button @click="clear">Clear</a-button>
+	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >{{ UIData["calculate_button"][langData] }}</a-button>
+	<a-button @click="clear">{{ UIData["clear_search_condition"][langData] }}</a-button>
 
 	<a-divider style="border-color: #7cb305" dashed />
 

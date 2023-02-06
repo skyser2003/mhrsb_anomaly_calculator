@@ -333,12 +333,12 @@ async function deleteAllManualTalismans() {
 
 		<div>
 
-		<a-button @click="addManualTalisman()" :disabled="talismanAddInfo.skills.every(skillInfo => skillInfo.id === '')">Add</a-button>
+		<a-button @click="addManualTalisman()" :disabled="talismanAddInfo.skills.every(skillInfo => skillInfo.id === '')">{{ UIData["add_button"][langData] }}</a-button>
 		
 		<a-divider style="border-color: #7cb305" dashed />
 		
 		<a-popconfirm :title="UIData['confirm_delete_all'][langData]" ok-text="O" cancel-text="X" @confirm="deleteAllManualTalismans()" @cancel="">
-			<a-button>Delete all</a-button>
+			<a-button>{{ UIData["delete_all_button"][langData] }}</a-button>
 		</a-popconfirm>
 		
 		</div>

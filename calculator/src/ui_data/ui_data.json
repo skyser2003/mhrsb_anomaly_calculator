@@ -190,5 +190,21 @@
     "female": {
         "ko": "여자",
         "en": "Female"
+    },
+    "calculate_button": {
+        "ko": "계산하기",
+        "en": "Calculate"
+    },
+    "add_button": {
+        "ko": "추가하기",
+        "en": "Add"
+    },
+    "delete_all_button": {
+        "ko": "전체 삭제",
+        "en": "Delete all"
+    },
+    "clear_search_condition": {
+        "ko": "검색 조건 초기화",
+        "en": "Clear search condition"
     }
 }

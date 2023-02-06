@@ -619,13 +619,13 @@ async function deleteAllManualAnomalies() {
 
 		<br />
 
-		<a-button @click="addManualAnomalyArmor()" :disabled="anomalyAddInfo.armorId.length === 0">Add</a-button>
+		<a-button @click="addManualAnomalyArmor()" :disabled="anomalyAddInfo.armorId.length === 0">{{ UIData["add_button"][langData] }}</a-button>
 
 		<a-divider style="border-color: #7cb305" dashed />
 		
 		<a-popconfirm :title="UIData['confirm_delete_all'][langData]" ok-text="O" cancel-text="X"
 			@confirm="deleteAllManualAnomalies()" @cancel="">
-			<a-button>Delete all</a-button>
+			<a-button>{{ UIData["delete_all_button"][langData] }}</a-button>
 		</a-popconfirm>
 
 		</div>
