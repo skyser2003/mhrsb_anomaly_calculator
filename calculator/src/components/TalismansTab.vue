@@ -332,7 +332,7 @@ async function deleteAllManualTalismans() {
 
 		<div>
 
-		<a-button @click="addManualTalisman()" :disabled="talismanAddInfo.skills.every(skillInfo => skillInfo.id !== '')">Add</a-button>
+		<a-button @click="addManualTalisman()" :disabled="talismanAddInfo.skills.every(skillInfo => skillInfo.id === '')">Add</a-button>
 		
 		<a-divider style="border-color: #7cb305" dashed />
 		
