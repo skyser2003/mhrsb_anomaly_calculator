@@ -1,9 +1,9 @@
 {
-    "version": "0.2.5",
-    "notes": "검색 버그, 탈리스만 추가 버그 수정 / Text search, talisman add bug fixed",
+    "version": "0.2.6",
+    "notes": "14.0 데이터 추가 / 14.0 data added",
     "platforms": {
         "windows-x86_64": {
-            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVnhuUmQ5VFZYSWlrTEJQM2k0TjVuWGJieUc5MFRWVmdGaCtOdU1oVno2Mjk1ZGxpN3Y3OEFkYk1RL2dKQ2tobHZqck9JZG1OaStkTy95K3ZIOVg0TEE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc1Njg3OTU1CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjIuNV94NjRfZW4tVVMubXNpLnppcApQT0ZJeGpqWXBSNmRNbGx4Y2JLQ0M2Qmk5cFh4VWdJOENsU051RWQ3dStDb21wd0F6OHhRWjZRWSs4VWJqWFl0eWg5Tk5tSysrQXVtQktxaUJsRW9CZz09Cg==",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVnpoTDJTZW55RXMyR0hJVFJVOXMrVGllWmpkSW1hTXNOL1NzVWF2SzdIblI1QXo5dnNXaGZWV2gzVFZzRE1CbWlWWUpKbGZ0eURDUHRFRXJqbUJFUlFZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc1NzgwNDg5CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjIuNl94NjRfZW4tVVMubXNpLnppcAozNkdDSGVVVy9LRXlJdnhwb3ZJcUR6dTYvTWsrOHhsTFVZV3ZzcUVNTkpkVkJyTzJuT3dEVndTeVNOOHhlcUt2bCtGUWtuTWJOQUFuai9Jam95Y1VDdz09Cg==",
             "url": "https://github.com/skyser2003/mhrsb_anomay_calculator/releases/latest/download/mhr-sunbreak-anomaly-calculator.msi.zip"
         }
     }
