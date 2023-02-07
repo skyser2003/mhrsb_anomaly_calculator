@@ -206,5 +206,9 @@
     "clear_search_condition": {
         "ko": "검색 조건 초기화",
         "en": "Clear search condition"
+    },
+    "slots_sum": {
+        "ko": "슬롯 갯수 총합",
+        "en": "Slots count sum"
     }
 }
