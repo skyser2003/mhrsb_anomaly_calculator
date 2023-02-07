@@ -6,11 +6,12 @@ import { open } from '@tauri-apps/api/dialog';
 import { invoke } from "@tauri-apps/api/tauri";
 import type { SelectProps } from "ant-design-vue";
 
+import StatTable from "./StatTable.vue";
 
 import RawArmorsVec from "../data/armor.json";
 import SkillsVec from "../data/skill.json";
 
-import { FinalArmorInfo, ArmorStatInfo, ArmorParts, ArmorFinalSkillInfo, getDefaultStat } from "../definition/armor_define";
+import { FinalArmorInfo, ArmorStatInfo, ArmorParts, getDefaultStat } from "../definition/armor_define";
 import { FinalSkillInfo } from "../definition/skill_define";
 
 import { Language } from "../definition/language";
@@ -87,7 +88,13 @@ const columns = ref([
 		title: UIData["slots_name"][props.langData],
 		dataIndex: "slots",
 		key: "slots",
-	}
+		width: 200,
+	},
+	{
+		title: UIData["stat_name"][props.langData],
+		dataIndex: "stat",
+		key: "stat",
+	},
 ]);
 
 const manualColumns = ref([
@@ -131,12 +138,18 @@ const manualColumns = ref([
 		title: UIData["slots_name"][props.langData],
 		dataIndex: "slots",
 		key: "slots",
+		width: 200,
+	},
+	{
+		title: UIData["stat_name"][props.langData],
+		dataIndex: "stat",
+		key: "stat",
 	},
 	{
 		title: UIData["delete"][props.langData],
 		dataIndex: "delete",
 		key: "delete",
-	}
+	},
 ]);
 
 
@@ -453,6 +466,7 @@ function generateAnomalyData(anomaliesByPart: { [key: string]: AnomalyArmorInfo[
 			skill4: skillTexts[3],
 			skill5: skillTexts[4],
 			slots: finalSlotsText,
+			stat: armor.affected.stat,
 		});
 	}
 
@@ -560,6 +574,11 @@ async function deleteAllManualAnomalies() {
 						{{ column.title }}
 					</template>
 				</template>
+				<template #bodyCell="{ column, record }">
+					<template v-if="column.key === 'stat'">
+						<StatTable :langData="langData" :stat="record.stat" />
+					</template>
+				</template>"
 			</a-table>
 			<a-divider style="border-color: #7cb305" dashed />
 		</template>
@@ -644,8 +663,12 @@ async function deleteAllManualAnomalies() {
 					</template>
 				</template>
 
-				<template #bodyCell="{ index, column }">
-					<template v-if="column.key === 'delete'">
+				<template #bodyCell="{ index, column, record }">
+					<template v-if="column.key === 'stat'">
+						<StatTable :langData="langData" :stat="record.stat" />
+					</template>
+
+					<template v-else-if="column.key === 'delete'">
 						<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X" @confirm="deleteManualAnomaly(part, index)"
 							@cancel="">
 							<a-button>X</a-button>
