@@ -2904,7 +2904,7 @@
             "en": "Wirebug Jewel+ 4",
             "fr": "Joyau Filoptère+ 4",
             "it": "G insetto filo II 4",
-            "de": "Seilkäfer-Juwel 4",
+            "de": "Seilkäfer-Juwel+ 4",
             "es": "Joya cordóptero+ 4",
             "ru": "Самоцвет Прутожука+ 4",
             "pl": "Klejnot kablobaka+ 4",
@@ -3570,6 +3570,27 @@
         "slotSize": 4
     },
     {
+        "id": "potential_jewel_4",
+        "names": {
+            "ja": "底力珠Ⅱ【４】",
+            "en": "Potential Jewel+ 4",
+            "fr": "Joyau du héros+ 4",
+            "it": "G eroismo II 4",
+            "de": "Potenzial-Juwel+ 4",
+            "es": "Joya de potencia+ 4",
+            "ru": "Самоцвет потенциала+ 4",
+            "pl": "Klejnot potencjału+ 4",
+            "pt": "Joia Potencial+ 4",
+            "ko": "저력주Ⅱ【4】",
+            "zh-Hant": "潛力珠Ⅱ【4】",
+            "zh-Hans": "底力珠Ⅱ【4】",
+            "ar": "حلية الإمكانيات+ 4"
+        },
+        "skillId": "heroics",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
         "id": "razor_jewel_4",
         "names": {
             "ja": "斬鉄珠Ⅱ【４】",
@@ -3797,6 +3818,27 @@
             "ar": "حلية الانتشار+ 4"
         },
         "skillId": "spread_up",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "furor_jewel_4",
+        "names": {
+            "ja": "逆上珠Ⅱ【４】",
+            "en": "Furor Jewel+ 4",
+            "fr": "Joyau de vengeance+ 4",
+            "it": "G risentimento II 4",
+            "de": "Furor-Juwel+ 4",
+            "es": "Joya del furor+ 4",
+            "ru": "Самоцвет ярости+ 4",
+            "pl": "Klejnot poruszenia+ 4",
+            "pt": "Joia Furor+ 4",
+            "ko": "역상주Ⅱ【4】",
+            "zh-Hant": "暴怒珠Ⅱ【4】",
+            "zh-Hans": "逆上珠Ⅱ【4】",
+            "ar": "حلية الصخب+ 4"
+        },
+        "skillId": "resentment",
         "skillLevel": 2,
         "slotSize": 4
     },
@@ -4124,8 +4166,8 @@
             "it": "G carica 2",
             "de": "Lade-Juwel 2",
             "es": "Joya de carga 2",
-            "ru": "Самоцвет заряда 2",
-            "pl": "Klejnot ładujący 2",
+            "ru": "Самоцвет заряж. 2",
+            "pl": "Klejnot ładowania 2",
             "pt": "Joia de Carga 2",
             "ko": "유폭주【２】",
             "zh-Hant": "強蓄珠【2】",
@@ -4376,7 +4418,7 @@
             "it": "G controffensiva 2",
             "de": "Ggnangriff-Juwel 2",
             "es": "Joya de contraat. 2",
-            "ru": "Сам. контратаки 2",
+            "ru": "Самоцвет блока 2",
             "pl": "Klejnot kontrataku 2",
             "pt": "Joia do Contra-ataque 2",
             "ko": "반공주【2】",
@@ -4408,6 +4450,69 @@
         "skillId": "sneak_attack",
         "skillLevel": 1,
         "slotSize": 2
+    },
+    {
+        "id": "trigger_jewel_3",
+        "names": {
+            "ja": "翻異珠【３】",
+            "en": "Trigger Jewel 3",
+            "fr": "Joyau catalyseur 3",
+            "it": "G attivazione 3",
+            "de": "Auslöser-Juwel 3",
+            "es": "Joya activación 3",
+            "ru": "Самоцвет смены 3",
+            "pl": "Wywołujący klejnot 3",
+            "pt": "Joia Ativação 3",
+            "ko": "번이주【3】",
+            "zh-Hant": "翻異珠【3】",
+            "zh-Hans": "翻异珠【3】",
+            "ar": "حلية المحفز 3"
+        },
+        "skillId": "status_trigger",
+        "skillLevel": 1,
+        "slotSize": 3
+    },
+    {
+        "id": "embolden_jewel_2",
+        "names": {
+            "ja": "煽衛珠【２】",
+            "en": "Embolden Jewel 2",
+            "fr": "Joyau vaillance 2",
+            "it": "G guardia alata 2",
+            "de": "Ermutigen-Juwel 2",
+            "es": "Joya enardeced. 2",
+            "ru": "Самоцвет воодуш. 2",
+            "pl": "Klejnot ośmiel. 2",
+            "pt": "Joia Bloqueio 2",
+            "ko": "선위주【2】",
+            "zh-Hant": "煽動珠【2】",
+            "zh-Hans": "讽御珠【2】",
+            "ar": "حلية حارس الجناح 2"
+        },
+        "skillId": "embolden",
+        "skillLevel": 1,
+        "slotSize": 2
+    },
+    {
+        "id": "intrepid_jewel_1",
+        "names": {
+            "ja": "剛心珠【１】",
+            "en": "Intrepid Jewel 1",
+            "fr": "Joyau audacieux 1",
+            "it": "G intrepido 1",
+            "de": "Furchtlos-Juwel 1",
+            "es": "Joya intrépida 1",
+            "ru": "Самоцвет бесстр. 1",
+            "pl": "Nieustrasz. klejnot 1",
+            "pt": "Joia Intrépida 1",
+            "ko": "강심주【1】",
+            "zh-Hant": "剛心珠【1】",
+            "zh-Hans": "刚心珠【1】",
+            "ar": "حلية الجسور 1"
+        },
+        "skillId": "intrepid_heart",
+        "skillLevel": 1,
+        "slotSize": 1
     },
     {
         "id": "phoenix_jewel_4",
@@ -4459,9 +4564,9 @@
             "fr": "Joyau charge+ 4",
             "it": "G concentraz. II 4",
             "de": "Auflade-Juwel+ 4",
-            "es": "Joya cargadora+ 4",
-            "ru": "Самоцвет заряда+ 4",
-            "pl": "Klejnot ładuj.+ 4",
+            "es": "Joya de carga+ 4",
+            "ru": "Самоцвет заряж.+ 4",
+            "pl": "Klejnot ładowania+ 4",
             "pt": "Joia Energizadora+ 4",
             "ko": "유폭주Ⅱ【4】",
             "zh-Hant": "強蓄珠Ⅱ【4】",
@@ -4595,6 +4700,153 @@
             "ar": "حلية إعادة توجيه+ 4"
         },
         "skillId": "redirection",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "dragon_spirit_jewel_4",
+        "names": {
+            "ja": "龍気珠【４】",
+            "en": "Dragon Spirit Jewel 4",
+            "fr": "Joy Dracoénergie 4",
+            "it": "G spirito drago 4",
+            "de": "Drachengeist-Juwel 4",
+            "es": "Joya almadragón 4",
+            "ru": "Самоцвет дракона 4",
+            "pl": "Kl. smocz. ducha 4",
+            "pt": "Joia Esp. Dragão 4",
+            "ko": "용기주【4】",
+            "zh-Hant": "龍氣珠【4】",
+            "zh-Hans": "龙气珠【4】",
+            "ar": "حلية روح التنين 4"
+        },
+        "skillId": "dragonheart",
+        "skillLevel": 1,
+        "slotSize": 4
+    },
+    {
+        "id": "element_exploit_jewel_4",
+        "names": {
+            "ja": "属撃珠Ⅱ【４】",
+            "en": "Element Exploit Jewel+ 4",
+            "fr": "Joy Exploit d'élé+ 4",
+            "it": "G debol. elem. II 4",
+            "de": "Elementvorteil-Juwel+ 4",
+            "es": "J. aprov. elem.+ 4",
+            "ru": "Самоцв. стихии+ 4",
+            "pl": "Klejn. wyk. żywiołu+ 4",
+            "pt": "J. Expl. Elemento+ 4",
+            "ko": "속격주Ⅱ【4】",
+            "zh-Hant": "屬擊珠Ⅱ【4】",
+            "zh-Hans": "属击珠Ⅱ【4】",
+            "ar": "حلية استغلال عنصر+ 4"
+        },
+        "skillId": "element_exploit",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "hard_cornerstone_jewel_4",
+        "names": {
+            "ja": "盤石珠Ⅲ【４】",
+            "en": "Hard Cornerstone Jewel 4",
+            "fr": "Super Joyau coin 4",
+            "it": "G fondamento III 4",
+            "de": "Hartes Meilenstein-Jwl 4",
+            "es": "Joya dura angular 4",
+            "ru": "Тв. краеуг. сам. 4",
+            "pl": "Tw. klejnot fundamentu 4",
+            "pt": "J. Pedra Angular Dura 4",
+            "ko": "반석주Ⅲ【4】",
+            "zh-Hant": "磐石珠Ⅲ【4】",
+            "zh-Hans": "磐石珠Ⅲ【4】",
+            "ar": "حلية حجر الأساس الصلب 4"
+        },
+        "skillId": "defiance",
+        "skillLevel": 3,
+        "slotSize": 4
+    },
+    {
+        "id": "counterattack_jewel_4",
+        "names": {
+            "ja": "反攻珠Ⅱ【４】",
+            "en": "Counterattack Jewel+ 4",
+            "fr": "Joy contre-attaque+ 4",
+            "it": "G controffensiva II 4",
+            "de": "Ggnangriff-Juwel+ 4",
+            "es": "Joya de contraat.+ 4",
+            "ru": "Самоцвет блока+ 4",
+            "pl": "Klejnot kontrataku+ 4",
+            "pt": "Joia do Contra-ataque+ 4",
+            "ko": "반공주Ⅱ【4】",
+            "zh-Hant": "反攻珠Ⅱ【4】",
+            "zh-Hans": "反攻珠Ⅱ【4】",
+            "ar": "حلية هجوم مضاد+ 4"
+        },
+        "skillId": "adrenaline_rush",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "backstab_jewel_4",
+        "names": {
+            "ja": "背撃珠Ⅱ【４】",
+            "en": "Backstab Jewel+ 4",
+            "fr": "Joyau sournois+ 4",
+            "it": "G tradimento II 4",
+            "de": "Meuchel-Juwel+ 4",
+            "es": "Joya trapera+ 4",
+            "ru": "Коварный сам.+ 4",
+            "pl": "Klejnot zdrady+ 4",
+            "pt": "Joia Golpe nas Costas+ 4",
+            "ko": "배격주Ⅱ【4】",
+            "zh-Hant": "背擊珠Ⅱ【4】",
+            "zh-Hans": "背击珠Ⅱ【4】",
+            "ar": "حلية ضربة خلفية+ 4"
+        },
+        "skillId": "sneak_attack",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "foray_jewel_4",
+        "names": {
+            "ja": "攻勢珠Ⅱ【４】",
+            "en": "Foray Jewel+ 4",
+            "fr": "Joyau incursion+ 4",
+            "it": "G incursione II 4",
+            "de": "Vorstoß-Juwel+ 4",
+            "es": "Joya incursión+ 4",
+            "ru": "Самоцвет налета+ 4",
+            "pl": "Klejnot najazdu+ 4",
+            "pt": "Joia Investida+ 4",
+            "ko": "공세주Ⅱ【4】",
+            "zh-Hant": "攻勢珠Ⅱ【4】",
+            "zh-Hans": "攻势珠Ⅱ【4】",
+            "ar": "حلية الغارة+ 4"
+        },
+        "skillId": "foray",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "chain_jewel_4",
+        "names": {
+            "ja": "連撃珠Ⅱ【４】",
+            "en": "Chain Jewel+ 4",
+            "fr": "Joyau chaîne+ 4",
+            "it": "G serie II 4",
+            "de": "Ketten-Juwel+ 4",
+            "es": "Joya de serie+ 4",
+            "ru": "Самоцвет цепи+ 4",
+            "pl": "Klejnot łańcuch.+ 4",
+            "pt": "Joia de Cadeia+ 4",
+            "ko": "연격주Ⅱ【4】",
+            "zh-Hant": "連擊珠Ⅱ【4】",
+            "zh-Hans": "连击珠Ⅱ【4】",
+            "ar": "حلية سلسلة+ 4"
+        },
+        "skillId": "burst",
         "skillLevel": 2,
         "slotSize": 4
     }

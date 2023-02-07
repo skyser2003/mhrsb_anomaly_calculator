@@ -36391,7 +36391,7 @@
             "es": "Chaleco costero X",
             "ru": "Ракушечный жилет X",
             "pl": "Muszlowa kamizelka X",
-            "pt": "Colete Cravejado S",
+            "pt": "Colete Cravejado X",
             "ko": "알브로X베스트",
             "zh-Hant": "貝殼X服飾",
             "zh-Hans": "贝壳X服饰",
@@ -36478,7 +36478,7 @@
             "es": "Fajín costero X",
             "ru": "Ракушечный пояс X",
             "pl": "Muszlowa szarfa X",
-            "pt": "Cinta Cravejada S",
+            "pt": "Cinta Cravejada X",
             "ko": "알브로X파레오",
             "zh-Hant": "貝殼X纏腰布",
             "zh-Hans": "贝壳X裙",
@@ -60506,6 +60506,1567 @@
             "zh-Hant": "薄暮鞋子",
             "zh-Hans": "薄暮鞋子",
             "ar": "بنطال الغسق"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "rimeguard_helm",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "ラヴィーナヘルム",
+            "en": "Rimeguard Helm",
+            "fr": "Heaume Rimeguard",
+            "it": "Elmo Velkhana",
+            "de": "Velkhana-Helm",
+            "es": "Casco de escarcha",
+            "ru": "Порубежный шлем",
+            "pl": "Szronowy hełm",
+            "pt": "Elmo de Geadefesa",
+            "ko": "라비나헬름",
+            "zh-Hant": "雪崩頭盔",
+            "zh-Hans": "雪崩头盔",
+            "ar": "خوذة رايمجارد"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 123,
+            "fireRes": -3,
+            "waterRes": 2,
+            "iceRes": 4,
+            "elecRes": -1,
+            "dragonRes": -1
+        },
+        "skills": {
+            "grinder_s": {
+                "level": 3
+            },
+            "protective_polish": {
+                "level": 1
+            },
+            "ammo_up": {
+                "level": 3
+            }
+        },
+        "slots": [
+            3,
+            1,
+            0
+        ]
+    },
+    {
+        "id": "rimeguard_mail",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "ラヴィーナメイル",
+            "en": "Rimeguard Mail",
+            "fr": "Cotte Rimeguard",
+            "it": "Cotta Velkhana",
+            "de": "Velkhana-Panzerung",
+            "es": "Cota de escarcha",
+            "ru": "Порубежный доспех",
+            "pl": "Szronowa zbroja",
+            "pt": "Armadura Geadefesa",
+            "ko": "라비나메일",
+            "zh-Hant": "雪崩鎧甲",
+            "zh-Hans": "雪崩铠甲",
+            "ar": "درع رايمجارد"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 123,
+            "fireRes": -3,
+            "waterRes": 2,
+            "iceRes": 4,
+            "elecRes": -1,
+            "dragonRes": -1
+        },
+        "skills": {
+            "frostcraft": {
+                "level": 1
+            },
+            "quick_sheathe": {
+                "level": 3
+            }
+        },
+        "slots": [
+            4,
+            2,
+            1
+        ]
+    },
+    {
+        "id": "rimeguard_gloves",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "ラヴィーナアーム",
+            "en": "Rimeguard Gloves",
+            "fr": "Gants Rimeguard",
+            "it": "Guanti Velkhana",
+            "de": "Velkhana-Handschuhe",
+            "es": "Guantes de escarcha",
+            "ru": "Порубежные перчатки",
+            "pl": "Szronowe rękawice",
+            "pt": "Luvas de Geadefesa",
+            "ko": "라비나암",
+            "zh-Hant": "雪崩腕甲",
+            "zh-Hans": "雪崩腕甲",
+            "ar": "قفازات رايمجارد"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 123,
+            "fireRes": -3,
+            "waterRes": 2,
+            "iceRes": 4,
+            "elecRes": -1,
+            "dragonRes": -1
+        },
+        "skills": {
+            "frostcraft": {
+                "level": 1
+            },
+            "critical_draw": {
+                "level": 3
+            }
+        },
+        "slots": [
+            3,
+            2,
+            1
+        ]
+    },
+    {
+        "id": "rimeguard_coil",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "ラヴィーナコイル",
+            "en": "Rimeguard Coil",
+            "fr": "Boucle Rimeguard",
+            "it": "Spira Velkhana",
+            "de": "Velkhana-Hüftring",
+            "es": "Faja de escarcha",
+            "ru": "Порубежный пояс",
+            "pl": "Szronowy pas",
+            "pt": "Cinturão de Geadefesa",
+            "ko": "라비나코일",
+            "zh-Hant": "雪崩腰甲",
+            "zh-Hans": "雪崩腰甲",
+            "ar": "لفيفة رايمجارد"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 123,
+            "fireRes": -3,
+            "waterRes": 2,
+            "iceRes": 4,
+            "elecRes": -1,
+            "dragonRes": -1
+        },
+        "skills": {
+            "frostcraft": {
+                "level": 1
+            },
+            "focus": {
+                "level": 3
+            }
+        },
+        "slots": [
+            3,
+            3,
+            2
+        ]
+    },
+    {
+        "id": "rimeguard_greaves",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "ラヴィーナグリーヴ",
+            "en": "Rimeguard Greaves",
+            "fr": "Grèves Rimeguard",
+            "it": "Schinieri Velkhana",
+            "de": "VelkhanaBeinschienen",
+            "es": "Grebas de escarcha",
+            "ru": "Порубежные поножи",
+            "pl": "Szronowe nagolenice",
+            "pt": "Grevas de Geadefesa",
+            "ko": "라비나그리브",
+            "zh-Hant": "雪崩護腿",
+            "zh-Hans": "雪崩护腿",
+            "ar": "دروع ساق رايمجارد"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 123,
+            "fireRes": -3,
+            "waterRes": 2,
+            "iceRes": 4,
+            "elecRes": -1,
+            "dragonRes": -1
+        },
+        "skills": {
+            "ice_attack": {
+                "level": 5
+            },
+            "critical_element": {
+                "level": 3
+            },
+            "element_exploit": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            1,
+            0
+        ]
+    },
+    {
+        "id": "valstrax_helm_epoch",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "赫耀ノヘルム・暦",
+            "en": "Valstrax Helm - Epoch",
+            "fr": "Heaume Valstrax - Ère",
+            "it": "Elmo Valstrax epoca",
+            "de": "Valstrax-Helm - Epoche",
+            "es": "Casco Valstrax época",
+            "ru": "Шлем Валстр. — эпох.",
+            "pl": "Hełm z Vals. – Epoka",
+            "pt": "Elmo de Valstrax - Eon",
+            "ko": "혁요의헬름-역",
+            "zh-Hant": "赫耀之頭盔･曆",
+            "zh-Hans": "赫耀头盔・历",
+            "ar": "خوذة فالستراكس - الحقبة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 121,
+            "fireRes": -2,
+            "waterRes": -2,
+            "iceRes": -2,
+            "elecRes": -2,
+            "dragonRes": 3
+        },
+        "skills": {
+            "dragon_conversion": {
+                "level": 1
+            },
+            "latent_power": {
+                "level": 2
+            },
+            "attack_boost": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            2,
+            0
+        ]
+    },
+    {
+        "id": "valstrax_mail_epoch",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "赫耀ノメイル・暦",
+            "en": "Valstrax Mail - Epoch",
+            "fr": "Cotte Valstrax - Ère",
+            "it": "Cotta Valstrax epoca",
+            "de": "Valstrax-Panzer - Epoche",
+            "es": "Cota Valstrax época",
+            "ru": "Доспех Валс. — эпох.",
+            "pl": "Zbroja z Vals. – Epoka",
+            "pt": "Arm. de Valstrax - Eon",
+            "ko": "혁요의메일-역",
+            "zh-Hant": "赫耀之鎧甲･曆",
+            "zh-Hans": "赫耀铠甲・历",
+            "ar": "درع فالستراكس - الحقبة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 121,
+            "fireRes": -2,
+            "waterRes": -2,
+            "iceRes": -2,
+            "elecRes": -2,
+            "dragonRes": 3
+        },
+        "skills": {
+            "dragon_conversion": {
+                "level": 1
+            },
+            "dragon_resistance": {
+                "level": 3
+            },
+            "attack_boost": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            4,
+            0
+        ]
+    },
+    {
+        "id": "valstrax_braces_epoch",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "赫耀ノアーム・暦",
+            "en": "Valstrax Braces - Epoch",
+            "fr": "Avt-bras Valstrax - Ère",
+            "it": "Parabr. Valstrax epoca",
+            "de": "ValstraxArmschienEpoche",
+            "es": "Br. Valstrax época",
+            "ru": "Наручи Валс. — эпох.",
+            "pl": "Zaręk. z Val. – Epoka",
+            "pt": "Braç. de Valstrax - Eon",
+            "ko": "혁요의암-역",
+            "zh-Hant": "赫耀之腕甲･曆",
+            "zh-Hans": "赫耀腕甲・历",
+            "ar": "دروع ساعد فالستراكس - الحقبة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 121,
+            "fireRes": -2,
+            "waterRes": -2,
+            "iceRes": -2,
+            "elecRes": -2,
+            "dragonRes": 3
+        },
+        "skills": {
+            "critical_boost": {
+                "level": 2
+            },
+            "latent_power": {
+                "level": 2
+            },
+            "attack_boost": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            1,
+            1
+        ]
+    },
+    {
+        "id": "valstrax_coil_epoch",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "赫耀ノコイル・暦",
+            "en": "Valstrax Coil - Epoch",
+            "fr": "Boucle Valstrax - Ère",
+            "it": "Spira Valstrax epoca",
+            "de": "Valstrax-Hüftring - Epoche",
+            "es": "Faja Valstrax época",
+            "ru": "Пояс Валстр. — эпох.",
+            "pl": "Pas z Valstr. – Epoka",
+            "pt": "Cint. Valstrax - Eon",
+            "ko": "혁요의코일-역",
+            "zh-Hant": "赫耀之腰甲･曆",
+            "zh-Hans": "赫耀腰甲・历",
+            "ar": "لفيفة فالستراكس - الحقبة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 121,
+            "fireRes": -2,
+            "waterRes": -2,
+            "iceRes": -2,
+            "elecRes": -2,
+            "dragonRes": 3
+        },
+        "skills": {
+            "dragon_conversion": {
+                "level": 1
+            },
+            "stamina_surge": {
+                "level": 3
+            },
+            "attack_boost": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            1,
+            1
+        ]
+    },
+    {
+        "id": "valstrax_greaves_epoch",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "赫耀ノグリーヴ・暦",
+            "en": "Valstrax Greaves - Epoch",
+            "fr": "Grèves Valstrax - Ère",
+            "it": "Schin. Valstrax epoca",
+            "de": "ValstraxBeinschienEpoche",
+            "es": "Grebas Valstrax época",
+            "ru": "Поножи Валс. — эпох.",
+            "pl": "Nagol. z Val. – Epoka",
+            "pt": "Grevas Valstrax - Eon",
+            "ko": "혁요의그리브-역",
+            "zh-Hant": "赫耀之護腿･曆",
+            "zh-Hans": "赫耀护腿・历",
+            "ar": "دروع ساق فالستراكس - الحقبة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 121,
+            "fireRes": -2,
+            "waterRes": -2,
+            "iceRes": -2,
+            "elecRes": -2,
+            "dragonRes": 3
+        },
+        "skills": {
+            "critical_boost": {
+                "level": 1
+            },
+            "stun_resistance": {
+                "level": 3
+            },
+            "attack_boost": {
+                "level": 2
+            }
+        },
+        "slots": [
+            4,
+            3,
+            0
+        ]
+    },
+    {
+        "id": "snowy_cohoot_earmuffs",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "シロフクズクの耳当て",
+            "en": "Snowy Cohoot Earmuffs",
+            "fr": "Oreill Hibouette enn",
+            "it": "Paraorec. Gufufo innev.",
+            "de": "Schneekauz-Ohrschutz",
+            "es": "Orejeras Bubo níveo",
+            "ru": "Наушники Снеж. Ухута",
+            "pl": "Nausz. śnież. hukacz.",
+            "pt": "Corumochinho Quentinho",
+            "ko": "흰 복부엉 귀 장식",
+            "zh-Hant": "白色福福鴞耳罩",
+            "zh-Hans": "白色福木兔耳套",
+            "ar": "غطاء أذن الكوهوت الثلجي"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "face_scarf",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "フェイススカーフ",
+            "en": "Face Scarf",
+            "fr": "Écharpe visage",
+            "it": "Foulard viso",
+            "de": "Gesichtstuch",
+            "es": "Bufanda facial",
+            "ru": "Шарф на лицо",
+            "pl": "Okrycie twarzy",
+            "pt": "Lenço de Rosto",
+            "ko": "페이스스카프",
+            "zh-Hant": "信念領巾",
+            "zh-Hans": "蒙面围巾",
+            "ar": "وشاح الوجه"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "marine_headgear",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "マリンヘッド",
+            "en": "Marine Headgear",
+            "fr": "Coiffe Matelot",
+            "it": "Copricapo Marine",
+            "de": "Meereskopfschutz",
+            "es": "Cubrecabeza marino",
+            "ru": "Шлем матроса",
+            "pl": "Morska czapka",
+            "pt": "Elmo Marinho",
+            "ko": "마린헤드",
+            "zh-Hant": "海軍頭飾",
+            "zh-Hans": "海洋头饰",
+            "ar": "غطاء رأس البحرية"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "marine_vest",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "マリンベスト",
+            "en": "Marine Vest",
+            "fr": "Tunique Matelot",
+            "it": "Pettorina Marine",
+            "de": "Meeresweste",
+            "es": "Chaleco marino",
+            "ru": "Жилет матроса",
+            "pl": "Morska kamizelka",
+            "pt": "Colete Marinho",
+            "ko": "마린베스트",
+            "zh-Hant": "海軍服飾",
+            "zh-Hans": "海洋服饰",
+            "ar": "صدرية البحرية"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "marine_braces",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "マリンアーム",
+            "en": "Marine Braces",
+            "fr": "Avant-bras Matelot",
+            "it": "Parabraccia Marine",
+            "de": "Meeresarmschienen",
+            "es": "Brazales marinos",
+            "ru": "Наручи матроса",
+            "pl": "Morskie zarękawia",
+            "pt": "Braçadeiras Marinhas",
+            "ko": "마린암",
+            "zh-Hant": "海軍腕甲",
+            "zh-Hans": "海洋腕甲",
+            "ar": "دروع ساعد البحرية"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "marine_coil",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "マリンコイル",
+            "en": "Marine Coil",
+            "fr": "Boucle Malelot",
+            "it": "Spira Marine",
+            "de": "Marinehüftring",
+            "es": "Faja marina",
+            "ru": "Пояс матроса",
+            "pl": "Morski pas",
+            "pt": "Cinturão Marinho",
+            "ko": "마린코일",
+            "zh-Hant": "海軍腰甲",
+            "zh-Hans": "海洋腰甲",
+            "ar": "لفيفة البحرية"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "marine_pants",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "マリンフット",
+            "en": "Marine Pants",
+            "fr": "Pantalon Matelot",
+            "it": "Pantaloni Marine",
+            "de": "Meereshose",
+            "es": "Pantalones marinos",
+            "ru": "Штаны матроса",
+            "pl": "Morskie spodnie",
+            "pt": "Calças Marinhas",
+            "ko": "마린풋",
+            "zh-Hant": "海軍鞋子",
+            "zh-Hans": "海洋鞋子",
+            "ar": "بنطال البحرية"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "reflet_headgear",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "ルフレヘッド",
+            "en": "Reflet Headgear",
+            "fr": "Coiffe Reflet",
+            "it": "Copricapo Reflet",
+            "de": "Reflet-Kopfschutz",
+            "es": "Cubrecabeza Reflet",
+            "ru": "Шлем \"Глазурь\"",
+            "pl": "Kaptur Reflet",
+            "pt": "Elmo Reflet",
+            "ko": "리플레헤드",
+            "zh-Hant": "漾光頭飾",
+            "zh-Hans": "漾光头饰",
+            "ar": "غطاء رأس ريفليت"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "reflet_mail",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "ルフレメイル",
+            "en": "Reflet Mail",
+            "fr": "Cotte Reflet",
+            "it": "Cotta Reflet",
+            "de": "Reflet-Panzer",
+            "es": "Cota de Reflet",
+            "ru": "Доспех \"Глазурь\"",
+            "pl": "Zbroja Reflet",
+            "pt": "Cota de Malha Reflet",
+            "ko": "리플레메일",
+            "zh-Hant": "漾光鎧甲",
+            "zh-Hans": "漾光铠甲",
+            "ar": "درع ريفليت"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "reflet_braces",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "ルフレアーム",
+            "en": "Reflet Braces",
+            "fr": "Avant-bras Reflet",
+            "it": "Parabraccia Reflet",
+            "de": "Reflet-Armschienen",
+            "es": "Brazales de Reflet",
+            "ru": "Наручи \"Глазурь\"",
+            "pl": "Zarękawia Reflet",
+            "pt": "Braçadeiras Reflet",
+            "ko": "리플레암",
+            "zh-Hant": "漾光腕甲",
+            "zh-Hans": "漾光腕甲",
+            "ar": "دروع ساعد ريفليت"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "reflet_coil",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "ルフレコイル",
+            "en": "Reflet Coil",
+            "fr": "Boucle Reflet",
+            "it": "Spira Reflet",
+            "de": "Reflet-Hüftring",
+            "es": "Faja de Reflet",
+            "ru": "Пояс \"Глазурь\"",
+            "pl": "Pas Reflet",
+            "pt": "Cinturão Reflet",
+            "ko": "리플레코일",
+            "zh-Hant": "漾光腰甲",
+            "zh-Hans": "漾光腰甲",
+            "ar": "لفيفة ريفليت"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "reflet_pants",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "ルフレフット",
+            "en": "Reflet Pants",
+            "fr": "Pantalon Reflet",
+            "it": "Pantaloni Reflet",
+            "de": "Reflet-Hose",
+            "es": "Pantalones de Reflet",
+            "ru": "Штаны \"Глазурь\"",
+            "pl": "Spodnie Reflet",
+            "pt": "Calças Reflet",
+            "ko": "리플레풋",
+            "zh-Hant": "漾光鞋子",
+            "zh-Hans": "漾光鞋子",
+            "ar": "بنطال ريفليت"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lennigan_headgear",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "レニガンヘッド",
+            "en": "Lennigan Headgear",
+            "fr": "Coiffe Lennigan",
+            "it": "Copricapo Lennigan",
+            "de": "Lennigan-Kopfschutz",
+            "es": "Cubrecabeza Lennigan",
+            "ru": "Шлем Леннигана",
+            "pl": "Kaptur Lennigan",
+            "pt": "Elmo Lennigan",
+            "ko": "레니건헤드",
+            "zh-Hant": "雷尼根頭飾",
+            "zh-Hans": "雷尼根头饰",
+            "ar": "غطاء رأس لينيجان"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lennigan_suit",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "レニガンスーツ",
+            "en": "Lennigan Suit",
+            "fr": "Tenue Lennigan",
+            "it": "Abito Lennigan",
+            "de": "Lennigan-Anzug",
+            "es": "Traje de Lennigan",
+            "ru": "Костюм Леннигана",
+            "pl": "Ubiór Lennigan",
+            "pt": "Traje Lennigan",
+            "ko": "레니건슈트",
+            "zh-Hant": "雷尼根服裝",
+            "zh-Hans": "雷尼根服装",
+            "ar": "صدرية لينيجان"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lennigan_braces",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "レニガンアーム",
+            "en": "Lennigan Braces",
+            "fr": "Avant-bras Lennigan",
+            "it": "Parabraccia Lennigan",
+            "de": "Lennigan-Armschienen",
+            "es": "Brazales de Lennigan",
+            "ru": "Наручи Леннигана",
+            "pl": "Zarękawia Lennigan",
+            "pt": "Braçadeiras Lennigan",
+            "ko": "레니건암",
+            "zh-Hant": "雷尼根腕甲",
+            "zh-Hans": "雷尼根腕甲",
+            "ar": "دروع ساعد لينيجان"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lennigan_coil",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "レニガンコイル",
+            "en": "Lennigan Coil",
+            "fr": "Boucle Lennigan",
+            "it": "Spira Lennigan",
+            "de": "Lennigan-Hüftring",
+            "es": "Faja de Lennigan",
+            "ru": "Пояс Леннигана",
+            "pl": "Pas Lennigan",
+            "pt": "Cinturão Lennigan",
+            "ko": "레니건코일",
+            "zh-Hant": "雷尼根腰甲",
+            "zh-Hans": "雷尼根腰甲",
+            "ar": "لفيفة لينيجان"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lennigan_pants",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "レニガンフット",
+            "en": "Lennigan Pants",
+            "fr": "Pantalon Lennigan",
+            "it": "Pantaloni Lennigan",
+            "de": "Lennigan-Hose",
+            "es": "Pantalones Lennigan",
+            "ru": "Штаны Леннигана",
+            "pl": "Spodnie Lennigan",
+            "pt": "Calças Lennigan",
+            "ko": "레니건풋",
+            "zh-Hant": "雷尼根鞋子",
+            "zh-Hans": "雷尼根鞋子",
+            "ar": "بنطال لينيجان"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lance_gunn_face",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "モンス田ハン太頭",
+            "en": "Lance Gunn Face",
+            "fr": "Visage Kannon Lance",
+            "it": "Viso Dan Go",
+            "de": "Waffus Lanz' Gesicht",
+            "es": "Cara de Bisoño",
+            "ru": "Лицо Стрелка",
+            "pl": "Twarz Luko Diauka",
+            "pt": "Rosto Lance Armê",
+            "ko": "몬스타 헌타 머리",
+            "zh-Hant": "魔勿獵仁頭部",
+            "zh-Hans": "怪悟猎仁头部",
+            "ar": "وجه لانس جان"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lance_gunn_body",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "モンス田ハン太胴",
+            "en": "Lance Gunn Body",
+            "fr": "Corps Kannon Lance",
+            "it": "Corpo Dan Go",
+            "de": "Waffus Lanz' Körper",
+            "es": "Cuerpo de Bisoño",
+            "ru": "Тело Стрелка",
+            "pl": "Korpus Luko Diauka",
+            "pt": "Corpo Lance Armê",
+            "ko": "몬스타 헌타 몸통",
+            "zh-Hant": "魔勿獵仁身體",
+            "zh-Hans": "怪悟猎仁身体",
+            "ar": "جسد لانس جان"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lance_gunn_arms",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "モンス田ハン太腕",
+            "en": "Lance Gunn Arms",
+            "fr": "Bras Kannon Lance",
+            "it": "Braccia Dan Go",
+            "de": "Waffus Lanz' Arme",
+            "es": "Brazos de Bisoño",
+            "ru": "Руки Стрелка",
+            "pl": "Ramiona Luko Diauka",
+            "pt": "Braços Lance Armê",
+            "ko": "몬스타 헌타 팔",
+            "zh-Hant": "魔勿獵仁腕部",
+            "zh-Hans": "怪悟猎仁腕部",
+            "ar": "أذرع لانس جان"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lance_gunn_waist",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "モンス田ハン太腰",
+            "en": "Lance Gunn Waist",
+            "fr": "Ceinture Kannon Lance",
+            "it": "Fiancale Dan Go",
+            "de": "Waffus Lanz' Hüfte",
+            "es": "Cintura de Bisoño",
+            "ru": "Талия Стрелка",
+            "pl": "Pas Luko Diauka",
+            "pt": "Cintura Lance Armê",
+            "ko": "몬스타 헌타 허리",
+            "zh-Hant": "魔勿獵仁腰部",
+            "zh-Hans": "怪悟猎仁腰部",
+            "ar": "خصر لانس جان"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "lance_gunn_legs",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "モンス田ハン太脚",
+            "en": "Lance Gunn Legs",
+            "fr": "Jambes Kannon Lance",
+            "it": "Gambe Dan Go",
+            "de": "Waffus Lanz' Beine",
+            "es": "Piernas de Bisoño",
+            "ru": "Ноги Стрелка",
+            "pl": "Nogi Luko Diauka",
+            "pt": "Pernas Lance Armê",
+            "ko": "몬스타 헌타 다리",
+            "zh-Hant": "魔勿獵仁足部",
+            "zh-Hans": "怪悟猎仁脚部",
+            "ar": "أقدام لانس جان"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "ran_page_face",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "百竜夜子頭",
+            "en": "Ran Page Face",
+            "fr": "Visage Razzia Van Dale",
+            "it": "Viso Deva Stazione",
+            "de": "Randa Lierens Gesicht",
+            "es": "Cara de Frenética",
+            "ru": "Лицо Бури",
+            "pl": "Twarz Fu Ryi",
+            "pt": "Rosto Fren Esi",
+            "ko": "백룡야코 머리",
+            "zh-Hant": "百龍夜杏頭部",
+            "zh-Hans": "百龙夜子头部",
+            "ar": "وجه ران بيج"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "ran_page_body",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "百竜夜子胴",
+            "en": "Ran Page Body",
+            "fr": "Corps Razzia Van Dale",
+            "it": "Corpo Deva Stazione",
+            "de": "Randa Lierens Körper",
+            "es": "Cuerpo de Frenética",
+            "ru": "Тело Бури",
+            "pl": "Korpus Fu Ryi",
+            "pt": "Corpo Fren Esi",
+            "ko": "백룡야코 몸통",
+            "zh-Hant": "百龍夜杏身體",
+            "zh-Hans": "百龙夜子身体",
+            "ar": "جسد ران بيج"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "ran_page_arms",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "百竜夜子腕",
+            "en": "Ran Page Arms",
+            "fr": "Bras Razzia Van Dale",
+            "it": "Braccia Deva Stazione",
+            "de": "Randa Lierens Arme",
+            "es": "Brazos de Frenética",
+            "ru": "Руки Бури",
+            "pl": "Ramiona Fu Ryi",
+            "pt": "Braços Fren Esi",
+            "ko": "백룡야코 팔",
+            "zh-Hant": "百龍夜杏腕部",
+            "zh-Hans": "百龙夜子腕部",
+            "ar": "أذرع ران بيج"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "ran_page_waist",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "百竜夜子腰",
+            "en": "Ran Page Waist",
+            "fr": "Ceinture Razzia Van Dale",
+            "it": "Fiancale Deva Stazione",
+            "de": "Randa Lierens Hüfte",
+            "es": "Cintura de Frenética",
+            "ru": "Талия Бури",
+            "pl": "Pas Fu Ryi",
+            "pt": "Cintura Fren Esi",
+            "ko": "백룡야코 허리",
+            "zh-Hant": "百龍夜杏腰部",
+            "zh-Hans": "百龙夜子腰部",
+            "ar": "خصر ران بيج"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "ran_page_legs",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "百竜夜子脚",
+            "en": "Ran Page Legs",
+            "fr": "Jambes Razzia Van Dale",
+            "it": "Gambe Deva Stazione",
+            "de": "Randa Lierens Beine",
+            "es": "Piernas de Frenética",
+            "ru": "Ноги Бури",
+            "pl": "Nogi Fu Ryi",
+            "pt": "Pernas Fren Esi",
+            "ko": "백룡야코 다리",
+            "zh-Hant": "百龍夜杏足部",
+            "zh-Hans": "百龙夜子脚部",
+            "ar": "أقدام ران بيج"
+        },
+        "rarity": 7,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "minoto_face",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "ミノトフェイス",
+            "en": "Minoto Face",
+            "fr": "Visage Minoto",
+            "it": "Viso Minoto",
+            "de": "Minotos Gesicht",
+            "es": "Cara de Minoto",
+            "ru": "Лицо Миното",
+            "pl": "Twarz Minoto",
+            "pt": "Rosto Minoto",
+            "ko": "미노토페이스",
+            "zh-Hant": "水藝面罩",
+            "zh-Hans": "水芸面罩",
+            "ar": "وجه مينوتو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "minoto_body",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "ミノトボディ",
+            "en": "Minoto Body",
+            "fr": "Corps Minoto",
+            "it": "Corpo Minoto",
+            "de": "Minotos Körper",
+            "es": "Cuerpo de Minoto",
+            "ru": "Тело Миното",
+            "pl": "Korpus Minoto",
+            "pt": "Corpo Minoto",
+            "ko": "미노토보디",
+            "zh-Hant": "水藝身體",
+            "zh-Hans": "水芸身体",
+            "ar": "جسد مينوتو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "minoto_arms",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "ミノトアーム",
+            "en": "Minoto Arms",
+            "fr": "Bras Minoto",
+            "it": "Braccia Minoto",
+            "de": "Minotos Arme",
+            "es": "Brazos de Minoto",
+            "ru": "Руки Миното",
+            "pl": "Ramiona Minoto",
+            "pt": "Braços Minoto",
+            "ko": "미노토암",
+            "zh-Hant": "水藝腕部",
+            "zh-Hans": "水芸腕甲",
+            "ar": "أذرع مينوتو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "minoto_waist",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "ミノトウエスト",
+            "en": "Minoto Waist",
+            "fr": "Taille Minoto",
+            "it": "Fiancale Minoto",
+            "de": "Minotos Hüfte",
+            "es": "Cintura de Minoto",
+            "ru": "Талия Миното",
+            "pl": "Pas Minoto",
+            "pt": "Cintura Minoto",
+            "ko": "미노토웨이스트",
+            "zh-Hant": "水藝腰部",
+            "zh-Hans": "水芸腰部",
+            "ar": "خصر مينوتو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "minoto_legs",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "ミノトレッグ",
+            "en": "Minoto Legs",
+            "fr": "Jambes Minoto",
+            "it": "Gambe Minoto",
+            "de": "Minotos Beine",
+            "es": "Piernas de Minoto",
+            "ru": "Ноги Миното",
+            "pl": "Nogi Minoto",
+            "pt": "Pernas Minoto",
+            "ko": "미노토레그",
+            "zh-Hant": "水藝足部",
+            "zh-Hans": "水芸脚部",
+            "ar": "أقدام مينوتو"
         },
         "rarity": 8,
         "stat": {
