@@ -3853,7 +3853,7 @@
             "es": "Rabioso",
             "ru": "Гнев",
             "pl": "Oburzenie",
-            "pt": "Indignação",
+            "pt": "Furioso",
             "ko": "격앙",
             "zh-Hant": "激昂",
             "zh-Hans": "激昂",
@@ -4723,6 +4723,74 @@
             "zh-Hant": "在狩獵大型魔物時，只要使攻擊\r\n持續命中，便可使周遭充滿粉塵。\r\n粉塵會隨著時間經過而改變顏色，\r\n並根據顏色獲得不同的效果。",
             "zh-Hans": "狩猎大型怪物时，攻击不断命中即可\r\n使周围形成粉尘。粉尘会随时间而改\r\n变颜色，不同颜色的效果也不一样。",
             "ar": "سيتشكل المسحوق حولك عند\r\nمهاجمة وحش كبير بضربات متتالية.\r\nسيتغير لون وتأثير المسحوق\r\nبمرور الوقت."
+        }
+    },
+    {
+        "id": "frostcraft",
+        "maxLevel": 3,
+        "names": {
+            "ja": "冰気錬成",
+            "en": "Frostcraft",
+            "fr": "Nuée de givre",
+            "it": "Criosintesi",
+            "de": "Eiskunst",
+            "es": "Destreza helada",
+            "ru": "Мастерство мороза",
+            "pl": "Sztuka Mrozu",
+            "pt": "Frigidez",
+            "ko": "냉기 연성",
+            "zh-Hant": "寒氣鍊成",
+            "zh-Hans": "寒气炼成",
+            "ar": "صناعة الصقيع"
+        },
+        "texts": {
+            "ja": "納刀中、徐々に冰気が高まり、\r\n攻撃力が強化される。\r\n近接攻撃が当たる、または矢・弾を\r\n発射する度、冰気が失われていく。",
+            "en": "An aura of frost builds when your\r\nweapon is sheathed, raising attack.\r\nThe effect decreases with each\r\nmelee hit or shot/arrow fired.",
+            "fr": "Arme rengainée : Active une aura\r\nde givre qui augmente les dégâts.\r\nL'effet diminue à chaque attaque\r\nde mêlée ou tir de flèche ou balle.",
+            "it": "Se l'arma è rinfoderata, accumuli\r\nun'aura gelata che aumenta l'attacco.\r\nL'effetto diminuisce a ogni colpo\r\ninferto, sparato o scoccato.",
+            "de": "Bildet eine Frostaura bei weggesteckter\r\nWaffe, erhöht so Angriff. Wird mit je-\r\ndem Nahkampftreffer/Schuss schwächer.",
+            "es": "Al envainar crea un aura de hielo que\r\nmejora el ataque, pero sus efectos\r\ndisminuyen con cada golpe o\r\ntiro/flecha que se dispare.",
+            "ru": "Когда оружие в ножнах, создает\r\nморозную ауру, повышающую атаку.\r\nЭффект слабеет с каждым\r\nударом или выстрелом.",
+            "pl": "Aura mrozu otacza schowaną broń,\r\nwzmacniając atak. Efekt słabnie z\r\nkażdym ciosem, strzałem\r\nlub wypuszczoną strzałą.",
+            "pt": "Uma aura gélida surge ao guardar\r\nsua arma, aumentando o ataque.\r\nO efeito se reduz com cada acerto\r\ncorpo a corpo ou disparo/flechada.",
+            "ko": "납도 중 점차 냉기가 모여\r\n공격력이 강화된다.\r\n근접 공격을 맞히거나 화살, 탄환을\r\n발사할 때마다 냉기가 빠져나간다.",
+            "zh-Hant": "收刀狀態下寒氣會慢慢累積，\r\n強化攻擊力。當近身攻擊擊中時\r\n或箭、彈藥發射時，寒氣會逐漸消失。",
+            "zh-Hans": "纳刀状态下，会慢慢累积寒气，\r\n强化攻击力。当近身攻击击中时或\r\n发射箭/弹药时，寒气会逐渐丧失。",
+            "ar": "تتكثف هالة من الجليد عند\r\nغمد السلاح، مسببة هجمة.\r\nيقل تأثيرها مع كل ضربة اشتباك،\r\nأو إطلاق ضربة/سهم."
+        }
+    },
+    {
+        "id": "dragon_conversion",
+        "maxLevel": 3,
+        "names": {
+            "ja": "龍気変換",
+            "en": "Dragon Conversion",
+            "fr": "Conversion de dragon",
+            "it": "Conversione drago",
+            "de": "Drachenumwandlung",
+            "es": "Conversión de draco",
+            "ru": "Преобраз-е дракона",
+            "pl": "Smocza skuteczność",
+            "pt": "Conversão Dracônica",
+            "ko": "용기 변환",
+            "zh-Hant": "龍氣轉換",
+            "zh-Hans": "龙气转换",
+            "ar": "تحول التنين"
+        },
+        "texts": {
+            "ja": "疾替えの書【朱】使用中、属性耐性値は\r\n全て０になり属性攻撃値へ変換される。\r\n疾替えの書【蒼】使用中、攻撃を\r\n当て続けると属性耐性値が上昇する。",
+            "en": "When using the Red Swap Scroll, all\r\nelemental resistance is set to 0 and\r\nconverted into elemental attack. The Blue\r\nSwap Scroll raises elemental resistance.",
+            "fr": "Avec le Parchemin de transfert rouge,\r\nla résistance élémentaire est à 0 et\r\nconvertie en attaque élémentaire.\r\nLe bleu augmente la résistance élém.",
+            "it": "Il rotolo di inversione rosso ha le\r\ndifese elementali a 0, convertite\r\nin attacco elementale. Quello blu\r\naumenta la resistenza elementale.",
+            "de": "Rote Tauschrolle setzt den gesamten\r\nElementarwiderstand auf 0 und wird\r\nin Elementarangriff umgewandelt.\r\nBlaue Tauschrolle erh. Elementarwid.",
+            "es": "El kakejiku de cambio rojo anula toda\r\nresistencia elemental y la transforma\r\nen ataques elementales. El azul\r\naumenta la resistencia elemental.",
+            "ru": "При исп-ии красного свитка зам. нав.\r\nвсе сопр-я стихиям обнуляются\r\nи преобраз. в атаку стихией. Синий\r\nсвиток повышает сопр-е стихиям.",
+            "pl": "Czerwony zwój zmiany zmniejsza odporność\r\nna żywioły do 0 i zmienia ją na atak\r\nżywiołami. Niebieski zwój zmiany\r\npodwyższa odporność na żywioły.",
+            "pt": "Ao usar o Perg. de Troca Vermelho,\r\ntoda res. elemental vai a 0,\r\nconvertida em atq. elemental. O Perg.\r\nde Troca Azul eleva a res. elemental.",
+            "ko": "신속 교체의 서【주】 사용 중 속성\r\n내성치가 모두 0이 되고 속성 공격치로\r\n변환. 신속 교체의 서【창】 사용 중\r\n연속으로 공격하면 속성 내성치 상승.",
+            "zh-Hant": "使用速換之書【朱紅】時，屬性耐性值\r\n將歸零，並轉換成武器的屬性值；\r\n使用速換之書【蒼藍】時，\r\n攻擊持續命中會提升屬性耐性值。",
+            "zh-Hans": "使用迅速切换之书【朱】时，属性耐性值\r\n全部归0，并转换为属性攻击值。\r\n使用迅速切换之书【苍】时，攻击连续命\r\n中可提升属性耐性值。",
+            "ar": "عند استخدام لفيفة المبادلة الحمراء،\r\nتصبح قيمة مقاومة العنصر 0،\r\nويتحول إلى هجوم عنصر. تزيد لفيفة\r\nالمبادلة الزرقاء مقاومة العنصر."
         }
     },
     {
