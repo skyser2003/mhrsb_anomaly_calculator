@@ -1,9 +1,9 @@
 {
-    "version": "0.2.7",
-    "notes": "14.0 데이터 추가 / 14.0 data added",
+    "version": "0.2.8",
+    "notes": "검색 즐겨찾기 상세보기 수정 / Result favorite detail view fix",
     "platforms": {
         "windows-x86_64": {
-            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVitNWGI1blZFeVpYd25NYUxtNHl5aU9WTStzT1lTb0t3aGo2SldMd0ZSVkwvSTkza3k4Nk40OG9ObFAwN05ZVUlBUVB5ZEcxM1NITFEvYXhVa3cydVFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc1NzgxMjAzCWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjIuN194NjRfZW4tVVMubXNpLnppcAp0UU81MkRyK2o4YVF6SWQrSk9YMWRZdkYrR1Zwd2I0MDE2MGJ1MHYvcU5yRG5qb2hoclBOcUozT2E2ejk1RDhuZDYyRHlZaC9hT3h3c3FwSWRDOHhCZz09Cg==",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVndJWFlocVEwR245YllGVGpGaHI1M3JVM0VXY2kxbFN1eVI1ZmI1aHZ0bFkyTVl4c1RyaDE3TjRNK21TVmU4OXRNL3hVc0t6bmUwbWhDWnFJM0hQWFFnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjgxMDI5MTM0CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjIuOF94NjRfZW4tVVMubXNpLnppcAo3RUFKWFN1VCttZ1h0OUVyTXhlWkg4Y1pmNVJ3eSszbDBvRGNqVitEMXhKNjE3QXFKZDdESnJQYzRFSWdCT3doejdVSkx3UnBwbUZ6NXJ5MjhNNkdCZz09Cg==",
             "url": "https://github.com/skyser2003/mhrsb_anomay_calculator/releases/latest/download/mhr-sunbreak-anomaly-calculator.msi.zip"
         }
     }

@@ -108,7 +108,18 @@ export class CacheManager {
 
 	static getResultFavorites() {
 		try {
-			return JSON.parse(getItem(this.resultFavoriteName)!) as ResultFavorite[] ?? [];
+			const oldObj = JSON.parse(getItem(this.resultFavoriteName)!) as ResultFavorite[] ?? [];
+
+			// Legacy snake case to camel case
+			for (const obj of oldObj) {
+				this.changeToCamelCase(obj.decoComb);
+
+				for (const part in obj.armors) {
+					this.changeToCamelCase(obj.armors[part]);
+				}
+			}
+
+			return oldObj;
 		} catch (e) {
 			return [];
 		}
@@ -163,6 +174,21 @@ export class CacheManager {
 			return JSON.parse(getItem(this.manualTalismansName)!) as TalismanInfo[] ?? [];
 		} catch (e) {
 			return [];
+		}
+	}
+
+	static changeToCamelCase(obj: any) {
+		for (const snakeKey in obj) {
+			const camelKey = snakeKey.replace(/_([a-zA-Z])/g, snakePart => {
+				return snakePart[1].toUpperCase();
+			});
+
+			if (snakeKey === camelKey) {
+				continue;
+			}
+
+			(obj as any)[camelKey] = (obj as any)[snakeKey];
+			delete (obj as any)[snakeKey];
 		}
 	}
 }
