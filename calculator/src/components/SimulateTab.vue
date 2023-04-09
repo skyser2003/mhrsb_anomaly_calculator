@@ -9,7 +9,7 @@ import SkillsVec from "../data/skill.json";
 
 import { SkillCategory } from "../definition/skill_category_define";
 import { FinalSkillInfo } from "../definition/skill_define";
-import { CalculateResult, SearchFavorite, EquipSlots, Skills, Slots, ResultFavorite, SexType, CalcChoices } from "../definition/calculate_result";
+import { CalculateResult, SearchFavorite, EquipSlots, Skills, Slots, ResultFavorite, SexType, CalcChoices, ResultFullEquipments, ResultArmor } from "../definition/calculate_result";
 import { CacheManager } from "../model/data_manager";
 
 import SimulateResultTable from "./SimulateResultTable.vue"; 
@@ -86,6 +86,7 @@ const selectedSkills = ref<Skills>({});
 const freeSlots = ref<Slots>([0, 0, 0, 0]);
 const includeLteEquips = ref(false);
 
+const resultSortKey = ref("slots_sum");
 const is_calculating = ref(false);
 
 const calcResult = ref<CalculateResult>({ fullEquipments: [], calcTime: 0 });
@@ -266,6 +267,48 @@ function canSubmit() {
 	return sexType.value !== "" && is_calculating.value === false;
 }
 
+const calcSlots = (equip: ResultFullEquipments) => {
+	let maxSlots = 0;
+
+	for (const comb of equip.decoCombs) {
+		let slots = comb.leftoverSlotsSum.reduce((a, b) => a + b, 0);
+
+		maxSlots = Math.max(maxSlots, slots);
+	}
+
+	return maxSlots;
+};
+
+function sortBySlotsSum(equip1: ResultFullEquipments, equip2: ResultFullEquipments) {
+	const slots1 = calcSlots(equip1);
+	const slots2 = calcSlots(equip2);
+
+	return slots1 > slots2 ? -1 : 1;
+}
+
+function sortByDefense(equip1: ResultFullEquipments, equip2: ResultFullEquipments) {
+	let defense1 = 0;
+	let defense2 = 0;
+
+	for (const key in equip1.armors) {
+		defense1 += equip1.armors[key].stat.defense;
+	}
+
+	for (const key in equip2.armors) {
+		defense2 += equip2.armors[key].stat.defense;
+	}
+
+	return defense1 > defense2 ? -1 : 1;
+}
+
+function sortResult() {
+	const sortKey = resultSortKey.value;
+
+	const sortFunc = sortKey === "slots_sum" ? sortBySlotsSum : sortByDefense;
+
+	calcResult.value.fullEquipments.sort(sortFunc);
+}
+
 </script>
 
 <template>
@@ -402,6 +445,12 @@ function canSubmit() {
 		<a-spin size="large" />
 	</template>
 	<template v-else>
+		<a-select v-model:value="resultSortKey" @change="sortResult" style="min-width: 200px">		
+			<a-select-option value="slots_sum">{{ UIData["slots_sum"][langData] }}</a-select-option>
+			<a-select-option value="defense">{{ UIData["defense"][langData] }}</a-select-option>
+		</a-select>
+		<br />
+		<br />
 		<SimulateResultTable :langData="langData" :calcResult="calcResult" v-on:add_result_favorite="addResultFavorite" />
 	</template>
 </template>
