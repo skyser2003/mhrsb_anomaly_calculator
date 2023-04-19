@@ -188,7 +188,13 @@ async function calculate() {
 			"includeLteEquips": includeLteEquips.value,
 		}) as { [key: string]: any };
 
-		calcResult.value = result["result"] as CalculateResult;
+		const localCalcResult = result["result"] as CalculateResult;
+
+		if (resultSortKey.value !== "slots_sum") {
+			sortResult(resultSortKey.value, localCalcResult);
+		}
+
+		calcResult.value = localCalcResult;
 		is_calculating.value = false;
 
 		console.log(result);
@@ -301,12 +307,10 @@ function sortByDefense(equip1: ResultFullEquipments, equip2: ResultFullEquipment
 	return defense1 > defense2 ? -1 : 1;
 }
 
-function sortResult() {
-	const sortKey = resultSortKey.value;
-
+function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	const sortFunc = sortKey === "slots_sum" ? sortBySlotsSum : sortByDefense;
 
-	calcResult.value.fullEquipments.sort(sortFunc);
+	calcResultData.fullEquipments.sort(sortFunc);
 }
 
 </script>
@@ -432,25 +436,38 @@ function sortResult() {
 	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >{{ UIData["calculate_button"][langData] }}</a-button>
 	<a-button @click="clear">{{ UIData["clear_search_condition"][langData] }}</a-button>
 
+	<br />
+	<br />
+
+	<a-button @click="addFavorite">{{ UIData["save_search_favorite"][langData] }}</a-button>
+
 	<a-divider style="border-color: #7cb305" dashed />
 
-	<div>Answer count : {{ calcResult.fullEquipments ? calcResult.fullEquipments.length : 0 }}</div>
-	<div>Time : {{ calcResult.calcTime }} sec</div>
-	<br />
-	<div><a-button @click="addFavorite">Save Favorite</a-button> </div>
-
+	<table>
+		<tr>
+			<td>{{ UIData["result_count"][langData] }}</td>
+			<td>{{ calcResult.fullEquipments ? calcResult.fullEquipments.length : 0 }}</td>
+		</tr>
+		<tr>
+			<td>{{ UIData["calc_time"][langData] }}</td>
+			<td>{{ calcResult.calcTime }} sec</td>
+		</tr>
+		<tr>
+			<td style="width: 100px">{{ UIData["sort_result_criteria"][langData] }}</td>
+			<td>
+				<a-select v-model:value="resultSortKey" @change="sortResult(resultSortKey, calcResult)" style="min-width: 200px">		
+					<a-select-option value="slots_sum">{{ UIData["slots_sum"][langData] }}</a-select-option>
+					<a-select-option value="defense">{{ UIData["defense"][langData] }}</a-select-option>
+				</a-select>
+			</td>
+		</tr>
+	</table>
 	<br />
 
 	<template v-if="is_calculating">
 		<a-spin size="large" />
 	</template>
 	<template v-else>
-		<a-select v-model:value="resultSortKey" @change="sortResult" style="min-width: 200px">		
-			<a-select-option value="slots_sum">{{ UIData["slots_sum"][langData] }}</a-select-option>
-			<a-select-option value="defense">{{ UIData["defense"][langData] }}</a-select-option>
-		</a-select>
-		<br />
-		<br />
 		<SimulateResultTable :langData="langData" :calcResult="calcResult" v-on:add_result_favorite="addResultFavorite" />
 	</template>
 </template>

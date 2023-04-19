@@ -210,5 +210,21 @@
     "slots_sum": {
         "ko": "슬롯 갯수 총합",
         "en": "Slots count sum"
+    },
+    "save_search_favorite": {
+        "ko": "즐겨찾기 저장",
+        "en": "Save favorite"
+    },
+    "result_count": {
+        "ko": "결과 갯수",
+        "en": "Result count"
+    },
+    "calc_time": {
+        "ko": "계산 시간",
+        "en": "Calculation time"
+    },
+    "sort_result_criteria": {
+        "ko": "정렬 기준",
+        "en": "Sort by"
     }
 }
