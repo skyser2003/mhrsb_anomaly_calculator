@@ -191,7 +191,7 @@ function getDecoCombData(data: ResultFullEquipments) {
 			leftoverSkills.push(text);
 		}
 
-		return { decos: allDecoTexts.join(" - "), slots: JSON.stringify(comb.leftoverSlotsSum), leftoverSkills: leftoverSkills.join(", ") };
+		return { decos: allDecoTexts.join(" - "), slots: JSON.stringify(comb.leftoverSlotsSum), leftover_skills: leftoverSkills.join(", ") };
 	});
 
 	return decoCombs;
