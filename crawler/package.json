@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "tsc && node out/main.js"
+        "start": "ts-node-esm main.ts"
     },
     "devDependencies": {
         "@types/crawler": "^1.2.2",
@@ -9,7 +9,8 @@
     },
     "dependencies": {
         "crawler": "^1.3.0",
-        "fs-extra": "^10.1.0"
+        "fs-extra": "^10.1.0",
+        "ts-node": "^10.9.1"
     },
     "type": "module"
 }
