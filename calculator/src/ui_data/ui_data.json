@@ -105,7 +105,7 @@
     },
     "include_lte_equips": {
         "ko": "하위호환 장비 포함하기",
-        "en": "Include LTE equipments"
+        "en": "Include inferior equipments"
     },
     "save": {
         "ko": "저장하기",
