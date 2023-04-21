@@ -4006,7 +4006,7 @@
             "pl": "Zwiększa obronę, kiedy\r\nduże potwory wpadają\r\nw szał.",
             "pt": "Aumenta defesa quando monstros\r\ngrandes se enfurecem.",
             "ko": "사냥 중에 대형 몬스터가 분노하면\r\n방어 성능이 강화된다.",
-            "zh-Hant": "若狩獵中的大型魔物發怒，\r\n即會提高防禦性能。",
+            "zh-Hant": "若狩獵中的大型魔物發怒，\r\n即會提高抵禦咆哮、風壓和震動的能力。",
             "zh-Hans": "若狩猎时大型怪物发怒，\r\n防御类性能将提升。",
             "ar": "يزيد الدفاع\r\nعند إثارة غضب\r\nالوحوش الضخمة."
         }
@@ -4794,6 +4794,74 @@
         }
     },
     {
+        "id": "heaven_sent",
+        "maxLevel": 3,
+        "names": {
+            "ja": "天衣無崩",
+            "en": "Heaven-Sent",
+            "fr": "Envoyé des cieux",
+            "it": "Dono dal cielo",
+            "de": "Wie gerufen",
+            "es": "Enviado del cielo",
+            "ru": "Божий посланник",
+            "pl": "Dar niebios",
+            "pt": "Celestial",
+            "ko": "천의무붕",
+            "zh-Hant": "天衣無縫",
+            "zh-Hans": "天衣无缝",
+            "ar": "هدية من السماء"
+        },
+        "texts": {
+            "ja": "大型モンスターの狩猟中、ダメージを\r\n受けない状態を続けると効果発動。\r\n大型モンスターから大きく離れたり、\r\nふきとぶ攻撃を受けると効果解除。",
+            "en": "Activates when not taking damage for a\r\nwhile during combat with a large monster.\r\nThe effect is lost when you are knocked back\r\nor stray too far away from the monster.",
+            "fr": "S'active si aucun dégât n'est subi\r\npendant un certain temps face à\r\nun grand monstre. L'effet se dissipe\r\nen cas de renversement ou d'éloignement.",
+            "it": "Si attiva se non subisci danni per un\r\npo' quando combatti contro mostri\r\ngrandi. L'effetto svanisce in caso di\r\nrespinte o se ti allontani troppo.",
+            "de": "Wird aktiviert, wenn du gegen ein\r\ngroßes Monster keinen Schaden erlei-\r\ndest. Effekt geht verloren, wenn du\r\nzurückgeworfen wirst/dich entfernst.",
+            "es": "Se activa al no recibir daño durante\r\nun tiempo en combate con un monstruo\r\ngrande. Se acaba cuando te derriban\r\no te alejas demasiado del monstruo.",
+            "ru": "Вкл., если не получать урон\r\nв бою с больш. монстром.\r\nВыкл., если вас отбросят\r\nили вы отойдете от монстра.",
+            "pl": "Aktywuje się po pewnym czasie bez\r\nobrażeń w walce z dużym potworem.\r\nEfekt znika, gdy dasz się odepchnąć\r\nlub odejdziesz za daleko od bestii.",
+            "pt": "Ativa ao não sofrer dano por um tempo\r\nem combate com um monstro grande.\r\nEfeito acaba ao sofrer empurrão ou\r\nse afastar demais do monstro.",
+            "ko": "대형 몬스터 사냥 중 계속 대미지를\r\n받지 않으면 효과 발동. 대형 몬스터\r\n에게서 멀리 떨어지거나, 날아가는\r\n공격을 받으면 효과가 해제된다.",
+            "zh-Hant": "狩獵大型魔物時，持續一段時間\r\n不受傷害即會發動效果。\r\n若被擊飛或距離大型魔物太遠時，\r\n效果就會解除。",
+            "zh-Hans": "狩猎大型怪物时，保持不受到伤害\r\n即可发动效果。离大型怪物过远或\r\n被击飞后，效果将解除。",
+            "ar": "يتم التفعيل عند عدم تلقي الضرر\r\nلفترة أثناء مقاتلة وحش كبير.\r\nيُفقَد التأثير عند تراجعك\r\nأو تبتعد أكثر من اللازم عن الوحش."
+        }
+    },
+    {
+        "id": "frenzied_bloodlust",
+        "maxLevel": 3,
+        "names": {
+            "ja": "狂竜症【翔】",
+            "en": "Frenzied Bloodlust",
+            "fr": "Soif de sang frénét",
+            "it": "Sete di sangue frenesia",
+            "de": "Raserei-Blutdurst",
+            "es": "Sed sangre colérica",
+            "ru": "Буйная кровожадность",
+            "pl": "Wściekła żądza krwi",
+            "pt": "Sede de Sangue Colérica",
+            "ko": "광룡증【상】",
+            "zh-Hant": "狂龍症【翔】",
+            "zh-Hans": "狂龙症【翔】",
+            "ar": "تعطش جنوني للدماء"
+        },
+        "texts": {
+            "ja": "狂竜症を克服すると、一定時間\r\n翔蟲ゲージが１ゲージ増える。\r\n納刀状態になると短い時間で効果が\r\n解除される。",
+            "en": "Temporarily gain an additional Wirebug\r\nwhen overcoming the Frenzy. The effect\r\nduration decreases drastically when your\r\nweapon is sheathed.",
+            "fr": "Ajout temporaire d'un Filoptère après\r\navoir surmonté la Furie.\r\nDurée fortement réduite avec\r\nl'arme rengainée.",
+            "it": "Ottieni temporaneamente un insetto\r\nfilo aggiuntivo quando debelli la\r\nfrenesia. La durata si riduce\r\ndrasticamente con arma rinfoderata.",
+            "de": "Erhalte vorübergehend einen extra\r\nSeilkäfer, wenn du die Raserei über-\r\nwindest. Die Wirkungsdauer verringert\r\nsich, wenn du deine Waffe wegsteckst.",
+            "es": "Otorga un cordóptero adicional\r\ntemporalmente al superar el furor.\r\nSu efecto dura muchísimo menos con\r\nel arma envainada.",
+            "ru": "Временно дает дополнительного Пруто-\r\nжука при преодол. Бешенства.\r\nДлительность эффекта значит.\r\nсокращается, если убрать оружие.",
+            "pl": "Zyskaj czasowo dodatkowego kablobaka\r\npo pokonaniu Szału. Czas trwania\r\nefektu znacznie się zmniejsza, gdy\r\nmasz schowaną broń.",
+            "pt": "Ganha temp. um Cabinseto adicional ao\r\nsuperar a Cólera. Duração do efeito\r\ncai drasticamente ao embainhar\r\na arma.",
+            "ko": "광룡증을 극복하면 일정 시간\r\n밧줄벌레 게이지가 1 증가한다.\r\n납도 상태가 되면 짧은 시간에\r\n효과가 해제된다.",
+            "zh-Hant": "克服狂龍症後，翔蟲計量表\r\n將於效果時間內增加1格。\r\n進入收刀狀態一小段時間後，\r\n效果便會提前解除。",
+            "zh-Hans": "克服狂龙症后，在一段时间内增加\r\n1格翔虫槽。\r\n变为纳刀状态时，效果将在短时间\r\n后解除。",
+            "ar": "اكتسب مؤقتًا حشرة حرير إضافية\r\nعند التغلب على الجنون. تنخفض\r\nمدة التأثير بشكل كبير عندما\r\nيكون سلاحك في غمده."
+        }
+    },
+    {
         "id": "strife",
         "maxLevel": 3,
         "names": {
@@ -4825,6 +4893,40 @@
             "zh-Hant": "按體力的紅色計量表長度，\r\n提升會心率與屬性攻擊力。",
             "zh-Hans": "根据体力的红色槽长度，\r\n提升会心率和属性攻击力。",
             "ar": "يزيد الهجوم العنصري ونسبة\r\nالضرر بالتناسب مع مستوى\r\nمقياس الصحة الأحمر خاصتك."
+        }
+    },
+    {
+        "id": "shock_absorber",
+        "maxLevel": 1,
+        "names": {
+            "ja": "緩衝",
+            "en": "Shock Absorber",
+            "fr": "Anti-chocs",
+            "it": "Assorbimento danni",
+            "de": "Schockabsorber",
+            "es": "Absorbedescargas",
+            "ru": "Поглощение ударов",
+            "pl": "Pochłaniacz uderzeń",
+            "pt": "Amortecedor",
+            "ko": "완충",
+            "zh-Hant": "緩衝",
+            "zh-Hans": "缓冲",
+            "ar": "ممتص الصدمات"
+        },
+        "texts": {
+            "ja": "同行する仲間に攻撃を当てた際、または\r\n仲間からの攻撃が当たった際それぞれの\r\nダメージリアクションを無効化する。\r\n（特定の状態異常中は効果無効）",
+            "en": "Disables damage reactions when you\r\nhit a friend or when a friend hits you.\r\n(Does not apply during certain status\r\nailments.)",
+            "fr": "Désactive les réactions aux dégâts\r\nlorsque vous touchez un allié ou\r\ninversement. (Ne s'applique pas\r\ndurant certaines afflictions.)",
+            "it": "Disattiva le reazioni ai danni\r\nquando colpisci o vieni colpito da\r\nun amico. (Non applicabile durante\r\nalcune alterazioni di stato.)",
+            "de": "Deaktiviert Schadensreaktionen, wenn\r\ndu einen Freund triffst oder wenn ein\r\nFreund dich trifft. (Gilt nicht bei\r\nbestimmten Status-Anomalien.)",
+            "es": "Desactiva la reacción al daño\r\ncuando golpeas a un aliado o\r\nviceversa. (No se aplica con\r\nciertos estados alterados).",
+            "ru": "Убирает реакцию при попадании\r\nпо другу или урону от друга.\r\nНе действует при определенных\r\nнегативных статусах.",
+            "pl": "Wyłącza reakcje na obrażenia, gdy\r\ntrafisz towarzysza lub on trafi\r\nciebie. (Nie obejmuje niektórych\r\nszkodliwych efektów).",
+            "pt": "Desativa reações de dano ao atingir\r\naliados ou ser atingido por eles.\r\n(Não se aplica durante certos\r\nefeitos negativos.)",
+            "ko": "동행한 동료에게 공격을 맞혔을 때,\r\n또는 동료의 공격에 맞았을 때\r\n대미지 리액션을 무효화한다.\r\n(특정 상태 이상 중에는 효과 무효)",
+            "zh-Hant": "當攻擊命中同行的夥伴，\r\n或受夥伴的攻擊命中時，\r\n可消除受到傷害時的反應動作。\r\n（陷入特定狀態異常時無效）",
+            "zh-Hans": "攻击命中同行的同伴，或是受到\r\n同伴的攻击时，使伤害反应无效。\r\n（在特定状态异常时不会生效）",
+            "ar": "لتعطيل تفاعلات الضرر عند إصابة\r\nصديق، أو عند إصابة الصديق لك.\r\n(لا ينطبق أثناء اعتلالات\r\nحالات معينة.)"
         }
     }
 ]

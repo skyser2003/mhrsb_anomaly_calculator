@@ -62083,5 +62083,1171 @@
             0,
             0
         ]
+    },
+    {
+        "id": "alice_head",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "アリシアヘッド",
+            "en": "Alice Head",
+            "fr": "Tête d'Alice",
+            "it": "Testa Alice",
+            "de": "Alice-Kopf",
+            "es": "Cabeza de Alice",
+            "ru": "Головной убор Алисы",
+            "pl": "Głowa Alice",
+            "pt": "Cabeça de Alice",
+            "ko": "알리시아헤드",
+            "zh-Hant": "亞莉希亞頭飾",
+            "zh-Hans": "艾丽西亚头饰",
+            "ar": "رأس أليس"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "alice_suit",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "アリシアスーツ",
+            "en": "Alice Suit",
+            "fr": "Tenue d'Alice",
+            "it": "Abito Alice",
+            "de": "Alice-Anzug",
+            "es": "Traje de Alice",
+            "ru": "Костюм Алисы",
+            "pl": "Strój Alice",
+            "pt": "Traje Alice",
+            "ko": "알리시아슈트",
+            "zh-Hant": "亞莉希亞服裝",
+            "zh-Hans": "艾丽西亚服装",
+            "ar": "بذلة أليس"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "alice_braces",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "アリシアアーム",
+            "en": "Alice Braces",
+            "fr": "Avant-bras Alice",
+            "it": "Parabraccia Alice",
+            "de": "Alice-Armschienen",
+            "es": "Brazales de Alice",
+            "ru": "Наручи Алисы",
+            "pl": "Zarękawia Alice",
+            "pt": "Braçadeiras Alice",
+            "ko": "알리시아암",
+            "zh-Hant": "亞莉希亞腕甲",
+            "zh-Hans": "艾丽西亚腕甲",
+            "ar": "دروع ساعد أليس"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "alice_coil",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "アリシアコイル",
+            "en": "Alice Coil",
+            "fr": "Boucle d'Alice",
+            "it": "Spira Alice",
+            "de": "Alice-Hüftring",
+            "es": "Faja de Alice",
+            "ru": "Пояс Алисы",
+            "pl": "Ogon Alice",
+            "pt": "Cinturão de Alice",
+            "ko": "알리시아코일",
+            "zh-Hant": "亞莉希亞腰甲",
+            "zh-Hans": "艾丽西亚腰甲",
+            "ar": "لفيفة أليس"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "alice_legs",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "アリシアフット",
+            "en": "Alice Legs",
+            "fr": "Jambes Alice",
+            "it": "Gambe Alice",
+            "de": "Alice-Beine",
+            "es": "Piernas de Alice",
+            "ru": "Ноги Алисы",
+            "pl": "Nogi Alice",
+            "pt": "Pernas de Alice",
+            "ko": "알리시아풋",
+            "zh-Hant": "亞莉希亞鞋子",
+            "zh-Hans": "艾丽西亚鞋子",
+            "ar": "أقدام أليس"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "wild_head",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "ザ・ワイルドヘッド",
+            "en": "Wild Head",
+            "fr": "Tête Sauvage",
+            "it": "Testa selvaggia",
+            "de": "Wilder Kopf",
+            "es": "Cabeza salvaje",
+            "ru": "Дикий шлем",
+            "pl": "Dzika głowa",
+            "pt": "Cabeça Selvagem",
+            "ko": "더와일드헤드",
+            "zh-Hant": "狂野頭部",
+            "zh-Hans": "狂野头部",
+            "ar": "الرأس الوحشي"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "wild_body",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "ザ・ワイルドボディ",
+            "en": "Wild Body",
+            "fr": "Corps Sauvage",
+            "it": "Corpo selvaggio",
+            "de": "Wilder Körper",
+            "es": "Cuerpo salvaje",
+            "ru": "Дикий нагрудник",
+            "pl": "Dziki korpus",
+            "pt": "Corpo Selvagem",
+            "ko": "더와일드보디",
+            "zh-Hant": "狂野身體",
+            "zh-Hans": "狂野身体",
+            "ar": "الجسد الوحشي"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "wild_arms",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "ザ・ワイルドアーム",
+            "en": "Wild Arms",
+            "fr": "Bras sauvages",
+            "it": "Braccia selvagge",
+            "de": "Wilde Arme",
+            "es": "Brazos salvajes",
+            "ru": "Дикие наручи",
+            "pl": "Dzikie ramiona",
+            "pt": "Braços Selvagens",
+            "ko": "더와일드암",
+            "zh-Hant": "狂野腕部",
+            "zh-Hans": "狂野腕部",
+            "ar": "الأذرع الوحشية"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "wild_waist",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "ザ・ワイルドウエスト",
+            "en": "Wild Waist",
+            "fr": "Taille Sauvage",
+            "it": "Fiancale selvaggio",
+            "de": "Wilde Hüfte",
+            "es": "Cintura salvaje",
+            "ru": "Дикий пояс",
+            "pl": "Dziki pas",
+            "pt": "Cintura Selvagem",
+            "ko": "더와일드웨이스트",
+            "zh-Hant": "狂野腰部",
+            "zh-Hans": "狂野腰部",
+            "ar": "الخصر الوحشي"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "wild_legs",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "ザ・ワイルドレッグ",
+            "en": "Wild Legs",
+            "fr": "Jambes Sauvages",
+            "it": "Gambe selvagge",
+            "de": "Wilde Beine",
+            "es": "Piernas salvajes",
+            "ru": "Дикие поножи",
+            "pl": "Dzikie nogi",
+            "pt": "Pernas Selvagens",
+            "ko": "더와일드레그",
+            "zh-Hant": "狂野足部",
+            "zh-Hans": "狂野脚部",
+            "ar": "الأرجل الوحشية"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "tempest_crown",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "荒天【冠】",
+            "en": "Tempest Crown",
+            "fr": "Kanmuri Tempête",
+            "it": "Corona tempesta",
+            "de": "Sturm-Kanmuri",
+            "es": "Corona de tempestad",
+            "ru": "Штормовой венец",
+            "pl": "Korona burzliwości",
+            "pt": "Coroa da Tempestade",
+            "ko": "황천【관】",
+            "zh-Hant": "荒天【冠】",
+            "zh-Hans": "风雨 【冠】",
+            "ar": "تاج العاصفة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -3,
+            "waterRes": 4,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": -5
+        },
+        "skills": {
+            "evade_window": {
+                "level": 5
+            }
+        },
+        "slots": [
+            4,
+            3,
+            0
+        ]
+    },
+    {
+        "id": "tempest_robe",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "荒天【衣】",
+            "en": "Tempest Robe",
+            "fr": "Robe Tempête",
+            "it": "Tunica tempesta",
+            "de": "Sturm-Gewand",
+            "es": "Toga de tempestad",
+            "ru": "Штормовой плащ",
+            "pl": "Szata burzliwości",
+            "pt": "Veste da Tempestade",
+            "ko": "황천【옷】",
+            "zh-Hant": "荒天【衣】",
+            "zh-Hans": "风雨 【衣】",
+            "ar": "رداء العاصفة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -3,
+            "waterRes": 4,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": -5
+        },
+        "skills": {
+            "heaven_sent": {
+                "level": 1
+            },
+            "critical_boost": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            4,
+            1
+        ]
+    },
+    {
+        "id": "tempest_sleeves",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "荒天【袂】",
+            "en": "Tempest Sleeves",
+            "fr": "Tamoto Tempête",
+            "it": "Maniche tempesta",
+            "de": "Sturm-Ärmel",
+            "es": "Mangas de tempestad",
+            "ru": "Штормовые рукава",
+            "pl": "Rękawy burzliwości",
+            "pt": "Mangas da Tempestade",
+            "ko": "황천【소매】",
+            "zh-Hant": "荒天【袖】",
+            "zh-Hans": "风雨 【袖】",
+            "ar": "أكمام العاصفة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -3,
+            "waterRes": 4,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": -5
+        },
+        "skills": {
+            "heaven_sent": {
+                "level": 1
+            },
+            "latent_power": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            4,
+            1
+        ]
+    },
+    {
+        "id": "tempest_obi",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "荒天【帯】",
+            "en": "Tempest Obi",
+            "fr": "Obi Tempête",
+            "it": "Obi tempesta",
+            "de": "Sturm-Obi",
+            "es": "Obi de tempestad",
+            "ru": "Штормовой оби",
+            "pl": "Obi burzliwości",
+            "pt": "Obi da Tempestade",
+            "ko": "황천【띠】",
+            "zh-Hant": "荒天【帶】",
+            "zh-Hans": "风雨 【带】",
+            "ar": "أوبي العاصفة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -3,
+            "waterRes": 4,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": -5
+        },
+        "skills": {
+            "latent_power": {
+                "level": 4
+            }
+        },
+        "slots": [
+            4,
+            3,
+            0
+        ]
+    },
+    {
+        "id": "tempest_hakama",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "荒天【袴】",
+            "en": "Tempest Hakama",
+            "fr": "Hakama Tempête",
+            "it": "Pantaloni tempesta",
+            "de": "Sturm-Hakama",
+            "es": "Hakama de tempestad",
+            "ru": "Штормовые хакама",
+            "pl": "Hakama burzliwości",
+            "pt": "Hakama da Tempestade",
+            "ko": "황천【하의】",
+            "zh-Hant": "荒天【下裳】",
+            "zh-Hans": "风雨 【裳】",
+            "ar": "هاكاما العاصفة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -3,
+            "waterRes": 4,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": -5
+        },
+        "skills": {
+            "heaven_sent": {
+                "level": 1
+            },
+            "critical_boost": {
+                "level": 2
+            }
+        },
+        "slots": [
+            4,
+            4,
+            0
+        ]
+    },
+    {
+        "id": "virtue_helm",
+        "part": "helm",
+        "sexType": "male",
+        "names": {
+            "ja": "ヴァチスヘルム",
+            "en": "Virtue Helm",
+            "fr": "Heaume Vertu",
+            "it": "Elmo virtù",
+            "de": "Tugend-Helm",
+            "es": "Casco de virtud",
+            "ru": "Шлем добродетели",
+            "pl": "Hełm cnoty",
+            "pt": "Elmo da Virtude",
+            "ko": "버추스헬름",
+            "zh-Hant": "神德頭盔",
+            "zh-Hans": "美德头盔",
+            "ar": "خوذة الفضيلة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "redirection": {
+                "level": 2
+            },
+            "defiance": {
+                "level": 2
+            }
+        },
+        "slots": [
+            4,
+            4,
+            0
+        ]
+    },
+    {
+        "id": "virtue_mail",
+        "part": "torso",
+        "sexType": "male",
+        "names": {
+            "ja": "ヴァチスメイル",
+            "en": "Virtue Mail",
+            "fr": "Cotte Vertu",
+            "it": "Cotta virtù",
+            "de": "Tugend-Panzer",
+            "es": "Cota de virtud",
+            "ru": "Доспех добродетели",
+            "pl": "Zbroja cnoty",
+            "pt": "C. Malha da Virtude",
+            "ko": "버추스메일",
+            "zh-Hant": "神德鎧甲",
+            "zh-Hans": "美德铠甲",
+            "ar": "درع صدر الفضيلة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "strife": {
+                "level": 2
+            },
+            "handicraft": {
+                "level": 3
+            },
+            "ammo_up": {
+                "level": 3
+            }
+        },
+        "slots": [
+            3,
+            1,
+            1
+        ]
+    },
+    {
+        "id": "virtue_braces",
+        "part": "arm",
+        "sexType": "male",
+        "names": {
+            "ja": "ヴァチスアーム",
+            "en": "Virtue Braces",
+            "fr": "Avant-bras Vertu",
+            "it": "Parabraccia virtù",
+            "de": "Tugend-Armschienen",
+            "es": "Brazales de virtud",
+            "ru": "Наручи добродетели",
+            "pl": "Zarękawia cnoty",
+            "pt": "Braçad. da Virtude",
+            "ko": "버추스암",
+            "zh-Hant": "神德腕甲",
+            "zh-Hans": "美德腕甲",
+            "ar": "دروع الفضيلة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "frenzied_bloodlust": {
+                "level": 1
+            },
+            "bloodlust": {
+                "level": 1
+            },
+            "attack_boost": {
+                "level": 3
+            }
+        },
+        "slots": [
+            3,
+            1,
+            0
+        ]
+    },
+    {
+        "id": "virtue_coil",
+        "part": "waist",
+        "sexType": "male",
+        "names": {
+            "ja": "ヴァチスコイル",
+            "en": "Virtue Coil",
+            "fr": "Tassette Vertu",
+            "it": "Spira virtù",
+            "de": "Tugend-Hüftring",
+            "es": "Faja de virtud",
+            "ru": "Пояс добродетели",
+            "pl": "Pas cnoty",
+            "pt": "Cinturão da Virtude",
+            "ko": "버추스코일",
+            "zh-Hant": "神德腰甲",
+            "zh-Hans": "美德腰甲",
+            "ar": "لفيفة الفضيلة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "frenzied_bloodlust": {
+                "level": 1
+            },
+            "bloodlust": {
+                "level": 1
+            },
+            "weakness_exploit": {
+                "level": 2
+            }
+        },
+        "slots": [
+            4,
+            2,
+            0
+        ]
+    },
+    {
+        "id": "virtue_greaves",
+        "part": "feet",
+        "sexType": "male",
+        "names": {
+            "ja": "ヴァチスグリーヴ",
+            "en": "Virtue Greaves",
+            "fr": "Grèves Vertu",
+            "it": "Schinieri virtù",
+            "de": "Tugend-Beinschienen",
+            "es": "Grebas de virtud",
+            "ru": "Поножи добродетели",
+            "pl": "Nagolenice cnoty",
+            "pt": "Grevas da Virtude",
+            "ko": "버추스그리브",
+            "zh-Hant": "神德護腿",
+            "zh-Hans": "美德护腿",
+            "ar": "درع ساق الفضيلة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "frenzied_bloodlust": {
+                "level": 1
+            },
+            "bloodlust": {
+                "level": 1
+            },
+            "strife": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            3,
+            1
+        ]
+    },
+    {
+        "id": "prudence_helm",
+        "part": "helm",
+        "sexType": "female",
+        "names": {
+            "ja": "プラグマヘルム",
+            "en": "Prudence Helm",
+            "fr": "Heaume Prudence",
+            "it": "Elmo prudenza",
+            "de": "Vernunft-Helm",
+            "es": "Casco de prudencia",
+            "ru": "Шлем благоразумия",
+            "pl": "Hełm rozwagi",
+            "pt": "Elmo da Prudência",
+            "ko": "프라그마헬름",
+            "zh-Hant": "永愛頭盔",
+            "zh-Hans": "久爱头盔",
+            "ar": "خوذة الحكمة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "redirection": {
+                "level": 2
+            },
+            "defiance": {
+                "level": 2
+            }
+        },
+        "slots": [
+            4,
+            4,
+            0
+        ]
+    },
+    {
+        "id": "prudence_mail",
+        "part": "torso",
+        "sexType": "female",
+        "names": {
+            "ja": "プラグマメイル",
+            "en": "Prudence Mail",
+            "fr": "Cotte Prudence",
+            "it": "Cotta prudenza",
+            "de": "Vernunft-Panzer",
+            "es": "Cota de prudencia",
+            "ru": "Доспех благоразумия",
+            "pl": "Zbroja rozwagi",
+            "pt": "C. Malha da Prudência",
+            "ko": "프라그마메일",
+            "zh-Hant": "永愛鎧甲",
+            "zh-Hans": "久爱铠甲",
+            "ar": "درع صدر الحكمة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "strife": {
+                "level": 2
+            },
+            "handicraft": {
+                "level": 3
+            },
+            "ammo_up": {
+                "level": 3
+            }
+        },
+        "slots": [
+            3,
+            1,
+            1
+        ]
+    },
+    {
+        "id": "prudence_braces",
+        "part": "arm",
+        "sexType": "female",
+        "names": {
+            "ja": "プラグマアーム",
+            "en": "Prudence Braces",
+            "fr": "Avant-bras Prudence",
+            "it": "Parabraccia prudenza",
+            "de": "Vernunft-Armschienen",
+            "es": "Brazales de prudencia",
+            "ru": "Наручи благоразумия",
+            "pl": "Zarękawia rozwagi",
+            "pt": "Braç. da Prudência",
+            "ko": "프라그마암",
+            "zh-Hant": "永愛腕甲",
+            "zh-Hans": "久爱腕甲",
+            "ar": "دروع الحكمة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "frenzied_bloodlust": {
+                "level": 1
+            },
+            "bloodlust": {
+                "level": 1
+            },
+            "attack_boost": {
+                "level": 3
+            }
+        },
+        "slots": [
+            3,
+            1,
+            0
+        ]
+    },
+    {
+        "id": "prudence_coil",
+        "part": "waist",
+        "sexType": "female",
+        "names": {
+            "ja": "プラグマコイル",
+            "en": "Prudence Coil",
+            "fr": "Tassette Prudence",
+            "it": "Spira prudenza",
+            "de": "Vernunft-Hüftring",
+            "es": "Faja de prudencia",
+            "ru": "Пояс благоразумия",
+            "pl": "Pas rozwagi",
+            "pt": "Cint. da Prudência",
+            "ko": "프라그마코일",
+            "zh-Hant": "永愛腰甲",
+            "zh-Hans": "久爱腰甲",
+            "ar": "لفيفة الحكمة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "frenzied_bloodlust": {
+                "level": 1
+            },
+            "bloodlust": {
+                "level": 1
+            },
+            "weakness_exploit": {
+                "level": 2
+            }
+        },
+        "slots": [
+            4,
+            2,
+            0
+        ]
+    },
+    {
+        "id": "prudence_greaves",
+        "part": "feet",
+        "sexType": "female",
+        "names": {
+            "ja": "プラグマグリーヴ",
+            "en": "Prudence Greaves",
+            "fr": "Grèves Prudence",
+            "it": "Schinieri prudenza",
+            "de": "VernunftBeinschienen",
+            "es": "Grebas de prudencia",
+            "ru": "Поножи благоразумия",
+            "pl": "Nagolenice rozwagi",
+            "pt": "Grevas da Prudência",
+            "ko": "프라그마그리브",
+            "zh-Hant": "永愛護腿",
+            "zh-Hans": "久爱护腿",
+            "ar": "درع ساق الحكمة"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 122,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": 2,
+            "elecRes": -1,
+            "dragonRes": -4
+        },
+        "skills": {
+            "frenzied_bloodlust": {
+                "level": 1
+            },
+            "bloodlust": {
+                "level": 1
+            },
+            "strife": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            3,
+            1
+        ]
+    },
+    {
+        "id": "buff_chest",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "マッスルボディ",
+            "en": "Buff Chest",
+            "fr": "Torse muscles",
+            "it": "Busto muscoloso",
+            "de": "Muskulöse Brust",
+            "es": "Coraza musculosa",
+            "ru": "Нагрудник силача",
+            "pl": "Krzepki tułów",
+            "pt": "Peito Sarado",
+            "ko": "머슬보디",
+            "zh-Hant": "健美身體",
+            "zh-Hans": "健美身体",
+            "ar": "صدر التعزيز"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 120,
+            "fireRes": 2,
+            "waterRes": -1,
+            "iceRes": 0,
+            "elecRes": -1,
+            "dragonRes": -3
+        },
+        "skills": {
+            "agitator": {
+                "level": 3
+            },
+            "guts": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            1,
+            0
+        ]
+    },
+    {
+        "id": "buff_arms",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "マッスルアーム",
+            "en": "Buff Arms",
+            "fr": "Bras muscles",
+            "it": "Braccia muscolose",
+            "de": "Muskulöse Arme",
+            "es": "Brazos musculosos",
+            "ru": "Наручи силача",
+            "pl": "Krzepkie ramiona",
+            "pt": "Braços Sarados",
+            "ko": "머슬암",
+            "zh-Hant": "健美腕部",
+            "zh-Hans": "健美腕部",
+            "ar": "أذرع التعزيز"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 120,
+            "fireRes": 2,
+            "waterRes": -1,
+            "iceRes": 0,
+            "elecRes": -1,
+            "dragonRes": -3
+        },
+        "skills": {
+            "attack_boost": {
+                "level": 2
+            },
+            "heroics": {
+                "level": 3
+            }
+        },
+        "slots": [
+            3,
+            2,
+            1
+        ]
+    },
+    {
+        "id": "buff_waist",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "マッスルウエスト",
+            "en": "Buff Waist",
+            "fr": "Taille muscles",
+            "it": "Fiancale muscoloso",
+            "de": "Muskulöse Hüfte",
+            "es": "Cintura musculosa",
+            "ru": "Пояс силача",
+            "pl": "Krzepki pas",
+            "pt": "Cintura Sarada",
+            "ko": "머슬웨이스트",
+            "zh-Hant": "健美腰部",
+            "zh-Hans": "健美腰部",
+            "ar": "خصر التعزيز"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 120,
+            "fireRes": 2,
+            "waterRes": -1,
+            "iceRes": 0,
+            "elecRes": -1,
+            "dragonRes": -3
+        },
+        "skills": {
+            "attack_boost": {
+                "level": 2
+            },
+            "guts": {
+                "level": 1
+            }
+        },
+        "slots": [
+            3,
+            2,
+            0
+        ]
+    },
+    {
+        "id": "buff_legs",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "マッスルレッグ",
+            "en": "Buff Legs",
+            "fr": "Jambes muscles",
+            "it": "Gambe muscolose",
+            "de": "Muskulöse Beine",
+            "es": "Piernas musculosas",
+            "ru": "Поножи силача",
+            "pl": "Krzepkie nogi",
+            "pt": "Pernas Saradas",
+            "ko": "머슬레그",
+            "zh-Hant": "健美足部",
+            "zh-Hans": "健美脚部",
+            "ar": "أرجل التعزيز"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 120,
+            "fireRes": 2,
+            "waterRes": -1,
+            "iceRes": 0,
+            "elecRes": -1,
+            "dragonRes": -3
+        },
+        "skills": {
+            "attack_boost": {
+                "level": 3
+            },
+            "fortify": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            1,
+            0
+        ]
     }
 ]

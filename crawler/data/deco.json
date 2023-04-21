@@ -3318,6 +3318,48 @@
         "slotSize": 4
     },
     {
+        "id": "attack_jewel_4",
+        "names": {
+            "ja": "攻撃珠Ⅱ【４】",
+            "en": "Attack Jewel+ 4",
+            "fr": "Joyau attaque+ 4",
+            "it": "G attacco II 4",
+            "de": "Angriff-Juwel+ 4",
+            "es": "Joya de ataque+ 4",
+            "ru": "Самоцвет атаки+ 4",
+            "pl": "Klejnot ataku+ 4",
+            "pt": "Joia Ataque+ 4",
+            "ko": "공격주Ⅱ【4】",
+            "zh-Hant": "攻擊珠Ⅱ【4】",
+            "zh-Hans": "攻击珠Ⅱ【4】",
+            "ar": "حلية الهجوم+ 4"
+        },
+        "skillId": "attack_boost",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "expert_jewel_4",
+        "names": {
+            "ja": "達人珠Ⅱ【４】",
+            "en": "Expert Jewel+ 4",
+            "fr": "Joyau du maître+ 4",
+            "it": "G occhio critico II 4",
+            "de": "Experten-Juwel+ 4",
+            "es": "Joya del experto+ 4",
+            "ru": "Самоцвет эксперта+ 4",
+            "pl": "Klejnot eksperta+ 4",
+            "pt": "Joia Especialista+ 4",
+            "ko": "달인주Ⅱ【4】",
+            "zh-Hant": "達人珠Ⅱ【4】",
+            "zh-Hans": "达人珠Ⅱ【4】",
+            "ar": "حلية الخبير+ 4"
+        },
+        "skillId": "critical_eye",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
         "id": "refresh_jewel_4",
         "names": {
             "ja": "早気珠Ⅱ【４】",
@@ -3503,6 +3545,27 @@
             "ar": "حلية الحارس+ 4"
         },
         "skillId": "offensive_guard",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "capacity_jewel_4",
+        "names": {
+            "ja": "装填珠Ⅱ【４】",
+            "en": "Capacity Jewel+ 4",
+            "fr": "Joyau armurier+ 4",
+            "it": "G cartucc. II 4",
+            "de": "Kapazitäts-Juwel+ 4",
+            "es": "Joya recargando+ 4",
+            "ru": "Сам. боезапаса+ 4",
+            "pl": "Klej. pojemności+ 4",
+            "pt": "Joia Capacidade+ 4",
+            "ko": "장전주Ⅱ【4】",
+            "zh-Hant": "裝填珠Ⅱ【４】",
+            "zh-Hans": "装填珠Ⅱ【4】",
+            "ar": "حلية السعة+ 4"
+        },
+        "skillId": "ammo_up",
         "skillLevel": 2,
         "slotSize": 4
     },
@@ -3818,6 +3881,27 @@
             "ar": "حلية الانتشار+ 4"
         },
         "skillId": "spread_up",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "challenger_jewel_4",
+        "names": {
+            "ja": "挑戦珠Ⅱ【４】",
+            "en": "Challenger Jewel+ 4",
+            "fr": "Joyau de témérité+ 4",
+            "it": "G istigatore II 4",
+            "de": "Herausforderer-Juwel+ 4",
+            "es": "Joya desafiante+ 4",
+            "ru": "Самоцвет вызова+ 4",
+            "pl": "Klejn. prowokatora+ 4",
+            "pt": "Joia Desafiante+ 4",
+            "ko": "도전주Ⅱ【4】",
+            "zh-Hant": "挑戰珠Ⅱ【4】",
+            "zh-Hans": "挑战珠Ⅱ【4】",
+            "ar": "حلية المتحدي+ 4"
+        },
+        "skillId": "agitator",
         "skillLevel": 2,
         "slotSize": 4
     },
@@ -4847,6 +4931,132 @@
             "ar": "حلية سلسلة+ 4"
         },
         "skillId": "burst",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "bloodlust_jewel_4",
+        "names": {
+            "ja": "狂蝕珠【４】",
+            "en": "Bloodlust Jewel 4",
+            "fr": "Joyau Soif de sang 4",
+            "it": "G sete di sangue 4",
+            "de": "Blutdurst-Juwel 4",
+            "es": "Joya ávida sangre 4",
+            "ru": "Самоц. жажды крови 4",
+            "pl": "Klejn. żądzy krwi 4",
+            "pt": "Joia Sede de Sangue 4",
+            "ko": "광식주【4】",
+            "zh-Hant": "狂蝕珠【4】",
+            "zh-Hans": "狂蚀珠【4】",
+            "ar": "حلية التعطش للدماء 4"
+        },
+        "skillId": "bloodlust",
+        "skillLevel": 1,
+        "slotSize": 4
+    },
+    {
+        "id": "embolden_jewel_4",
+        "names": {
+            "ja": "煽衛珠Ⅱ【４】",
+            "en": "Embolden Jewel+ 4",
+            "fr": "Joyau vaillance+ 4",
+            "it": "G guardia alata II 4",
+            "de": "Ermutigen-Juwel+ 4",
+            "es": "Joya enardeced.+ 4",
+            "ru": "Самоцв. воодуш.+ 4",
+            "pl": "Klejnot ośmiel.+ 4",
+            "pt": "Joia Bloqueio+ 4",
+            "ko": "선위주Ⅱ【4】",
+            "zh-Hant": "煽動珠Ⅱ【４】",
+            "zh-Hans": "讽御珠Ⅱ【4】",
+            "ar": "حلية حارس جناح+ 4"
+        },
+        "skillId": "embolden",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "intrepid_jewel_3",
+        "names": {
+            "ja": "剛心珠Ⅱ【３】",
+            "en": "Intrepid Jewel+ 3",
+            "fr": "Joyau audacieux+ 3",
+            "it": "G intrepido II 3",
+            "de": "Furchtlos-Juwel+ 3",
+            "es": "Joya intrépida+ 3",
+            "ru": "Самоцвет бесстр.+ 3",
+            "pl": "Nieustrasz. klejnot+ 3",
+            "pt": "Joia Intrépida+ 3",
+            "ko": "강심주Ⅱ【3】",
+            "zh-Hant": "剛心珠Ⅱ【3】",
+            "zh-Hans": "刚心珠Ⅱ【3】",
+            "ar": "حلية الجسور+ 3"
+        },
+        "skillId": "intrepid_heart",
+        "skillLevel": 2,
+        "slotSize": 3
+    },
+    {
+        "id": "trigger_jewel_4",
+        "names": {
+            "ja": "翻異珠Ⅱ【４】",
+            "en": "Trigger Jewel+ 4",
+            "fr": "Joyau catalyseur+ 4",
+            "it": "G attivazione II 4",
+            "de": "Auslöser-Juwel+ 4",
+            "es": "Joya activación+ 4",
+            "ru": "Самоцвет смены+ 4",
+            "pl": "Wywołuj. klejnot+ 4",
+            "pt": "Joia Ativação+ 4",
+            "ko": "번이주Ⅱ【4】",
+            "zh-Hant": "翻異珠Ⅱ【４】",
+            "zh-Hans": "翻异珠Ⅱ【4】",
+            "ar": "حلية المحفز+ 4"
+        },
+        "skillId": "status_trigger",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
+        "id": "shockproof_jewel_1",
+        "names": {
+            "ja": "緩衝珠【１】",
+            "en": "Shockproof Jewel 1",
+            "fr": "Joyau Antichoc 1",
+            "it": "G antiurto 1",
+            "de": "Schocksicherjuwel1",
+            "es": "Joya absorción 1",
+            "ru": "Самоцвет шока 1",
+            "pl": "Klejn. wstrząsoodp. 1",
+            "pt": "Joia Antichoque 1",
+            "ko": "완충주【１】",
+            "zh-Hant": "緩衝珠【1】",
+            "zh-Hans": "缓冲珠【1】",
+            "ar": "حلية مقاومة للصدمات 1"
+        },
+        "skillId": "shock_absorber",
+        "skillLevel": 1,
+        "slotSize": 1
+    },
+    {
+        "id": "bladescale_jewel_4",
+        "names": {
+            "ja": "刃鱗珠Ⅱ【４】",
+            "en": "Bladescale Jewel+ 4",
+            "fr": "Joyau Lamécaille+ 4",
+            "it": "G scaglialama II 4",
+            "de": "Klngnschppnjwl+ 4",
+            "es": "Joya filoescama+ 4",
+            "ru": "Сам.острой чеш.+ 4",
+            "pl": "Klejnot ostrołuski+ 4",
+            "pt": "Joia Lamescama+ 4",
+            "ko": "인린주Ⅱ【4】",
+            "zh-Hant": "刃鱗珠Ⅱ【4】",
+            "zh-Hans": "刃鳞珠Ⅱ【4】",
+            "ar": "حلية حرشفة النصل+ 4"
+        },
+        "skillId": "bladescale_hone",
         "skillLevel": 2,
         "slotSize": 4
     }
