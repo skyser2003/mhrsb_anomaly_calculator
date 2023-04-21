@@ -203,7 +203,7 @@ function getDecoCombData(data: ResultFullEquipments) {
 
 		for (const skillId in comb.leftoverSkills) {
 			const level = comb.leftoverSkills[skillId];
-
+			
 			const skillName = SkillsData.getName(skillId, props.langData);
 
 			const text = `${skillName} Lv${level}`;
@@ -211,7 +211,7 @@ function getDecoCombData(data: ResultFullEquipments) {
 			leftoverSkills.push(text);
 		}
 
-		return { decos: allDecoTexts.join(" - "), slots: JSON.stringify(comb.leftoverSlotsSum), leftoverSkills: leftoverSkills.join(", ") };
+		return { decos: allDecoTexts.join(" - "), slots: JSON.stringify(comb.leftoverSlotsSum), leftover_skills: leftoverSkills.join(", ") };
 	});
 
 	return decoCombs;
