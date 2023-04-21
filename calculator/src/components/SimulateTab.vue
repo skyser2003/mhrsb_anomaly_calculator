@@ -145,6 +145,30 @@ for (const cat of skillCats.value) {
 	});
 }
 
+async function loadManuals() {
+	console.log("Loading manuals...");
+
+	const manualAnomalies = CacheManager.getManualAnomalies();
+	const manualTalismans = CacheManager.getManualTalismans();
+
+	const proms = [
+		await invoke("cmd_set_manual_anomalies", { anomalies: manualAnomalies }),
+		await invoke("cmd_set_manual_talismans", { talismans: manualTalismans })
+	];
+
+	const [result1, result2] = await Promise.all(proms);
+
+	if (result1 === false) {
+		console.error("Manual anomaly load failed");
+	}
+
+	if (result2 === false) {
+		console.error("Manual talisman load failed");
+	}
+
+	console.log("Manual anomaly/talisman loading done");
+}
+
 
 async function calculate() {
 	const localSelectedSkills = {} as { [key: string]: number };
@@ -176,6 +200,8 @@ async function calculate() {
 	is_calculating.value = true;
 	calcResult.value.calcTime = 0;
 	calcResult.value.fullEquipments = [];
+
+	await loadManuals();
 
 	try {
 		const result = await invoke("cmd_calculate_skillset", {
