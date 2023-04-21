@@ -2,6 +2,7 @@
 
 import { ref } from "vue";
 import { invoke } from "@tauri-apps/api/tauri";
+import { getVersion } from "@tauri-apps/api/app";
 
 import SimulateTab from "./components/SimulateTab.vue";
 import AnomaliesTab from "./components/AnomaliesTab.vue";
@@ -30,6 +31,10 @@ gaScript2.innerHTML = `
 document.head.insertBefore(gaScript2, document.head.firstChild);
 document.head.insertBefore(gaScript1, document.head.firstChild);
 
+const appVersion = ref("");
+getVersion().then((version) => {
+  appVersion.value = version;
+});
 
 const langData = ref<Language>("ko");
 const activeKey = ref("0");
@@ -191,5 +196,6 @@ function onChangeDesignTheme() {
     <a-anchor-link href="https://github.com/skyser2003/mhrsb_anomay_calculator" title="https://github.com/skyser2003/mhrsb_anomay_calculator" target="_blank" />
     </a-anchor>
   </a-divider>
-    <a-divider>Questions and feedbacks to - mhrsb.calculator@gmail.com</a-divider>
+  <a-divider>Questions and feedbacks to - mhrsb.calculator@gmail.com</a-divider>
+  <a-divider>Version {{ appVersion }}</a-divider>
 </template>
