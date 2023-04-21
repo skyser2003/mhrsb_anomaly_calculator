@@ -66,8 +66,8 @@ function getResImageName(key: string) {
 		</thead>
 		<tbody class="ant-table-tbody">
 			<tr>
-				<template v-for="statKey in Object.keys(stat)">
-					<td class="ant-table-cell">{{ stat[statKey] }}</td>
+				<template v-for="value in stat">
+					<td class="ant-table-cell">{{ value }}</td>
 				</template>
 			</tr>
 		</tbody>

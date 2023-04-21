@@ -178,8 +178,8 @@ function getAnomalyImageName() {
 		<template #expandIcon="{}">
 		</template>
 
-		<template #bodyCell="{ text, index, column, record }">
-			<template v-if="record.anomalyInfo[column.key]?.isAnomaly === true">
+		<template #bodyCell="{ text, column, record }">
+			<template v-if="record.anomalyInfo[column.key] === true">
 				{{ text }} <a-image :src="`${getAnomalyImageName()}`" :width="20" :preview="false" />
 			</template>
 			<template v-else-if="column.key === 'stat'">
