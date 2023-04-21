@@ -24,6 +24,7 @@ interface TableData {
 	stat: ArmorStatInfo;
 	leftover_slots: string;
 	common_leftover_skills: string;
+	anomalyInfo: {[key: string]: boolean};
 }
 
 const props = defineProps<{
@@ -139,6 +140,13 @@ function generateTableData(calcResult: CalculateResult) {
 			leftoverSkillsText.push(text);
 		}
 
+		const anomalyInfo = {} as {[key: string]: boolean};
+
+		for (const key in equips.armors) {
+			const armor = equips.armors[key];
+			anomalyInfo[key] = armor.isAnomaly;
+		}
+
 		return {
 			key: index,
 			helm: ArmorsData.getName(equips.armors["helm"].baseId, props.langData),
@@ -150,6 +158,7 @@ function generateTableData(calcResult: CalculateResult) {
 			stat: getTotalStat(equips.armors),
 			leftover_slots: allLeftoverSlotsTexts.join(", "),
 			common_leftover_skills: leftoverSkillsText.join(", "),
+			anomalyInfo
 		} as TableData;
 	});
 }
@@ -170,8 +179,7 @@ function getAnomalyImageName() {
 		</template>
 
 		<template #bodyCell="{ text, index, column, record }">
-			<template
-				v-if="ArmorsData.isArmorPart(column.key) && calcResult.fullEquipments[index].armors[column.key].isAnomaly === true">
+			<template v-if="record.anomalyInfo[column.key]?.isAnomaly === true">
 				{{ text }} <a-image :src="`${getAnomalyImageName()}`" :width="20" :preview="false" />
 			</template>
 			<template v-else-if="column.key === 'stat'">

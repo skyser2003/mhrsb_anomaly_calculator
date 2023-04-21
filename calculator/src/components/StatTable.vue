@@ -51,37 +51,25 @@ function getResImageName(key: string) {
 </script>
 
 <template>
-	<a-table class="stat_table" :columns="columns" :data-source="[stat, stat]" :pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">
-		<template #headerCell="{}">
-			<template></template>
-		</template>
-		<template #bodyCell="{ index, column, text }">
-			<template v-if="column.key === 'defense'">
-				<template v-if="index === 0">
-					{{ UIData["defense"][langData] }}
+	<table class="ant-table">
+		<thead class="ant-table-thead">
+			<tr>
+				<template v-for="statKey in Object.keys(stat)">
+					<template v-if="statKey === 'defense'">
+						<th class="ant-table-cell">{{ UIData[statKey][langData] }}</th>
+					</template>
+					<template v-else>
+						<th><img :src="`${getResImageName(statKey)}`" :width="20" /></th>
+					</template>
 				</template>
-				<template v-else>
-					{{ stat.defense }}
+			</tr>
+		</thead>
+		<tbody class="ant-table-tbody">
+			<tr>
+				<template v-for="statKey in Object.keys(stat)">
+					<td class="ant-table-cell">{{ stat[statKey] }}</td>
 				</template>
-			</template>
-			<template v-else>
-				<template v-if="index === 0">
-					<a-image :src="`${getResImageName(column.key)}`" :width="20" :preview="false" />
-				</template>
-				<template v-else>
-					{{ text }}
-				</template>
-			</template>
-		</template>
-	</a-table>
+			</tr>
+		</tbody>
+	</table>
 </template>
-
-<style>
-.stat_table .ant-table {
-	margin: 0 !important;
-}
-
-.stat_table .ant-table-thead {
-	display: none;
-}
-</style>
