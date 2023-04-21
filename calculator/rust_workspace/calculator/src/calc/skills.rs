@@ -142,6 +142,37 @@ impl SkillsContainer {
 
         ret
     }
+
+    // Get common skill ids and corresponding minimum level
+    pub fn get_have_in_common_skills(others: &Vec<SkillsContainer>) -> SkillsContainer {
+        let mut ret = SkillsContainer::new();
+
+        if others.is_empty() {
+            return ret;
+        }
+
+        let mut iter = others.iter();
+
+        let first = iter.next().unwrap();
+
+        'skill_loop: for (uid, level) in first.iter() {
+            let mut min_level = level;
+
+            for other in iter.clone() {
+                let other_level = other.get(uid);
+
+                if other_level == 0 {
+                    continue 'skill_loop;
+                }
+
+                min_level = min_level.min(other_level);
+            }
+
+            ret.set(uid, min_level);
+        }
+
+        ret
+    }
 }
 
 impl<'a> Iterator for SkillsContainerIterator<'a> {

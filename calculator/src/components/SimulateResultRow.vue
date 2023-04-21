@@ -2,7 +2,7 @@
 
 import { ref } from "vue";
 
-import { ResultFullEquipments, ResultArmor, ResultFavorite, EquipSlots } from "../definition/calculate_result";
+import { ResultFullEquipments, ResultArmor, ResultFavorite, EquipSlots, Skills } from "../definition/calculate_result";
 import { SkillsData } from "../models/skills";
 import { SlotsDataManager } from "../models/slots";
 
@@ -81,7 +81,7 @@ const decoColumns = [
 		width: 70,
 	},
 	{
-		title: UIData["leftover_skills"][props.langData],
+		title: UIData["excess_skills"][props.langData],
 		dataIndex: "leftover_skills",
 		key: "leftover_skills",
 		width: 200,
@@ -191,6 +191,10 @@ function getDecoCombData(data: ResultFullEquipments) {
 			leftoverSkills.push(text);
 		}
 
+		if (leftoverSkills.length === 0) {
+			leftoverSkills.push(`(${UIData["no_excess_skill"][props.langData]})`);
+		}
+
 		return { decos: allDecoTexts.join(" - "), slots: JSON.stringify(comb.leftoverSlotsSum), leftover_skills: leftoverSkills.join(", ") };
 	});
 
@@ -198,14 +202,23 @@ function getDecoCombData(data: ResultFullEquipments) {
 }
 
 function addResultFavorite(index: number) {
-	const armors = props.data.armors;
-	const talisman = props.data.talisman;
-	const decoComb = props.data.decoCombs[index];
+	const copyData = JSON.parse(JSON.stringify(props.data)) as ResultFullEquipments;
+
+	const armors = copyData.armors;
+	const talisman = copyData.talisman;
+	const decoComb = copyData.decoCombs[index];
+
+	for (const skillId in copyData.commonLeftoverSkills) {
+		const prevLevel = decoComb.leftoverSkills[skillId] || 0;
+		const level = prevLevel + copyData.commonLeftoverSkills[skillId];
+
+		decoComb.leftoverSkills[skillId] = level;
+	}
 
 	const fav: ResultFavorite = {
 		name: "",
-		sexType: props.data.sexType,
-		weaponSlots: props.data.weaponSlots,
+		sexType: copyData.sexType,
+		weaponSlots: copyData.weaponSlots,
 		armors,
 		talisman,
 		decoComb

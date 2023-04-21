@@ -13,12 +13,15 @@ export interface CalculateResult {
     calcTime: number;
 }
 
-export interface ResultFullEquipments {
+export interface FullEquipmentsCommon {
     sexType: SexType;
     weaponSlots: EquipSlots;
     armors: { [key: string]: ResultArmor };
     talisman: ResultTalisman;
+}
+export interface ResultFullEquipments extends FullEquipmentsCommon {
     decoCombs: ResultDecorationCombination[];
+    commonLeftoverSkills: Skills;
 }
 
 export interface ResultArmor {
@@ -45,7 +48,7 @@ export interface ResultDecorationCombination {
     skillDecos: { [key: string]: number[] };
     slotsSum: Slots;
     leftoverSlotsSum: Slots;
-    leftoverSkills: { [key: string]: number };
+    leftoverSkills: Skills;
 }
 
 export interface SearchFavorite {
@@ -56,12 +59,8 @@ export interface SearchFavorite {
     reqSlots: Slots;
 }
 
-export interface ResultFavorite {
+export interface ResultFavorite extends FullEquipmentsCommon {
     name: string;
-    sexType: SexType;
-    weaponSlots: EquipSlots;
-    armors: { [key: string]: ResultArmor };
-    talisman: ResultTalisman;
     decoComb: ResultDecorationCombination;
 }
 

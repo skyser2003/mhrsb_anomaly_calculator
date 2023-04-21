@@ -197,7 +197,10 @@ function generateResultFullEquipments(fav: ResultFavorite) {
 		armors: fav.armors,
 		talisman: fav.talisman,
 		decoCombs: [fav.decoComb],
+		commonLeftoverSkills: {},
 	};
+
+	console.log(ret.decoCombs[0].leftoverSkills);
 	
 	return ret;
 }

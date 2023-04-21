@@ -23,6 +23,7 @@ interface TableData {
 	talisman: string;
 	stat: ArmorStatInfo;
 	leftover_slots: string;
+	common_leftover_skills: string;
 }
 
 const props = defineProps<{
@@ -64,6 +65,11 @@ const columns = ref([
 		title: UIData["talisman_name"][props.langData],
 		dataIndex: "talisman",
 		key: "talisman"
+	},
+	{
+		title: UIData["common_leftover_skills"][props.langData],
+		dataIndex: "common_leftover_skills",
+		key: "common_leftover_skills"
 	},
 	{
 		title: UIData["leftover_slots"][props.langData],
@@ -122,6 +128,17 @@ function generateTableData(calcResult: CalculateResult) {
 			allLeftoverSlotsTexts.push(key);
 		}
 
+		const leftoverSkillsText = [];
+
+		for (const skillId in equips.commonLeftoverSkills) {
+			const level = equips.commonLeftoverSkills[skillId];
+			const skillName = SkillsData.getName(skillId, props.langData);
+
+			const text = `${skillName} Lv${level}`;
+
+			leftoverSkillsText.push(text);
+		}
+
 		return {
 			key: index,
 			helm: ArmorsData.getName(equips.armors["helm"].baseId, props.langData),
@@ -132,6 +149,7 @@ function generateTableData(calcResult: CalculateResult) {
 			talisman: getTalismanText(equips.talisman),
 			stat: getTotalStat(equips.armors),
 			leftover_slots: allLeftoverSlotsTexts.join(", "),
+			common_leftover_skills: leftoverSkillsText.join(", "),
 		} as TableData;
 	});
 }

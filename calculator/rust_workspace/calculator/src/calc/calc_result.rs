@@ -32,6 +32,7 @@ pub struct ResultFullEquipments {
     pub armors: HashMap<String, ResultArmor>,
     pub talisman: ResultTalisman,
     pub deco_combs: Vec<ResultDecorationCombination>,
+    pub common_leftover_skills: HashMap<String, i8>,
 }
 
 #[derive(Serialize)]
@@ -165,6 +166,9 @@ impl CalcResultGenerator {
                 let avail_slots_lp =
                     FullEquipments::calculate_slots_lp(weapon_slots_lp, equipments) - req_slots_lp;
 
+                let common_leftover_skills =
+                    SkillsContainer::get_have_in_common_skills(&all_leftover_skills);
+
                 let mut result_deco_combs = deco_combs
                     .iter()
                     .zip(all_leftover_skills)
@@ -176,9 +180,21 @@ impl CalcResultGenerator {
                         let mut ret_leftover_skills = HashMap::new();
 
                         for (uid, level) in leftover_skills.iter() {
+                            let common_level = common_leftover_skills.get(uid);
+
+                            if common_level == 0 {
+                                continue;
+                            }
+
+                            let diff_level = level - common_level;
+
+                            if diff_level == 0 {
+                                continue;
+                            }
+
                             let skill_id = dm.get_skill(uid).id.clone();
 
-                            ret_leftover_skills.insert(skill_id, level);
+                            ret_leftover_skills.insert(skill_id, diff_level);
                         }
 
                         let ret = ResultDecorationCombination {
@@ -245,11 +261,17 @@ impl CalcResultGenerator {
                     slots: equip.slots().data.0[0].to_vec(),
                 };
 
+                let common_leftover_skills = common_leftover_skills
+                    .iter()
+                    .map(|(uid, level)| (dm.get_skill(uid).id.clone(), level))
+                    .collect();
+
                 ResultFullEquipments {
                     sex_type: sex_type.clone(),
                     weapon_slots: ori_weapon_slots.to_owned(),
                     armors: result_armors,
                     deco_combs: result_deco_combs,
+                    common_leftover_skills,
                     talisman: result_tali,
                 }
             })

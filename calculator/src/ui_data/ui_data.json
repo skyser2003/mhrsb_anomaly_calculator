@@ -71,6 +71,14 @@
         "ko": "추가 스킬",
         "en": "Leftover skills"
     },
+    "excess_skills": {
+        "ko": "초과 스킬",
+        "en": "Excess skills"
+    },
+    "no_excess_skill": {
+        "ko": "없음",
+        "en": "None"
+    },
     "base_armor_info": {
         "ko": "기본 정보",
         "en": "Base info"
@@ -254,5 +262,9 @@
     "mod_usage_explanation": {
         "ko": "모드로 생성된 텍스트 파일 경로를 등록하면, 해당 파일을 읽어서 장비를 생성합니다.",
         "en": "If you register the text file path created by the mod, the app will read the file and create equipments."
+    },
+    "common_leftover_skills": {
+        "ko": "공통 추가 스킬",
+        "en": "Common leftover skills"
     }
 }
