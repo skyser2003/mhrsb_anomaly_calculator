@@ -163,7 +163,8 @@
             "diversion",
             "master_mounter",
             "partbreaker",
-            "spiribirds_call"
+            "spiribirds_call",
+            "shock_absorber"
         ]
     },
     {
@@ -237,7 +238,9 @@
             "strife",
             "wind_mantle",
             "frostcraft",
-            "dragon_conversion"
+            "dragon_conversion",
+            "frenzied_bloodlust",
+            "heaven_sent"
         ]
     }
 ]
