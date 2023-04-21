@@ -555,13 +555,16 @@ async function deleteAllManualAnomalies() {
 	<div class="container">
 		<div>
 			<h1 style="display: inline-block;">{{ UIData["mod_managed_anomaly_explanation"][props.langData] }} </h1>
-			<a href="https://www.nexusmods.com/monsterhunterrise/mods/1477" target="_blank">(Mod link)</a>
+			<a href="https://www.nexusmods.com/monsterhunterrise/mods/1477" target="_blank"> (Mod link)</a>
+			<div>({{ UIData["mod_usage_explanation"][langData] }})</div>
 		</div>
 
-		<a-button @click="loadAnomalyFile()">Load anomaly file</a-button>
+		<br />
+
+		<a-button @click="loadAnomalyFile()">{{ UIData["register_file"][langData] }}</a-button>
 		<a-input v-model:value="anomaly_filename" placeholder="Anomaly crafting filename (exported via mod)" style="width: 500px" />
-		<a-button @click="parseAnomalyFile(anomaly_filename)" type="primary">Parse Anomaly</a-button>
-		<a-button @click="clearFileAnomalies">Clear</a-button>
+		<a-button @click="parseAnomalyFile(anomaly_filename)" type="primary">{{ UIData["manual_refresh"][langData] }}</a-button>
+		<a-button @click="clearFileAnomalies">{{ UIData["cancel_register"][langData] }}</a-button>
 
 		<template v-for="part in parts">
 			<a-table :columns="columns" :data-source="generateAnomalyData(anomalyArmorsByPart, part)"

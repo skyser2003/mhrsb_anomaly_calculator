@@ -173,11 +173,11 @@
     },
     "mod_managed_talisman_explanation": {
         "ko": "탈리스만 모드 파일",
-        "en": "Mod managed anomaly equipments"
+        "en": "Mod managed talismans"
     },
     "manually_managed_talisman_explanation": {
         "ko": "탈리스만 수동 관리",
-        "en": "Manually managed anomaly equipments"
+        "en": "Manually managed talismans"
     },
     "sex_type": {
         "ko": "성별",
@@ -238,5 +238,21 @@
     "app_version": {
         "ko": "버전",
         "en": "Version"
+    },
+    "register_file": {
+        "ko": "파일 등록",
+        "en": "Register file"
+    },
+    "manual_refresh": {
+        "ko": "수동 갱신",
+        "en": "Manual refresh"
+    },
+    "cancel_register": {
+        "ko": "등록 취소",
+        "en": "Cancel register"
+    },
+    "mod_usage_explanation": {
+        "ko": "모드로 생성된 텍스트 파일 경로를 등록하면, 해당 파일을 읽어서 장비를 생성합니다.",
+        "en": "If you register the text file path created by the mod, the app will read the file and create equipments."
     }
 }

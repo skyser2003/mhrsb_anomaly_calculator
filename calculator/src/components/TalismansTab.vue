@@ -278,13 +278,16 @@ async function deleteAllManualTalismans() {
 	<div class="container">
 		<div>
 			<h1 style="display: inline-block;">{{ UIData["mod_managed_talisman_explanation"][props.langData] }} </h1>
-			<a href="https://www.nexusmods.com/monsterhunterrise/mods/1092" target="_blank">(Mod link)</a>
+			<a href="https://www.nexusmods.com/monsterhunterrise/mods/1092" target="_blank"> (Mod link)</a>
+			<div>({{ UIData["mod_usage_explanation"][langData] }})</div>
 		</div>
 
-		<a-button @click="getTalismanFile()">Load talisman file</a-button>
+		<br />
+
+		<a-button @click="getTalismanFile()">{{ UIData["register_file"][props.langData] }}</a-button>
 		<a-input v-model:value="talismanFilename" placeholder="Talisman list filename (exported via mod)" style="width: 500px" />
-		<a-button @click="parseTalismanFile(talismanFilename)" type="primary">Parse Talisman</a-button>
-		<a-button @click="clearFileTalismans">Clear</a-button>
+		<a-button @click="parseTalismanFile(talismanFilename)" type="primary">{{ UIData["manual_refresh"][langData] }}</a-button>
+		<a-button @click="clearFileTalismans">{{ UIData["cancel_register"][langData] }}</a-button>
 
 		<a-divider style="border-color: #7cb305" dashed />
 
