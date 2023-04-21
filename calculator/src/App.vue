@@ -190,12 +190,12 @@ function onChangeDesignTheme() {
       </Suspense>
     </a-tab-pane>
   </a-tabs>
-  <a-divider>Created by</a-divider>
   <a-divider>
-    <a-anchor>
-    <a-anchor-link href="https://github.com/skyser2003/mhrsb_anomay_calculator" title="https://github.com/skyser2003/mhrsb_anomay_calculator" target="_blank" />
-    </a-anchor>
+    {{ UIData["github_url"][langData] }} -
+    <a href="https://github.com/skyser2003/mhrsb_anomaly_calculator" title="https://github.com/skyser2003/mhrsb_anomaly_calculator" target="_blank">
+      https://github.com/skyser2003/mhrsb_anomaly_calculator
+    </a>
   </a-divider>
-  <a-divider>Questions and feedbacks to - mhrsb.calculator@gmail.com</a-divider>
-  <a-divider>Version {{ appVersion }}</a-divider>
+  <a-divider>{{ UIData["questions_and_feedbacks"][langData] }} - mhrsb.calculator@gmail.com</a-divider>
+  <a-divider>{{ UIData["app_version"][langData] }} {{ appVersion }}</a-divider>
 </template>

@@ -226,5 +226,17 @@
     "sort_result_criteria": {
         "ko": "정렬 기준",
         "en": "Sort by"
+    },
+    "github_url": {
+        "ko": "GitHub",
+        "en": "GitHub"
+    },
+    "questions_and_feedbacks": {
+        "ko": "문의 및 피드백",
+        "en": "Questions and feedbacks"
+    },
+    "app_version": {
+        "ko": "버전",
+        "en": "Version"
     }
 }
