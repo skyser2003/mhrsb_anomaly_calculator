@@ -1,27 +1,5 @@
 [
     {
-        "id": "element_and_status_effect",
-        "names": {
-            "en": "Element & Status effect",
-            "ko": "속성 & 상태이상"
-        },
-        "skills": [
-            "fire_attack",
-            "water_attack",
-            "thunder_attack",
-            "ice_attack",
-            "dragon_attack",
-            "poison_attack",
-            "paralysis_attack",
-            "sleep_attack",
-            "blast_attack",
-            "critical_element",
-            "slugger",
-            "status_trigger",
-            "stamina_thief"
-        ]
-    },
-    {
         "id": "blademaster",
         "names": {
             "en": "Blademaster",
@@ -97,6 +75,28 @@
             "heroics",
             "coalescence",
             "artillery"
+        ]
+    },
+    {
+        "id": "element_and_status_effect",
+        "names": {
+            "en": "Element & Status effect",
+            "ko": "속성 & 상태이상"
+        },
+        "skills": [
+            "fire_attack",
+            "water_attack",
+            "thunder_attack",
+            "ice_attack",
+            "dragon_attack",
+            "poison_attack",
+            "paralysis_attack",
+            "sleep_attack",
+            "blast_attack",
+            "critical_element",
+            "slugger",
+            "status_trigger",
+            "stamina_thief"
         ]
     },
     {
