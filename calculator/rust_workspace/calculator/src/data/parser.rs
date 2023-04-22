@@ -1,5 +1,5 @@
 use csv::StringRecord;
-use log::info;
+use log::{debug, info};
 use std::fs::File;
 use std::io::BufReader;
 use std::sync::Arc;
@@ -28,6 +28,7 @@ pub fn parse_anomaly(
 
             let mut csv_reader = csv::ReaderBuilder::new()
                 .has_headers(false)
+                .flexible(true)
                 .from_reader(reader);
 
             let mut records = Vec::new();
