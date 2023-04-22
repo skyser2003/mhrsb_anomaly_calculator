@@ -22,7 +22,7 @@ use super::{
     types::{EquipmentsArray, PointsVec},
 };
 
-type AllRealEquipments<'a> = Vec<HashMap<String, &'a Arc<CalcEquipment>>>;
+pub type AllRealEquipments<'a> = Vec<HashMap<String, &'a Arc<CalcEquipment>>>;
 
 pub struct CalcDataManager {
     uid_gen: CalcEquipmentUid,

@@ -24,14 +24,14 @@ use crate::{
 };
 
 use super::{
-    calc_data_manager::CalcDataManager,
+    calc_data_manager::{AllRealEquipments, CalcDataManager},
     calc_point::CalcPoint,
     calc_result::CalculateResult,
     calc_vector::CalcVector,
     deco_combination::DecorationCombination,
     full_equipments::FullEquipments,
     skills::SkillsContainer,
-    types::{EquipmentsArray, SkillSlotCount, SlotsVec},
+    types::{EquipmentsArray, PointsVec, SkillSlotCount, SlotsVec},
 };
 
 pub struct Calculator {}
@@ -108,42 +108,34 @@ impl Calculator {
         ret
     }
 
-    pub fn calculate(
-        ori_weapon_slots: Vec<SkillSlotCount>,
-        selected_skills: IntMap<usize, SkillSlotCount>,
+    fn convert_input_data(
+        ori_weapon_slots: &Vec<SkillSlotCount>,
+        selected_skills: &SkillsContainer,
         free_slots: Vec<SkillSlotCount>,
-        sex_type: SexType,
-        include_lte_equips: bool,
         dm: &DataManager,
-        cm: &CalcDataManager,
-    ) -> (String, CalculateResult) {
-        let start_time = Instant::now();
+    ) -> (SlotsVec, PointsVec, SlotsVec, PointsVec, Vec<usize>) {
+        let weapon_slots = CalcEquipment::convert_from_base_slots(ori_weapon_slots);
+        let free_slots = SlotsVec::from_vec(free_slots);
 
-        let weapon_slots = CalcEquipment::convert_from_base_slots(&ori_weapon_slots);
         let weapon_slots_lp = CalcVector::convert_to_lp_slots(&weapon_slots);
         let weapon_points = dm.calc_slot_point_slots_lp(&weapon_slots_lp);
-        let selected_skills = Self::convert_to_skills_container(&selected_skills);
-        let free_slots = SlotsVec::from_vec(free_slots);
         let free_slots_lp = CalcVector::convert_to_lp_slots(&free_slots);
-        let req_points = dm.calc_req_point_slots_lp(&selected_skills, &free_slots_lp);
+        let req_points = dm.calc_req_point_slots_lp(selected_skills, &free_slots_lp);
         let req_uids = selected_skills.get_indices();
 
-        let mut ret = String::from("\n");
+        (
+            weapon_slots_lp,
+            weapon_points,
+            free_slots_lp,
+            req_points,
+            req_uids,
+        )
+    }
 
-        let (no_deco_skills, yes_deco_skills) = dm.get_leftover_skills(&selected_skills);
-        let has_unique_skill = !no_deco_skills.is_empty();
-
-        info!(
-            "Skills with yes deco: {:?}",
-            dm.skills_to_ids(&yes_deco_skills)
-        );
-        info!(
-            "Skills with no deco: {:?}",
-            dm.skills_to_ids(&no_deco_skills)
-        );
-
-        info!("Sex type: {:?}", sex_type);
-
+    fn get_multi_deco_skills(
+        dm: &DataManager,
+        yes_deco_skills: &SkillsContainer,
+    ) -> SkillsContainer {
         let mut multi_skills = SkillsContainer::new();
 
         for (uid, level) in yes_deco_skills.iter() {
@@ -154,8 +146,20 @@ impl Calculator {
             multi_skills.set(uid, level);
         }
 
-        info!("Multi skills: {:?}", multi_skills.debug(dm));
+        multi_skills
+    }
 
+    fn get_equipment_containers<'a>(
+        cm: &'a CalcDataManager,
+        yes_deco_skills: &'a SkillsContainer,
+        sex_type: &'a SexType,
+        include_lte_equips: bool,
+    ) -> (
+        AllRealEquipments<'a>,
+        Vec<Vec<&'a Arc<CalcEquipment>>>,
+        EquipmentsArray<'a>,
+        Vec<&'a Arc<CalcEquipment>>,
+    ) {
         let (all_original_equips, all_equips) =
             cm.get_all_equipments(&sex_type, include_lte_equips);
         let all_slot_equips = cm.get_slot_equipments();
@@ -174,6 +178,53 @@ impl Calculator {
 
         all_deco_slot_equips_flat.sort_by_cached_key(|equip| Reverse(equip.point()));
 
+        (
+            all_original_equips,
+            all_equips,
+            empty_equips,
+            all_deco_slot_equips_flat,
+        )
+    }
+
+    pub fn calculate(
+        ori_weapon_slots: Vec<SkillSlotCount>,
+        selected_skills: IntMap<usize, SkillSlotCount>,
+        free_slots: Vec<SkillSlotCount>,
+        sex_type: SexType,
+        include_lte_equips: bool,
+        dm: &DataManager,
+        cm: &CalcDataManager,
+    ) -> (String, CalculateResult) {
+        let start_time = Instant::now();
+
+        let selected_skills = Self::convert_to_skills_container(&selected_skills);
+
+        let (weapon_slots_lp, weapon_points, free_slots_lp, req_points, req_uids) =
+            Self::convert_input_data(&ori_weapon_slots, &selected_skills, free_slots, dm);
+
+        let mut ret = String::from("\n");
+
+        let (no_deco_skills, yes_deco_skills) = dm.get_leftover_skills(&selected_skills);
+        let has_unique_skill = !no_deco_skills.is_empty();
+
+        info!(
+            "Skills with yes deco: {:?}",
+            dm.skills_to_ids(&yes_deco_skills)
+        );
+        info!(
+            "Skills with no deco: {:?}",
+            dm.skills_to_ids(&no_deco_skills)
+        );
+
+        info!("Sex type: {:?}", sex_type);
+
+        let multi_skills = Self::get_multi_deco_skills(dm, &yes_deco_skills);
+
+        info!("Multi skills: {:?}", multi_skills.debug(dm));
+
+        let (all_original_equips, all_equips, empty_equips, all_deco_slot_equips_flat) =
+            Self::get_equipment_containers(cm, &yes_deco_skills, &sex_type, include_lte_equips);
+
         let (possible_candidate_vecs, _) = CalcDataManager::get_possible_unique_equips(
             &all_equips,
             &no_deco_skills,
@@ -188,19 +239,17 @@ impl Calculator {
             );
         }
 
-        let all_cancididate_len = possible_candidate_vecs[0].len()
-            * possible_candidate_vecs[1].len()
-            * possible_candidate_vecs[2].len()
-            * possible_candidate_vecs[3].len()
-            * possible_candidate_vecs[4].len()
-            * possible_candidate_vecs[5].len();
+        let all_candidate_len = possible_candidate_vecs
+            .iter()
+            .map(|cand| cand.len())
+            .product::<usize>();
 
         Self::info(
             &mut ret,
             &format!(
                 "Has unique skill: {}, all candidate armors count: {}, calculation: {:?}",
                 has_unique_skill,
-                all_cancididate_len,
+                all_candidate_len,
                 start_time.elapsed()
             ),
         );
