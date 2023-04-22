@@ -1,5 +1,5 @@
 use csv::StringRecord;
-use log::{debug, info};
+use log::info;
 use std::fs::File;
 use std::io::BufReader;
 use std::sync::Arc;

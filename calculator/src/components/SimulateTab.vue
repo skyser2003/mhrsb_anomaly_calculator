@@ -230,6 +230,60 @@ async function calculate() {
 	}
 }
 
+async function calculate_additional_skills() {
+	const localSelectedSkills = {} as { [key: string]: number };
+
+	for (const skillId in selectedSkills.value) {
+		if (skills.value[skillId] === undefined) {
+			delete selectedSkills.value[skillId];
+			continue;
+		}
+
+		let level = selectedSkills.value[skillId];
+
+		if (level !== 0) {
+			localSelectedSkills[skillId] = level;
+		}
+	}
+
+	const calcInput: CalcChoices = {
+		sexType: sexType.value,
+		weaponSlots: weaponSlots.value,
+		selectedSkills: localSelectedSkills,
+		freeSlots: freeSlots.value,
+	};
+
+	CacheManager.setCalcChoices(calcInput);
+
+	console.log(calcInput);
+
+	is_calculating.value = true;
+	calcResult.value.calcTime = 0;
+	calcResult.value.fullEquipments = [];
+
+	await loadManuals();
+
+	try {
+		const result = await invoke("cmd_calculate_additional_skills", {
+			"anomalyFilename": CacheManager.getAnomalyFilename(),
+			"talismanFilename": CacheManager.getTalismanFilename(),
+			"sexType": calcInput.sexType,
+			"weaponSlots": calcInput.weaponSlots,
+			"selectedSkills": calcInput.selectedSkills,
+			"freeSlots": calcInput.freeSlots,
+			"includeLteEquips": includeLteEquips.value,
+		}) as { [key: string]: any };
+
+		const localCalcResult = result["result"] as {[key: string]: number};
+
+		console.log(result);
+	} catch (e) {
+		console.error("cmd_calculate_additional_skills failed, ", e);
+	}
+
+	is_calculating.value = false;
+}
+
 function clear() {
 	sexType.value = "";
 	selectedSkills.value = {};
@@ -459,7 +513,12 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	<br />
 	<br />
 
-	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >{{ UIData["calculate_button"][langData] }}</a-button>
+	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >
+		{{ UIData["calculate_button"][langData] }}
+	</a-button>
+	<a-button @click="calculate_additional_skills" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >
+		{{ UIData["calculate_additional_skills_button"][langData] }}
+	</a-button>
 	<a-button @click="clear">{{ UIData["clear_search_condition"][langData] }}</a-button>
 
 	<br />

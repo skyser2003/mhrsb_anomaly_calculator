@@ -203,6 +203,10 @@
         "ko": "계산하기",
         "en": "Calculate"
     },
+    "calculate_additional_skills_button": {
+        "ko": "추가 스킬 계산하기",
+        "en": "Calculate additional skills"
+    },
     "add_button": {
         "ko": "추가하기",
         "en": "Add"

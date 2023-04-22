@@ -355,6 +355,74 @@ async fn cmd_calculate_skillset(
     Ok(CalculateSkillsetReturn { log, result })
 }
 
+#[tauri::command]
+async fn cmd_calculate_additional_skills(
+    anomaly_filename: String,
+    talisman_filename: String,
+    sex_type: SexType,
+    weapon_slots: Vec<SkillSlotCount>,
+    selected_skills: HashMap<String, SkillSlotCount>,
+    free_slots: Vec<SkillSlotCount>,
+    include_lte_equips: bool,
+    dm: tauri::State<'_, RwLock<DataManager>>,
+    cm: tauri::State<'_, RwLock<CalcDataManager>>,
+) -> Result<(String, HashMap<String, i8>), ()> {
+    info!("Start calculating...");
+
+    let selected_skills_uid;
+
+    {
+        selected_skills_uid = selected_skills
+            .iter()
+            .map(|(id, level)| (dm.read().unwrap().get_skill_uid(id), *level))
+            .collect::<IntMap<_, _>>();
+    }
+
+    {
+        let mut dm = dm.write().unwrap();
+        let mut cm = cm.write().unwrap();
+
+        let anomalies = parse_anomaly(
+            anomaly_filename.as_ref(),
+            dm.get_armors(),
+            dm.get_armor_name_dict(),
+            dm.get_skill_name_dict(),
+        );
+
+        let talismans = parse_talisman(talisman_filename.as_ref(), dm.get_skill_name_dict());
+
+        dm.set_file_anomalies(anomalies);
+        dm.set_file_talismans(talismans);
+
+        cm.load_anomalies(&dm);
+        cm.load_talismans(&dm);
+    }
+
+    let log;
+    let result;
+
+    {
+        let dm = dm.read().unwrap();
+        let mut cm = cm.write().unwrap();
+
+        let req_skills = Calculator::convert_to_skills_container(&selected_skills_uid);
+
+        cm.refresh_infos(&dm, &req_skills);
+
+        (log, result) = Calculator::calculate_additional_skills(
+            weapon_slots,
+            selected_skills_uid,
+            free_slots,
+            sex_type,
+            include_lte_equips,
+            &dm,
+            &cm,
+        );
+    }
+
+    Ok((log, result))
+}
+
 #[tokio::main]
 async fn main() {
     env_logger::init();
@@ -399,7 +467,8 @@ async fn main() {
             cmd_clear_manual_talismans,
             cmd_get_skill_names,
             cmd_get_armor_names,
-            cmd_calculate_skillset
+            cmd_calculate_skillset,
+            cmd_calculate_additional_skills
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
