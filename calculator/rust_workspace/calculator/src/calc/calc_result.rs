@@ -20,8 +20,8 @@ use super::{
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CalculateResult {
-    full_equipments: Vec<ResultFullEquipments>,
-    calc_time: f32,
+    pub full_equipments: Vec<ResultFullEquipments>,
+    pub calc_time: f32,
 }
 
 #[derive(Serialize)]

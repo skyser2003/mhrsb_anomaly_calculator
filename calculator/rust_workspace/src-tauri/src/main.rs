@@ -366,7 +366,7 @@ async fn cmd_calculate_additional_skills(
     include_lte_equips: bool,
     dm: tauri::State<'_, RwLock<DataManager>>,
     cm: tauri::State<'_, RwLock<CalcDataManager>>,
-) -> Result<(String, HashMap<String, i8>), ()> {
+) -> Result<(String, HashMap<String, SkillSlotCount>, Vec<SkillSlotCount>), ()> {
     info!("Start calculating...");
 
     let selected_skills_uid;
@@ -399,7 +399,8 @@ async fn cmd_calculate_additional_skills(
     }
 
     let log;
-    let result;
+    let skills;
+    let slots;
 
     {
         let dm = dm.read().unwrap();
@@ -409,7 +410,7 @@ async fn cmd_calculate_additional_skills(
 
         cm.refresh_infos(&dm, &req_skills);
 
-        (log, result) = Calculator::calculate_additional_skills(
+        (log, skills, slots) = Calculator::calculate_additional_skills(
             weapon_slots,
             selected_skills_uid,
             free_slots,
@@ -420,7 +421,7 @@ async fn cmd_calculate_additional_skills(
         );
     }
 
-    Ok((log, result))
+    Ok((log, skills, slots))
 }
 
 #[tokio::main]

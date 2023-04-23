@@ -15,7 +15,7 @@ use crate::{
         calc_equipment::CalcEquipment,
         calc_equips_iterator::CalcEquipmentsIterator,
         calc_result::CalcResultGenerator,
-        constant::{EQUIP_PART_COUNT, MAX_ANSWER_LENGTH},
+        constant::{EQUIP_PART_COUNT, MAX_ANSWER_LENGTH, MAX_SLOT_LEVEL},
     },
     data::{
         armor::{ArmorPart, BaseArmor, SexType},
@@ -578,154 +578,6 @@ impl Calculator {
         (ret, calculate_result)
     }
 
-    pub fn has_possible_combination(
-        candidates: &Vec<EquipmentsArray>,
-        selected_skills: &SkillsContainer,
-        all_deco_slot_equips_flat: &Vec<&Arc<CalcEquipment>>,
-        req_points: &PointsVec,
-        weapon_points: &PointsVec,
-        empty_equips: &EquipmentsArray,
-        weapon_slots_lp: &SlotsVec,
-        free_slots_lp: &SlotsVec,
-        req_uids: &Vec<usize>,
-        has_unique_skill: bool,
-        all_original_equips: &AllRealEquipments,
-        yes_deco_skills: &SkillsContainer,
-        sex_type: &SexType,
-        dm: &DataManager,
-        cm: &CalcDataManager,
-    ) -> bool {
-        candidates.into_iter().any(|possible_candidate_vec| {
-            let mut deco_req_skills = selected_skills.clone();
-
-            FullEquipments::subtract_skills(&possible_candidate_vec, &mut deco_req_skills);
-
-            let mut key_equips = Vec::new();
-            let mut key_parts = [false; EQUIP_PART_COUNT];
-
-            for &equipment in possible_candidate_vec.iter() {
-                if !BaseArmor::is_empty_armor(equipment.id()) {
-                    key_equips.push(equipment);
-                    key_parts[equipment.part()] = true;
-                };
-            }
-
-            let (mut parts, ge_equips_map) = CalcDataManager::get_possible_general_part_equips(
-                &all_deco_slot_equips_flat,
-                &deco_req_skills,
-                true,
-            );
-
-            parts.retain(|equip| !key_parts[equip.part()]);
-
-            // Check for static conditions
-            let mut parts_iterator = CalcEquipmentsIterator::new(
-                parts,
-                &key_equips,
-                req_points,
-                weapon_points,
-                empty_equips,
-                dm,
-                cm,
-                &selected_skills,
-            );
-
-            parts_iterator.any(|uids| {
-                let equipments = cm.get_full_equipments(&uids);
-
-                let multi_deco_leftovers = Self::check_static_conditions(
-                    dm,
-                    cm,
-                    &weapon_slots_lp,
-                    &equipments,
-                    &free_slots_lp,
-                    &selected_skills,
-                    &req_uids,
-                );
-
-                if multi_deco_leftovers.is_none() {
-                    return false;
-                }
-
-                let (multi_deco_req_skills, avail_slots_lp) = multi_deco_leftovers.unwrap();
-
-                if !dm.check_possible_deco_combs_lp(&multi_deco_req_skills, &avail_slots_lp) {
-                    return false;
-                }
-
-                let mut all_le_uids = Vec::new();
-
-                equipments.iter().for_each(|equip| {
-                    if !has_unique_skill || !key_parts[equip.part()] {
-                        if let Some(le_uids) = ge_equips_map.get(&equip.uid()) {
-                            for &uid in le_uids {
-                                all_le_uids.push(uid);
-                            }
-
-                            return;
-                        }
-                    }
-
-                    all_le_uids.push(equip.uid());
-                });
-
-                let mut all_le_equips = all_le_uids
-                    .iter()
-                    .map(|&uid| cm.get_by_uid(uid))
-                    .collect::<Vec<_>>();
-                all_le_equips.sort_by_cached_key(|equip| Reverse(equip.point()));
-
-                let mut le_iterator = CalcEquipmentsIterator::new(
-                    all_le_equips,
-                    &key_equips,
-                    &req_points,
-                    &weapon_points,
-                    &empty_equips,
-                    dm,
-                    cm,
-                    &selected_skills,
-                );
-
-                le_iterator.any(|le_uids| {
-                    let le_equips = cm.get_full_equipments(&le_uids);
-
-                    let multi_deco_leftovers = Self::check_static_conditions(
-                        dm,
-                        cm,
-                        &weapon_slots_lp,
-                        &le_equips,
-                        &free_slots_lp,
-                        &selected_skills,
-                        &req_uids,
-                    );
-
-                    if multi_deco_leftovers.is_none() {
-                        return false;
-                    }
-
-                    let (multi_deco_req_skills, avail_slots_lp) = multi_deco_leftovers.unwrap();
-
-                    if !dm.check_possible_deco_combs_lp(&multi_deco_req_skills, &avail_slots_lp) {
-                        return false;
-                    }
-
-                    let local_answers = Self::calculate_full_equip(
-                        dm,
-                        &all_original_equips,
-                        &selected_skills,
-                        &free_slots_lp,
-                        &yes_deco_skills,
-                        &weapon_slots_lp,
-                        &le_equips,
-                        &sex_type,
-                    );
-
-                    !local_answers.is_empty()
-                })
-            })
-        })
-    }
-
     pub fn calculate_additional_skills(
         ori_weapon_slots: Vec<SkillSlotCount>,
         selected_skills: IntMap<usize, SkillSlotCount>,
@@ -734,119 +586,121 @@ impl Calculator {
         include_lte_equips: bool,
         dm: &DataManager,
         cm: &CalcDataManager,
-    ) -> (String, HashMap<String, SkillSlotCount>) {
+    ) -> (String, HashMap<String, SkillSlotCount>, Vec<SkillSlotCount>) {
         let start_time = Instant::now();
-
-        let selected_skills = Self::convert_to_skills_container(&selected_skills);
-
-        let (weapon_slots_lp, weapon_points, free_slots_lp) =
-            Self::get_converted_input_data(&ori_weapon_slots, free_slots, dm);
-
-        let skills = dm.get_skills();
+        let mut log = String::new();
 
         let num_thread = (num_cpus::get() / 2).max(1);
-
         let builder = rayon::ThreadPoolBuilder::new()
             .num_threads(num_thread)
             .build()
             .unwrap();
 
+        Self::info(&mut log, &format!("Num_thread: {}", num_thread));
+
+        let (_, calc_result) = Self::calculate(
+            ori_weapon_slots.clone(),
+            selected_skills.clone(),
+            free_slots.clone(),
+            sex_type.clone(),
+            include_lte_equips,
+            dm,
+            cm,
+        );
+
+        let selected_skills = Self::convert_to_skills_container(&selected_skills);
+
+        let skills = dm.get_skills();
+
         let possible_skills = RwLock::new(HashMap::new());
+        let possible_slots = RwLock::new(SlotsVec::default());
 
         builder.install(|| {
-            skills.par_iter().for_each(|skill| {
-                let uid = dm.get_skill_uid(&skill.id);
+            calc_result.full_equipments.par_iter().for_each(|equip| {
+                for deco_comb in equip.deco_combs.iter() {
+                    let mut possible_slots = possible_slots.write().unwrap();
 
-                let min_level = if selected_skills.contains(uid) {
-                    selected_skills.get(uid) + 1
-                } else {
-                    1
-                };
-
-                debug!(
-                    "Additional skill info: {} ({} - {})",
-                    skill.id, min_level, skill.max_level
-                );
-
-                for level in (min_level..skill.max_level + 1).rev() {
-                    debug!(
-                        "Calculating additional skill: {} ({} <= {} <= {})",
-                        skill.id, min_level, level, skill.max_level
-                    );
-
-                    let mut selected_skills = selected_skills.clone();
-                    selected_skills.set(uid, level);
-
-                    let (req_points, req_uids) =
-                        Self::get_req_data(&selected_skills, &free_slots_lp, dm);
-
-                    let (no_deco_skills, yes_deco_skills) =
-                        dm.get_leftover_skills(&selected_skills);
-                    let has_unique_skill = !no_deco_skills.is_empty();
-
-                    let (all_original_equips, all_equips, empty_equips, all_deco_slot_equips_flat) =
-                        Self::get_equipment_containers(
-                            cm,
-                            &yes_deco_skills,
-                            &sex_type,
-                            include_lte_equips,
-                        );
-
-                    let (possible_candidate_vecs, _) = CalcDataManager::get_possible_unique_equips(
-                        &all_equips,
-                        &no_deco_skills,
-                        &empty_equips,
-                    );
-
-                    let mut possible_candidate_flat = possible_candidate_vecs
-                        .iter()
-                        .flatten()
-                        .copied()
-                        .collect::<Vec<_>>();
-
-                    possible_candidate_flat.sort_by_cached_key(|equip| Reverse(equip.point()));
-
-                    let candidates = Self::get_candidates(
-                        &possible_candidate_vecs,
-                        &selected_skills,
-                        &no_deco_skills,
-                    );
-
-                    let exists = Self::has_possible_combination(
-                        &candidates,
-                        &selected_skills,
-                        &all_deco_slot_equips_flat,
-                        &req_points,
-                        &weapon_points,
-                        &empty_equips,
-                        &weapon_slots_lp,
-                        &free_slots_lp,
-                        &req_uids,
-                        has_unique_skill,
-                        &all_original_equips,
-                        &yes_deco_skills,
-                        &sex_type,
-                        dm,
-                        cm,
-                    );
-
-                    if exists {
-                        possible_skills
-                            .write()
-                            .unwrap()
-                            .insert(skill.id.clone(), level);
-                        println!("Possible skill: {:?} - Lv{}", skill.id, level);
-
-                        return;
+                    for i in 0..MAX_SLOT_LEVEL {
+                        possible_slots[i] = possible_slots[i].max(deco_comb.leftover_slots_sum[i]);
                     }
                 }
+
+                skills.par_iter().for_each(|skill| {
+                    if possible_skills.read().unwrap().contains_key(&skill.id) {
+                        return;
+                    }
+
+                    let uid = dm.get_skill_uid(&skill.id);
+
+                    let all_req_deco_combs = &dm.get_deco_combs(uid);
+                    let is_unique_skill = all_req_deco_combs.is_empty();
+
+                    for deco_comb in equip.deco_combs.iter() {
+                        let mut existing_skills = equip.common_leftover_skills.clone();
+
+                        for (skill_id, level) in deco_comb.leftover_skills.iter() {
+                            let existing_level = existing_skills.get(skill_id).unwrap_or(&0);
+                            let new_level = existing_level + level;
+
+                            existing_skills.insert(skill_id.clone(), new_level);
+                        }
+
+                        for (skill_id, level) in existing_skills.iter_mut() {
+                            let skill_uid = dm.get_skill_uid(skill_id);
+                            *level += selected_skills.get(skill_uid);
+                        }
+
+                        let min_level = selected_skills.get(uid) + 1;
+
+                        let leftover_slots =
+                            SlotsVec::from_vec(deco_comb.leftover_slots_sum.clone());
+                        let leftover_slots_lp = CalcVector::convert_to_lp_slots(&leftover_slots);
+
+                        for level in (min_level..skill.max_level + 1).rev() {
+                            let req_level = level - existing_skills.get(&skill.id).unwrap_or(&0);
+
+                            if req_level <= 0 {
+                                possible_skills
+                                    .write()
+                                    .unwrap()
+                                    .insert(skill.id.clone(), level);
+                                return;
+                            }
+
+                            if is_unique_skill {
+                                continue;
+                            }
+
+                            let req_deco_combs = &all_req_deco_combs[(req_level - 1) as usize];
+
+                            for req_deco_comb in req_deco_combs.iter() {
+                                let req_deco_comb_lp =
+                                    CalcVector::convert_to_lp_slots(&req_deco_comb);
+
+                                if DecorationCombination::is_possible_static_lp(
+                                    &leftover_slots_lp,
+                                    &req_deco_comb_lp,
+                                ) {
+                                    possible_skills
+                                        .write()
+                                        .unwrap()
+                                        .insert(skill.id.clone(), level);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                });
             });
         });
 
-        let log = format!(
-            "Elapsed: {}, Possible skills: {:#?}",
-            start_time.elapsed().as_secs_f32(),
-            possible_skills
+        Self::info(
+            &mut log,
+            &format!(
+                "Elapsed: {}, Possible skills: {:?}",
+                start_time.elapsed().as_secs_f32(),
+                possible_skills.read().unwrap()
+            ),
         );
 
         debug!("{}", log);
@@ -854,7 +708,10 @@ impl Calculator {
         let possible_skills = possible_skills.read().unwrap();
         let possible_skills = possible_skills.clone();
 
-        (log, possible_skills)
+        let possible_slots = possible_slots.read().unwrap();
+        let possible_slots = possible_slots.data.0[0].to_vec();
+
+        (log, possible_skills, possible_slots)
     }
 
     pub fn calculate_full_equip<'a>(
