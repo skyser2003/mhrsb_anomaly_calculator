@@ -586,7 +586,13 @@ impl Calculator {
         include_lte_equips: bool,
         dm: &DataManager,
         cm: &CalcDataManager,
-    ) -> (String, HashMap<String, SkillSlotCount>, Vec<SkillSlotCount>) {
+    ) -> (
+        String,
+        usize,
+        f32,
+        HashMap<String, (SkillSlotCount, SkillSlotCount)>,
+        Vec<SkillSlotCount>,
+    ) {
         let start_time = Instant::now();
         let mut log = String::new();
 
@@ -615,21 +621,49 @@ impl Calculator {
         let possible_skills = RwLock::new(HashMap::new());
         let possible_slots = RwLock::new(SlotsVec::default());
 
+        let add_possible_skills =
+            |skill_id: &String, cur_level: SkillSlotCount, level: SkillSlotCount| {
+                let cur_level = cur_level.max(1);
+
+                let mut possible_skills = possible_skills.write().unwrap();
+                let uid = dm.get_skill_uid(skill_id);
+                let skill = dm.get_skill(uid);
+
+                let default_value = (skill.max_level, 0);
+
+                let (prev_cur_level, prev_level) =
+                    possible_skills.get(skill_id).unwrap_or(&default_value);
+
+                if prev_level < &level {
+                    let min_level = cur_level
+                        .min(*prev_cur_level)
+                        .max(selected_skills.get(uid) + 1);
+                    possible_skills.insert(skill_id.clone(), (min_level, level));
+                }
+            };
+
         builder.install(|| {
-            calc_result.full_equipments.par_iter().for_each(|equip| {
+            debug!(
+                "Full equipments length: {}",
+                calc_result.full_equipments.len()
+            );
+
+            calc_result.full_equipments.iter().for_each(|equip| {
                 for deco_comb in equip.deco_combs.iter() {
+                    let leftover_slots_sum_lp = CalcVector::convert_to_lp_slots(
+                        &SlotsVec::from_vec(deco_comb.leftover_slots_sum.clone()),
+                    );
+
                     let mut possible_slots = possible_slots.write().unwrap();
 
                     for i in 0..MAX_SLOT_LEVEL {
-                        possible_slots[i] = possible_slots[i].max(deco_comb.leftover_slots_sum[i]);
+                        possible_slots[i] = possible_slots[i].max(leftover_slots_sum_lp[i]);
                     }
                 }
 
-                skills.par_iter().for_each(|skill| {
-                    if possible_skills.read().unwrap().contains_key(&skill.id) {
-                        return;
-                    }
+                debug!("Equip deco combs length: {}", equip.deco_combs.len());
 
+                skills.par_iter().for_each(|skill| {
                     let uid = dm.get_skill_uid(&skill.id);
 
                     let all_req_deco_combs = &dm.get_deco_combs(uid);
@@ -645,25 +679,39 @@ impl Calculator {
                             existing_skills.insert(skill_id.clone(), new_level);
                         }
 
-                        for (skill_id, level) in existing_skills.iter_mut() {
-                            let skill_uid = dm.get_skill_uid(skill_id);
-                            *level += selected_skills.get(skill_uid);
+                        for (uid, level) in selected_skills.iter() {
+                            let skill_id = &dm.get_skill(uid).id;
+
+                            let existing_level = existing_skills.get(skill_id).unwrap_or(&0);
+                            let new_level = existing_level + level;
+
+                            existing_skills.insert(skill_id.clone(), new_level);
                         }
 
-                        let min_level = selected_skills.get(uid) + 1;
+                        let cur_level = *existing_skills.get(&skill.id).unwrap_or(&0);
+                        let adddition_min_level = selected_skills.get(uid) + 1;
 
                         let leftover_slots =
                             SlotsVec::from_vec(deco_comb.leftover_slots_sum.clone());
                         let leftover_slots_lp = CalcVector::convert_to_lp_slots(&leftover_slots);
 
-                        for level in (min_level..skill.max_level + 1).rev() {
-                            let req_level = level - existing_skills.get(&skill.id).unwrap_or(&0);
+                        for level in (adddition_min_level..skill.max_level + 1).rev() {
+                            let req_level = level - cur_level;
 
                             if req_level <= 0 {
-                                possible_skills
-                                    .write()
-                                    .unwrap()
-                                    .insert(skill.id.clone(), level);
+                                if skill.id == "bloodlust" {
+                                    println!(
+                                        "bloodlust (1) {} {} {} {} {:?} {:?}",
+                                        level,
+                                        cur_level,
+                                        req_level,
+                                        skill.max_level,
+                                        deco_comb.leftover_skills,
+                                        leftover_slots
+                                    );
+                                }
+
+                                add_possible_skills(&skill.id, cur_level, level);
                                 return;
                             }
 
@@ -674,6 +722,18 @@ impl Calculator {
                             let req_deco_combs = &all_req_deco_combs[(req_level - 1) as usize];
 
                             for req_deco_comb in req_deco_combs.iter() {
+                                if skill.id == "bloodlust" {
+                                    println!(
+                                        "bloodlust (2) {} {} {} {} {:?} {:?}",
+                                        level,
+                                        cur_level,
+                                        req_level,
+                                        skill.max_level,
+                                        req_deco_comb,
+                                        leftover_slots
+                                    );
+                                }
+
                                 let req_deco_comb_lp =
                                     CalcVector::convert_to_lp_slots(&req_deco_comb);
 
@@ -681,10 +741,7 @@ impl Calculator {
                                     &leftover_slots_lp,
                                     &req_deco_comb_lp,
                                 ) {
-                                    possible_skills
-                                        .write()
-                                        .unwrap()
-                                        .insert(skill.id.clone(), level);
+                                    add_possible_skills(&skill.id, cur_level, level);
                                     return;
                                 }
                             }
@@ -694,11 +751,13 @@ impl Calculator {
             });
         });
 
+        let total_time = start_time.elapsed().as_secs_f32();
+
         Self::info(
             &mut log,
             &format!(
                 "Elapsed: {}, Possible skills: {:?}",
-                start_time.elapsed().as_secs_f32(),
+                total_time,
                 possible_skills.read().unwrap()
             ),
         );
@@ -711,7 +770,13 @@ impl Calculator {
         let possible_slots = possible_slots.read().unwrap();
         let possible_slots = possible_slots.data.0[0].to_vec();
 
-        (log, possible_skills, possible_slots)
+        (
+            log,
+            calc_result.full_equipments.len(),
+            total_time,
+            possible_skills,
+            possible_slots,
+        )
     }
 
     pub fn calculate_full_equip<'a>(

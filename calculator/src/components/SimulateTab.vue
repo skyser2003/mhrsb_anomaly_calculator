@@ -9,13 +9,22 @@ import SkillsVec from "../data/skill.json";
 
 import { SkillCategory } from "../definition/skill_category_define";
 import { FinalSkillInfo } from "../definition/skill_define";
-import { CalculateResult, SearchFavorite, EquipSlots, Skills, Slots, ResultFavorite, SexType, CalcChoices, ResultFullEquipments, ResultArmor } from "../definition/calculate_result";
+import { CalculateResult, SearchFavorite, EquipSlots, Skills, MinMaxSkills, Slots, ResultFavorite, SexType, CalcChoices, ResultFullEquipments, ResultArmor, CalculateAdditionalSkillsResult } from "../definition/calculate_result";
 import { CacheManager } from "../model/data_manager";
 
 import SimulateResultTable from "./SimulateResultTable.vue"; 
+import AdditionalSkillsTable from "./AdditionalSkillsTable.vue";
 
 import UIData from "../ui_data/ui_data.json";
 import { Language } from "../definition/language";
+
+enum CalcState {
+	IDLE,
+	CALCULATING_COMBINATION,
+	CALCULATING_ADDITIONAL_SKILLS,
+	DONE_COMBINATION,
+	DONE_ADDITIONAL_SKILLS,
+}
 
 const free_slot_options = ref([
 	{
@@ -87,9 +96,15 @@ const freeSlots = ref<Slots>([0, 0, 0, 0]);
 const includeLteEquips = ref(false);
 
 const resultSortKey = ref("slots_sum");
-const is_calculating = ref(false);
+const calc_state = ref(CalcState.IDLE);
 
 const calcResult = ref<CalculateResult>({ fullEquipments: [], calcTime: 0 });
+const resultEquipmentsCount = ref(0);
+
+const additionalSkills = ref<MinMaxSkills>({});
+const additionalSlots = ref<Slots>([0, 0, 0, 0]);
+const originalSkills = ref<Skills>({});
+const originalSlots = ref<Slots>([0, 0, 0, 0]);
 
 for (const skill of skillsVec.value) {
 	skills.value[skill.id] = skill;
@@ -197,9 +212,10 @@ async function calculate() {
 
 	console.log(calcInput);
 
-	is_calculating.value = true;
+	calc_state.value = CalcState.CALCULATING_COMBINATION;
 	calcResult.value.calcTime = 0;
 	calcResult.value.fullEquipments = [];
+	resultEquipmentsCount.value = 0;
 
 	await loadManuals();
 
@@ -221,16 +237,17 @@ async function calculate() {
 		}
 
 		calcResult.value = localCalcResult;
-		is_calculating.value = false;
+		resultEquipmentsCount.value = calcResult.value.fullEquipments.length;
 
 		console.log(result);
 	} catch (e) {
-		is_calculating.value = false;
 		console.error("cmd_calculate_skillset failed, ", e);
 	}
+
+	calc_state.value = CalcState.DONE_COMBINATION;
 }
 
-async function calculate_additional_skills() {
+async function calculateAdditionalSkills() {
 	const localSelectedSkills = {} as { [key: string]: number };
 
 	for (const skillId in selectedSkills.value) {
@@ -257,9 +274,12 @@ async function calculate_additional_skills() {
 
 	console.log(calcInput);
 
-	is_calculating.value = true;
+	calc_state.value = CalcState.CALCULATING_ADDITIONAL_SKILLS;
+	resultEquipmentsCount.value = 0;
 	calcResult.value.calcTime = 0;
 	calcResult.value.fullEquipments = [];
+	additionalSkills.value = {};
+	additionalSlots.value = [0, 0, 0, 0];
 
 	await loadManuals();
 
@@ -272,16 +292,33 @@ async function calculate_additional_skills() {
 			"selectedSkills": calcInput.selectedSkills,
 			"freeSlots": calcInput.freeSlots,
 			"includeLteEquips": includeLteEquips.value,
-		}) as { [key: string]: any };
+		}) as CalculateAdditionalSkillsResult;
 
-		const localCalcResult = result["result"] as {[key: string]: number};
+		const sortedKeys = Object.keys(result.skills).sort((id1, id2) => {
+			const skill1 = skills.value[id1];
+			const skill2 = skills.value[id2];
+
+			return skill1.names[props.langData] > skill2.names[props.langData] ? 1 : -1;
+		});
+
+		resultEquipmentsCount.value = result.equipmentsCount;
+		additionalSkills.value = {};
+		additionalSlots.value = result.slots;
+
+		for (const skillId of sortedKeys) {
+			additionalSkills.value[skillId] = result.skills[skillId];
+		}
+
+		calcResult.value.calcTime = result.calcTime;
+		originalSkills.value = JSON.parse(JSON.stringify(selectedSkills.value));
+		originalSlots.value = JSON.parse(JSON.stringify(freeSlots.value));
 
 		console.log(result);
 	} catch (e) {
 		console.error("cmd_calculate_additional_skills failed, ", e);
 	}
 
-	is_calculating.value = false;
+	calc_state.value = CalcState.DONE_ADDITIONAL_SKILLS;
 }
 
 function clear() {
@@ -350,7 +387,7 @@ function addResultFavorite(fav: ResultFavorite) {
 }
 
 function canSubmit() {
-	return sexType.value !== "" && is_calculating.value === false;
+	return sexType.value !== "" && (calc_state.value === CalcState.IDLE || calc_state.value === CalcState.DONE_COMBINATION || calc_state.value === CalcState.DONE_ADDITIONAL_SKILLS);
 }
 
 const calcSlots = (equip: ResultFullEquipments) => {
@@ -516,7 +553,7 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >
 		{{ UIData["calculate_button"][langData] }}
 	</a-button>
-	<a-button @click="calculate_additional_skills" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >
+	<a-button @click="calculateAdditionalSkills" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >
 		{{ UIData["calculate_additional_skills_button"][langData] }}
 	</a-button>
 	<a-button @click="clear">{{ UIData["clear_search_condition"][langData] }}</a-button>
@@ -531,7 +568,7 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	<table>
 		<tr>
 			<td>{{ UIData["result_count"][langData] }}</td>
-			<td>{{ calcResult.fullEquipments ? calcResult.fullEquipments.length : 0 }}</td>
+			<td>{{ resultEquipmentsCount }}</td>
 		</tr>
 		<tr>
 			<td>{{ UIData["calc_time"][langData] }}</td>
@@ -547,12 +584,24 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 			</td>
 		</tr>
 	</table>
+
 	<br />
 
-	<template v-if="is_calculating">
-		<a-spin size="large" />
+	<template v-if="calc_state === CalcState.IDLE || calc_state === CalcState.DONE_COMBINATION">
+		<SimulateResultTable :langData="langData" :calcResult="calcResult" v-on:add_result_favorite="addResultFavorite" />
+	</template>
+	<template v-else-if="calc_state === CalcState.DONE_ADDITIONAL_SKILLS">
+		<template v-if="200 <= resultEquipmentsCount">
+			<div>{{ UIData["additional_skills_excess_200"][langData] }}</div>
+		</template>
+		<template v-else-if="resultEquipmentsCount === 0">
+			<div>{{ UIData["additional_skills_not_found"][langData] }}</div>
+		</template>
+		<template v-else>
+			<AdditionalSkillsTable :langData="langData" :skills="additionalSkills" :slots="additionalSlots" :selectedSkills="selectedSkills" :selectedSlots="freeSlots" :originalSkills="originalSkills" :originalSlots="originalSlots" />
+		</template>
 	</template>
 	<template v-else>
-		<SimulateResultTable :langData="langData" :calcResult="calcResult" v-on:add_result_favorite="addResultFavorite" />
+		<a-spin size="large" />
 	</template>
 </template>

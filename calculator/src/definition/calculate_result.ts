@@ -4,6 +4,7 @@ export const MAX_EQUIP_SLOTS = 3;
 export const MAX_SLOT_LEVEL = 4;
 
 export type Skills = { [key: string]: number };
+export type MinMaxSkills = { [key: string]: [number, number] };
 export type Slots = [number, number, number, number];
 export type EquipSlots = [number, number, number];
 export type SexType = "" | "male" | "female";
@@ -11,6 +12,13 @@ export type SexType = "" | "male" | "female";
 export interface CalculateResult {
     fullEquipments: ResultFullEquipments[];
     calcTime: number;
+}
+
+export interface CalculateAdditionalSkillsResult {
+    calcTime: number;
+    equipmentsCount: number;
+    skills: MinMaxSkills;
+    slots: Slots;
 }
 
 export interface FullEquipmentsCommon {

@@ -282,9 +282,20 @@ fn cmd_get_armor_names(dm: tauri::State<RwLock<DataManager>>) -> HashMap<String,
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 struct CalculateSkillsetReturn {
     log: String,
     result: CalculateResult,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+struct CalculateAdditionalSkillsReturn {
+    log: String,
+    equipments_count: usize,
+    calc_time: f32,
+    skills: HashMap<String, (SkillSlotCount, SkillSlotCount)>,
+    slots: Vec<SkillSlotCount>,
 }
 
 #[tauri::command]
@@ -366,7 +377,7 @@ async fn cmd_calculate_additional_skills(
     include_lte_equips: bool,
     dm: tauri::State<'_, RwLock<DataManager>>,
     cm: tauri::State<'_, RwLock<CalcDataManager>>,
-) -> Result<(String, HashMap<String, SkillSlotCount>, Vec<SkillSlotCount>), ()> {
+) -> Result<CalculateAdditionalSkillsReturn, ()> {
     info!("Start calculating...");
 
     let selected_skills_uid;
@@ -399,6 +410,8 @@ async fn cmd_calculate_additional_skills(
     }
 
     let log;
+    let calc_time;
+    let equipments_count;
     let skills;
     let slots;
 
@@ -410,7 +423,7 @@ async fn cmd_calculate_additional_skills(
 
         cm.refresh_infos(&dm, &req_skills);
 
-        (log, skills, slots) = Calculator::calculate_additional_skills(
+        (log, equipments_count, calc_time, skills, slots) = Calculator::calculate_additional_skills(
             weapon_slots,
             selected_skills_uid,
             free_slots,
@@ -421,7 +434,13 @@ async fn cmd_calculate_additional_skills(
         );
     }
 
-    Ok((log, skills, slots))
+    Ok(CalculateAdditionalSkillsReturn {
+        log,
+        equipments_count,
+        calc_time,
+        skills,
+        slots,
+    })
 }
 
 #[tokio::main]

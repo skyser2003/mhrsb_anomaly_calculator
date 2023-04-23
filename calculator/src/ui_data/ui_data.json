@@ -270,5 +270,29 @@
     "common_leftover_skills": {
         "ko": "공통 추가 스킬",
         "en": "Common leftover skills"
+    },
+    "additional_skill": {
+        "ko": "추가 스킬",
+        "en": "Additional skill"
+    },
+    "additional_skill_level": {
+        "ko": "추가 스킬 레벨",
+        "en": "Additional skill level"
+    },
+    "additional_slot": {
+        "ko": "추가 슬롯",
+        "en": "Additional slot"
+    },
+    "additional_slot_level": {
+        "ko": "추가 슬롯 레벨",
+        "en": "Additional slot level"
+    },
+    "additional_skills_excess_200": {
+        "ko": "장비 조합의 갯수가 200개를 초과하기 때문에 추가 스킬 검색을 사용할 수 없습니다.  장비 조합 갯수를 200개 미만으로 줄이도록 조건을 변경해주세요.",
+        "en": "The number of equipment combinations exceeds 200, so you cannot use the additional skill search. Please change the conditions so that the number of equipment combinations is less than 200."
+    },
+    "additional_skills_not_found": {
+        "ko": "장비 조합의 갯수가 0개이기 때문에 추가 스킬을 찾을 수 없습니다.",
+        "en": "The number of equipment combinations is 0, so you cannot find additional skills."
     }
 }
