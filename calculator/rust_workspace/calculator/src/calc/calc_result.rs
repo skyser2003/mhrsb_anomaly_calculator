@@ -28,6 +28,7 @@ pub struct CalculateResult {
 #[serde(rename_all = "camelCase")]
 pub struct ResultFullEquipments {
     pub sex_type: SexType,
+    pub total_raw_slots: Vec<SkillSlotCount>,
     pub weapon_slots: Vec<SkillSlotCount>,
     pub armors: HashMap<String, ResultArmor>,
     pub talisman: ResultTalisman,
@@ -163,8 +164,12 @@ impl CalcResultGenerator {
                     })
                     .collect::<HashMap<String, ResultArmor>>();
 
-                let avail_slots_lp =
-                    FullEquipments::calculate_slots_lp(weapon_slots_lp, equipments) - req_slots_lp;
+                let total_raw_slots_lp =
+                    FullEquipments::calculate_slots_lp(weapon_slots_lp, equipments);
+
+                let total_raw_slots = CalcVector::convert_from_lp_slots(&total_raw_slots_lp);
+
+                let avail_slots_lp = total_raw_slots_lp - req_slots_lp;
 
                 let common_leftover_skills =
                     SkillsContainer::get_have_in_common_skills(&all_leftover_skills);
@@ -268,6 +273,7 @@ impl CalcResultGenerator {
 
                 ResultFullEquipments {
                     sex_type: sex_type.clone(),
+                    total_raw_slots: total_raw_slots.data.0[0].to_vec(),
                     weapon_slots: ori_weapon_slots.to_owned(),
                     armors: result_armors,
                     deco_combs: result_deco_combs,

@@ -649,91 +649,56 @@ impl Calculator {
                     }
                 }
 
+                let mut all_raw_slots_lp = SlotsVec::from_vec(equip.total_raw_slots.clone());
+                CalcVector::convert_to_lp_slots_mut(&mut all_raw_slots_lp);
+
+                let equip_only_skills = RwLock::new(SkillsContainer::new());
+
+                {
+                    let mut equip_only_skills = equip_only_skills.write().unwrap();
+                    for armor in equip.armors.values() {
+                        for (skill_id, &level) in armor.skills.iter() {
+                            let skill_uid = dm.get_skill_uid(skill_id);
+
+                            equip_only_skills.add_level(skill_uid, level);
+                        }
+                    }
+
+                    for (skill_id, &level) in equip.talisman.skills.iter() {
+                        let skill_uid = dm.get_skill_uid(skill_id);
+
+                        equip_only_skills.add_level(skill_uid, level);
+                    }
+                }
+
+                let new_req_skills = RwLock::new(selected_skills.clone());
+
                 debug!("Equip deco combs length: {}", equip.deco_combs.len());
 
                 skills.par_iter().for_each(|skill| {
-                    let uid = dm.get_skill_uid(&skill.id);
+                    let new_req_skills = new_req_skills.read().unwrap().clone();
+                    let equip_only_skills = equip_only_skills.read().unwrap().clone();
 
-                    let all_req_deco_combs = &dm.get_deco_combs(uid);
-                    let is_unique_skill = all_req_deco_combs.is_empty();
+                    let skill_uid = dm.get_skill_uid(&skill.id);
+                    let is_unique = dm.get_deco_by_skill_id(skill_uid).is_empty();
 
-                    for deco_comb in equip.deco_combs.iter() {
-                        let mut existing_skills = equip.common_leftover_skills.clone();
+                    let min_additional_level = selected_skills.get(skill_uid) + 1;
 
-                        // TODO remove for loop
-                        for (skill_id, level) in deco_comb.leftover_skills.iter() {
-                            let existing_level = existing_skills.get(skill_id).unwrap_or(&0);
-                            let new_level = existing_level + level;
+                    for level in (min_additional_level..skill.max_level + 1).rev() {
+                        let mut new_req_skills = new_req_skills.clone();
+                        new_req_skills.set(skill_uid, level);
+                        new_req_skills.sub(&equip_only_skills);
 
-                            existing_skills.insert(skill_id.clone(), new_level);
+                        if is_unique && 0 < new_req_skills.get(skill_uid) {
+                            continue;
                         }
 
-                        // TODO remove for loop
-                        for (uid, level) in selected_skills.iter() {
-                            let skill_id = &dm.get_skill(uid).id;
+                        let all_possible_deco_combs =
+                            dm.get_full_possible_deco_combs(&new_req_skills);
 
-                            let existing_level = existing_skills.get(skill_id).unwrap_or(&0);
-                            let new_level = existing_level + level;
-
-                            existing_skills.insert(skill_id.clone(), new_level);
-                        }
-
-                        let mut real_leftover_slots = deco_comb.leftover_slots_sum.clone();
-
-                        for (deco_skill_id, decos) in deco_comb.skill_decos.iter() {
-                            if &skill.id == deco_skill_id {
-                                let deco_info = dm.get_deco_by_skill_id(uid);
-
-                                for (count, deco) in decos.iter().zip(deco_info) {
-                                    let slot_size_index = (deco.slot_size - 1) as usize;
-                                    real_leftover_slots[slot_size_index] += count;
-
-                                    *existing_skills.get_mut(&skill.id).unwrap() -=
-                                        count * deco.skill_level;
-                                }
-
-                                break;
-                            }
-                        }
-
-                        if skill.id == "dragon_attack" {
-                            println!(
-                                "dragon_boost: {:?}, {:?}",
-                                real_leftover_slots, existing_skills
-                            );
-                        }
-
-                        let cur_level = *existing_skills.get(&skill.id).unwrap_or(&0);
-                        let adddition_min_level = selected_skills.get(uid) + 1;
-
-                        let leftover_slots = SlotsVec::from_vec(real_leftover_slots);
-                        let leftover_slots_lp = CalcVector::convert_to_lp_slots(&leftover_slots);
-
-                        for level in (adddition_min_level..skill.max_level + 1).rev() {
-                            let req_level = level - cur_level;
-
-                            if req_level <= 0 {
+                        for deco_comb in all_possible_deco_combs.iter() {
+                            if deco_comb.is_possible_lp(&all_raw_slots_lp) {
                                 add_possible_skills(&skill.id, level);
-                                return;
-                            }
-
-                            if is_unique_skill {
-                                continue;
-                            }
-
-                            let req_deco_combs = &all_req_deco_combs[(req_level - 1) as usize];
-
-                            for req_deco_comb in req_deco_combs.iter() {
-                                let req_deco_comb_lp =
-                                    CalcVector::convert_to_lp_slots(&req_deco_comb);
-
-                                if DecorationCombination::is_possible_static_lp(
-                                    &leftover_slots_lp,
-                                    &req_deco_comb_lp,
-                                ) {
-                                    add_possible_skills(&skill.id, level);
-                                    return;
-                                }
                             }
                         }
                     }
