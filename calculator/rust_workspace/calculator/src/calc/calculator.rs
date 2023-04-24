@@ -621,26 +621,14 @@ impl Calculator {
         let possible_skills = RwLock::new(HashMap::new());
         let possible_slots = RwLock::new(SlotsVec::default());
 
-        let add_possible_skills =
-            |skill_id: &String, cur_level: SkillSlotCount, level: SkillSlotCount| {
-                let cur_level = cur_level.max(1);
+        let add_possible_skills = |skill_id: &String, max_level: SkillSlotCount| {
+            let mut possible_skills = possible_skills.write().unwrap();
+            let prev_level = possible_skills.get(skill_id).unwrap_or(&0);
 
-                let mut possible_skills = possible_skills.write().unwrap();
-                let uid = dm.get_skill_uid(skill_id);
-                let skill = dm.get_skill(uid);
-
-                let default_value = (skill.max_level, 0);
-
-                let (prev_cur_level, prev_level) =
-                    possible_skills.get(skill_id).unwrap_or(&default_value);
-
-                if prev_level < &level {
-                    let min_level = cur_level
-                        .min(*prev_cur_level)
-                        .max(selected_skills.get(uid) + 1);
-                    possible_skills.insert(skill_id.clone(), (min_level, level));
-                }
-            };
+            if prev_level < &max_level {
+                possible_skills.insert(skill_id.clone(), max_level);
+            }
+        };
 
         builder.install(|| {
             debug!(
@@ -711,7 +699,7 @@ impl Calculator {
                                     );
                                 }
 
-                                add_possible_skills(&skill.id, cur_level, level);
+                                add_possible_skills(&skill.id, level);
                                 return;
                             }
 
@@ -741,7 +729,7 @@ impl Calculator {
                                     &leftover_slots_lp,
                                     &req_deco_comb_lp,
                                 ) {
-                                    add_possible_skills(&skill.id, cur_level, level);
+                                    add_possible_skills(&skill.id, level);
                                     return;
                                 }
                             }
@@ -765,7 +753,15 @@ impl Calculator {
         debug!("{}", log);
 
         let possible_skills = possible_skills.read().unwrap();
-        let possible_skills = possible_skills.clone();
+        let possible_skills = possible_skills
+            .iter()
+            .map(|(skill_id, level)| {
+                let skill_uid = dm.get_skill_uid(skill_id);
+                let selected_level = selected_skills.get(skill_uid);
+
+                (skill_id.clone(), (selected_level + 1, *level))
+            })
+            .collect();
 
         let possible_slots = possible_slots.read().unwrap();
         let possible_slots = possible_slots.data.0[0].to_vec();
