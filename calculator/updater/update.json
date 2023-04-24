@@ -1,9 +1,9 @@
 {
-    "version": "0.2.10",
-    "notes": "속도 개선 및 버그 수정 / Speed improvements and bug fixes",
+    "version": "0.3.0",
+    "notes": "추가 스킬/슬롯 검색 기능 추가 / Additional skill/slot search feature added",
     "platforms": {
         "windows-x86_64": {
-            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVjlQQ3VUTU44dlk5UHFvaG82WFB4WGRSVUtkVUhHeUpSdUNFMTVFalptelVLYVNSWEhkL2RxTnlkZC9yNkV0NGx5a1dQVlZxK09RencxNmtTT0huY2dzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjgyMTc3Mzg2CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjIuMTBfeDY0X2VuLVVTLm1zaS56aXAKUXhiUVdrVWR2ZUhlZzNhUjN5b2RLb3ZIblBwcnl3SyszT21TZURyU2hHRlF3Qy9uN3VZUjJEWTVIZjVNZEFOYzN2WEgxSFQ1dXAvSjhRRUMzN0pXREE9PQo=",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVjNmVkV4QkNvUXQ0QVAwMFBMMEVJd2RoK1FJeEVWdktlM1pPeTNpMXRPdk8yaE5zdDZBRGVwRCtmZDZpUThHTXJGQmZkNGRnV0M5YnBsRVpSQnRZcVF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjgyMzI1Njg1CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuMF94NjRfZW4tVVMubXNpLnppcAo2UzMvWThxaFRzRW9xMGQwb3BYbjA3UGxsQUJPNWl0N1didm0weGVJVTA2YUVuckRRWUZEMVVtK096NWUzcG11ZStEbW9seXN5bFBSbTczcE1XbndEdz09Cg==",
             "url": "https://github.com/skyser2003/mhrsb_anomay_calculator/releases/latest/download/mhr-sunbreak-anomaly-calculator.msi.zip"
         }
     }
