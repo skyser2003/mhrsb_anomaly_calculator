@@ -553,15 +553,19 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >
 		{{ UIData["calculate_button"][langData] }}
 	</a-button>
-	<a-button @click="calculateAdditionalSkills" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >
+	<a-button @click="calculateAdditionalSkills" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" style="margin-left: 10px" >
 		{{ UIData["calculate_additional_skills_button"][langData] }}
 	</a-button>
+
+	<br />
+	<br />
+
 	<a-button @click="clear">{{ UIData["clear_search_condition"][langData] }}</a-button>
 
 	<br />
 	<br />
 
-	<a-button @click="addFavorite">{{ UIData["save_search_favorite"][langData] }}</a-button>
+	<a-button @click="addFavorite" :disabled="canSubmit() === false">{{ UIData["save_search_favorite"][langData] }}</a-button>
 
 	<a-divider style="border-color: #7cb305" dashed />
 
