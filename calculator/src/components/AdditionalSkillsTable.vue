@@ -25,13 +25,12 @@ const slotsColumn = ref([
 		title: UIData["additional_slot"][props.langData],
 		dataIndex: "index_view",
 		key: "index_view",
-		width: 50,
+		width: 150,
 	},
 	{
 		title: UIData["additional_slot_level"][props.langData],
 		dataIndex: "max_level",
 		key: "max_level",
-		width: 50
 	}
 ]);
 
@@ -40,13 +39,12 @@ const skillsColumn = ref([
 		title: UIData["additional_skill"][props.langData],
 		dataIndex: "additional_skill",
 		key: "additional_skill",
-		width: 50,
+		width: 150,
 	},
 	{
 		title: UIData["additional_skill_level"][props.langData],
 		dataIndex: "max_level",
 		key: "max_level",
-		width: 50
 	}
 ]);
 
@@ -86,12 +84,12 @@ function getDefaultSkillLevel(skillId: string) {
 	<a-table :columns="slotsColumn" :data-source="getSlotTableData()" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }">
 		<template #bodyCell="{ column, record }">
 			<template v-if="column.key === 'max_level'">
-				<a-select v-model:value="selectedSlots[record.index]">
-					<a-select-option :value="getDefaultSlotLevel(record.index)">---</a-select-option>
-					<a-select-option v-if="0 <= record.max_level - record.min_level" v-for="level in (record.max_level - record.min_level + 1)" :value="level - 1 + record.min_level">
+				<a-radio-group v-model:value="selectedSlots[record.index]">
+					<a-radio-button :value="getDefaultSlotLevel(record.index)">{{ getDefaultSlotLevel(record.index) }}</a-radio-button>
+					<a-radio-button v-if="0 <= record.max_level - record.min_level" v-for="level in (record.max_level - record.min_level + 1)" :value="level - 1 + record.min_level">
 						{{ level - 1 + record.min_level }}
-					</a-select-option>
-				</a-select>
+					</a-radio-button>
+				</a-radio-group>
 			</template>
 		</template>
 	</a-table>
@@ -99,12 +97,12 @@ function getDefaultSkillLevel(skillId: string) {
 	<a-table :columns="skillsColumn" :data-source="getSkillTableData()" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }">
 		<template #bodyCell="{ column, record }">
 			<template v-if="column.key === 'max_level'">
-				<a-select v-model:value="selectedSkills[record.skill_id]">
-					<a-select-option :value="getDefaultSkillLevel(record.skill_id)">---</a-select-option>
-					<a-select-option v-for="level in (record.max_level - record.min_level + 1)" :value="level - 1 + record.min_level">
+				<a-radio-group v-model:value="selectedSkills[record.skill_id]">
+					<a-radio-button :value="getDefaultSkillLevel(record.skill_id)">{{ getDefaultSkillLevel(record.skill_id) }}</a-radio-button>
+					<a-radio-button v-for="level in (record.max_level - record.min_level + 1)" :value="level - 1 + record.min_level">
 						{{ level - 1 + record.min_level }}
-					</a-select-option>
-				</a-select>
+					</a-radio-button>
+				</a-radio-group>
 			</template>
 		</template>
 	</a-table>
