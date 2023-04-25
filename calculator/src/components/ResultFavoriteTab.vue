@@ -230,17 +230,12 @@ onMounted(() => {
 				return;
 			}
 
-			const allChildren = [];
-
-			for (let i = 0; i < evt.target.children.length; ++i) {
-				allChildren.push(evt.target.children.item(i)!);
+			if (oldIndex > newIndex) {
+				evt.target.insertBefore(evt.target.children.item(newIndex)!, evt.target.children.item(oldIndex)!.nextSibling);
+			} else {
+				evt.target.insertBefore(evt.target.children.item(newIndex)!, evt.target.children.item(oldIndex)!);
 			}
-
-			const oldTr = allChildren.splice(newIndex, 1)[0];
-			allChildren.splice(oldIndex, 0, oldTr);
-
-			evt.target.replaceChildren(...allChildren);
-
+			
 			const oldElem = props.favorites.splice(oldIndex, 1)[0];
 			props.favorites.splice(newIndex, 0, oldElem);
 
