@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from "vue";
+import { ref, onMounted } from "vue";
 
 import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
+
+import Sortable from "sortablejs";
 
 import { SkillsData } from "../models/skills";
 import { DecosData } from "../models/decos";
@@ -17,7 +19,6 @@ import ResultFavoriteRow from "./ResultFavoriteRow.vue";
 import StatTable from "./StatTable.vue";
 import { ArmorStatInfo } from "../definition/armor_define";
 
-import Sortable from "sortablejs";
 
 const UIData = uiData as { [key: string]: { [key: string]: string } };
 
