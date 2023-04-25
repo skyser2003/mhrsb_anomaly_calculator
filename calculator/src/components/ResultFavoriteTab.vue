@@ -229,16 +229,21 @@ onMounted(() => {
 				return;
 			}
 
+			const allChildren = [];
+
+			for (let i = 0; i < evt.target.children.length; ++i) {
+				allChildren.push(evt.target.children.item(i)!);
+			}
+
+			const oldTr = allChildren.splice(newIndex, 1)[0];
+			allChildren.splice(oldIndex, 0, oldTr);
+
+			evt.target.replaceChildren(...allChildren);
+
 			const oldElem = props.favorites.splice(oldIndex, 1)[0];
 			props.favorites.splice(newIndex, 0, oldElem);
 
 			CacheManager.setResultFavorites(props.favorites);
-			props.favorites.length = 0;
-
-			await nextTick();
-
-			root.innerHTML = "";
-			props.favorites.splice(0, 0, ...CacheManager.getResultFavorites());
 		},
 	});
 });
