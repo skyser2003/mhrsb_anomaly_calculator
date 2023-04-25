@@ -12,11 +12,13 @@
     "dependencies": {
         "@tauri-apps/api": "^1.2.0",
         "ant-design-vue": "^3.2.15",
+        "sortablejs": "^1.15.0",
         "vue": "^3.2.39"
     },
     "devDependencies": {
         "@tauri-apps/cli": "^1.2.3",
         "@types/node": "^18.7.10",
+        "@types/sortablejs": "^1.15.1",
         "@vitejs/plugin-vue": "^3.0.1",
         "eslint": "^8.23.0",
         "eslint-config-prettier": "^8.5.0",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 
 import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
 
@@ -16,6 +16,8 @@ import { CacheManager } from "../model/data_manager";
 import ResultFavoriteRow from "./ResultFavoriteRow.vue";
 import StatTable from "./StatTable.vue";
 import { ArmorStatInfo } from "../definition/armor_define";
+
+import Sortable from "sortablejs";
 
 const UIData = uiData as { [key: string]: { [key: string]: string } };
 
@@ -205,10 +207,47 @@ function generateResultFullEquipments(fav: ResultFavorite) {
 	return ret;
 }
 
+onMounted(() => {
+	const root = document.querySelector("#result_favorite_table .ant-table-tbody")! as HTMLElement;
+	root.setAttribute("id", "result_favorite_table_body");
+
+	const sortable = Sortable.create(root, {
+		animation: 150,
+		draggable: ".ant-table-row",
+		forceFallback: true,
+		filter: "svg, button, input, .ant-table-expanded-row",
+
+		onEnd: async (evt) => {
+			const oldIndex = evt.oldIndex!;
+			const newIndex = evt.newIndex!;
+
+			if (typeof oldIndex !== 'number' || typeof newIndex !== 'number') {
+				return;
+			}
+
+			if (oldIndex === newIndex) {
+				return;
+			}
+
+			const oldElem = props.favorites.splice(oldIndex, 1)[0];
+			props.favorites.splice(newIndex, 0, oldElem);
+
+			CacheManager.setResultFavorites(props.favorites);
+			props.favorites.length = 0;
+
+			await nextTick();
+
+			root.innerHTML = "";
+			props.favorites.splice(0, 0, ...CacheManager.getResultFavorites());
+		},
+	});
+});
+
+
 </script>
 
 <template>
-	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }">
+	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }" id="result_favorite_table">
 		<template #bodyCell="{ text, index, column, record }">
 			<template v-if="column.key === 'name'">
 				<template v-if="isEditing[index] === true">

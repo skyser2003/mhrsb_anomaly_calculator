@@ -103,12 +103,15 @@ export class CacheManager {
 	}
 
 	static setResultFavorites(favs: ResultFavorite[]) {
-		setItem(this.resultFavoriteName, JSON.stringify(favs));
+		const realFavs = favs.filter(fav => fav !== null && fav !== undefined);
+
+		setItem(this.resultFavoriteName, JSON.stringify(realFavs));
 	}
 
 	static getResultFavorites() {
 		try {
-			const oldObj = JSON.parse(getItem(this.resultFavoriteName)!) as ResultFavorite[] ?? [];
+			const rawOldObj = JSON.parse(getItem(this.resultFavoriteName)!) as ResultFavorite[] ?? [];
+			const oldObj = rawOldObj.filter(obj => obj !== null && obj !== undefined);
 
 			// Legacy snake case to camel case
 			for (const obj of oldObj) {
@@ -121,6 +124,7 @@ export class CacheManager {
 
 			return oldObj;
 		} catch (e) {
+			console.error(e);
 			return [];
 		}
 	}
