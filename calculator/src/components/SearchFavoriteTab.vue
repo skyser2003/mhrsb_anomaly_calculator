@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
 
+import Sortable from "sortablejs";
+
 import { SkillsData } from "../models/skills";
 
-import { SearchFavorite, SexType } from "../definition/calculate_result";
+import { SearchFavorite } from "../definition/calculate_result";
 
 import UIData from "../ui_data/ui_data.json";
 import { CacheManager } from "../model/data_manager";
@@ -18,7 +20,6 @@ interface Row {
 	skills: string;
 	req_slots: string;
 }
-
 
 const props = defineProps<{
 	langData: "en" | "ko",
@@ -139,10 +140,50 @@ function saveName(index: number) {
 	isEditing.value[index] = false;
 }
 
+onMounted(() => {
+	const root = document.querySelector("#search_favorite_table .ant-table-tbody")! as HTMLElement;
+
+	const sortable = Sortable.create(root, {
+		animation: 150,
+		draggable: ".ant-table-row",
+		forceFallback: true,
+		filter: "svg, button, input, .ant-table-expanded-row",
+
+		onEnd: async (evt) => {
+			const oldIndex = evt.oldIndex!;
+			const newIndex = evt.newIndex!;
+
+			if (typeof oldIndex !== 'number' || typeof newIndex !== 'number') {
+				return;
+			}
+
+			if (oldIndex === newIndex) {
+				return;
+			}
+
+			const allChildren = [];
+
+			for (let i = 0; i < evt.target.children.length; ++i) {
+				allChildren.push(evt.target.children.item(i)!);
+			}
+
+			const oldTr = allChildren.splice(newIndex, 1)[0];
+			allChildren.splice(oldIndex, 0, oldTr);
+
+			evt.target.replaceChildren(...allChildren);
+
+			const oldElem = props.favorites.splice(oldIndex, 1)[0];
+			props.favorites.splice(newIndex, 0, oldElem);
+
+			CacheManager.setSearchFavorites(props.favorites);
+		},
+	});
+});
+
 </script>
 
 <template>
-	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ hideOnSinglePage: true }">
+	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ hideOnSinglePage: true }" id="search_favorite_table">
 		<template #bodyCell="{ text, index, column }">
 			<template v-if="column.key === 'name'">
 				<template v-if="isEditing[index] === true">
