@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 
 import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
 
@@ -91,9 +91,12 @@ const columns = ref([
 	}
 ]);
 
+const isReordering = ref<boolean>(false);
 const isEditing = ref<{ [key: number]: boolean }>({});
+const expandedRowKeys = ref<string[]>([]);
 
 function onTabActivate() {
+	isReordering.value = false;
 	isEditing.value = {};
 	props.favorites.length = 0;
 	props.favorites.push(...CacheManager.getResultFavorites());
@@ -183,6 +186,10 @@ function deleteFavorite(index: number) {
 }
 
 function beginEditName(index: number) {
+	if (isReordering.value) {
+		return;
+	}
+
 	isEditing.value[index] = true;
 }
 
@@ -208,14 +215,17 @@ function generateResultFullEquipments(fav: ResultFavorite) {
 	return ret;
 }
 
+let sortable: Sortable;
+
 onMounted(() => {
 	const root = document.querySelector("#result_favorite_table .ant-table-tbody")! as HTMLElement;
 	root.setAttribute("id", "result_favorite_table_body");
 
-	const sortable = Sortable.create(root, {
+	sortable = Sortable.create(root, {
 		animation: 150,
 		draggable: ".ant-table-row",
 		forceFallback: true,
+		disabled: !isReordering.value,
 		filter: "svg, button, input, .ant-table-expanded-row",
 
 		onEnd: async (evt) => {
@@ -244,11 +254,35 @@ onMounted(() => {
 	});
 });
 
+async function switchReorder() {
+	sortable.option("disabled", !isReordering.value);
+
+	if (isReordering.value) {
+		isEditing.value = {};
+		expandedRowKeys.value = [];
+	} else {
+		CacheManager.setResultFavorites(props.favorites);
+
+		props.favorites.length = 0;
+		await nextTick();
+		props.favorites.splice(0, 0, ...CacheManager.getResultFavorites());
+	}
+}
+
+function isRowExpandable(record: Row) {
+	return !isReordering.value;
+}
 
 </script>
 
 <template>
-	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }" id="result_favorite_table">
+	<a-switch v-model:checked="isReordering" @change="switchReorder" />
+	<span style="padding-left: 10px;">{{ UIData["reorder"][langData] }}</span>
+	
+	<br />
+	<br />
+
+	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }" :row-expandable="isRowExpandable" v-model:expandedRowKeys="expandedRowKeys" id="result_favorite_table">
 		<template #bodyCell="{ text, index, column, record }">
 			<template v-if="column.key === 'name'">
 				<template v-if="isEditing[index] === true">
@@ -263,7 +297,7 @@ onMounted(() => {
 					<template v-else>
 						{{ text }}
 					</template>
-					<EditOutlined @click="beginEditName(index)" />
+					<EditOutlined @click="beginEditName(index)" :disabled="isReordering"/>
 				</template>
 			</template>
 			
@@ -272,8 +306,8 @@ onMounted(() => {
 			</template>
 
 			<template v-else-if="column.key === 'delete'">
-				<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="">
-					<a-button>X</a-button>
+				<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="" :disabled="isReordering">
+					<a-button :disabled="isReordering">X</a-button>
 				</a-popconfirm>
 			</template>
 		</template>

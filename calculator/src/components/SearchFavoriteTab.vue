@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 
 import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
 
@@ -81,9 +81,11 @@ const columns = ref([
 	}
 ]);
 
+const isReordering = ref<boolean>(false);
 const isEditing = ref<{ [key: number]: boolean }>({});
 
 function onTabActivate() {
+	isReordering.value = false;
 	isEditing.value = {};
 	props.favorites.length = 0;
 	props.favorites.push(...CacheManager.getSearchFavorites());
@@ -131,6 +133,10 @@ function deleteFavorite(index: number) {
 }
 
 function beginEditName(index: number) {
+	if (isReordering.value) {
+		return;
+	}
+
 	isEditing.value[index] = true;
 }
 
@@ -141,13 +147,16 @@ function saveName(index: number) {
 	isEditing.value[index] = false;
 }
 
+let sortable: Sortable;
+
 onMounted(() => {
 	const root = document.querySelector("#search_favorite_table .ant-table-tbody")! as HTMLElement;
 
-	const sortable = Sortable.create(root, {
+	sortable = Sortable.create(root, {
 		animation: 150,
 		draggable: ".ant-table-row",
 		forceFallback: true,
+		disabled: !isReordering.value,
 		filter: "svg, button, input, .ant-table-expanded-row",
 
 		onEnd: async (evt) => {
@@ -176,9 +185,29 @@ onMounted(() => {
 	});
 });
 
+async function switchReorder() {
+	sortable.option("disabled", !isReordering.value);
+
+	if (isReordering.value) {
+		isEditing.value = {};
+	} else {
+		CacheManager.setSearchFavorites(props.favorites);
+
+		props.favorites.length = 0;
+		await nextTick();
+		props.favorites.splice(0, 0, ...CacheManager.getSearchFavorites());
+	}
+}
+
 </script>
 
 <template>
+	<a-switch v-model:checked="isReordering" @change="switchReorder" />
+	<span style="padding-left: 10px;">{{ UIData["reorder"][langData] }}</span>
+
+	<br />
+	<br />
+
 	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ hideOnSinglePage: true }" id="search_favorite_table">
 		<template #bodyCell="{ text, index, column }">
 			<template v-if="column.key === 'name'">
@@ -194,17 +223,17 @@ onMounted(() => {
 					<template v-else>
 						{{ text }}
 					</template>
-					<EditOutlined @click="beginEditName(index)" />
+					<EditOutlined @click="beginEditName(index)" :disabled="isReordering" />
 				</template>
 			</template>
 
 			<template v-else-if="column.key === 'set_search'">
-				<a-button @click="setSearch(index)" type="primary">★</a-button>
+				<a-button @click="setSearch(index)" type="primary" :disabled="isReordering">★</a-button>
 			</template>
 			
 			<template v-else-if="column.key === 'delete'">
 				<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="" >
-					<a-button>X</a-button>
+					<a-button :disabled="isReordering">X</a-button>
 				</a-popconfirm>
 			</template>
 			
