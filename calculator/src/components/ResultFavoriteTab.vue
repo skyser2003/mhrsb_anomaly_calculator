@@ -297,7 +297,7 @@ function isRowExpandable(record: Row) {
 					<template v-else>
 						{{ text }}
 					</template>
-					<EditOutlined @click="beginEditName(index)" :disabled="isReordering"/>
+					<EditOutlined @click="beginEditName(index)" :disabled="isReordering" style="padding-left: 10px" />
 				</template>
 			</template>
 			
