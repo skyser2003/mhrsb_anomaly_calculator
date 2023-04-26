@@ -106,7 +106,7 @@ function generateTableData(favs: ResultFavorite[]) {
 	return favs.map((fav, index) => {
 		const id = `${index}`;
 
-		const skills = {} as Skills;
+		let skills = {} as Skills;
 		const skillTexts = [];
 
 		for (const equipId in fav.armors) {
@@ -150,6 +150,8 @@ function generateTableData(favs: ResultFavorite[]) {
 				skills[skillId] += level;
 			}
 		}
+
+		skills = SkillsData.sortByName(skills, props.langData);
 
 		for (const skillId in skills) {
 			const name = SkillsData.getName(skillId, props.langData);

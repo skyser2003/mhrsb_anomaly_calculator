@@ -97,8 +97,10 @@ function generateTableData(favs: SearchFavorite[]) {
 
 		const skillTexts = [];
 
-		for (const skillId in fav.reqSkills) {
-			const level = fav.reqSkills[skillId];
+		const reqSkills = SkillsData.sortByName(fav.reqSkills, props.langData);
+
+		for (const skillId in reqSkills) {
+			const level = reqSkills[skillId];
 			const name = SkillsData.getName(skillId, props.langData);
 
 			const text = `${name} Lv${level}`;
@@ -108,8 +110,6 @@ function generateTableData(favs: SearchFavorite[]) {
 		const skillsText = skillTexts.join(", ");
 		const weaponSlotsText = JSON.stringify(fav.weaponSlots);
 		const reqSlotsText = JSON.stringify(fav.reqSlots);
-
-		console.log(fav);
 
 		return {
 			key: index,
