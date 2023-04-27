@@ -522,17 +522,7 @@ impl Calculator {
             })
         });
 
-        let elapsed_sort = start_time.elapsed();
         let answers = answers.read().unwrap();
-
-        Self::info(
-            &mut ret,
-            &format!(
-                "Answers count: {}, all_loop_cases sorting elapsed: {:?}",
-                answers.len(),
-                elapsed_sort
-            ),
-        );
 
         let elapsed_final = start_time.elapsed();
 
@@ -547,7 +537,7 @@ impl Calculator {
         Self::info(
             &mut ret,
             &format!(
-                "calculate_skillset elapsed: {:?},\nanswers length: {} -> {}",
+                "All calculation done - elapsed: {:?},\nanswers length: {} -> {}",
                 elapsed_final,
                 answers.len(),
                 all_answers_length
