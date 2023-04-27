@@ -17,6 +17,10 @@ harness = false
 name = "case3"
 harness = false
 
+[[bench]]
+name = "case4"
+harness = false
+
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive", "derive"] }
