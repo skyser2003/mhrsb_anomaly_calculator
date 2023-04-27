@@ -287,11 +287,12 @@ impl Calculator {
         let (all_original_equips, all_equips, empty_equips, all_deco_slot_equips_flat) =
             Self::get_equipment_containers(cm, &yes_deco_skills, &sex_type, include_lte_equips);
 
-        let (possible_candidate_vecs, _) = CalcDataManager::get_possible_unique_equips(
-            &all_equips,
-            &no_deco_skills,
-            &empty_equips,
-        );
+        let (possible_candidate_vecs, possible_candidate_flat) =
+            CalcDataManager::get_possible_unique_equips(
+                &all_equips,
+                &no_deco_skills,
+                &empty_equips,
+            );
 
         for (part, part_equips) in all_equips.iter().enumerate() {
             info!(
@@ -319,14 +320,6 @@ impl Calculator {
         let answers = RwLock::new(HashMap::with_capacity(MAX_ANSWER_LENGTH));
 
         let is_answer_full = || MAX_ANSWER_LENGTH <= answers.read().unwrap().len();
-
-        let mut possible_candidate_flat = possible_candidate_vecs
-            .iter()
-            .flatten()
-            .copied()
-            .collect::<Vec<_>>();
-
-        possible_candidate_flat.sort_by_cached_key(|equip| Reverse(equip.point()));
 
         info!(
             "Theoretically possible count: {}, equips count: {}",

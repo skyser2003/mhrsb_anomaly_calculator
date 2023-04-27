@@ -706,6 +706,10 @@ impl CalcDataManager {
             );
         }
 
+        empty_equips.iter().for_each(|&equip| {
+            all_unique_equips_flat.push(equip);
+        });
+
         CalcEquipment::sort_by_points(&mut all_unique_equips_flat);
 
         (all_unique_equips, all_unique_equips_flat)
