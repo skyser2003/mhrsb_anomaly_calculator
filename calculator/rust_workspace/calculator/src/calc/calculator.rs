@@ -329,7 +329,7 @@ impl Calculator {
         possible_candidate_flat.sort_by_cached_key(|equip| Reverse(equip.point()));
 
         info!(
-            "Theoritically possible count: {}, equips count: {}",
+            "Theoretically possible count: {}, equips count: {}",
             possible_candidate_vecs
                 .iter()
                 .fold(1, |acum, elem| acum * elem.len()),
