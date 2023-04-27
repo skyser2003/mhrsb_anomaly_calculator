@@ -637,7 +637,6 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 
 #remote_controller {
 	position: fixed;
-	float: right;
 
 	right: 10px;
 	bottom: 10px;
