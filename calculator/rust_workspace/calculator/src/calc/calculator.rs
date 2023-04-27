@@ -228,10 +228,6 @@ impl Calculator {
         candidate_iter.for_each(|(&c0, &c1, &c2, &c3, &c4, &c5)| {
             let candidate = [c0, c1, c2, c3, c4, c5];
 
-            if CalcDataManager::is_le_candidate(&candidate, &candidates) {
-                return;
-            }
-
             let mut deco_req_skills = selected_skills.clone();
 
             FullEquipments::subtract_skills(&candidate, &mut deco_req_skills);
@@ -334,14 +330,17 @@ impl Calculator {
 
         info!("Le removed candidates length: {}", candidates.len());
 
+        // TODO more optimization possible?
+        let (ge_parts, ge_equips_map) = CalcDataManager::get_possible_general_part_equips(
+            &all_deco_slot_equips_flat,
+            &yes_deco_skills,
+            true,
+        );
+
         candidates.into_iter().all(|possible_candidate_vec| {
             if is_answer_full() {
                 return false;
             }
-
-            let mut deco_req_skills = selected_skills.clone();
-
-            FullEquipments::subtract_skills(&possible_candidate_vec, &mut deco_req_skills);
 
             let mut key_equips = Vec::new();
             let mut key_parts = [false; EQUIP_PART_COUNT];
@@ -353,11 +352,7 @@ impl Calculator {
                 };
             }
 
-            let (mut parts, ge_equips_map) = CalcDataManager::get_possible_general_part_equips(
-                &all_deco_slot_equips_flat,
-                &deco_req_skills,
-                true,
-            );
+            let mut parts = ge_parts.clone();
 
             parts.retain(|equip| !key_parts[equip.part()]);
 
