@@ -298,5 +298,17 @@
     "reorder": {
         "ko": "순서 변경",
         "en": "Reorder"
+    },
+    "remote_controller": {
+        "ko": "리모컨",
+        "en": "Controller"
+    },
+    "controller_to_top": {
+        "ko": "맨 위",
+        "en": "Top"
+    },
+    "controller_to_calc_button": {
+        "ko": "계산하기 버튼",
+        "en": "Calculate button"
     }
 }

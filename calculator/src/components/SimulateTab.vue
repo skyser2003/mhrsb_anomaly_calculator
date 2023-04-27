@@ -438,6 +438,24 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 </script>
 
 <template>
+	<div id="remote_controller">
+		<table class="ant-table">
+			<thead class="ant-table-thead">
+				<tr class="ant-table-row">
+					<th class="ant-table-cell">{{ UIData["remote_controller"][langData] }}</th>
+				</tr>
+			</thead>
+			<tbody class="ant-table-tbody">
+				<tr class="ant-table-row">
+					<td class="ant-table-cell"><a href="#top">{{ UIData["controller_to_top"][langData] }}</a></td>
+				</tr>
+				<tr class="ant-table-row">
+					<td class="ant-table-cell"><a href="#calculate_button">{{ UIData["controller_to_calc_button"][langData] }}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
 	<table v-for="cat in skillCats">
 		<tr>
 			{{ cat.names[langData] }}
@@ -614,3 +632,18 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 		<a-spin size="large" />
 	</template>
 </template>
+
+<style scoped>
+
+#remote_controller {
+	position: fixed;
+	float: right;
+
+	right: 10px;
+	bottom: 10px;
+
+	z-index: 999;
+}
+
+
+</style>
