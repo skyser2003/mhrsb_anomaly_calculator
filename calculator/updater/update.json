@@ -1,9 +1,9 @@
 {
-    "version": "0.3.2",
-    "notes": "즐겨찾기 순서 정렬 기능 추가 / Favorites reordering feature added",
+    "version": "0.3.3",
+    "notes": "검색 속도 향상 / Search speed improved",
     "platforms": {
         "windows-x86_64": {
-            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVjljSmZKYUkwTWdqV3RuelBoSzhPQXBxdnlTck5vWmM1VWp2Qnd0VzRLQ1hYN2NwOEwvU1l3OTFwdVVGV0RJbWZPRXYwSHFhTk5MYVFjeVJKQS9vRndrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjgyNTI1MTc3CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuMl94NjRfZW4tVVMubXNpLnppcApSR3JKbEN4ZlFjRjNWNWo4MXpOWEFlck1nVTZMY0I3Vk90aEFwWVFwMktzaHJZVEE0ZWJSRWJDam41SDJFY3JDUEwyUG9oKzVaRzJnYXJ5UUJrcnlBUT09Cg==",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVjUrRWE2T3daRUYyZVppeUZ4VzV5WTFZdEJjUGMyb0tIdkM4aTFmaUpIT1pMcThlRjlRbURSTG5CdHZCWnI4alAvdTVyWFRUY0ROU1VrSGhwU1M2S3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjgyNTgwOTkzCWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuM194NjRfZW4tVVMubXNpLnppcApNU0dtVDFlaTFueUpvNTlGR3VhSEJIVzk4cEFCd1FGUjBRZmRPWXdjUWZUY1N3bUhDK0VHZkVrM3lCNldYeDNUSjk3VmhQZ1pyY1VrdXZhRjdyUFFDZz09Cg==",
             "url": "https://github.com/skyser2003/mhrsb_anomay_calculator/releases/latest/download/mhr-sunbreak-anomaly-calculator.msi.zip"
         }
     }
