@@ -1,9 +1,9 @@
 {
-    "version": "0.3.3",
-    "notes": "검색 속도 향상 / Search speed improved",
+    "version": "0.3.4",
+    "notes": "UI 편의 기능 추가 / UI utility added",
     "platforms": {
         "windows-x86_64": {
-            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVjUrRWE2T3daRUYyZVppeUZ4VzV5WTFZdEJjUGMyb0tIdkM4aTFmaUpIT1pMcThlRjlRbURSTG5CdHZCWnI4alAvdTVyWFRUY0ROU1VrSGhwU1M2S3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjgyNTgwOTkzCWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuM194NjRfZW4tVVMubXNpLnppcApNU0dtVDFlaTFueUpvNTlGR3VhSEJIVzk4cEFCd1FGUjBRZmRPWXdjUWZUY1N3bUhDK0VHZkVrM3lCNldYeDNUSjk3VmhQZ1pyY1VrdXZhRjdyUFFDZz09Cg==",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVndLcTFyZkNCQWJZMTVkQlNvenV0RHQ0aXVWRUI4RDRxc3p3WU9lM2JsbXFSb0ViSW11L0xpbDU1bEFJcFhGQWFqNExwMmF1eWJ5cVh4L2U3WDBuSmdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjgyNjExMjM0CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuNF94NjRfZW4tVVMubXNpLnppcApQeExlaGhnVUowMHVsTldvSFZYb3Rqei9nRzJ6OEdKNnVRY2RsZXo4Z1Q4b28rMFVlbndldkNsQkdPQmFzcmNvTHpHL3FHZjVmT0Y5QyszbzBaeThEdz09Cg==",
             "url": "https://github.com/skyser2003/mhrsb_anomay_calculator/releases/latest/download/mhr-sunbreak-anomaly-calculator.msi.zip"
         }
     }
