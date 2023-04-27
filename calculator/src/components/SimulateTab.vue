@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import { invoke } from "@tauri-apps/api/tauri";
 
 import { SmileOutlined } from '@ant-design/icons-vue';
@@ -360,7 +360,7 @@ function addFavorite() {
 	emits("add_search_favorite", ret);
 }
 
-function setSearchCondition(fav: SearchFavorite) {
+async function setSearchCondition(fav: SearchFavorite) {
 	sexType.value = fav.sexType;
 	weaponSlots.value = JSON.parse(JSON.stringify(fav.weaponSlots));
 	selectedSkills.value = JSON.parse(JSON.stringify(fav.reqSkills));
@@ -380,6 +380,11 @@ function setSearchCondition(fav: SearchFavorite) {
 			selectedSkills.value[skill.id] = 0;
 		}
 	}
+
+	await nextTick();
+
+	const elem = document.getElementById("calculate_button")!;
+	window.scrollTo(0, elem.offsetTop);
 }
 
 function addResultFavorite(fav: ResultFavorite) {
@@ -550,7 +555,7 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	<br />
 	<br />
 
-	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" >
+	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" id="calculate_button" >
 		{{ UIData["calculate_button"][langData] }}
 	</a-button>
 	<a-button @click="calculateAdditionalSkills" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" style="margin-left: 10px" >
