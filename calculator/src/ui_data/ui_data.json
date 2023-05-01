@@ -310,5 +310,9 @@
     "controller_to_calc_button": {
         "ko": "계산하기 버튼",
         "en": "Calculate button"
+    },
+    "pick_ban_tab": {
+        "ko": "고정/제외",
+        "en": "Fix/Ban"
     }
 }

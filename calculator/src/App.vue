@@ -9,6 +9,7 @@ import AnomaliesTab from "./components/AnomaliesTab.vue";
 import TalismansTab from "./components/TalismansTab.vue";
 import SearchFavoriteTab from "./components/SearchFavoriteTab.vue";
 import ResultFavoriteTab from "./components/ResultFavoriteTab.vue";
+import PickBanTab from "./components/PickBanTab.vue";
 
 import UIData from "./ui_data/ui_data.json";
 import { ResultFavorite, SearchFavorite } from "./definition/calculate_result";
@@ -46,6 +47,7 @@ const anomalyTab = ref<InstanceType<typeof AnomaliesTab>>();
 const talismanTab = ref<InstanceType<typeof TalismansTab>>();
 const searchFavoriteTab = ref<InstanceType<typeof SearchFavoriteTab>>();
 const resultFavoriteTab = ref<InstanceType<typeof ResultFavoriteTab>>();
+const pickBanTab = ref<InstanceType<typeof PickBanTab>>();
 
 const searchFavorites = ref<SearchFavorite[]>([]);
 const resultFavorites = ref<ResultFavorite[]>([]);
@@ -187,6 +189,11 @@ function onChangeDesignTheme() {
     <a-tab-pane key="4" :tab="UIData['talisman_tab'][langData]">
       <Suspense>
         <TalismansTab ref="talismanTab" :langData="langData" />
+      </Suspense>
+    </a-tab-pane>
+    <a-tab-pane key="5" :tab="UIData['pick_ban_tab'][langData]">
+      <Suspense>
+        <PickBanTab ref="pickBanTab" :langData="langData" />
       </Suspense>
     </a-tab-pane>
   </a-tabs>

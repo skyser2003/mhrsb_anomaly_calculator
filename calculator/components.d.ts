@@ -24,6 +24,7 @@ declare module '@vue/runtime-core' {
     ATable: typeof import('ant-design-vue/es')['Table']
     ATabPane: typeof import('ant-design-vue/es')['TabPane']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
+    PickBanTab: typeof import('./src/components/PickBanTab.vue')['default']
     ResultFavoriteRow: typeof import('./src/components/ResultFavoriteRow.vue')['default']
     ResultFavoriteTab: typeof import('./src/components/ResultFavoriteTab.vue')['default']
     SearchFavoriteTab: typeof import('./src/components/SearchFavoriteTab.vue')['default']
