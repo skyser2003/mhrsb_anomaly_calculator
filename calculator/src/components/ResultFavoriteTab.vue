@@ -43,13 +43,13 @@ defineExpose({ onTabActivate });
 
 const columns = ref([
 	{
-		title: "id",
+		title: UIData["id_column"][props.langData],
 		dataIndex: "id",
 		key: "id",
 		width: 50
 	},
 	{
-		title: "name",
+		title: UIData["name_column"][props.langData],
 		dataIndex: "name",
 		key: "name",
 		width: 200
@@ -65,7 +65,7 @@ const columns = ref([
 		key: "weapon_slots",
 	},
 	{
-		title: "skills",
+		title: UIData["skills_column"][props.langData],
 		dataIndex: "skills",
 		key: "skills",
 	},

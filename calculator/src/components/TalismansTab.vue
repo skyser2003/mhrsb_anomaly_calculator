@@ -22,13 +22,13 @@ defineExpose({ getFileTalismans });
 
 const columns = ref([
 	{
-		title: "Skill 1",
+		title: `${UIData["skill_column"][props.langData]} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		width: 300,
 	},
 	{
-		title: "Skill 2",
+		title: `${UIData["skill_column"][props.langData]} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		width: 300,
@@ -42,13 +42,13 @@ const columns = ref([
 
 const manualColumns = ref([
 	{
-		title: "Skill 1",
+		title: `${UIData["skill_column"][props.langData]} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		width: 300,
 	},
 	{
-		title: "Skill 2",
+		title: `${UIData["skill_column"][props.langData]} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		width: 300,
@@ -67,14 +67,14 @@ const manualColumns = ref([
 
 const addAnomalyColumns = ref([
 	{
-		title: "Skill 1",
+		title: `${UIData["skill_column"][props.langData]} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		skillId: 0,
 		width: 200,
 	},
 	{
-		title: "Skill 2",
+		title: `${UIData["skill_column"][props.langData]} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		skillId: 1,

@@ -314,5 +314,21 @@
     "pick_ban_tab": {
         "ko": "고정/제외",
         "en": "Fix/Ban"
+    },
+    "name_column": {
+        "ko": "이름",
+        "en": "Name"
+    },
+    "id_column": {
+        "ko": "ID",
+        "en": "ID"
+    },
+    "skills_column": {
+        "ko": "스킬",
+        "en": "Skills"
+    },
+    "skill_column": {
+        "ko": "스킬",
+        "en": "Skill"
     }
 }
