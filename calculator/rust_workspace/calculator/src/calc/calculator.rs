@@ -592,6 +592,18 @@ impl Calculator {
             cm,
         );
 
+        if MAX_ANSWER_LENGTH <= calc_result.full_equipments.len() {
+            let total_time = start_time.elapsed().as_secs_f32();
+
+            return (
+                log,
+                calc_result.full_equipments.len(),
+                total_time,
+                HashMap::new(),
+                SlotsVec::default().data.0[0].to_vec(),
+            );
+        }
+
         let selected_skills = Self::convert_to_skills_container(&selected_skills);
 
         let skills = dm.get_skills();
