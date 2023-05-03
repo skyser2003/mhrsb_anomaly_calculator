@@ -15,6 +15,7 @@ import UIData from "./ui_data/ui_data.json";
 import { ResultFavorite, SearchFavorite } from "./definition/calculate_result";
 import { Language } from "./definition/language";
 import { CacheManager } from "./model/data_manager";
+import { InvokeManager } from "./model/invoke_manager";
 
 const gaScript1 = document.createElement("script");
 gaScript1.setAttribute("async", "");
@@ -75,11 +76,11 @@ async function loadFiles() {
   const promises = [];
 
   if (anomalyFilename !== null) {
-    promises.push(invoke("cmd_parse_anomaly", { filename: anomalyFilename }));
+    promises.push(InvokeManager.parseFileAnomaly(anomalyFilename));
   }
 
   if (talismanFilename !== null) {
-    promises.push(invoke("cmd_parse_talisman", { filename: talismanFilename }));
+    promises.push(InvokeManager.parseFileTalisman(talismanFilename));
   }
 
   await Promise.all(promises);

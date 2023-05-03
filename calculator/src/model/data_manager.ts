@@ -197,8 +197,4 @@ export class CacheManager {
 	}
 }
 
-export class InvokeManager {
-
-}
-
 export const cm = new CacheManager();

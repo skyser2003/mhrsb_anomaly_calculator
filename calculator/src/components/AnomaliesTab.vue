@@ -19,6 +19,7 @@ import { Language } from "../definition/language";
 import uiData from "../ui_data/ui_data.json";
 import { EquipSlots, AnomalyArmorInfo, MAX_SLOT_LEVEL } from "../definition/calculate_result";
 import { CacheManager } from "../model/data_manager";
+import { InvokeManager } from "../model/invoke_manager";
 
 const ArmorsVec = RawArmorsVec as unknown as FinalArmorInfo[];
 const UIData = uiData as { [key: string]: { [key: string]: string } };
@@ -358,14 +359,14 @@ async function loadAnomalyFile() {
 }
 
 async function getFileAnomalies() {
-	const fileAnomalies = await invoke("cmd_get_file_anomalies") as AnomalyArmorInfo[];
+	const fileAnomalies = await InvokeManager.getFileAnomalies();
 	
 	setFileAnomalyData(fileAnomalies);
 }
 
 async function clearFileAnomalies() {
 	anomaly_filename.value = "";
-	await invoke("cmd_clear_file_anomalies");
+	await InvokeManager.clearFileAnomalies();
 
 	CacheManager.setAnomalyFilename("");
 	setFileAnomalyData([]);
@@ -374,7 +375,7 @@ async function clearFileAnomalies() {
 async function loadManualAnomalies() {
 	manualAnomaliesByPart.value = CacheManager.getManualAnomalies();
 
-	const result = await invoke("cmd_set_manual_anomalies", { anomalies: manualAnomaliesByPart.value });
+	const result = await InvokeManager.setManualAnomalies(manualAnomaliesByPart.value);
 
 	if (result === true) {
 		console.log("Manual anomlay load successful");
@@ -384,7 +385,7 @@ async function loadManualAnomalies() {
 async function parseAnomalyFile(filename: string) {
 	console.log(`Anomaly filename: ${filename}`);
 
-	const fileAnomalies = await invoke("cmd_parse_anomaly", { filename }) as AnomalyArmorInfo[];
+	const fileAnomalies = await InvokeManager.parseFileAnomaly(filename);
 	CacheManager.setAnomalyFilename(filename);
 
 	setFileAnomalyData(fileAnomalies);
@@ -476,12 +477,7 @@ function generateAnomalyData(anomaliesByPart: { [key: string]: AnomalyArmorInfo[
 async function addManualAnomalyArmor() {
 	console.log(anomalyAddInfo.value);
 
-	const inserted = await invoke("cmd_add_manual_anomaly", {
-		originalId: anomalyAddInfo.value.armorId,
-		skillDiffs: anomalyAddInfo.value.skills,
-		slotDiffs: anomalyAddInfo.value.slots,
-		statDiff: anomalyAddInfo.value.stat,
-	}) as AnomalyArmorInfo;
+	const inserted = await InvokeManager.addManualAnomaly(anomalyAddInfo.value);
 
 	console.log(`Add manual result: `, inserted);
 
@@ -500,7 +496,7 @@ async function deleteManualAnomaly(part: string, index: number) {
 	manualAnomaliesByPart.value[part].splice(index, 1);
 	CacheManager.setManualAnomalies(manualAnomaliesByPart.value);
 
-	const result = await invoke("cmd_set_manual_anomalies", { anomalies: manualAnomaliesByPart.value });
+	const result = await InvokeManager.setManualAnomalies(manualAnomaliesByPart.value);
 
 	if (result === true) {
 		console.log("Anomaly deleted: ", anomaly);
@@ -538,7 +534,7 @@ function onAddAnomalySkillChange(index: number) {
 }
 
 async function deleteAllManualAnomalies() {
-	const result = await invoke("cmd_clear_manual_anomalies");
+	const result = await InvokeManager.clearManualAnomalies();
 
 	if (result === true) {
 		for(const part of parts.value) {

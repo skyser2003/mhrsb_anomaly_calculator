@@ -17,6 +17,7 @@ import AdditionalSkillsTable from "./AdditionalSkillsTable.vue";
 
 import UIData from "../ui_data/ui_data.json";
 import { Language } from "../definition/language";
+import { InvokeManager } from "../model/invoke_manager";
 
 enum CalcState {
 	IDLE,
@@ -167,8 +168,8 @@ async function loadManuals() {
 	const manualTalismans = CacheManager.getManualTalismans();
 
 	const proms = [
-		await invoke("cmd_set_manual_anomalies", { anomalies: manualAnomalies }),
-		await invoke("cmd_set_manual_talismans", { talismans: manualTalismans })
+		InvokeManager.setManualAnomalies(manualAnomalies),
+		InvokeManager.setManualTalismans(manualTalismans)
 	];
 
 	const [result1, result2] = await Promise.all(proms);
@@ -220,15 +221,15 @@ async function calculate() {
 	await loadManuals();
 
 	try {
-		const result = await invoke("cmd_calculate_skillset", {
-			"anomalyFilename": CacheManager.getAnomalyFilename(),
-			"talismanFilename": CacheManager.getTalismanFilename(),
-			"sexType": calcInput.sexType,
-			"weaponSlots": calcInput.weaponSlots,
-			"selectedSkills": calcInput.selectedSkills,
-			"freeSlots": calcInput.freeSlots,
-			"includeLteEquips": includeLteEquips.value,
-		}) as { [key: string]: any };
+		const result = await InvokeManager.calculateSkillset(
+			CacheManager.getAnomalyFilename(),
+			CacheManager.getTalismanFilename(),
+			calcInput.sexType,
+			calcInput.weaponSlots,
+			calcInput.selectedSkills,
+			calcInput.freeSlots,
+			includeLteEquips.value
+		);
 
 		const localCalcResult = result["result"] as CalculateResult;
 
@@ -284,15 +285,15 @@ async function calculateAdditionalSkills() {
 	await loadManuals();
 
 	try {
-		const result = await invoke("cmd_calculate_additional_skills", {
-			"anomalyFilename": CacheManager.getAnomalyFilename(),
-			"talismanFilename": CacheManager.getTalismanFilename(),
-			"sexType": calcInput.sexType,
-			"weaponSlots": calcInput.weaponSlots,
-			"selectedSkills": calcInput.selectedSkills,
-			"freeSlots": calcInput.freeSlots,
-			"includeLteEquips": includeLteEquips.value,
-		}) as CalculateAdditionalSkillsResult;
+		const result = await InvokeManager.calculateAdditionalSkillset(
+			CacheManager.getAnomalyFilename(),
+			CacheManager.getTalismanFilename(),
+			calcInput.sexType,
+			calcInput.weaponSlots,
+			calcInput.selectedSkills,
+			calcInput.freeSlots,
+			includeLteEquips.value,
+		);
 
 		const sortedKeys = Object.keys(result.skills).sort((id1, id2) => {
 			const skill1 = skills.value[id1];

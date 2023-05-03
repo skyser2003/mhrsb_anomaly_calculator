@@ -14,6 +14,7 @@ import { Language } from "../definition/language";
 import UIData from "../ui_data/ui_data.json";
 import { TalismanInfo, MAX_SLOT_LEVEL } from "../definition/calculate_result";
 import { CacheManager } from "../model/data_manager";
+import { InvokeManager } from "../model/invoke_manager";
 
 const props = defineProps<{ langData: Language }>();
 
@@ -146,19 +147,19 @@ async function getTalismanFile() {
 async function parseTalismanFile(filename: string) {
 	console.log(`Talisman filename: ${filename}`);
 
-	fileTalismans.value = await invoke("cmd_parse_talisman", { filename });
+	fileTalismans.value = await InvokeManager.parseFileTalisman(filename);
 	CacheManager.setTalismanFilename(filename);
 
 	console.log(`File talisman loaded: ${fileTalismans.value.length}`);
 }
 
 async function getFileTalismans() {
-	fileTalismans.value = await invoke("cmd_get_file_talismans") as TalismanInfo[];
+	fileTalismans.value = await InvokeManager.getFileTalismans();
 }
 
 async function clearFileTalismans() {
 	talismanFilename.value = "";
-	await invoke("cmd_clear_file_talismans");
+	await InvokeManager.clearFileTalismans();
 
 	fileTalismans.value = [];
 	CacheManager.setTalismanFilename("");
@@ -167,7 +168,7 @@ async function clearFileTalismans() {
 async function loadManualTalismans() {
 	const manuals = CacheManager.getManualTalismans();
 	
-	const result = await invoke("cmd_set_manual_talismans", {talismans: manuals});
+	const result = await InvokeManager.setManualTalismans(manuals);
 
 	if (result === true) {
 		manualTalismans.value = manuals;
@@ -236,9 +237,7 @@ function initializeTalismanAddInfo() {
 async function addManualTalisman() {
 	console.log(talismanAddInfo.value);
 
-	const inserted = await invoke("cmd_add_manual_talisman", {
-		talisman: talismanAddInfo.value
-	}) as TalismanInfo;
+	const inserted = await InvokeManager.addManualTalisman(talismanAddInfo.value);
 
 	console.log(`Add manual result: `, inserted);
 
@@ -256,7 +255,7 @@ async function deleteManualTalisman(index: number) {
 	manualTalismans.value.splice(index, 1);
 	CacheManager.setManualTalismans(manualTalismans.value);
 
-	const result = await invoke("cmd_set_manual_talismans", { talismans: manualTalismans.value });
+	const result = await InvokeManager.setManualTalismans(manualTalismans.value);
 
 	if (result === true) {
 		console.log("Talisman deleted: ", talisman);
@@ -264,7 +263,7 @@ async function deleteManualTalisman(index: number) {
 }
 
 async function deleteAllManualTalismans() {
-	const result = await invoke("cmd_clear_manual_talismans");
+	const result = await InvokeManager.clearManualTalismans();
 
 	if (result === true) {
 		manualTalismans.value.length = 0;
