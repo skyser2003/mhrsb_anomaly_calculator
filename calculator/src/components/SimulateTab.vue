@@ -645,6 +645,10 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	z-index: 999;
 }
 
+#remote_controller a {
+	display: block;
+}
+
 #remote_controller .ant-table-cell {
 	padding: 10px;
 }
