@@ -9,7 +9,7 @@ import { SkillsData } from "../models/skills";
 
 import { SearchFavorite } from "../definition/calculate_result";
 
-import UIData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { CacheManager } from "../model/data_manager";
 
 
@@ -35,47 +35,47 @@ defineExpose({ onTabActivate });
 
 const columns = ref([
 	{
-		title: UIData["id_column"][props.langData],
+		title: lm.getString("id_column"),
 		dataIndex: "id",
 		key: "id",
 		width: 50,
 	},
 	{
-		title: UIData["name_column"][props.langData],
+		title: lm.getString("name_column"),
 		dataIndex: "name",
 		key: "name",
 		width: 200,
 	},
 	{
-		title: UIData["sex_type"][props.langData],
+		title: lm.getString("sex_type"),
 		dataIndex: "sex_type",
 		key: "sex_type",
 		width: 100,
 	},
 	{
-		title: UIData["weapon_slots"][props.langData],
+		title: lm.getString("weapon_slots"),
 		dataIndex: "weapon_slots",
 		key: "weapon_slots",
 		width: 100,
 	},
 	{
-		title: UIData["skills_column"][props.langData],
+		title: lm.getString("skills_column"),
 		dataIndex: "skills",
 		key: "skills"
 	},
 	{
-		title: UIData["free_slots"][props.langData],
+		title: lm.getString("free_slots"),
 		dataIndex: "req_slots",
 		key: "req_slots",
 		width: 100,
 	},
 	{
-		title: UIData["set_search"][props.langData],
+		title: lm.getString("set_search"),
 		dataIndex: "set_search",
 		key: "set_search"
 	},
 	{
-		title: UIData["delete"][props.langData],
+		title: lm.getString("delete"),
 		dataIndex: "delete",
 		key: "delete"
 	}
@@ -115,7 +115,7 @@ function generateTableData(favs: SearchFavorite[]) {
 			key: index,
 			id,
 			name: fav.name,
-			sex_type: fav.sexType === "" ? "" : UIData[fav.sexType][props.langData],
+			sex_type: fav.sexType === "" ? "" : lm.getString(fav.sexType),
 			weapon_slots: weaponSlotsText,
 			skills: skillsText,
 			req_slots: reqSlotsText
@@ -203,7 +203,7 @@ async function switchReorder() {
 
 <template>
 	<a-switch v-model:checked="isReordering" @change="switchReorder" />
-	<span style="padding-left: 10px;">{{ UIData["reorder"][langData] }}</span>
+	<span style="padding-left: 10px;">{{ lm.getString("reorder") }}</span>
 
 	<br />
 	<br />
@@ -218,7 +218,7 @@ async function switchReorder() {
 			
 				<template v-else>
 					<template v-if="text === undefined || text === null || text.length === 0 ">
-						<span class="empty_name">{{ UIData["empty_favorite_name"][props.langData] }}</span>
+						<span class="empty_name">{{ lm.getString("empty_favorite_name") }}</span>
 					</template>
 					<template v-else>
 						{{ text }}
@@ -232,7 +232,7 @@ async function switchReorder() {
 			</template>
 			
 			<template v-else-if="column.key === 'delete'">
-				<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="" >
+				<a-popconfirm :title="lm.getString('confirm_delete')" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="" >
 					<a-button :disabled="isReordering">X</a-button>
 				</a-popconfirm>
 			</template>

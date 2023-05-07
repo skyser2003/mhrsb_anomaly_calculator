@@ -11,7 +11,7 @@ import SkillsVec from "../data/skill.json";
 import { FinalSkillInfo } from "../definition/skill_define";
 import { Language } from "../definition/language";
 
-import UIData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { TalismanInfo, MAX_SLOT_LEVEL } from "../definition/calculate_result";
 import { CacheManager } from "../model/data_manager";
 import { InvokeManager } from "../model/invoke_manager";
@@ -22,19 +22,19 @@ defineExpose({ getFileTalismans });
 
 const columns = ref([
 	{
-		title: `${UIData["skill_column"][props.langData]} 1`,
+		title: `${lm.getString("skill_column")} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		width: 300,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 2`,
+		title: `${lm.getString("skill_column")} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		width: 300,
 	},
 	{
-		title: UIData["slots_name"][props.langData],
+		title: lm.getString("slots_name"),
 		dataIndex: "slots",
 		key: "slots",
 	}
@@ -42,24 +42,24 @@ const columns = ref([
 
 const manualColumns = ref([
 	{
-		title: `${UIData["skill_column"][props.langData]} 1`,
+		title: `${lm.getString("skill_column")} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		width: 300,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 2`,
+		title: `${lm.getString("skill_column")} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		width: 300,
 	},
 	{
-		title: UIData["slots_name"][props.langData],
+		title: lm.getString("slots_name"),
 		dataIndex: "slots",
 		key: "slots",
 	},
 	{
-		title: UIData["delete"][props.langData],
+		title: lm.getString("delete"),
 		dataIndex: "delete",
 		key: "delete"
 	}
@@ -67,21 +67,21 @@ const manualColumns = ref([
 
 const addAnomalyColumns = ref([
 	{
-		title: `${UIData["skill_column"][props.langData]} 1`,
+		title: `${lm.getString("skill_column")} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		skillId: 0,
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 2`,
+		title: `${lm.getString("skill_column")} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		skillId: 1,
 		width: 200,
 	},
 	{
-		title: UIData["slots_name"][props.langData],
+		title: lm.getString("slots_name"),
 		dataIndex: "slots",
 		key: "slots",
 	}
@@ -276,17 +276,17 @@ async function deleteAllManualTalismans() {
 <template>
 	<div class="container">
 		<div>
-			<h1 style="display: inline-block;">{{ UIData["mod_managed_talisman_explanation"][props.langData] }} </h1>
+			<h1 style="display: inline-block;">{{ lm.getString("mod_managed_talisman_explanation") }} </h1>
 			<a href="https://www.nexusmods.com/monsterhunterrise/mods/1092" target="_blank"> (Mod link)</a>
-			<div>({{ UIData["mod_usage_explanation"][langData] }})</div>
+			<div>({{ lm.getString("mod_usage_explanation") }})</div>
 		</div>
 
 		<br />
 
-		<a-button @click="getTalismanFile()">{{ UIData["register_file"][props.langData] }}</a-button>
+		<a-button @click="getTalismanFile()">{{ lm.getString("register_file") }}</a-button>
 		<a-input v-model:value="talismanFilename" placeholder="Talisman list filename (exported via mod)" style="width: 500px" />
-		<a-button @click="parseTalismanFile(talismanFilename)" type="primary">{{ UIData["manual_refresh"][langData] }}</a-button>
-		<a-button @click="clearFileTalismans">{{ UIData["cancel_register"][langData] }}</a-button>
+		<a-button @click="parseTalismanFile(talismanFilename)" type="primary">{{ lm.getString("manual_refresh") }}</a-button>
+		<a-button @click="clearFileTalismans">{{ lm.getString("cancel_register") }}</a-button>
 
 		<a-divider style="border-color: #7cb305" dashed />
 
@@ -297,7 +297,7 @@ async function deleteAllManualTalismans() {
 		<a-divider style="border-color: #7cb305" dashed />
 
 		<div>
-			<h1>{{ UIData["manually_managed_talisman_explanation"][langData] }}</h1>
+			<h1>{{ lm.getString("manually_managed_talisman_explanation") }}</h1>
 		</div>
 		
 		<a-table :columns="addAnomalyColumns" :data-source="dummyAddTalismanSkillSlots()"
@@ -335,12 +335,12 @@ async function deleteAllManualTalismans() {
 
 		<div>
 
-		<a-button @click="addManualTalisman()" :disabled="talismanAddInfo.skills.every(skillInfo => skillInfo.id === '')">{{ UIData["add_button"][langData] }}</a-button>
+		<a-button @click="addManualTalisman()" :disabled="talismanAddInfo.skills.every(skillInfo => skillInfo.id === '')">{{ lm.getString("add_button") }}</a-button>
 		
 		<a-divider style="border-color: #7cb305" dashed />
 		
-		<a-popconfirm :title="UIData['confirm_delete_all'][langData]" ok-text="O" cancel-text="X" @confirm="deleteAllManualTalismans()" @cancel="">
-			<a-button>{{ UIData["delete_all_button"][langData] }}</a-button>
+		<a-popconfirm :title="lm.getString('confirm_delete_all')" ok-text="O" cancel-text="X" @confirm="deleteAllManualTalismans()" @cancel="">
+			<a-button>{{ lm.getString("delete_all_button") }}</a-button>
 		</a-popconfirm>
 		
 		</div>
@@ -351,7 +351,7 @@ async function deleteAllManualTalismans() {
 			:pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">
 			<template #bodyCell="{ index, column }">
 				<template v-if="column.key === 'delete'">
-					<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X"
+					<a-popconfirm :title="lm.getString('confirm_delete')" ok-text="O" cancel-text="X"
 						@confirm="deleteManualTalisman(index)" @cancel="">
 						<a-button>X</a-button>
 					</a-popconfirm>

@@ -2,7 +2,7 @@
 
 import { ref } from "vue";
 
-import UIData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { Language } from "../definition/language";
 import { ArmorStatInfo, getDefaultStat } from "../definition/armor_define";
 
@@ -56,7 +56,7 @@ function getResImageName(key: string) {
 			<tr>
 				<template v-for="statKey in Object.keys(stat)">
 					<template v-if="statKey === 'defense'">
-						<th class="ant-table-cell">{{ UIData[statKey][langData] }}</th>
+						<th class="ant-table-cell">{{ lm.getString(statKey) }}</th>
 					</template>
 					<template v-else>
 						<th><img :src="`${getResImageName(statKey)}`" :width="20" /></th>

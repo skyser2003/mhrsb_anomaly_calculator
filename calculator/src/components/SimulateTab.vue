@@ -15,7 +15,7 @@ import { CacheManager } from "../model/data_manager";
 import SimulateResultTable from "./SimulateResultTable.vue"; 
 import AdditionalSkillsTable from "./AdditionalSkillsTable.vue";
 
-import UIData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { Language } from "../definition/language";
 import { InvokeManager } from "../model/invoke_manager";
 
@@ -443,15 +443,15 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 		<table class="ant-table">
 			<thead class="ant-table-thead">
 				<tr class="ant-table-row">
-					<th class="ant-table-cell">{{ UIData["remote_controller"][langData] }}</th>
+					<th class="ant-table-cell">{{ lm.getString("remote_controller") }}</th>
 				</tr>
 			</thead>
 			<tbody class="ant-table-tbody">
 				<tr class="ant-table-row">
-					<td class="ant-table-cell"><a href="#top">{{ UIData["controller_to_top"][langData] }}</a></td>
+					<td class="ant-table-cell"><a href="#top">{{ lm.getString("controller_to_top") }}</a></td>
 				</tr>
 				<tr class="ant-table-row">
-					<td class="ant-table-cell"><a href="#calculate_button">{{ UIData["controller_to_calc_button"][langData] }}</a></td>
+					<td class="ant-table-cell"><a href="#calculate_button">{{ lm.getString("controller_to_calc_button") }}</a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -486,7 +486,7 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	
 	<table>
 		<tr>
-			<td>{{ UIData["free_slots"][langData] }}</td>
+			<td>{{ lm.getString("free_slots") }}</td>
 			<td>
 				<a-select v-model:value="freeSlots[0]" style="width: 120px" :options="free_slot_options">
 					<template #suffixIcon>
@@ -522,12 +522,12 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 
 	<table>
 		<tr>
-			<td style="width: 100px">{{ UIData["sex_type"][langData] }}</td>
+			<td style="width: 100px">{{ lm.getString("sex_type") }}</td>
 			<td>
 				<a-select v-model:value="sexType" style="width: 100px">
 					<a-select-option value="">---</a-select-option>
-					<a-select-option value="male">{{ UIData["male"][langData] }}</a-select-option>
-					<a-select-option value="female">{{ UIData["female"][langData] }}</a-select-option>
+					<a-select-option value="male">{{ lm.getString("male") }}</a-select-option>
+					<a-select-option value="female">{{ lm.getString("female") }}</a-select-option>
 				</a-select>
 			</td>
 		</tr>
@@ -538,7 +538,7 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 		</tr>
 		<tr>
 			<td>
-				{{ UIData["weapon_slots"][langData] }}
+				{{ lm.getString("weapon_slots") }}
 			</td>
 		</tr>
 		<tr>
@@ -569,45 +569,45 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 
 	<a-divider style="border-color: #7cb305" dashed />
 
-	<a-checkbox v-model:checked="includeLteEquips">{{ UIData["include_lte_equips"][langData] }}</a-checkbox>
+	<a-checkbox v-model:checked="includeLteEquips">{{ lm.getString("include_lte_equips") }}</a-checkbox>
 	
 	<br />
 	<br />
 
 	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" id="calculate_button" >
-		{{ UIData["calculate_button"][langData] }}
+		{{ lm.getString("calculate_button") }}
 	</a-button>
 	<a-button @click="calculateAdditionalSkills" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" style="margin-left: 10px" >
-		{{ UIData["calculate_additional_skills_button"][langData] }}
+		{{ lm.getString("calculate_additional_skills_button") }}
 	</a-button>
 
 	<br />
 	<br />
 
-	<a-button @click="clear">{{ UIData["clear_search_condition"][langData] }}</a-button>
+	<a-button @click="clear">{{ lm.getString("clear_search_condition") }}</a-button>
 
 	<br />
 	<br />
 
-	<a-button @click="addFavorite" :disabled="canSubmit() === false">{{ UIData["save_search_favorite"][langData] }}</a-button>
+	<a-button @click="addFavorite" :disabled="canSubmit() === false">{{ lm.getString("save_search_favorite") }}</a-button>
 
 	<a-divider style="border-color: #7cb305" dashed />
 
 	<table>
 		<tr>
-			<td>{{ UIData["result_count"][langData] }}</td>
+			<td>{{ lm.getString("result_count") }}</td>
 			<td>{{ resultEquipmentsCount }}</td>
 		</tr>
 		<tr>
-			<td>{{ UIData["calc_time"][langData] }}</td>
+			<td>{{ lm.getString("calc_time") }}</td>
 			<td>{{ calcResult.calcTime }} sec</td>
 		</tr>
 		<tr>
-			<td style="width: 100px">{{ UIData["sort_result_criteria"][langData] }}</td>
+			<td style="width: 100px">{{ lm.getString("sort_result_criteria") }}</td>
 			<td>
 				<a-select v-model:value="resultSortKey" @change="sortResult(resultSortKey, calcResult)" style="min-width: 200px">		
-					<a-select-option value="slots_sum">{{ UIData["slots_sum"][langData] }}</a-select-option>
-					<a-select-option value="defense">{{ UIData["defense"][langData] }}</a-select-option>
+					<a-select-option value="slots_sum">{{ lm.getString("slots_sum") }}</a-select-option>
+					<a-select-option value="defense">{{ lm.getString("defense") }}</a-select-option>
 				</a-select>
 			</td>
 		</tr>
@@ -620,10 +620,10 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	</template>
 	<template v-else-if="calc_state === CalcState.DONE_ADDITIONAL_SKILLS">
 		<template v-if="200 <= resultEquipmentsCount">
-			<div>{{ UIData["additional_skills_excess_200"][langData] }}</div>
+			<div>{{ lm.getString("additional_skills_excess_200") }}</div>
 		</template>
 		<template v-else-if="resultEquipmentsCount === 0">
-			<div>{{ UIData["additional_skills_not_found"][langData] }}</div>
+			<div>{{ lm.getString("additional_skills_not_found") }}</div>
 		</template>
 		<template v-else>
 			<AdditionalSkillsTable :langData="langData" :skills="additionalSkills" :slots="additionalSlots" :selectedSkills="selectedSkills" :selectedSlots="freeSlots" :originalSkills="originalSkills" :originalSlots="originalSlots" />

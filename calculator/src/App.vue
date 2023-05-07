@@ -16,6 +16,7 @@ import { ResultFavorite, SearchFavorite } from "./definition/calculate_result";
 import { Language } from "./definition/language";
 import { CacheManager } from "./model/data_manager";
 import { InvokeManager } from "./model/invoke_manager";
+import { lm } from "./model/language_manager";
 
 const gaScript1 = document.createElement("script");
 gaScript1.setAttribute("async", "");
@@ -66,6 +67,8 @@ function loadTheme() {
 
 function loadLanguage() {
   langData.value = CacheManager.getLanguage();
+  lm.setLanguage(langData.value);
+  
   console.log(langData.value);
 }
 
@@ -154,56 +157,56 @@ function onChangeDesignTheme() {
 
 <template>
   <div>
-    <h2>{{ UIData["language"][langData] }}</h2>
+    <h2>{{ lm.getString("language") }}</h2>
   </div>
   <a-radio-group v-model:value="langData" @change="onChangeLanguage">
     <a-radio-button value="ko">한국어</a-radio-button>
     <a-radio-button value="en">English</a-radio-button>
   </a-radio-group>
   <div>
-    <h2>{{ UIData["design_theme"][langData] }}</h2>
+    <h2>{{ lm.getString("design_theme") }}</h2>
   </div>
   <a-radio-group v-model:value="designTheme" @change="onChangeDesignTheme">
-    <a-radio-button value="light">{{ UIData["light_theme"][langData] }}</a-radio-button>
-    <a-radio-button value="dark">{{ UIData["dark_theme"][langData] }} </a-radio-button>
+    <a-radio-button value="light">{{ lm.getString("light_theme") }}</a-radio-button>
+    <a-radio-button value="dark">{{ lm.getString("dark_theme") }} </a-radio-button>
   </a-radio-group>
 
   <a-divider style="border-color: #7cb305" dashed />
 
   <a-tabs v-model:activeKey="activeKey" type="card" @change="changeTab()">
-    <a-tab-pane key="0" :tab="UIData['simulation_tab'][langData]">
+    <a-tab-pane key="0" :tab="lm.getString('simulation_tab')">
       <Suspense>
         <SimulateTab ref="simulateTab" :langData="langData" v-on:add_search_favorite="addSearchFavorite" v-on:add_result_favorite="addResultFavorite" />
       </Suspense>
     </a-tab-pane>
-    <a-tab-pane key="1" :tab="UIData['search_favorite_tab'][langData]">
+    <a-tab-pane key="1" :tab="lm.getString('search_favorite_tab')">
       <SearchFavoriteTab ref="searchFavoriteTab" :langData="langData" :favorites="searchFavorites" v-on:set_search_condition="setSearchCondition" />
     </a-tab-pane>
-    <a-tab-pane key="2" :tab="UIData['result_favorite_tab'][langData]">
+    <a-tab-pane key="2" :tab="lm.getString('result_favorite_tab')">
       <ResultFavoriteTab ref="resultFavoriteTab" :langData="langData" :favorites="resultFavorites" />
     </a-tab-pane>
-    <a-tab-pane key="3" :tab="UIData['anomaly_tab'][langData]">
+    <a-tab-pane key="3" :tab="lm.getString('anomaly_tab')">
       <Suspense>
         <AnomaliesTab ref="anomalyTab" :langData="langData" />
       </Suspense>
     </a-tab-pane>
-    <a-tab-pane key="4" :tab="UIData['talisman_tab'][langData]">
+    <a-tab-pane key="4" :tab="lm.getString('talisman_tab')">
       <Suspense>
         <TalismansTab ref="talismanTab" :langData="langData" />
       </Suspense>
     </a-tab-pane>
-    <a-tab-pane key="5" :tab="UIData['pick_ban_tab'][langData]">
+    <a-tab-pane key="5" :tab="lm.getString('pick_ban_tab')">
       <Suspense>
         <PickBanTab ref="pickBanTab" :langData="langData" />
       </Suspense>
     </a-tab-pane>
   </a-tabs>
   <a-divider>
-    {{ UIData["github_url"][langData] }} -
+    {{ lm.getString("github_url") }} -
     <a href="https://github.com/skyser2003/mhrsb_anomaly_calculator" title="https://github.com/skyser2003/mhrsb_anomaly_calculator" target="_blank">
       https://github.com/skyser2003/mhrsb_anomaly_calculator
     </a>
   </a-divider>
-  <a-divider>{{ UIData["questions_and_feedbacks"][langData] }} - mhrsb.calculator@gmail.com</a-divider>
-  <a-divider>{{ UIData["app_version"][langData] }} {{ appVersion }}</a-divider>
+  <a-divider>{{ lm.getString("questions_and_feedbacks") }} - mhrsb.calculator@gmail.com</a-divider>
+  <a-divider>{{ lm.getString("app_version") }} {{ appVersion }}</a-divider>
 </template>

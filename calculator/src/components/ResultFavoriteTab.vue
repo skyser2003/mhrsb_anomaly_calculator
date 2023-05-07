@@ -10,7 +10,7 @@ import { DecosData } from "../models/decos";
 
 import { ResultFavorite, ResultFullEquipments, Skills, getTotalStat } from "../definition/calculate_result";
 
-import uiData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { getDecoCombTexts } from "../model/ui";
 import { Language } from "../definition/language";
 import { CacheManager } from "../model/data_manager";
@@ -19,8 +19,6 @@ import ResultFavoriteRow from "./ResultFavoriteRow.vue";
 import StatTable from "./StatTable.vue";
 import { ArmorStatInfo } from "../definition/armor_define";
 
-
-const UIData = uiData as { [key: string]: { [key: string]: string } };
 
 interface Row {
 	id: string;
@@ -43,49 +41,49 @@ defineExpose({ onTabActivate });
 
 const columns = ref([
 	{
-		title: UIData["id_column"][props.langData],
+		title: lm.getString("id_column"),
 		dataIndex: "id",
 		key: "id",
 		width: 50
 	},
 	{
-		title: UIData["name_column"][props.langData],
+		title: lm.getString("name_column"),
 		dataIndex: "name",
 		key: "name",
 		width: 200
 	}, {
-		title: UIData["sex_type"][props.langData],
+		title: lm.getString("sex_type"),
 		dataIndex: "sex_type",
 		key: "sex_type",
 		width: 100,
 	},
 	{
-		title: UIData["weapon_slots"][props.langData],
+		title: lm.getString("weapon_slots"),
 		dataIndex: "weapon_slots",
 		key: "weapon_slots",
 	},
 	{
-		title: UIData["skills_column"][props.langData],
+		title: lm.getString("skills_column"),
 		dataIndex: "skills",
 		key: "skills",
 	},
 	{
-		title: UIData["decorations_name"][props.langData],
+		title: lm.getString("decorations_name"),
 		dataIndex: "deco_combs",
 		key: "deco_combs",
 	},
 	{
-		title: UIData["leftover_slots"][props.langData],
+		title: lm.getString("leftover_slots"),
 		dataIndex: "leftover_slots",
 		key: "leftover_slots",
 	},
 	{
-		title: UIData["stat_name"][props.langData],
+		title: lm.getString("stat_name"),
 		dataIndex: "stat",
 		key: "stat",
 	},
 	{
-		title: UIData["delete"][props.langData],
+		title: lm.getString("delete"),
 		dataIndex: "delete",
 		key: "delete",
 	}
@@ -171,7 +169,7 @@ function generateTableData(favs: ResultFavorite[]) {
 			key: index,
 			id,
 			name: fav.name,
-			sex_type: UIData[fav.sexType][props.langData],
+			sex_type: lm.getString(fav.sexType),
 			weapon_slots: weaponSlotsText,
 			skills: skillsText,
 			deco_combs: allDecoTexts.join(" - "),
@@ -279,7 +277,7 @@ function isRowExpandable(record: Row) {
 
 <template>
 	<a-switch v-model:checked="isReordering" @change="switchReorder" />
-	<span style="padding-left: 10px;">{{ UIData["reorder"][langData] }}</span>
+	<span style="padding-left: 10px;">{{ lm.getString("reorder") }}</span>
 	
 	<br />
 	<br />
@@ -294,7 +292,7 @@ function isRowExpandable(record: Row) {
 
 				<template v-else>
 					<template v-if="text === undefined || text === null || text.length === 0">
-						<span class="empty_name">{{ UIData["empty_favorite_name"][props.langData] }}</span>
+						<span class="empty_name">{{ lm.getString("empty_favorite_name") }}</span>
 					</template>
 					<template v-else>
 						{{ text }}
@@ -308,7 +306,7 @@ function isRowExpandable(record: Row) {
 			</template>
 
 			<template v-else-if="column.key === 'delete'">
-				<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="" :disabled="isReordering">
+				<a-popconfirm :title="lm.getString('confirm_delete')" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="" :disabled="isReordering">
 					<a-button :disabled="isReordering">X</a-button>
 				</a-popconfirm>
 			</template>

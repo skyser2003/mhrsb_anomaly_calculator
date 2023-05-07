@@ -7,7 +7,7 @@ import { Language } from "../definition/language";
 
 import { SkillsData } from "../models/skills";
 
-import UIData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 
 
 const props = defineProps<{
@@ -22,13 +22,13 @@ const props = defineProps<{
 
 const slotsColumn = ref([
 	{
-		title: UIData["additional_slot"][props.langData],
+		title: lm.getString("additional_slot"),
 		dataIndex: "index_view",
 		key: "index_view",
 		width: 150,
 	},
 	{
-		title: UIData["additional_slot_level"][props.langData],
+		title: lm.getString("additional_slot_level"),
 		dataIndex: "max_level",
 		key: "max_level",
 	}
@@ -36,13 +36,13 @@ const slotsColumn = ref([
 
 const skillsColumn = ref([
 	{
-		title: UIData["additional_skill"][props.langData],
+		title: lm.getString("additional_skill"),
 		dataIndex: "additional_skill",
 		key: "additional_skill",
 		width: 150,
 	},
 	{
-		title: UIData["additional_skill_level"][props.langData],
+		title: lm.getString("additional_skill_level"),
 		dataIndex: "max_level",
 		key: "max_level",
 	}
@@ -52,7 +52,7 @@ function getSlotTableData() {
 	return props.slots.map((maxLevel, index) => {
 		return {
 			index: index,
-			index_view: `${UIData['slots_name'][props.langData]} ${index + 1}`,
+			index_view: `${lm.getString('slots_name')} ${index + 1}`,
 			max_level: maxLevel,
 			min_level: props.originalSlots[index] + 1,
 		};

@@ -16,13 +16,12 @@ import { FinalSkillInfo } from "../definition/skill_define";
 
 import { Language } from "../definition/language";
 
-import uiData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { EquipSlots, AnomalyArmorInfo, MAX_SLOT_LEVEL } from "../definition/calculate_result";
 import { CacheManager } from "../model/data_manager";
 import { InvokeManager } from "../model/invoke_manager";
 
 const ArmorsVec = RawArmorsVec as unknown as FinalArmorInfo[];
-const UIData = uiData as { [key: string]: { [key: string]: string } };
 
 interface AnomalyAddInfo {
 	armorId: string;
@@ -56,43 +55,43 @@ const columns = ref([
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 1`,
+		title: `${lm.getString("skill_column")} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 2`,
+		title: `${lm.getString("skill_column")} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 3`,
+		title: `${lm.getString("skill_column")} 3`,
 		dataIndex: "skill3",
 		key: "skill3",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 4`,
+		title: `${lm.getString("skill_column")} 4`,
 		dataIndex: "skill4",
 		key: "skill4",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 5`,
+		title: `${lm.getString("skill_column")} 5`,
 		dataIndex: "skill5",
 		key: "skill5",
 		width: 200,
 	},
 	{
-		title: UIData["slots_name"][props.langData],
+		title: lm.getString("slots_name"),
 		dataIndex: "slots",
 		key: "slots",
 		width: 200,
 	},
 	{
-		title: UIData["stat_name"][props.langData],
+		title: lm.getString("stat_name"),
 		dataIndex: "stat",
 		key: "stat",
 	},
@@ -106,48 +105,48 @@ const manualColumns = ref([
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 1`,
+		title: `${lm.getString("skill_column")} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 2`,
+		title: `${lm.getString("skill_column")} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 3`,
+		title: `${lm.getString("skill_column")} 3`,
 		dataIndex: "skill3",
 		key: "skill3",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 4`,
+		title: `${lm.getString("skill_column")} 4`,
 		dataIndex: "skill4",
 		key: "skill4",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 5`,
+		title: `${lm.getString("skill_column")} 5`,
 		dataIndex: "skill5",
 		key: "skill5",
 		width: 200,
 	},
 	{
-		title: UIData["slots_name"][props.langData],
+		title: lm.getString("slots_name"),
 		dataIndex: "slots",
 		key: "slots",
 		width: 200,
 	},
 	{
-		title: UIData["stat_name"][props.langData],
+		title: lm.getString("stat_name"),
 		dataIndex: "stat",
 		key: "stat",
 	},
 	{
-		title: UIData["delete"][props.langData],
+		title: lm.getString("delete"),
 		dataIndex: "delete",
 		key: "delete",
 	},
@@ -156,48 +155,48 @@ const manualColumns = ref([
 
 const addAnomalyColumns = ref([
 	{
-		title: UIData["armor_name"][props.langData],
+		title: lm.getString("armor_name"),
 		dataIndex: "name",
 		key: "name",
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 1`,
+		title: `${lm.getString("skill_column")} 1`,
 		dataIndex: "skill1",
 		key: "skill1",
 		skillId: 0,
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 2`,
+		title: `${lm.getString("skill_column")} 2`,
 		dataIndex: "skill2",
 		key: "skill2",
 		skillId: 1,
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 3`,
+		title: `${lm.getString("skill_column")} 3`,
 		dataIndex: "skill3",
 		key: "skill3",
 		skillId: 2,
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 4`,
+		title: `${lm.getString("skill_column")} 4`,
 		dataIndex: "skill4",
 		key: "skill4",
 		skillId: 3,
 		width: 200,
 	},
 	{
-		title: `${UIData["skill_column"][props.langData]} 5`,
+		title: `${lm.getString("skill_column")} 5`,
 		dataIndex: "skill5",
 		key: "skill5",
 		skillId: 4,
 		width: 200,
 	},
 	{
-		title: UIData["slot_diffs"][props.langData],
+		title: lm.getString("slot_diffs"),
 		dataIndex: "slots",
 		key: "slots",
 	}
@@ -205,32 +204,32 @@ const addAnomalyColumns = ref([
 
 const statDiffColumns = ref([
 	{
-		title: UIData["defense"][props.langData],
+		title: lm.getString("defense"),
 		dataIndex: "defense",
 		key: "defense",
 	},
 	{
-		title: UIData["fire_res"][props.langData],
+		title: lm.getString("fire_res"),
 		dataIndex: "fireRes",
 		key: "fireRes",
 	},
 	{
-		title: UIData["water_res"][props.langData],
+		title: lm.getString("water_res"),
 		dataIndex: "waterRes",
 		key: "waterRes",
 	},
 	{
-		title: UIData["ice_res"][props.langData],
+		title: lm.getString("ice_res"),
 		dataIndex: "iceRes",
 		key: "iceRes",
 	},
 	{
-		title: UIData["elec_res"][props.langData],
+		title: lm.getString("elec_res"),
 		dataIndex: "elecRes",
 		key: "elecRes",
 	},
 	{
-		title: UIData["dragon_res"][props.langData],
+		title: lm.getString("dragon_res"),
 		dataIndex: "dragonRes",
 		key: "dragonRes",
 	},
@@ -550,24 +549,24 @@ async function deleteAllManualAnomalies() {
 <template>
 	<div class="container">
 		<div>
-			<h1 style="display: inline-block;">{{ UIData["mod_managed_anomaly_explanation"][props.langData] }} </h1>
+			<h1 style="display: inline-block;">{{ lm.getString("mod_managed_anomaly_explanation") }} </h1>
 			<a href="https://www.nexusmods.com/monsterhunterrise/mods/1477" target="_blank"> (Mod link)</a>
-			<div>({{ UIData["mod_usage_explanation"][langData] }})</div>
+			<div>({{ lm.getString("mod_usage_explanation") }})</div>
 		</div>
 
 		<br />
 
-		<a-button @click="loadAnomalyFile()">{{ UIData["register_file"][langData] }}</a-button>
+		<a-button @click="loadAnomalyFile()">{{ lm.getString("register_file") }}</a-button>
 		<a-input v-model:value="anomaly_filename" placeholder="Anomaly crafting filename (exported via mod)" style="width: 500px" />
-		<a-button @click="parseAnomalyFile(anomaly_filename)" type="primary">{{ UIData["manual_refresh"][langData] }}</a-button>
-		<a-button @click="clearFileAnomalies">{{ UIData["cancel_register"][langData] }}</a-button>
+		<a-button @click="parseAnomalyFile(anomaly_filename)" type="primary">{{ lm.getString("manual_refresh") }}</a-button>
+		<a-button @click="clearFileAnomalies">{{ lm.getString("cancel_register") }}</a-button>
 
 		<template v-for="part in parts">
 			<a-table :columns="columns" :data-source="generateAnomalyData(anomalyArmorsByPart, part)"
 				:pagination="{ defaultPageSize: 10000000, hideOnSinglePage: true}">
 				<template #headerCell="{ column }">
 					<template v-if="column.dataIndex === 'name'">
-						{{ UIData[`${part}_name`][props.langData] }}
+						{{ lm.getString(`${part}_name`) }}
 					</template>
 					<template v-else>
 						{{ column.title }}
@@ -583,7 +582,7 @@ async function deleteAllManualAnomalies() {
 		</template>
 
 		<div>
-			<h1>{{ UIData["manually_managed_anomaly_explanation"][props.langData] }}</h1>
+			<h1>{{ lm.getString("manually_managed_anomaly_explanation") }}</h1>
 		</div>
 
 		<a-table :columns="addAnomalyColumns" :data-source="dummyAddAnomalySkillSlots()" :pagination="{ hideOnSinglePage: true }">
@@ -637,13 +636,13 @@ async function deleteAllManualAnomalies() {
 
 		<br />
 
-		<a-button @click="addManualAnomalyArmor()" :disabled="anomalyAddInfo.armorId.length === 0">{{ UIData["add_button"][langData] }}</a-button>
+		<a-button @click="addManualAnomalyArmor()" :disabled="anomalyAddInfo.armorId.length === 0">{{ lm.getString("add_button") }}</a-button>
 
 		<a-divider style="border-color: #7cb305" dashed />
 		
-		<a-popconfirm :title="UIData['confirm_delete_all'][langData]" ok-text="O" cancel-text="X"
+		<a-popconfirm :title="lm.getString('confirm_delete_all')" ok-text="O" cancel-text="X"
 			@confirm="deleteAllManualAnomalies()" @cancel="">
-			<a-button>{{ UIData["delete_all_button"][langData] }}</a-button>
+			<a-button>{{ lm.getString("delete_all_button") }}</a-button>
 		</a-popconfirm>
 
 		</div>
@@ -655,7 +654,7 @@ async function deleteAllManualAnomalies() {
 				:pagination="{ defaultPageSize: 10000000, hideOnSinglePage: true}">
 				<template #headerCell="{ column }">
 					<template v-if="column.dataIndex === 'name'">
-						{{ UIData[`${part}_name`][props.langData] }}
+						{{ lm.getString(`${part}_name`) }}
 					</template>
 					<template v-else>
 						{{ column.title }}
@@ -668,7 +667,7 @@ async function deleteAllManualAnomalies() {
 					</template>
 
 					<template v-else-if="column.key === 'delete'">
-						<a-popconfirm :title="UIData['confirm_delete'][langData]" ok-text="O" cancel-text="X" @confirm="deleteManualAnomaly(part, index)"
+						<a-popconfirm :title="lm.getString('confirm_delete')" ok-text="O" cancel-text="X" @confirm="deleteManualAnomaly(part, index)"
 							@cancel="">
 							<a-button>X</a-button>
 						</a-popconfirm>

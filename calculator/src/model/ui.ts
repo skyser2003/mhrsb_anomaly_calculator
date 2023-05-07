@@ -3,7 +3,7 @@ import { ResultDecorationCombination } from "../definition/calculate_result";
 import { SkillsData } from "../models/skills";
 import { DecosData } from "../models/decos";
 
-import UIData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { Language } from "../definition/language";
 
 
@@ -41,7 +41,7 @@ export function getDecoCombTexts(comb: ResultDecorationCombination, langData: La
 		for (const decoName in decoData) {
 			const count = decoData[decoName];
 
-			const text = `${decoName} x ${count}${UIData["deco_unit"][langData]}`;
+			const text = `${decoName} x ${count}${lm.getString("deco_unit")}`;
 			decoTexts.push(text);
 		}
 

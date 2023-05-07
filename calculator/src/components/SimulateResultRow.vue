@@ -6,7 +6,7 @@ import { ResultFullEquipments, ResultArmor, ResultFavorite, EquipSlots, Skills }
 import { SkillsData } from "../models/skills";
 import { SlotsDataManager } from "../models/slots";
 
-import UIData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { getDecoCombTexts } from "../model/ui";
 import { Language } from "../definition/language";
 
@@ -36,31 +36,31 @@ const equipColumns = ref([
 		width: 50,
 	},
 	{
-		title: UIData["helm_name"][props.langData],
+		title: lm.getString("helm_name"),
 		dataIndex: "helm",
 		key: "helm",
 		width: 50,
 	},
 	{
-		title: UIData["torso_name"][props.langData],
+		title: lm.getString("torso_name"),
 		dataIndex: "torso",
 		key: "torso",
 		width: 50,
 	},
 	{
-		title: UIData["arm_name"][props.langData],
+		title: lm.getString("arm_name"),
 		dataIndex: "arm",
 		key: "arm",
 		width: 50,
 	},
 	{
-		title: UIData["waist_name"][props.langData],
+		title: lm.getString("waist_name"),
 		dataIndex: "waist",
 		key: "waist",
 		width: 50,
 	},
 	{
-		title: UIData["feet_name"][props.langData],
+		title: lm.getString("feet_name"),
 		dataIndex: "feet",
 		key: "feet",
 		width: 50,
@@ -69,25 +69,25 @@ const equipColumns = ref([
 
 const decoColumns = [
 	{
-		title: UIData["decorations_name"][props.langData],
+		title: lm.getString("decorations_name"),
 		dataIndex: "decos",
 		key: "decos",
 		width: 500,
 	},
 	{
-		title: UIData["leftover_slots"][props.langData],
+		title: lm.getString("leftover_slots"),
 		dataIndex: "slots",
 		key: "slots",
 		width: 70,
 	},
 	{
-		title: UIData["excess_skills"][props.langData],
+		title: lm.getString("excess_skills"),
 		dataIndex: "leftover_skills",
 		key: "leftover_skills",
 		width: 200,
 	},
 	{
-		title: UIData["save"][props.langData],
+		title: lm.getString("save"),
 		dataIndex: "add_result_favorite",
 		key: "add_result_favorite",
 		width: 100,
@@ -107,7 +107,7 @@ function getArmorData(data: ResultArmor) {
 		skillTexts.push(text);
 	}
 
-	return `${skillTexts.join(", ")} / ${UIData["slots_name"][props.langData]} ${JSON.stringify(SlotsDataManager.convertToBase(data.baseSlots))}`;
+	return `${skillTexts.join(", ")} / ${lm.getString("slots_name")} ${JSON.stringify(SlotsDataManager.convertToBase(data.baseSlots))}`;
 }
 
 function getArmorDiffData(data: ResultArmor) {
@@ -118,7 +118,7 @@ function getArmorDiffData(data: ResultArmor) {
 	const skillTexts = [];
 
 	if (Object.keys(data.diffSkills).length === 0) {
-		skillTexts.push(`(${UIData["no_diff_skill"][props.langData]})`);
+		skillTexts.push(`(${lm.getString("no_diff_skill")})`);
 	} else {
 		const texts = [];
 
@@ -150,12 +150,12 @@ function getArmorDiffData(data: ResultArmor) {
 		slot_diff_texts.push(text);
 	}
 
-	return `${skillTexts.join(", ")} / ${UIData['slots_name'][props.langData]} [${slot_diff_texts.join(", ")}]`;
+	return `${skillTexts.join(", ")} / ${lm.getString('slots_name')} [${slot_diff_texts.join(", ")}]`;
 }
 
 function getRowData(data: ResultFullEquipments) {
 	const originalData = {
-		row_info: UIData["base_armor_info"][props.langData],
+		row_info: lm.getString("base_armor_info"),
 		helm: getArmorData(data.armors["helm"]),
 		torso: getArmorData(data.armors["torso"]),
 		arm: getArmorData(data.armors["arm"]),
@@ -164,7 +164,7 @@ function getRowData(data: ResultFullEquipments) {
 	} as RowData;
 
 	const diffData = {
-		row_info: UIData["anomaly_craft_info"][props.langData],
+		row_info: lm.getString("anomaly_craft_info"),
 		helm: getArmorDiffData(data.armors["helm"]),
 		torso: getArmorDiffData(data.armors["torso"]),
 		arm: getArmorDiffData(data.armors["arm"]),
@@ -192,7 +192,7 @@ function getDecoCombData(data: ResultFullEquipments) {
 		}
 
 		if (leftoverSkills.length === 0) {
-			leftoverSkills.push(`(${UIData["no_excess_skill"][props.langData]})`);
+			leftoverSkills.push(`(${lm.getString("no_excess_skill")})`);
 		}
 
 		return { decos: allDecoTexts.join(" - "), slots: JSON.stringify(comb.leftoverSlotsSum), leftover_skills: leftoverSkills.join(", ") };

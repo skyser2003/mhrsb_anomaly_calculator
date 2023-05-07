@@ -10,7 +10,7 @@ import { SlotsDataManager } from "../models/slots";
 import SimulateResultRow from "./SimulateResultRow.vue";
 import StatTable from "./StatTable.vue";
 
-import UIData from "../ui_data/ui_data.json";
+import { lm } from "../model/language_manager";
 import { Language } from "../definition/language";
 import { ArmorStatInfo, getDefaultStat } from "../definition/armor_define";
 
@@ -38,47 +38,47 @@ const emits = defineEmits<{
 
 const columns = ref([
 	{
-		title: UIData["helm_name"][props.langData],
+		title: lm.getString("helm_name"),
 		dataIndex: "helm",
 		key: "helm"
 	},
 	{
-		title: UIData["torso_name"][props.langData],
+		title: lm.getString("torso_name"),
 		dataIndex: "torso",
 		key: "torso"
 	},
 	{
-		title: UIData["arm_name"][props.langData],
+		title: lm.getString("arm_name"),
 		dataIndex: "arm",
 		key: "arm"
 	},
 	{
-		title: UIData["waist_name"][props.langData],
+		title: lm.getString("waist_name"),
 		dataIndex: "waist",
 		key: "waist"
 	},
 	{
-		title: UIData["feet_name"][props.langData],
+		title: lm.getString("feet_name"),
 		dataIndex: "feet",
 		key: "feet"
 	},
 	{
-		title: UIData["talisman_name"][props.langData],
+		title: lm.getString("talisman_name"),
 		dataIndex: "talisman",
 		key: "talisman"
 	},
 	{
-		title: UIData["common_leftover_skills"][props.langData],
+		title: lm.getString("common_leftover_skills"),
 		dataIndex: "common_leftover_skills",
 		key: "common_leftover_skills"
 	},
 	{
-		title: UIData["leftover_slots"][props.langData],
+		title: lm.getString("leftover_slots"),
 		dataIndex: "leftover_slots",
 		key: "leftover_slots"
 	},
 	{
-		title: UIData["stat_name"][props.langData],
+		title: lm.getString("stat_name"),
 		dataIndex: "stat",
 		key: "stat"
 	}
@@ -99,7 +99,7 @@ function getTalismanText(talisman: ResultTalisman) {
 
 	const taliBaseSlots = SlotsDataManager.convertToBase(taliSlots);
 
-	const slotsName = UIData["slots_name"][props.langData];
+	const slotsName = lm.getString("slots_name");
 
 	return skillTexts.join(", ") + " / " + `${slotsName} ${JSON.stringify(taliBaseSlots)}`;
 }
