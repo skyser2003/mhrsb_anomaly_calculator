@@ -54,6 +54,10 @@ export class DecosDataManager {
     getInfo(id: string, index: number) {
         return this.decosBySkill[id][index];
     }
+
+    getAllDecos() {
+        return this.decos;
+    }
 }
 
 export const DecosData = new DecosDataManager(DecosVec as FinalDecoInfo[]);
