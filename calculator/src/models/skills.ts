@@ -34,6 +34,10 @@ class SkillsDataManager {
 
         return retSkills;
     }
+
+    getAllSkills() {
+        return this.skillsMap;
+    }
 }
 
 export const SkillsData = new SkillsDataManager(SkillsVec);
