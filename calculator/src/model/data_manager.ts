@@ -25,6 +25,8 @@ export class CacheManager {
 	static manualAnomaliesName = "manual_anomalies";
 	static manualTalismansName = "manual_talismans";
 
+	static bannedDecosName = "banned_decos";
+
 	static defaultCalcChoices: CalcChoices = {
 		sexType: "",
 		weaponSlots: [0, 0, 0],
@@ -176,6 +178,18 @@ export class CacheManager {
 	static getManualTalismans() {
 		try {
 			return JSON.parse(getItem(this.manualTalismansName)!) as TalismanInfo[] ?? [];
+		} catch (e) {
+			return [];
+		}
+	}
+
+	static setBannedDecos(decos: string[]) {
+		setItem(this.bannedDecosName, JSON.stringify(decos));
+	}
+
+	static getBannedDecos() {
+		try {
+			return JSON.parse(getItem(this.bannedDecosName)!) as string[] ?? [];
 		} catch (e) {
 			return [];
 		}

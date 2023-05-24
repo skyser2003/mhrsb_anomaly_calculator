@@ -7,6 +7,7 @@ import { SkillCategory } from "../definition/skill_category_define";
 import { Language } from "../definition/language";
 import { DecosData } from "../models/decos"
 import { SkillsData } from "../models/skills";
+import { CacheManager } from "../model/data_manager";
 
 import SkillCategories from "../data/skill_category.json";
 import { FinalDecoInfo } from "../definition/deco_define";
@@ -20,15 +21,17 @@ const skills = SkillsData.getAllSkills();
 const decosBySkill = DecosData.getAllDecosBySkill();
 const decosPerCat = ref<{ [key: string]: FinalDecoInfo[] }>({});
 
-const selectedDecos = ref<{ [key: string]: string }>({});
+const selectedDecos = ref<{ [key: string]: boolean }>({});
+
+for (const decoId of CacheManager.getBannedDecos()) {
+	selectedDecos.value[decoId] = true;
+}
 
 for (const cat of skillCats.value) {
 	const catId = cat.id;
 	decosPerCat.value[catId] = [];
 	
 	for(const skillId of cat.skills) {
-		console.log(skillId);
-
 		const decos = decosBySkill[skillId];
 
 		if (decos !== undefined) {
@@ -43,6 +46,18 @@ for (const catId in decosPerCat.value) {
 	});
 }
 
+function onBannedDecoChange() {
+	const selectedDecosList = [];
+
+	for(const decoId in selectedDecos.value) {
+		if (selectedDecos.value[decoId] === true) {
+			selectedDecosList.push(decoId);
+		}
+	}
+
+	CacheManager.setBannedDecos(selectedDecosList);
+}
+
 </script>
 
 <template>
@@ -55,7 +70,7 @@ for (const catId in decosPerCat.value) {
 				<template v-for="deco in decosPerCat[cat.id]">
 					<div style="display: inline-block; width: 200px; height: 50px; margin: 10px;">
 						<div>
-							<a-checkbox v-model:checked="selectedDecos[deco.id]" style="padding-left: 10px;">
+							<a-checkbox v-model:checked="selectedDecos[deco.id]" style="padding-left: 10px;" @change="onBannedDecoChange">
 								{{ deco.names[langData] }} ({{ SkillsData.getName(deco.skillId, langData) }})
 							</a-checkbox>
 						</div>

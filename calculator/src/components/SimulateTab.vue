@@ -185,6 +185,9 @@ async function loadManuals() {
 	console.log("Manual anomaly/talisman loading done");
 }
 
+async function loadBannedDecos() {
+	// TODO
+}
 
 async function calculate() {
 	const localSelectedSkills = {} as { [key: string]: number };
@@ -219,6 +222,7 @@ async function calculate() {
 	resultEquipmentsCount.value = 0;
 
 	await loadManuals();
+	await loadBannedDecos();
 
 	try {
 		const result = await InvokeManager.calculateSkillset(
@@ -283,6 +287,7 @@ async function calculateAdditionalSkills() {
 	additionalSlots.value = [0, 0, 0, 0];
 
 	await loadManuals();
+	await loadBannedDecos();
 
 	try {
 		const result = await InvokeManager.calculateAdditionalSkillset(
