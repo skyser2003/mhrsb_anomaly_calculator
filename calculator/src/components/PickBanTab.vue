@@ -23,7 +23,7 @@ const decosPerCat = ref<{ [key: string]: FinalDecoInfo[] }>({});
 
 const selectedDecos = ref<{ [key: string]: boolean }>({});
 
-for (const decoId of CacheManager.getBannedDecos()) {
+for (const decoId in CacheManager.getBannedDecos()) {
 	selectedDecos.value[decoId] = true;
 }
 
@@ -47,11 +47,11 @@ for (const catId in decosPerCat.value) {
 }
 
 function onBannedDecoChange() {
-	const selectedDecosList = [];
+	const selectedDecosList = {} as { [key: string]: boolean };
 
 	for(const decoId in selectedDecos.value) {
 		if (selectedDecos.value[decoId] === true) {
-			selectedDecosList.push(decoId);
+			selectedDecosList[decoId] = true;
 		}
 	}
 

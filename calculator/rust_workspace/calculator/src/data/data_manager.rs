@@ -1,5 +1,5 @@
 use std::cmp::Reverse;
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::path::Path;
 use std::sync::Arc;
 
@@ -26,6 +26,7 @@ type ArmorsBySlot = Vec<HashMap<String, Vec<Arc<BaseArmor>>>>;
 pub struct DataManager {
     armors: HashMap<String, Arc<BaseArmor>>,
     skills: Vec<Skill>,
+    decos: HashMap<String, Decoration>,
 
     skill_id_map: HashMap<String, usize>,
     empty_skill_levels: Vec<SkillSlotCount>,
@@ -134,12 +135,114 @@ impl DataManager {
             }
         }
 
+        let (
+            decos_by_skill,
+            single_deco_skills,
+            deco_by_level,
+            skills_point,
+            deco_combinations,
+            point_lcm,
+        ) = Self::get_deco_data(&decos, &skills, &skill_id_map);
+
+        let (slot_only_armors, armors_by_slot) = Self::extract_slot_armors(&armors);
+
+        let mut empty_parts = [0; EQUIP_PART_COUNT - 1];
+        for part in ArmorPart::get_all_armor() {
+            let part = part.as_usize();
+            empty_parts[part] = part;
+        }
+
+        let empty_armors =
+            empty_parts.map(|part| Arc::new(BaseArmor::create_empty(ArmorPart::from_usize(part))));
+
+        let mut bases_by_part = HashMap::new();
+
+        bases_by_part.insert(ArmorPart::Helm.as_usize(), Vec::new());
+        bases_by_part.insert(ArmorPart::Torso.as_usize(), Vec::new());
+        bases_by_part.insert(ArmorPart::Arm.as_usize(), Vec::new());
+        bases_by_part.insert(ArmorPart::Waist.as_usize(), Vec::new());
+        bases_by_part.insert(ArmorPart::Feet.as_usize(), Vec::new());
+
+        let anomalies_by_part = bases_by_part.clone();
+
+        for armor in armors.values() {
+            let part = &armor.part;
+            bases_by_part
+                .get_mut(&part.as_usize())
+                .unwrap()
+                .push(armor.clone());
+        }
+
+        DataManager {
+            armors,
+            skills,
+            decos,
+            skill_id_map,
+            empty_skill_levels,
+            decos_by_skill,
+            single_deco_skills,
+            deco_by_level,
+            skills_point,
+            point_lcm,
+            deco_combinations,
+            slot_only_armors,
+            armors_by_slot,
+            empty_armors,
+            armor_name_dict,
+            skill_name_dict,
+            bases_by_part,
+            anomalies_by_part,
+            empty_talisman: Arc::new(Talisman::create_empty()),
+            all_anomaly_armors: Default::default(),
+            file_anomaly_armors: Default::default(),
+            manual_anomaly_armors: Default::default(),
+            all_talismans: Default::default(),
+            file_talismans: Default::default(),
+            manual_talismans: Default::default(),
+            slot_only_talismans: Default::default(),
+            talismans_by_slot: Default::default(),
+        }
+    }
+
+    pub fn debug_deco_combs(&self) {
+        self.deco_combinations.debug(self);
+    }
+
+    pub fn set_banned_decos(&mut self, banned_decos: &HashSet<String>) {
+        let mut real_decos = self.decos.clone();
+
+        for deco_id in banned_decos {
+            real_decos.remove(deco_id);
+        }
+
+        (
+            self.decos_by_skill,
+            self.single_deco_skills,
+            self.deco_by_level,
+            self.skills_point,
+            self.deco_combinations,
+            self.point_lcm,
+        ) = Self::get_deco_data(&real_decos, &self.skills, &self.skill_id_map);
+    }
+
+    fn get_deco_data(
+        decos: &HashMap<String, Decoration>,
+        skills: &Vec<Skill>,
+        skill_id_map: &HashMap<String, usize>,
+    ) -> (
+        Vec<Vec<Decoration>>,
+        Vec<std::option::Option<Decoration>>,
+        Vec<Vec<Decoration>>,
+        Vec<Vec<i32>>,
+        DecorationCombinations,
+        i32,
+    ) {
         let mut decos_by_skill = Vec::new();
         let mut single_deco_skills = Vec::new();
         let mut deco_by_level = Vec::new();
         let mut skills_point = Vec::new();
 
-        for _ in &skills {
+        for _ in skills {
             decos_by_skill.push(Vec::new());
             single_deco_skills.push(None);
             deco_by_level.push(Vec::new());
@@ -233,69 +336,30 @@ impl DataManager {
             }
         }
 
+        let mut point_lcm = 1_i32;
+
+        for decos in decos_by_skill.iter() {
+            if decos.is_empty() {
+                continue;
+            }
+
+            for deco in decos {
+                let point = deco.skill_level;
+
+                point_lcm = lcm(point_lcm, point as i32);
+            }
+        }
+
         let deco_combinations = DecorationCombinations::new(&decos_by_skill, &skills);
 
-        let (slot_only_armors, armors_by_slot) = Self::extract_slot_armors(&armors);
-
-        let mut empty_parts = [0; EQUIP_PART_COUNT - 1];
-        for part in ArmorPart::get_all_armor() {
-            let part = part.as_usize();
-            empty_parts[part] = part;
-        }
-
-        let empty_armors =
-            empty_parts.map(|part| Arc::new(BaseArmor::create_empty(ArmorPart::from_usize(part))));
-
-        let mut bases_by_part = HashMap::new();
-
-        bases_by_part.insert(ArmorPart::Helm.as_usize(), Vec::new());
-        bases_by_part.insert(ArmorPart::Torso.as_usize(), Vec::new());
-        bases_by_part.insert(ArmorPart::Arm.as_usize(), Vec::new());
-        bases_by_part.insert(ArmorPart::Waist.as_usize(), Vec::new());
-        bases_by_part.insert(ArmorPart::Feet.as_usize(), Vec::new());
-
-        let anomalies_by_part = bases_by_part.clone();
-
-        for armor in armors.values() {
-            let part = &armor.part;
-            bases_by_part
-                .get_mut(&part.as_usize())
-                .unwrap()
-                .push(armor.clone());
-        }
-
-        DataManager {
-            armors,
-            skills,
-            skill_id_map,
-            empty_skill_levels,
+        (
             decos_by_skill,
             single_deco_skills,
             deco_by_level,
             skills_point,
-            point_lcm,
             deco_combinations,
-            slot_only_armors,
-            armors_by_slot,
-            empty_armors,
-            armor_name_dict,
-            skill_name_dict,
-            bases_by_part,
-            anomalies_by_part,
-            empty_talisman: Arc::new(Talisman::create_empty()),
-            all_anomaly_armors: Default::default(),
-            file_anomaly_armors: Default::default(),
-            manual_anomaly_armors: Default::default(),
-            all_talismans: Default::default(),
-            file_talismans: Default::default(),
-            manual_talismans: Default::default(),
-            slot_only_talismans: Default::default(),
-            talismans_by_slot: Default::default(),
-        }
-    }
-
-    pub fn debug_deco_combs(&self) {
-        self.deco_combinations.debug(self);
+            point_lcm,
+        )
     }
 
     fn extract_slot_armors(

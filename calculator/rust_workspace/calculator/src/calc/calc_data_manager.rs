@@ -37,6 +37,8 @@ pub struct CalcDataManager {
     slot_talismans: HashMap<String, Arc<CalcEquipment>>,
 
     empty_equips: [Arc<CalcEquipment>; EQUIP_PART_COUNT],
+
+    banned_decos: HashSet<String>,
 }
 
 impl CalcDataManager {
@@ -90,6 +92,8 @@ impl CalcDataManager {
             slot_talismans: HashMap::new(),
 
             empty_equips,
+
+            banned_decos: HashSet::new(),
         }
     }
 
@@ -304,6 +308,14 @@ impl CalcDataManager {
             let equip = self.get_by_uid(uid).clone();
             (*equip).clone()
         })
+    }
+
+    pub fn set_banned_decos(&mut self, banned_decos: HashSet<String>) {
+        self.banned_decos = banned_decos;
+    }
+
+    pub fn get_banned_decos(&self) -> &HashSet<String> {
+        &self.banned_decos
     }
 
     pub fn get_empty_equips(&self) -> EquipmentsArray {

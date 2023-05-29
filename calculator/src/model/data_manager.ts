@@ -183,15 +183,15 @@ export class CacheManager {
 		}
 	}
 
-	static setBannedDecos(decos: string[]) {
+	static setBannedDecos(decos: { [key: string]: boolean }) {
 		setItem(this.bannedDecosName, JSON.stringify(decos));
 	}
 
 	static getBannedDecos() {
 		try {
-			return JSON.parse(getItem(this.bannedDecosName)!) as string[] ?? [];
+			return JSON.parse(getItem(this.bannedDecosName)!) as { [key: string]: boolean } ?? {};
 		} catch (e) {
-			return [];
+			return {};
 		}
 	}
 

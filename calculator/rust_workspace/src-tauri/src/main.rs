@@ -20,7 +20,10 @@ use mhr_calculator::{
 };
 use nohash_hasher::IntMap;
 use serde::Serialize;
-use std::{collections::HashMap, sync::RwLock};
+use std::{
+    collections::{HashMap, HashSet},
+    sync::RwLock,
+};
 
 #[tauri::command]
 fn cmd_get_file_anomalies(dm: tauri::State<RwLock<DataManager>>) -> Vec<AnomalyArmor> {
@@ -281,6 +284,23 @@ fn cmd_get_armor_names(dm: tauri::State<RwLock<DataManager>>) -> HashMap<String,
         .collect();
 }
 
+#[tauri::command]
+fn cmd_set_banned_decos(
+    deco_ids: HashMap<String, bool>,
+    cm: tauri::State<RwLock<CalcDataManager>>,
+) -> bool {
+    let mut cm = cm.write().unwrap();
+
+    cm.set_banned_decos(
+        deco_ids
+            .iter()
+            .map(|(deco_id, _)| deco_id.clone())
+            .collect::<HashSet<_>>(),
+    );
+
+    true
+}
+
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 struct CalculateSkillsetReturn {
@@ -339,6 +359,9 @@ async fn cmd_calculate_skillset(
 
         cm.load_anomalies(&dm);
         cm.load_talismans(&dm);
+
+        let banned_decos = cm.get_banned_decos();
+        dm.set_banned_decos(banned_decos);
     }
 
     let log;
@@ -487,6 +510,7 @@ async fn main() {
             cmd_clear_manual_talismans,
             cmd_get_skill_names,
             cmd_get_armor_names,
+            cmd_set_banned_decos,
             cmd_calculate_skillset,
             cmd_calculate_additional_skills
         ])

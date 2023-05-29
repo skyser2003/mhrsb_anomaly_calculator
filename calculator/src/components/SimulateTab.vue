@@ -186,7 +186,7 @@ async function loadManuals() {
 }
 
 async function loadBannedDecos() {
-	// TODO
+	InvokeManager.setBannedDecos(CacheManager.getBannedDecos());
 }
 
 async function calculate() {

@@ -93,4 +93,8 @@ export class InvokeManager {
 	public static async clearManualTalismans() {
 		return this.invoke<boolean>("cmd_clear_manual_talismans", {});
 	}
+
+	public static async setBannedDecos(decoIds: { [key: string]: boolean }) {
+		return this.invoke<boolean>("cmd_set_banned_decos", { decoIds });
+	}
 }
