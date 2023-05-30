@@ -330,5 +330,9 @@
     "skill_column": {
         "ko": "스킬",
         "en": "Skill"
+    },
+    "show_skill_name_pickban": {
+        "ko": "스킬 이름 표시",
+        "en": "Show skill name"
     }
 }
