@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "ts-node-esm main.ts"
+        "start": "node --loader ts-node/esm main.ts"
     },
     "devDependencies": {
         "@types/crawler": "^1.2.2",
