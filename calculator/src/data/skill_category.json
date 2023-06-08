@@ -164,7 +164,8 @@
             "master_mounter",
             "partbreaker",
             "spiribirds_call",
-            "shock_absorber"
+            "shock_absorber",
+            "inspiration"
         ]
     },
     {
@@ -240,7 +241,8 @@
             "frostcraft",
             "dragon_conversion",
             "frenzied_bloodlust",
-            "heaven_sent"
+            "heaven_sent",
+            "blood_awakening"
         ]
     }
 ]
