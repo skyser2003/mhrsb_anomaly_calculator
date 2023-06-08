@@ -1,9 +1,9 @@
 {
-    "version": "0.3.5",
-    "notes": "장식주 제외 기능 추가, 편의성 개선 / Decoration excluding system added, convenience improved",
+    "version": "0.3.6",
+    "notes": "16.0 데이터 추가 / 16.0 data added",
     "platforms": {
         "windows-x86_64": {
-            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVjM5dThDSzNtdmhQUHE5T1FoZXRTWXFZeUtWcEQ3blhRSHlrbENDZG9VT1hPb2VuemVTYmozWWJWcTFpUUtLcVVDOUl3dnNsR1hGSngxSlkzOW9oSEF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjg1NDcwNjI3CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuNV94NjRfZW4tVVMubXNpLnppcAp2TTY1b2NEU2dUdFpKLzNUNjhOSXRGQ0YxbGtBaUVXOW4zWFpoVDhYaFdLTHFWZTcrcmUzWDhIaVE4VGdlWFB5V1NRaUxKRnZQNkducHl4WmhvQ25DUT09Cg==",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVnlzcTdCQnVTaHBCQ29qNXl0OXEwTk9sMU91aDBkZWpBZEVvMFR3K00zR1pqTkltNE5FUng2bXhmUjMvSUwrVGNONE5TSWRpTUVKOXd3cDNrVnJERWdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjg2MjE1OTg5CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuNl94NjRfZW4tVVMubXNpLnppcApSQndQN2RlaExoc2xPWkx3SDRvRmhXSng0aVAvRTh3YnlBOWxuMVRJdXJUOXhPMy96aFJXcmtFZ0U4Nm5YSU5VYmxjMFgyNnFYWUdLelMrNlkyUzFEQT09Cg==",
             "url": "https://github.com/skyser2003/mhrsb_anomay_calculator/releases/latest/download/mhr-sunbreak-anomaly-calculator.msi.zip"
         }
     }
