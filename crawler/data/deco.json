@@ -3675,6 +3675,27 @@
         "slotSize": 4
     },
     {
+        "id": "thrift_jewel_4",
+        "names": {
+            "ja": "節弾珠Ⅱ【４】",
+            "en": "Thrift Jewel+ 4",
+            "fr": "Joyau économie+ 4",
+            "it": "G risparmio II 4",
+            "de": "Spar-Juwel+ 4",
+            "es": "Joya frugal+ 4",
+            "ru": "Самоцвет бережливости+ 4",
+            "pl": "Klejnot oszczędn.+ 4",
+            "pt": "Joia Frugal+ 4",
+            "ko": "절탄주Ⅱ【4】",
+            "zh-Hant": "省彈珠Ⅱ【4】",
+            "zh-Hans": "省弹珠Ⅱ【4】",
+            "ar": "حلية التوفير+ 4"
+        },
+        "skillId": "spare_shot",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
         "id": "minds_eye_jewel_4",
         "names": {
             "ja": "心眼珠Ⅱ【４】",
@@ -5019,6 +5040,27 @@
         "slotSize": 4
     },
     {
+        "id": "bloodening_jewel_4",
+        "names": {
+            "ja": "血氣珠Ⅱ【４】",
+            "en": "Bloodening Jewel+ 4",
+            "fr": "Joyau sanguinaire+ 4",
+            "it": "G sanguinario II 4",
+            "de": "Bluttaufe-Juwel+ 4",
+            "es": "J. sanguinolenta+ 4",
+            "ru": "Самоцвет крови+ 4",
+            "pl": "Krwawiący klejnot+ 4",
+            "pt": "Joia Sanguinante+ 4",
+            "ko": "혈기주Ⅱ【4】",
+            "zh-Hant": "血氣珠Ⅱ【4】",
+            "zh-Hans": "气血珠Ⅱ【4】",
+            "ar": "حلية بلون الدم+ 4"
+        },
+        "skillId": "blood_rite",
+        "skillLevel": 2,
+        "slotSize": 4
+    },
+    {
         "id": "shockproof_jewel_1",
         "names": {
             "ja": "緩衝珠【１】",
@@ -5036,6 +5078,27 @@
             "ar": "حلية مقاومة للصدمات 1"
         },
         "skillId": "shock_absorber",
+        "skillLevel": 1,
+        "slotSize": 1
+    },
+    {
+        "id": "inspiration_jewel_1",
+        "names": {
+            "ja": "激励珠【１】",
+            "en": "Inspiration Jewel 1",
+            "fr": "Joyau Inspiration 1",
+            "it": "G ispirazione 1",
+            "de": "Inspiration-Juwel 1",
+            "es": "Joya inspiración 1",
+            "ru": "Самоцвет вдохн. 1",
+            "pl": "Klejnot inspir. 1",
+            "pt": "Joia Inspiração 1",
+            "ko": "격려주【１】",
+            "zh-Hant": "激勵珠【1】",
+            "zh-Hans": "激励珠【1】",
+            "ar": "حلية الإلهام 1"
+        },
+        "skillId": "inspiration",
         "skillLevel": 1,
         "slotSize": 1
     },

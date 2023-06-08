@@ -4862,6 +4862,40 @@
         }
     },
     {
+        "id": "blood_awakening",
+        "maxLevel": 3,
+        "names": {
+            "ja": "血氣覚醒",
+            "en": "Blood Awakening",
+            "fr": "Éveil de sang",
+            "it": "Risveglio di sangue",
+            "de": "Bluterwachen",
+            "es": "Despertar sangriento",
+            "ru": "Пробуждение крови",
+            "pl": "Krwawe przebudzenie",
+            "pt": "Despertar de Sangue",
+            "ko": "혈기각성",
+            "zh-Hant": "血氣覺醒",
+            "zh-Hans": "气血觉醒",
+            "ar": "يقظة الدماء"
+        },
+        "texts": {
+            "ja": "攻撃を当てることで回復した体力量に\r\n応じて、攻撃性能が一定時間、段階的に\r\n上昇する。",
+            "en": "Gradually bolsters your attacks for\r\na certain period of time, depending\r\non how much health you regain\r\nwhen landing attacks.",
+            "fr": "Booste graduellement vos attaques\r\npendant un certain temps en\r\nfonction de la vie regagnée après\r\nune attaque réussie.",
+            "it": "Aumenta gradualmente i tuoi attacchi\r\nper un periodo di tempo proporzionale\r\nalla salute riacquistata mandando\r\nattacchi a segno.",
+            "de": "Verstärkt deine Angriffe allmählich\r\nfür eine Weile, je nachdem, wie viel\r\nGesundheit du durch das Landen\r\nvon Angriffen wiedererlangt hast.",
+            "es": "Durante cierto tiempo potencia\r\nlos ataques progresivamente\r\nsegún la salud que recobres\r\nal acertar con tus ataques.",
+            "ru": "Постепенно усиливает ваши атаки\r\nв зав-ти от того, сколько здоровья\r\nвы восстановили ими.",
+            "pl": "Przez pewien czas stopniowo wzmacnia\r\nataki, w zależności od zdrowia\r\nodzyskanego dzięki trafieniom.",
+            "pt": "Fortalece seus ataques gradualmente\r\npor um tempo, de acordo com quanta\r\nvida você recuperou com acertos.",
+            "ko": "공격을 적중시켜 회복한 체력량에 따라\r\n공격 성능이 일정 시간 단계적으로\r\n상승한다.",
+            "zh-Hant": "根據藉由攻擊而回復的體力量，\r\n階段性提升攻擊性能一段時間。",
+            "zh-Hans": "根据攻击命中后回复的体力量，\r\n在一段时间内攻击性能会阶段性上升。",
+            "ar": "للتعزيز التدريجي لهجماتك\r\nلفترة، وفقًا لمقدار الصحة\r\nالتي اكتسبتها بشن الهجمات."
+        }
+    },
+    {
         "id": "strife",
         "maxLevel": 3,
         "names": {
@@ -4927,6 +4961,40 @@
             "zh-Hant": "當攻擊命中同行的夥伴，\r\n或受夥伴的攻擊命中時，\r\n可消除受到傷害時的反應動作。\r\n（陷入特定狀態異常時無效）",
             "zh-Hans": "攻击命中同行的同伴，或是受到\r\n同伴的攻击时，使伤害反应无效。\r\n（在特定状态异常时不会生效）",
             "ar": "لتعطيل تفاعلات الضرر عند إصابة\r\nصديق، أو عند إصابة الصديق لك.\r\n(لا ينطبق أثناء اعتلالات\r\nحالات معينة.)"
+        }
+    },
+    {
+        "id": "inspiration",
+        "maxLevel": 1,
+        "names": {
+            "ja": "激励",
+            "en": "Inspiration",
+            "fr": "Inspiration",
+            "it": "Ispirazione",
+            "de": "Inspiration",
+            "es": "Inspiración",
+            "ru": "Вдохновение",
+            "pl": "Inspiracja",
+            "pt": "Inspiração",
+            "ko": "격려",
+            "zh-Hant": "激勵",
+            "zh-Hans": "激励",
+            "ar": "الإلهام"
+        },
+        "texts": {
+            "ja": "旋律効果など、一定範囲内の仲間に\r\n作用する効果を発動した際、\r\n短い時間、攻撃力が上昇する効果を\r\n追加で与える。",
+            "en": "Adds an extra attack increase bonus\r\nfor a short while when activating\r\neffects that affect friends within a\r\ncertain target area, like melodies, etc.",
+            "fr": "Ajoute un bonus d'attaque temporaire\r\naprès avoir activé des effets qui\r\naffectent les alliés dans une certaine\r\nzone cible, comme les mélodies, etc.",
+            "it": "Potenzia ulteriormente l'attacco\r\nper un po' quando gli effetti che\r\ninfluiscono sui tuoi amici entro\r\nun certo raggio sono attivi.",
+            "de": "Fügt für kurze Zeit einen Angriffsbonus\r\nhinzu, wenn Effekte aktiviert werden,\r\ndie Freunde in einem bestimmten\r\nBereich betreffen, wie Melodien usw.",
+            "es": "Momentáneo bonus de aumento\r\nde ataque adicional al activar\r\nefectos para aliados en cierta\r\nzona objetivo (melodías, etc.).",
+            "ru": "Ненадолго усиливает атаку при\r\nактивации эффектов, действующих\r\nна друзей — мелодий и т.п.",
+            "pl": "Przy aktywacji efektu wpływającego\r\nna towarzyszy w określonym miejscu\r\n(np. melodii) na krótki czas daje\r\ndodatkową premię do ataku.",
+            "pt": "Adiciona um bônus a mais de ataque\r\npor um curto período ao ativar\r\nefeitos que afetam aliados numa\r\nárea, como melodias, etc.",
+            "ko": "선율 효과 등 일정 범위 내 동료에게\r\n작용하는 효과를 발동했을 때\r\n짧은 시간 동안 공격력이 상승하는\r\n효과를 추가로 부여한다.",
+            "zh-Hant": "發動於一定範圍內對同伴生效\r\n的效果（例如旋律效果）時，\r\n會在短時間內附加攻擊力上升\r\n的效果。",
+            "zh-Hans": "发动对一定范围内的同伴生效的\r\n效果时（如旋律效果），短时间\r\n内还可附加攻击力上升的效果。",
+            "ar": "لإضافة هجوم آخر لزيادة المكافأة\r\nلفترة قصيرة أثناء تفعيل التأثيرات\r\nالتي تؤثر على الأصدقاء داخل منطقة\r\nمستهدفة، مثل الألحان وما إلى ذلك."
         }
     }
 ]

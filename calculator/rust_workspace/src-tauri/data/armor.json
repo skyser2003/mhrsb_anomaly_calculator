@@ -62201,7 +62201,7 @@
             "de": "Alice-Hüftring",
             "es": "Faja de Alice",
             "ru": "Пояс Алисы",
-            "pl": "Ogon Alice",
+            "pl": "Dół zestawu Alice",
             "pt": "Cinturão de Alice",
             "ko": "알리시아코일",
             "zh-Hant": "亞莉希亞腰甲",
@@ -63247,6 +63247,391 @@
         "slots": [
             4,
             1,
+            0
+        ]
+    },
+    {
+        "id": "cielo_headgear",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "シエロヘッド",
+            "en": "Cielo Headgear",
+            "fr": "Coiffe Cielo",
+            "it": "Copricapo Cielo",
+            "de": "Cielo-Kopfschutz",
+            "es": "Cubrecabeza Cielo",
+            "ru": "Шлем Циэло",
+            "pl": "Kaptur Cielo",
+            "pt": "Elmo Cielo",
+            "ko": "시엘로헤드",
+            "zh-Hant": "碧空頭飾",
+            "zh-Hans": "碧空头饰",
+            "ar": "غطاء رأس سيلو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "cielo_mail",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "シエロメイル",
+            "en": "Cielo Mail",
+            "fr": "Cotte Cielo",
+            "it": "Cotta Cielo",
+            "de": "Cielo-Panzer",
+            "es": "Cota Cielo",
+            "ru": "Доспех Циэло",
+            "pl": "Zbroja Cielo",
+            "pt": "Cota de Malha Cielo",
+            "ko": "시엘로메일",
+            "zh-Hant": "碧空鎧甲",
+            "zh-Hans": "碧空铠甲",
+            "ar": "درع سيلو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "cielo_braces",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "シエロアーム",
+            "en": "Cielo Braces",
+            "fr": "Avant-bras Cielo",
+            "it": "Parabraccia Cielo",
+            "de": "Cielo-Armschienen",
+            "es": "Brazales Cielo",
+            "ru": "Наручи Циэло",
+            "pl": "Zarękawia Cielo",
+            "pt": "Braçadeiras Cielo",
+            "ko": "시엘로암",
+            "zh-Hant": "碧空腕甲",
+            "zh-Hans": "碧空腕甲",
+            "ar": "دروع ساعد سيلو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "cielo_coil",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "シエロコイル",
+            "en": "Cielo Coil",
+            "fr": "Boucle Cielo",
+            "it": "Spira Cielo",
+            "de": "Cielo-Hüftring",
+            "es": "Faja Cielo",
+            "ru": "Пояс Циэло",
+            "pl": "Pas Cielo",
+            "pt": "Cinturão Cielo",
+            "ko": "시엘로코일",
+            "zh-Hant": "碧空腰甲",
+            "zh-Hans": "碧空腰甲",
+            "ar": "لفيفة سيلو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "cielo_pants",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "シエロフット",
+            "en": "Cielo Pants",
+            "fr": "Pantalon Cielo",
+            "it": "Pantaloni Cielo",
+            "de": "Cielo-Hose",
+            "es": "Pantalones Cielo",
+            "ru": "Штаны Циэло",
+            "pl": "Spodnie Cielo",
+            "pt": "Calças Cielo",
+            "ko": "시엘로풋",
+            "zh-Hant": "碧空鞋子",
+            "zh-Hans": "碧空鞋子",
+            "ar": "بنطال سيلو"
+        },
+        "rarity": 8,
+        "stat": {
+            "defense": 0,
+            "fireRes": 0,
+            "waterRes": 0,
+            "iceRes": 0,
+            "elecRes": 0,
+            "dragonRes": 0
+        },
+        "skills": {},
+        "slots": [
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": "primordial_helm",
+        "part": "helm",
+        "sexType": "all",
+        "names": {
+            "ja": "プライマルヘルム",
+            "en": "Primordial Helm",
+            "fr": "Heaume primordial",
+            "it": "Elmo primordiale",
+            "de": "Ur-Helm",
+            "es": "Casco primordial",
+            "ru": "Древний шлем",
+            "pl": "Pierwotny hełm",
+            "pt": "Elmo Primordial",
+            "ko": "프라이멀헬름",
+            "zh-Hant": "原初頭盔",
+            "zh-Hans": "原初头盔",
+            "ar": "الخوذة الأصلية"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": -1,
+            "elecRes": 2,
+            "dragonRes": -5
+        },
+        "skills": {
+            "blood_rite": {
+                "level": 3
+            }
+        },
+        "slots": [
+            4,
+            4,
+            0
+        ]
+    },
+    {
+        "id": "primordial_mail",
+        "part": "torso",
+        "sexType": "all",
+        "names": {
+            "ja": "プライマルメイル",
+            "en": "Primordial Mail",
+            "fr": "Cotte primordiale",
+            "it": "Cotta primordiale",
+            "de": "Ur-Panzer",
+            "es": "Cota primordial",
+            "ru": "Древний доспех",
+            "pl": "Pierwotna zbroja",
+            "pt": "C. Malha Primordial",
+            "ko": "프라이멀메일",
+            "zh-Hant": "原初鎧甲",
+            "zh-Hans": "原初铠甲",
+            "ar": "درع الصدر الأصلي"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": -1,
+            "elecRes": 2,
+            "dragonRes": -5
+        },
+        "skills": {
+            "blood_awakening": {
+                "level": 1
+            },
+            "burst": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            4,
+            2
+        ]
+    },
+    {
+        "id": "primordial_vambraces",
+        "part": "arm",
+        "sexType": "all",
+        "names": {
+            "ja": "プライマルアーム",
+            "en": "Primordial Vambraces",
+            "fr": "Avant-bras primordiaux",
+            "it": "Parabraccia primordiali",
+            "de": "Ur-Armschienen",
+            "es": "Brazales primordiales",
+            "ru": "Древние наручи",
+            "pl": "Pierwotne zarękawia",
+            "pt": "Avamb. Primordiais",
+            "ko": "프라이멀암",
+            "zh-Hant": "原初腕甲",
+            "zh-Hans": "原初腕甲",
+            "ar": "درع الساعد الأصلي"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": -1,
+            "elecRes": 2,
+            "dragonRes": -5
+        },
+        "skills": {
+            "blood_awakening": {
+                "level": 1
+            },
+            "critical_boost": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            4,
+            2
+        ]
+    },
+    {
+        "id": "primordial_coil",
+        "part": "waist",
+        "sexType": "all",
+        "names": {
+            "ja": "プライマルコイル",
+            "en": "Primordial Coil",
+            "fr": "Tassette primordiale",
+            "it": "Spira primordiale",
+            "de": "Ur-Hüftring",
+            "es": "Faja primordial",
+            "ru": "Древний пояс",
+            "pl": "Pierwotny pas",
+            "pt": "Cinturão Primordial",
+            "ko": "프라이멀코일",
+            "zh-Hant": "原初腰甲",
+            "zh-Hans": "原初腰甲",
+            "ar": "اللفيفة الأصلية"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": -1,
+            "elecRes": 2,
+            "dragonRes": -5
+        },
+        "skills": {
+            "burst": {
+                "level": 2
+            },
+            "critical_boost": {
+                "level": 1
+            }
+        },
+        "slots": [
+            4,
+            4,
+            2
+        ]
+    },
+    {
+        "id": "primordial_greaves",
+        "part": "feet",
+        "sexType": "all",
+        "names": {
+            "ja": "プライマルグリーヴ",
+            "en": "Primordial Greaves",
+            "fr": "Grèves primordiales",
+            "it": "Schinieri primordiali",
+            "de": "Ur-Beinschienen",
+            "es": "Grebas primordiales",
+            "ru": "Древние поножи",
+            "pl": "Pierwotne nagolenice",
+            "pt": "Grevas Primordiais",
+            "ko": "프라이멀그리브",
+            "zh-Hant": "原初護腿",
+            "zh-Hans": "原初护腿",
+            "ar": "درع الساق الأصلية"
+        },
+        "rarity": 9,
+        "stat": {
+            "defense": 125,
+            "fireRes": -2,
+            "waterRes": 2,
+            "iceRes": -1,
+            "elecRes": 2,
+            "dragonRes": -5
+        },
+        "skills": {
+            "blood_awakening": {
+                "level": 1
+            },
+            "critical_boost": {
+                "level": 1
+            },
+            "partbreaker": {
+                "level": 3
+            }
+        },
+        "slots": [
+            4,
+            4,
             0
         ]
     }
