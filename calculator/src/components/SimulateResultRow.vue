@@ -99,9 +99,9 @@ const savedCheck = ref<{ [key: number]: boolean }>({});
 function getArmorData(data: ResultArmor) {
 	const skillTexts = [];
 
-	for (const id in data.skills) {
+	for (const id in data.baseSkills) {
 		const name = SkillsData.getName(id, props.langData);
-		const level = data.skills[id];
+		const level = data.baseSkills[id];
 
 		const text = `${name} Lv${level}`;
 		skillTexts.push(text);
