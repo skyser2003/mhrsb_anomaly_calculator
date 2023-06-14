@@ -1,9 +1,9 @@
 {
-    "version": "0.3.6",
-    "notes": "16.0 데이터 추가 / 16.0 data added",
+    "version": "0.3.7",
+    "notes": "장비 기본 정보에 기본 스킬만 표시 / Show only basic skills in equipment basic information",
     "platforms": {
         "windows-x86_64": {
-            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVnlzcTdCQnVTaHBCQ29qNXl0OXEwTk9sMU91aDBkZWpBZEVvMFR3K00zR1pqTkltNE5FUng2bXhmUjMvSUwrVGNONE5TSWRpTUVKOXd3cDNrVnJERWdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjg2MjE1OTg5CWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuNl94NjRfZW4tVVMubXNpLnppcApSQndQN2RlaExoc2xPWkx3SDRvRmhXSng0aVAvRTh3YnlBOWxuMVRJdXJUOXhPMy96aFJXcmtFZ0U4Nm5YSU5VYmxjMFgyNnFYWUdLelMrNlkyUzFEQT09Cg==",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSS09EUWZZZzZDVjhMSytqVkNEM1VndngzNU12L3BFN0xNc2wyS3BRdEJROWQrR0ZESEd2ZDA1TnUzOFlJMG96aG84eWUvTWptZDdpSlo5Y0V0YkJqQmlYRWJqTFhvWHdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjg2NzYzMjUyCWZpbGU6bWhyLXN1bmJyZWFrLWFub21hbHktY2FsY3VsYXRvcl8wLjMuN194NjRfZW4tVVMubXNpLnppcApmZHNCWThIcGpqTVl0akZ1dmRzTHl4U2I4SllFVVJGYm9Vbi9ucHNJWHoyVGNGTnlqNmtZbk9kTVRnZy8yTk5qcFBZNGhOL1Y3dTEyT3FZRXM5cHpCUT09Cg==",
             "url": "https://github.com/skyser2003/mhrsb_anomay_calculator/releases/latest/download/mhr-sunbreak-anomaly-calculator.msi.zip"
         }
     }
