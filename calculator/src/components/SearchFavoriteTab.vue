@@ -17,7 +17,7 @@ interface Row {
 	id: string;
 	name: string;
 	weapon_slots: string;
-	skills: string;
+	skills: string[];
 	req_slots: string;
 }
 
@@ -107,7 +107,6 @@ function generateTableData(favs: SearchFavorite[]) {
 			skillTexts.push(text);
 		}
 
-		const skillsText = skillTexts.join(", ");
 		const weaponSlotsText = JSON.stringify(fav.weaponSlots);
 		const reqSlotsText = JSON.stringify(fav.reqSlots);
 
@@ -117,7 +116,7 @@ function generateTableData(favs: SearchFavorite[]) {
 			name: fav.name,
 			sex_type: fav.sexType === "" ? "" : lm.getString(fav.sexType),
 			weapon_slots: weaponSlotsText,
-			skills: skillsText,
+			skills: skillTexts,
 			req_slots: reqSlotsText
 		} as Row;
 	});
@@ -209,7 +208,7 @@ async function switchReorder() {
 	<br />
 
 	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ hideOnSinglePage: true }" id="search_favorite_table">
-		<template #bodyCell="{ text, index, column }">
+		<template #bodyCell="{ text, index, column, record }">
 			<template v-if="column.key === 'name'">
 				<template v-if="isEditing[index] === true">
 					<a-input style="width: 150px" v-model:value="props.favorites[index].name" @pressEnter="saveName(index)" />
@@ -226,6 +225,12 @@ async function switchReorder() {
 					<EditOutlined @click="beginEditName(index)" :disabled="isReordering" style="padding-left: 10px" />
 				</template>
 			</template>
+
+      <template v-else-if="column.key === 'skills'">
+        <a-tag v-for="skill in record.skills">
+          {{ skill }}
+        </a-tag>
+      </template>
 
 			<template v-else-if="column.key === 'set_search'">
 				<a-button @click="setSearch(index)" type="primary" :disabled="isReordering">★</a-button>

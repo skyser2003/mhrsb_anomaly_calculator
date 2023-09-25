@@ -6,6 +6,10 @@ import { DecosData } from "../models/decos";
 import { lm } from "../model/language_manager";
 import { Language } from "../definition/language";
 
+export interface EquipPartData {
+	skills: string[];
+	slots: string;
+}
 
 export function getDecoCombTexts(comb: ResultDecorationCombination, langData: Language) {
 	const skillData = {} as { [key: string]: { [key: string]: number } };
@@ -45,7 +49,7 @@ export function getDecoCombTexts(comb: ResultDecorationCombination, langData: La
 			decoTexts.push(text);
 		}
 
-		const text = `(${decoTexts.join(" | ")})`;
+		const text = `${decoTexts.join(" | ")}`;
 
 		allDecoTexts.push(text);
 	}

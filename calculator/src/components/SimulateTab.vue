@@ -12,12 +12,13 @@ import { FinalSkillInfo } from "../definition/skill_define";
 import { CalculateResult, SearchFavorite, EquipSlots, Skills, MinMaxSkills, Slots, ResultFavorite, SexType, CalcChoices, ResultFullEquipments, ResultArmor, CalculateAdditionalSkillsResult } from "../definition/calculate_result";
 import { CacheManager } from "../model/data_manager";
 
-import SimulateResultTable from "./SimulateResultTable.vue"; 
+import SimulateResultTable from "./SimulateResultTable.vue";
 import AdditionalSkillsTable from "./AdditionalSkillsTable.vue";
 
 import { lm } from "../model/language_manager";
 import { Language } from "../definition/language";
 import { InvokeManager } from "../model/invoke_manager";
+import { SkillsData } from "../models/skills";
 
 enum CalcState {
 	IDLE,
@@ -83,7 +84,7 @@ const emits = defineEmits<{
 	(event: "add_result_favorite", fav: ResultFavorite): void
 }>();
 
-defineExpose({setSearchCondition});
+defineExpose({ setSearchCondition });
 
 const skillCats = ref<SkillCategory[]>(SkillCategories);
 const skillsVec = ref<FinalSkillInfo[]>(SkillsVec);
@@ -125,7 +126,7 @@ try {
 			selectedSkills.value[skillId] = level;
 		}
 	}
-} catch(e) {
+} catch (e) {
 	console.error(e);
 }
 
@@ -133,7 +134,7 @@ const yesCategorySkills = {} as { [key: string]: boolean };
 const noCategorySkills = [];
 
 for (const cat of skillCats.value) {
-	for(const skillId of cat.skills) {
+	for (const skillId of cat.skills) {
 		yesCategorySkills[skillId] = true;
 	}
 }
@@ -241,6 +242,17 @@ async function calculate() {
 			sortResult(resultSortKey.value, localCalcResult);
 		}
 
+		for (const localResult of localCalcResult.fullEquipments) {
+			localResult.commonLeftoverSkills = SkillsData.sortByName(localResult.commonLeftoverSkills, props.langData);
+
+			for (const part of Object.keys(localResult.armors)) {
+				const equip = localResult.armors[part];
+
+				equip.baseSkills = SkillsData.sortByName(equip.baseSkills, props.langData);
+				equip.diffSkills = SkillsData.sortByName(equip.diffSkills, props.langData);
+			}
+		}
+
 		calcResult.value = localCalcResult;
 		resultEquipmentsCount.value = calcResult.value.fullEquipments.length;
 
@@ -276,8 +288,6 @@ async function calculateAdditionalSkills() {
 	};
 
 	CacheManager.setCalcChoices(calcInput);
-
-	console.log(calcInput);
 
 	calc_state.value = CalcState.CALCULATING_ADDITIONAL_SKILLS;
 	resultEquipmentsCount.value = 0;
@@ -456,7 +466,8 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 					<td class="ant-table-cell"><a href="#top">{{ lm.getString("controller_to_top") }}</a></td>
 				</tr>
 				<tr class="ant-table-row">
-					<td class="ant-table-cell"><a href="#calculate_button">{{ lm.getString("controller_to_calc_button") }}</a></td>
+					<td class="ant-table-cell"><a href="#calculate_button">{{ lm.getString("controller_to_calc_button")
+					}}</a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -473,7 +484,8 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 						{{ skills[id].names[langData] }}
 					</div>
 					<div>
-						<a-select v-model:value="selectedSkills[id]" :style="`width: 120px; ${selectedSkills[id] === 0 ? '' : 'border: dashed blue;'} `">
+						<a-select v-model:value="selectedSkills[id]"
+							:style="`width: 120px; ${selectedSkills[id] === 0 ? '' : 'border: dashed blue;'} `">
 							<a-select-option :value="0" selected>---</a-select-option>
 							<a-select-option v-for="level in skills[id].maxLevel" :value="level">
 								Lv {{ level }}
@@ -488,7 +500,7 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 			<br />
 		</tr>
 	</table>
-	
+
 	<table>
 		<tr>
 			<td>{{ lm.getString("free_slots") }}</td>
@@ -575,14 +587,16 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 	<a-divider style="border-color: #7cb305" dashed />
 
 	<a-checkbox v-model:checked="includeLteEquips">{{ lm.getString("include_lte_equips") }}</a-checkbox>
-	
+
 	<br />
 	<br />
 
-	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" id="calculate_button" >
+	<a-button @click="calculate" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'"
+		id="calculate_button">
 		{{ lm.getString("calculate_button") }}
 	</a-button>
-	<a-button @click="calculateAdditionalSkills" :disabled="canSubmit() === false" :type="canSubmit() === true ? 'primary' : 'dashed'" style="margin-left: 10px" >
+	<a-button @click="calculateAdditionalSkills" :disabled="canSubmit() === false"
+		:type="canSubmit() === true ? 'primary' : 'dashed'" style="margin-left: 10px">
 		{{ lm.getString("calculate_additional_skills_button") }}
 	</a-button>
 
@@ -610,7 +624,8 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 		<tr>
 			<td style="width: 100px">{{ lm.getString("sort_result_criteria") }}</td>
 			<td>
-				<a-select v-model:value="resultSortKey" @change="sortResult(resultSortKey, calcResult)" style="min-width: 200px">		
+				<a-select v-model:value="resultSortKey" @change="sortResult(resultSortKey, calcResult)"
+					style="min-width: 200px">
 					<a-select-option value="slots_sum">{{ lm.getString("slots_sum") }}</a-select-option>
 					<a-select-option value="defense">{{ lm.getString("defense") }}</a-select-option>
 				</a-select>
@@ -631,7 +646,9 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 			<div>{{ lm.getString("additional_skills_not_found") }}</div>
 		</template>
 		<template v-else>
-			<AdditionalSkillsTable :langData="langData" :skills="additionalSkills" :slots="additionalSlots" :selectedSkills="selectedSkills" :selectedSlots="freeSlots" :originalSkills="originalSkills" :originalSlots="originalSlots" />
+			<AdditionalSkillsTable :langData="langData" :skills="additionalSkills" :slots="additionalSlots"
+				:selectedSkills="selectedSkills" :selectedSlots="freeSlots" :originalSkills="originalSkills"
+				:originalSlots="originalSlots" />
 		</template>
 	</template>
 	<template v-else>
@@ -640,7 +657,6 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 </template>
 
 <style scoped>
-
 #remote_controller {
 	position: fixed;
 
@@ -657,5 +673,4 @@ function sortResult(sortKey: string, calcResultData: CalculateResult) {
 #remote_controller .ant-table-cell {
 	padding: 10px;
 }
-
 </style>

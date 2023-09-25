@@ -13,6 +13,7 @@ import StatTable from "./StatTable.vue";
 import { lm } from "../model/language_manager";
 import { Language } from "../definition/language";
 import { ArmorStatInfo, getDefaultStat } from "../definition/armor_define";
+import { EquipPartData } from "../model/ui";
 
 interface TableData {
 	helm: string;
@@ -20,11 +21,11 @@ interface TableData {
 	arm: string;
 	waist: string;
 	feet: string;
-	talisman: string;
+	talisman: EquipPartData;
 	stat: ArmorStatInfo;
 	leftover_slots: string;
-	common_leftover_skills: string;
-	anomalyInfo: {[key: string]: boolean};
+	common_leftover_skills: string[];
+	anomalyInfo: { [key: string]: boolean };
 }
 
 const props = defineProps<{
@@ -101,7 +102,10 @@ function getTalismanText(talisman: ResultTalisman) {
 
 	const slotsName = lm.getString("slots_name");
 
-	return skillTexts.join(", ") + " / " + `${slotsName} ${JSON.stringify(taliBaseSlots)}`;
+	return {
+		skills: skillTexts,
+		slots: `${slotsName} ${JSON.stringify(taliBaseSlots)}`
+	} as EquipPartData;
 }
 
 function generateTableData(calcResult: CalculateResult) {
@@ -119,7 +123,7 @@ function generateTableData(calcResult: CalculateResult) {
 		}
 
 		if (Object.keys(allLeftoverSlots).length === 0) {
-			const emptyKey = JSON.stringify([0,0,0,0]);
+			const emptyKey = JSON.stringify([0, 0, 0, 0]);
 			allLeftoverSlots[emptyKey] = true;
 		}
 
@@ -140,7 +144,7 @@ function generateTableData(calcResult: CalculateResult) {
 			leftoverSkillsText.push(text);
 		}
 
-		const anomalyInfo = {} as {[key: string]: boolean};
+		const anomalyInfo = {} as { [key: string]: boolean };
 
 		for (const key in equips.armors) {
 			const armor = equips.armors[key];
@@ -157,7 +161,7 @@ function generateTableData(calcResult: CalculateResult) {
 			talisman: getTalismanText(equips.talisman),
 			stat: getTotalStat(equips.armors),
 			leftover_slots: allLeftoverSlotsTexts.join(", "),
-			common_leftover_skills: leftoverSkillsText.join(", "),
+			common_leftover_skills: leftoverSkillsText,
 			anomalyInfo
 		} as TableData;
 	});
@@ -174,13 +178,30 @@ function getAnomalyImageName() {
 </script>
 
 <template>
-	<a-table :columns="columns" :data-source="generateTableData(calcResult)" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true}" :expand-row-by-click="true" :row-class-name="() => 'cursor-pointer'">
-		<template #expandIcon="{}">
+	<a-table :columns="columns" :data-source="generateTableData(calcResult)"
+		:pagination="{ defaultPageSize: 200, hideOnSinglePage: true }" :expand-row-by-click="true"
+		:row-class-name="() => 'cursor-pointer'">
+		<template #expandIcon="{ }">
 		</template>
 
 		<template #bodyCell="{ text, column, record }">
 			<template v-if="record.anomalyInfo[column.key] === true">
 				{{ text }} <a-image :src="`${getAnomalyImageName()}`" :width="20" :preview="false" />
+			</template>
+			<template v-else-if="column.key === 'talisman'">
+				<template v-if="record[column.key].skills !== undefined && record[column.key].skills.length !== 0">
+					<a-tag v-for="skill in record[column.key].skills">
+						{{ skill }}
+					</a-tag>
+					<br />
+					<div style="margin-bottom: 10px;"></div>
+				</template>
+				{{ record[column.key].slots }}
+			</template>
+			<template v-else-if="column.key === 'common_leftover_skills'">
+				<a-tag v-for="skill in record.common_leftover_skills">
+					{{ skill }}
+				</a-tag>
 			</template>
 			<template v-else-if="column.key === 'stat'">
 				<StatTable :langData="langData" :stat="record.stat" />
@@ -188,15 +209,14 @@ function getAnomalyImageName() {
 		</template>
 
 		<template #expandedRowRender="{ index }">
-			<SimulateResultRow :langData="langData" :data="calcResult.fullEquipments[index]" v-on:add_result_favorite="addResultFavorite" />
+			<SimulateResultRow :langData="langData" :data="calcResult.fullEquipments[index]"
+				v-on:add_result_favorite="addResultFavorite" />
 		</template>
 	</a-table>
 </template>
 
 <style>
-
 .cursor-pointer {
 	cursor: pointer;
 }
-
 </style>

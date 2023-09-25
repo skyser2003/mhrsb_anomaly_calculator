@@ -7,16 +7,16 @@ import { SkillsData } from "../models/skills";
 import { SlotsDataManager } from "../models/slots";
 
 import { lm } from "../model/language_manager";
-import { getDecoCombTexts } from "../model/ui";
+import { EquipPartData, getDecoCombTexts } from "../model/ui";
 import { Language } from "../definition/language";
 
 interface RowData {
 	row_info: string;
-	helm: string;
-	torso: string;
-	arm: string;
-	waist: string;
-	feet: string;
+	helm: EquipPartData;
+	torso: EquipPartData;
+	arm: EquipPartData;
+	waist: EquipPartData;
+	feet: EquipPartData;
 }
 
 const props = defineProps<{
@@ -107,12 +107,18 @@ function getArmorData(data: ResultArmor) {
 		skillTexts.push(text);
 	}
 
-	return `${skillTexts.join(", ")} / ${lm.getString("slots_name")} ${JSON.stringify(SlotsDataManager.convertToBase(data.baseSlots))}`;
+	return {
+		skills: skillTexts,
+		slots: `${lm.getString("slots_name")} ${JSON.stringify(SlotsDataManager.convertToBase(data.baseSlots))}`
+	} as EquipPartData;
 }
 
 function getArmorDiffData(data: ResultArmor) {
 	if (data.isAnomaly === false) {
-		return "";
+		return {
+			skills: [],
+			slots: ""
+		} as EquipPartData;
 	}
 
 	const skillTexts = [];
@@ -120,8 +126,6 @@ function getArmorDiffData(data: ResultArmor) {
 	if (Object.keys(data.diffSkills).length === 0) {
 		skillTexts.push(`(${lm.getString("no_diff_skill")})`);
 	} else {
-		const texts = [];
-
 		for (const id in data.diffSkills) {
 			const name = SkillsData.getName(id, props.langData);
 			const level = data.diffSkills[id];
@@ -129,28 +133,29 @@ function getArmorDiffData(data: ResultArmor) {
 			const levelText = level > 0 ? `+Lv${absLevel}` : `-Lv${absLevel}`;
 
 			const text = `${name} ${levelText}`;
-			texts.push(text);
+			skillTexts.push(text);
 		}
-
-		skillTexts.push(texts.join(", "));
 	}
 
 	const slots = SlotsDataManager.convertToBase(data.slots);
 	const slot_diff_texts = [];
 
-	for(let i = 0; i < data.diffSlots.length; ++i) {
+	for (let i = 0; i < data.diffSlots.length; ++i) {
 		let diff = data.diffSlots[i];
 		let diff_text = "";
 
 		if (0 < diff) {
-			diff_text = `(+${ data.diffSlots[i] })`;
+			diff_text = `(+${data.diffSlots[i]})`;
 		}
 
 		let text = `${slots[i]}${diff_text}`;
 		slot_diff_texts.push(text);
 	}
 
-	return `${skillTexts.join(", ")} / ${lm.getString('slots_name')} [${slot_diff_texts.join(", ")}]`;
+	return {
+		skills: skillTexts,
+		slots: `${lm.getString('slots_name')} [${slot_diff_texts.join(", ")}]`
+	} as EquipPartData;
 }
 
 function getRowData(data: ResultFullEquipments) {
@@ -179,7 +184,7 @@ function getDecoCombData(data: ResultFullEquipments) {
 	const decoCombs = data.decoCombs.map(comb => {
 		const allDecoTexts = getDecoCombTexts(comb, props.langData);
 
-		const leftoverSkills = [];
+		const leftoverSkills = [] as string[];
 
 		for (const skillId in comb.leftoverSkills) {
 			const level = comb.leftoverSkills[skillId];
@@ -195,7 +200,7 @@ function getDecoCombData(data: ResultFullEquipments) {
 			leftoverSkills.push(`(${lm.getString("no_excess_skill")})`);
 		}
 
-		return { decos: allDecoTexts.join(" - "), slots: JSON.stringify(comb.leftoverSlotsSum), leftover_skills: leftoverSkills.join(", ") };
+		return { decos: allDecoTexts, slots: JSON.stringify(comb.leftoverSlotsSum), leftover_skills: leftoverSkills };
 	});
 
 	return decoCombs;
@@ -223,7 +228,7 @@ function addResultFavorite(index: number) {
 		talisman,
 		decoComb
 	};
-	
+
 	emits("add_result_favorite", fav);
 
 	savedCheck.value[index] = true;
@@ -236,12 +241,37 @@ function addResultFavorite(index: number) {
 </script>
 
 <template>
-	<a-table :columns="equipColumns" :data-source="getRowData(props.data)" :pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">
+	<a-table :columns="equipColumns" :data-source="getRowData(props.data)"
+		:pagination="{ defaultPageSize: 100, hideOnSinglePage: true }">
+		<template #bodyCell="{ column, record }">
+			<template v-if="column.key !== 'row_info'">
+				<template v-if="record[column.key].skills !== undefined && record[column.key].skills.length !== 0">
+					<a-tag v-for="skill in record[column.key].skills">
+						{{ skill }}
+					</a-tag>
+					<br />
+					<div style="margin-bottom: 10px;"></div>
+				</template>
+				{{ record[column.key].slots }}
+			</template>
+		</template>
 	</a-table>
-	<a-table :columns="decoColumns" :data-source="getDecoCombData(props.data)" :pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">
-		<template #bodyCell="{ index, column }">
-			<template v-if="column.key === 'add_result_favorite'">
-				<a-button :type="savedCheck[index] === true ? 'dashed' : 'primary'" :disabled="savedCheck[index] === true" @click="addResultFavorite(index)">Save</a-button>
+	<a-table :columns="decoColumns" :data-source="getDecoCombData(props.data)"
+		:pagination="{ defaultPageSize: 100, hideOnSinglePage: true }">
+		<template #bodyCell="{ index, column, record }">
+			<template v-if="column.key === 'decos'">
+				<a-tag v-for="deco in record[column.key]">
+					{{ deco }}
+				</a-tag>
+			</template>
+			<template v-if="column.key === 'leftover_skills'">
+				<a-tag v-for="skill in record[column.key]">
+					{{ skill }}
+				</a-tag>
+			</template>
+			<template v-else-if="column.key === 'add_result_favorite'">
+				<a-button :type="savedCheck[index] === true ? 'dashed' : 'primary'" :disabled="savedCheck[index] === true"
+					@click="addResultFavorite(index)">Save</a-button>
 				<template v-if="savedCheck[index] === true">
 					Saved!
 				</template>

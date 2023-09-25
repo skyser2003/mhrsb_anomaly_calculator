@@ -25,8 +25,8 @@ interface Row {
 	name: string;
 	sex_type: string;
 	weapon_slots: string;
-	skills: string;
-	deco_combs: string;
+	skills: string[];
+	deco_combs: string[];
 	leftover_slots: string;
 	stat: ArmorStatInfo;
 }
@@ -105,11 +105,10 @@ function generateTableData(favs: ResultFavorite[]) {
 		const id = `${index}`;
 
 		let skills = {} as Skills;
-		const skillTexts = [];
 
 		for (const equipId in fav.armors) {
 			const equip = fav.armors[equipId];
-			
+
 			for (const skillId in equip.skills) {
 				const level = equip.skills[skillId];
 
@@ -135,7 +134,7 @@ function generateTableData(favs: ResultFavorite[]) {
 			const decos = fav.decoComb.skillDecos[skillId];
 			let level = 0;
 
-			for(let i = 0; i < decos.length; ++i) {
+			for (let i = 0; i < decos.length; ++i) {
 				const count = decos[i];
 				const decoInfo = DecosData.getInfo(skillId, i);
 
@@ -151,6 +150,8 @@ function generateTableData(favs: ResultFavorite[]) {
 
 		skills = SkillsData.sortByName(skills, props.langData);
 
+		const skillTexts = [];
+
 		for (const skillId in skills) {
 			const name = SkillsData.getName(skillId, props.langData);
 			const level = skills[skillId];
@@ -161,7 +162,6 @@ function generateTableData(favs: ResultFavorite[]) {
 
 		const allDecoTexts = getDecoCombTexts(fav.decoComb, props.langData);
 
-		const skillsText = skillTexts.join(", ");
 		const weaponSlotsText = JSON.stringify(fav.weaponSlots);
 		const leftoverSlotsText = JSON.stringify(fav.decoComb.leftoverSlotsSum);
 
@@ -171,8 +171,8 @@ function generateTableData(favs: ResultFavorite[]) {
 			name: fav.name,
 			sex_type: lm.getString(fav.sexType),
 			weapon_slots: weaponSlotsText,
-			skills: skillsText,
-			deco_combs: allDecoTexts.join(" - "),
+			skills: skillTexts,
+			deco_combs: allDecoTexts,
 			leftover_slots: leftoverSlotsText,
 			stat: getTotalStat(fav.armors),
 		} as Row;
@@ -210,8 +210,6 @@ function generateResultFullEquipments(fav: ResultFavorite) {
 		commonLeftoverSkills: {},
 	};
 
-	console.log(ret.decoCombs[0].leftoverSkills);
-	
 	return ret;
 }
 
@@ -245,7 +243,7 @@ onMounted(() => {
 			} else {
 				evt.target.insertBefore(evt.target.children.item(newIndex)!, evt.target.children.item(oldIndex)!);
 			}
-			
+
 			const oldElem = props.favorites.splice(oldIndex, 1)[0];
 			props.favorites.splice(newIndex, 0, oldElem);
 
@@ -278,15 +276,18 @@ function isRowExpandable(record: Row) {
 <template>
 	<a-switch v-model:checked="isReordering" @change="switchReorder" />
 	<span style="padding-left: 10px;">{{ lm.getString("reorder") }}</span>
-	
+
 	<br />
 	<br />
 
-	<a-table :columns="columns" :data-source="generateTableData(props.favorites)" :pagination="{ defaultPageSize: 200, hideOnSinglePage: true }" :row-expandable="isRowExpandable" v-model:expandedRowKeys="expandedRowKeys" id="result_favorite_table">
+	<a-table :columns="columns" :data-source="generateTableData(props.favorites)"
+		:pagination="{ defaultPageSize: 200, hideOnSinglePage: true }" :row-expandable="isRowExpandable"
+		v-model:expandedRowKeys="expandedRowKeys" id="result_favorite_table">
 		<template #bodyCell="{ text, index, column, record }">
 			<template v-if="column.key === 'name'">
 				<template v-if="isEditing[index] === true">
-					<a-input style="width: 150px" v-model:value="props.favorites[index].name" @pressEnter="saveName(index)" />
+					<a-input style="width: 150px" v-model:value="props.favorites[index].name"
+						@pressEnter="saveName(index)" />
 					<CheckOutlined @click="saveName(index)" />
 				</template>
 
@@ -300,13 +301,26 @@ function isRowExpandable(record: Row) {
 					<EditOutlined @click="beginEditName(index)" :disabled="isReordering" style="padding-left: 10px" />
 				</template>
 			</template>
-			
+
+			<template v-else-if="column.key === 'skills'">
+				<a-tag v-for="skill in record.skills">
+					{{ skill }}
+				</a-tag>
+			</template>
+
+			<template v-if="column.key === 'deco_combs'">
+				<a-tag v-for="deco in record[column.key]">
+					{{ deco }}
+				</a-tag>
+			</template>
+
 			<template v-else-if="column.key === 'stat'">
 				<StatTable :langData="langData" :stat="record.stat" />
 			</template>
 
 			<template v-else-if="column.key === 'delete'">
-				<a-popconfirm :title="lm.getString('confirm_delete')" ok-text="O" cancel-text="X" @confirm="deleteFavorite(index)" @cancel="" :disabled="isReordering">
+				<a-popconfirm :title="lm.getString('confirm_delete')" ok-text="O" cancel-text="X"
+					@confirm="deleteFavorite(index)" @cancel="" :disabled="isReordering">
 					<a-button :disabled="isReordering">X</a-button>
 				</a-popconfirm>
 			</template>
@@ -319,9 +333,7 @@ function isRowExpandable(record: Row) {
 </template>
 
 <style scoped>
-
 .empty_name {
 	text-decoration-line: line-through;
 }
-
 </style>

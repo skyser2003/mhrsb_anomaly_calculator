@@ -8,17 +8,18 @@ import { DecosData } from "../models/decos";
 import { SlotsDataManager } from "../models/slots";
 
 import { lm } from "../model/language_manager";
-import { getDecoCombTexts } from "../model/ui";
+import { EquipPartData, getDecoCombTexts } from "../model/ui";
 import { Language } from "../definition/language";
+
 
 interface RowData {
 	row_info: string;
-	helm: string;
-	torso: string;
-	arm: string;
-	waist: string;
-	feet: string;
-	talisman: string;
+	helm: EquipPartData;
+	torso: EquipPartData;
+	arm: EquipPartData;
+	waist: EquipPartData;
+	feet: EquipPartData;
+	talisman: EquipPartData;
 }
 
 const props = defineProps<{
@@ -103,9 +104,10 @@ function getArmorData(data: ResultArmor) {
 		skillTexts.push(text);
 	}
 
-	console.log(data);
-
-	return `${skillTexts.join(", ")} / ${lm.getString("slots_name")} ${JSON.stringify(SlotsDataManager.convertToBase(data.baseSlots))}`;
+	return {
+		skills: skillTexts,
+		slots: `${lm.getString("slots_name")} ${JSON.stringify(SlotsDataManager.convertToBase(data.baseSlots))}`
+	};
 }
 
 function getArmorDiffData(data: ResultArmor) {
@@ -136,19 +138,22 @@ function getArmorDiffData(data: ResultArmor) {
 	const slots = SlotsDataManager.convertToBase(data.slots);
 	const slot_diff_texts = [];
 
-	for(let i = 0; i < data.diffSlots.length; ++i) {
+	for (let i = 0; i < data.diffSlots.length; ++i) {
 		let diff = data.diffSlots[i];
 		let diff_text = "";
 
 		if (0 < diff) {
-			diff_text = `(+${ data.diffSlots[i] })`;
+			diff_text = `(+${data.diffSlots[i]})`;
 		}
 
 		let text = `${slots[i]}${diff_text}`;
 		slot_diff_texts.push(text);
 	}
 
-	return `${skillTexts.join(", ")} / ${lm.getString('slots_name')} [${slot_diff_texts.join(", ")}]`;
+	return {
+		skills: skillTexts,
+		slots: `${lm.getString('slots_name')} [${slot_diff_texts.join(", ")}]`
+	};
 }
 
 function getTalismanText(talisman: ResultTalisman) {
@@ -168,7 +173,10 @@ function getTalismanText(talisman: ResultTalisman) {
 
 	const slotsName = lm.getString("slots_name");
 
-	return skillTexts.join(", ") + " / " + `${slotsName} ${JSON.stringify(taliBaseSlots)}`;
+	return {
+		skills: skillTexts,
+		slots: `${slotsName} ${JSON.stringify(taliBaseSlots)}`
+	};
 }
 
 function getRowData(data: ResultFullEquipments) {
@@ -189,7 +197,7 @@ function getRowData(data: ResultFullEquipments) {
 		arm: getArmorDiffData(data.armors["arm"]),
 		waist: getArmorDiffData(data.armors["waist"]),
 		feet: getArmorDiffData(data.armors["feet"]),
-		talisman: "",
+		talisman: { skills: [], slots: "" },
 	} as RowData;
 
 	return [originalData, diffData];
@@ -203,7 +211,7 @@ function getDecoCombData(data: ResultFullEquipments) {
 
 		for (const skillId in comb.leftoverSkills) {
 			const level = comb.leftoverSkills[skillId];
-			
+
 			const skillName = SkillsData.getName(skillId, props.langData);
 
 			const text = `${skillName} Lv${level}`;
@@ -211,7 +219,7 @@ function getDecoCombData(data: ResultFullEquipments) {
 			leftoverSkills.push(text);
 		}
 
-		return { decos: allDecoTexts.join(" - "), slots: JSON.stringify(comb.leftoverSlotsSum), leftover_skills: leftoverSkills.join(", ") };
+		return { decos: allDecoTexts, slots: JSON.stringify(comb.leftoverSlotsSum), leftover_skills: leftoverSkills };
 	});
 
 	return decoCombs;
@@ -220,8 +228,29 @@ function getDecoCombData(data: ResultFullEquipments) {
 </script>
 
 <template>
-	<a-table :columns="equipColumns" :data-source="getRowData(props.data)" :pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">
+	<a-table :columns="equipColumns" :data-source="getRowData(props.data)"
+		:pagination="{ defaultPageSize: 100, hideOnSinglePage: true }">
+		<template #bodyCell="{ column, record }">
+			<template v-if="column.key !== 'row_info'">
+				<template v-if="record[column.key].skills !== undefined && record[column.key].skills.length !== 0">
+					<a-tag v-for="skill in record[column.key].skills">
+						{{ skill }}
+					</a-tag>
+					<br />
+					<div style="margin-bottom: 10px;"></div>
+				</template>
+				{{ record[column.key].slots }}
+			</template>
+		</template>
 	</a-table>
-	<a-table :columns="decoColumns" :data-source="getDecoCombData(props.data)" :pagination="{ defaultPageSize: 100, hideOnSinglePage: true}">
+	<a-table :columns="decoColumns" :data-source="getDecoCombData(props.data)"
+		:pagination="{ defaultPageSize: 100, hideOnSinglePage: true }">
+		<template #bodyCell="{ column, record }">
+			<template v-if="column.key !== 'slots'">
+				<a-tag v-for="elem in record[column.key]">
+					{{ elem }}
+				</a-tag>
+			</template>
+		</template>
 	</a-table>
 </template>
